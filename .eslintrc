@@ -15,6 +15,7 @@
         "react",
         "react-hooks",
         "@typescript-eslint",
+        "prettier",
         "import"
     ],
     "settings": {
