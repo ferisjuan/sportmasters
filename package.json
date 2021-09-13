@@ -78,10 +78,14 @@
     "husky": ">=6",
     "lint-staged": ">=10",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "prettier": "^2.2.0",
 =======
     "prettier": "^2.4.0",
 >>>>>>> initial setup
+=======
+    "prettier": "^2.2.0",
+>>>>>>> Finished setup
     "storybook": "^6.3.8",
     "tsc": "^2.0.3"
   },
