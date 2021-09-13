@@ -1,5 +1,5 @@
 *.css
 *.svg
 node_modules/
-.eslintrc.js
-.prettierrc.js
+.eslintrc
+.prettierrc
