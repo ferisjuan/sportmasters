@@ -1,7 +1,7 @@
 import { ReactElement } from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { queryConfig } from './constants/queries'
-import { User } from './pages/user'
+import { User } from './components/user/user'
 
 const queryClient = new QueryClient(queryConfig)
 
