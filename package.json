@@ -17,6 +17,7 @@
     "axios": "^0.21.4",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "firebase": "9.0.1",
     "mobx": "^6.3.3",
     "mobx-react-lite": "^3.2.1",
     "react": "^17.0.2",
@@ -30,12 +31,14 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "lint": "eslint '*/**/*.{ts,tsx}'",
-    "tsc": "tsc",
+    "prelint": "tsc",
     "tsc:watch": "tsc --watch",
     "audit:dev": "npx yarn-audit-fix@latest --audit-level=moderate",
     "storybook": "start-storybook -s ./ -p 9001 -c .storybook",
     "eject": "react-scripts eject",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "preci": "rm -fr node_modules",
+    "ci": "yarn install --frozen-lockfile"
   },
   "repository": {
     "type": "git",
