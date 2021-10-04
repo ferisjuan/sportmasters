@@ -135,3 +135,7 @@ dist
 # TernJS port file
 
 .tern-port
+
+# Vscode
+
+.vscode
