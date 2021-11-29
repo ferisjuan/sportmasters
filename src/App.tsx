@@ -1,10 +1,19 @@
 import { useState } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core'
 
 import { Main } from './pages/main'
+import { NotFound } from './pages/not-found'
 
 function App(): JSX.Element {
-    return <Main />
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Main />} />
+                <Route path="*" element={<NotFound />} />
+            </Routes>
+        </BrowserRouter>
+    )
 }
 
 // Custom theme is applied to all components in App
