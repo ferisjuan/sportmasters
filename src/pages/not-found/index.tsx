@@ -1,4 +1,4 @@
-import { Blockquote, Container, Title, Transition } from '@mantine/core'
+import { Blockquote, Container, Title } from '@mantine/core'
 
 export const NotFound = (): JSX.Element => (
     <Container sx={{ alignItems: 'center', display: 'flex', height: '100vh', justifyContent: 'center' }}>
