@@ -1,11 +1,13 @@
-import { ReactElement } from 'react'
+import { AppShell, Button, Title } from '@mantine/core'
 
-import { Button, Title } from '@mantine/core'
+import { SMHeader, SMNavbar } from 'components/ui/index'
 
 import { collection, addDoc } from 'firebase/firestore'
 import { db } from '../db/connect'
 
-export const Main = (): ReactElement => {
+export const Main = (): JSX.Element => {
+    // const theme = useMantineTheme()
+
     const handleFirebaseTest = async (): Promise<void> => {
         try {
             const docRef = await addDoc(collection(db, 'users'), {
@@ -19,9 +21,16 @@ export const Main = (): ReactElement => {
         }
     }
     return (
-        <div className="App">
-            <Title order={1}>Sportmasters</Title>
-            <Button onClick={handleFirebaseTest}>TEST</Button>
-        </div>
+        <AppShell
+            header={<SMHeader />}
+            navbar={<SMNavbar />}
+            fixed
+            padding="md"
+            styles={(theme) => ({
+                main: { backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0] },
+            })}
+        >
+            <Title order={2}>Sportmasters</Title>
+        </AppShell>
     )
 }
