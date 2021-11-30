@@ -4,6 +4,7 @@ import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core
 
 import { Main } from './pages/main'
 import { NotFound } from './pages/not-found'
+import { Auth } from './pages/auth'
 
 function App(): JSX.Element {
     return (
@@ -11,6 +12,7 @@ function App(): JSX.Element {
             <Routes>
                 <Route path="/" element={<Main />} />
                 <Route path="*" element={<NotFound />} />
+                <Route path="/login" element={<Auth />} />
             </Routes>
         </BrowserRouter>
     )

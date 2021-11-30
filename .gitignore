@@ -135,3 +135,9 @@ dist
 # TernJS port file
 
 .tern-port
+
+# Idea
+.idea
+
+# VS Code extensions
+.vscode
