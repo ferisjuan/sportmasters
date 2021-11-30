@@ -1,9 +1,35 @@
-import { ReactElement } from 'react'
+import { useState } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core'
 
 import { Main } from './pages/main'
+import { NotFound } from './pages/not-found'
 
-function App(): ReactElement {
-    return <Main />
+function App(): JSX.Element {
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Main />} />
+                <Route path="*" element={<NotFound />} />
+            </Routes>
+        </BrowserRouter>
+    )
 }
 
-export default App
+// Custom theme is applied to all components in App
+function WithProvider(): JSX.Element {
+    const [colorScheme, setColorScheme] = useState('light')
+
+    const toggleColorScheme = (value?: ColorScheme): void =>
+        setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'))
+
+    return (
+        <ColorSchemeProvider colorScheme={colorScheme as ColorScheme} toggleColorScheme={toggleColorScheme}>
+            <MantineProvider theme={{ colorScheme: colorScheme as ColorScheme }}>
+                <App />
+            </MantineProvider>
+        </ColorSchemeProvider>
+    )
+}
+
+export default WithProvider
