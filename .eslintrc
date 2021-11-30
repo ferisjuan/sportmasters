@@ -53,19 +53,19 @@
     ],
     "rules": {
         "@typescript-eslint/no-shadow": [
-            "error"
+            "warn"
         ],
         "@typescript-eslint/explicit-function-return-type": [
-            "error",
+            "warn",
             {
                 "allowExpressions": true
             }
         ],
         "@typescript-eslint/no-use-before-define": [
-            "error"
+            "warn"
         ],
         "import/extensions": [
-            "error",
+            "warn",
             "ignorePackages",
             {
                 "js": "never",
@@ -76,17 +76,17 @@
         ],
         "import/prefer-default-export": "off",
         "indent": [
-            "error",
+            "warn",
             4
         ],
         "linebreak-style": [
-            "error",
+            "warn",
             "unix"
         ],
         "no-use-before-define": "off",
         "no-shadow": "off",
         "react/jsx-filename-extension": [
-            "error",
+            "warn",
             {
                 "extensions": [
                     ".tsx"
@@ -95,15 +95,15 @@
         ],
         "react/jsx-uses-react": "off",
         "react-hooks/exhaustive-deps": "warn",
-        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/rules-of-hooks": "warn",
         "react/react-in-jsx-scope": "off",
         "react/prop-types": "off",
         "quotes": [
-            "error",
+            "warn",
             "single"
         ],
         "semi": [
-            "error",
+            "warn",
             "never"
         ]
     }
