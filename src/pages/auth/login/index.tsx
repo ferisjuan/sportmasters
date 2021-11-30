@@ -1,8 +1,12 @@
+// @vendors
+import { AiFillEye, AiFillEyeInvisible, AiTwotoneLock } from 'react-icons/ai'
 import { TextInput, Button, PasswordInput, Container } from '@mantine/core'
 import { useForm } from '@mantine/hooks'
-import { AiFillEye, AiFillEyeInvisible, AiTwotoneLock } from 'react-icons/ai'
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 
 export const Auth = (): JSX.Element => {
+    const auth = getAuth()
+
     const form = useForm({
         initialValues: {
             email: '',
@@ -13,12 +17,15 @@ export const Auth = (): JSX.Element => {
         },
     })
 
+    const handleFormSubmit = (): void => {
+        if (!form.validate) return
+
+        // form.onSubmit((values) => console.log(values))
+    }
+
     return (
         <Container size="xs" sx={{ display: 'flex', justifyContent: 'center', height: '100vh', alignItems: 'center' }}>
-            <form
-                onSubmit={form.onSubmit((values) => console.log(values))}
-                style={{ display: 'flex', gap: '20px', flexDirection: 'column' }}
-            >
+            <form onSubmit={handleFormSubmit} style={{ display: 'flex', gap: '10px', flexDirection: 'column' }}>
                 <TextInput
                     required
                     label="Email"
@@ -39,7 +46,7 @@ export const Auth = (): JSX.Element => {
                     icon={<AiTwotoneLock />}
                 />
 
-                <Button type="submit" disabled={form.errors.email}>
+                <Button disabled={form.errors.email} sx={{ marginTop: '20px' }} type="submit">
                     Register
                 </Button>
             </form>
