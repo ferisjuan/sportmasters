@@ -4,7 +4,7 @@ import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core
 
 import { Main } from './pages/main'
 import { NotFound } from './pages/not-found'
-import { Auth } from './pages/auth'
+import { Auth } from './pages/auth/login'
 
 function App(): JSX.Element {
     return (
