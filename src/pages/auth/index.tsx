@@ -7,30 +7,30 @@ export const Auth = (): JSX.Element => {
         initialValues: {
             email: '',
             password: '',
-            termsOfService: false,
         },
         validationRules: {
             email: (value) => /^\S+@\S+$/.test(value),
-            password: (value) => /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/.test(value),
         },
     })
+
     return (
         <Container size="xs" sx={{ display: 'flex', justifyContent: 'center', height: '100vh', alignItems: 'center' }}>
-            <form onSubmit={form.onSubmit((values) => console.log(values))}>
+            <form
+                onSubmit={form.onSubmit((values) => console.log(values))}
+                style={{ display: 'flex', gap: '20px', flexDirection: 'column' }}
+            >
                 <TextInput
                     required
                     label="Email"
+                    placeholder="your@email.com"
                     error={form.errors.email && 'Please specify valid email'}
                     value={form.values.email}
                     onChange={(event) => form.setFieldValue('email', event.currentTarget.value)}
                 />
+
                 <PasswordInput
-                    required
                     label="Password"
                     placeholder="Password"
-                    error={
-                        form.errors.password && 'Password should contain 1 number, 1 letter and at least 6 characters'
-                    }
                     value={form.values.password}
                     onChange={(event) => form.setFieldValue('password', event.currentTarget.value)}
                     visibilityToggleIcon={({ reveal, size }) =>
@@ -38,7 +38,8 @@ export const Auth = (): JSX.Element => {
                     }
                     icon={<AiTwotoneLock />}
                 />
-                <Button sx={{ marginTop: '10px' }} type="submit">
+
+                <Button type="submit" disabled={form.errors.email}>
                     Register
                 </Button>
             </form>

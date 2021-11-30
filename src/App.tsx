@@ -10,9 +10,9 @@ function App(): JSX.Element {
     return (
         <BrowserRouter>
             <Routes>
+                <Route path="/auth/login" element={<Auth />} />
                 <Route path="/" element={<Main />} />
                 <Route path="*" element={<NotFound />} />
-                <Route path="/login" element={<Auth />} />
             </Routes>
         </BrowserRouter>
     )
