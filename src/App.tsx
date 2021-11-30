@@ -5,13 +5,21 @@ import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core
 import { Main } from './pages/main'
 import { NotFound } from './pages/not-found'
 import { Auth } from './pages/auth/login'
+import { RequireAuth } from './components/auth'
 
 function App(): JSX.Element {
     return (
         <BrowserRouter>
             <Routes>
                 <Route path="/auth/login" element={<Auth />} />
-                <Route path="/" element={<Main />} />
+                <Route
+                    path="/"
+                    element={
+                        <RequireAuth>
+                            <Main />
+                        </RequireAuth>
+                    }
+                />
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </BrowserRouter>
