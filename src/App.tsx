@@ -1,6 +1,6 @@
 // @vendors
 import { useState } from 'react'
-import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core'
 
 // @components
@@ -9,18 +9,8 @@ import { Main } from './pages/main'
 import { NotFound } from './pages/not-found'
 
 // @context
-import { IChildren } from './interfaces'
 import { AuthContextProvider } from './context/auth-provider'
-import { useAuthState } from './hooks/auth'
-
-const AuthenticatedRoute = ({ children }: IChildren): JSX.Element => {
-    const { isAuthenticated } = useAuthState()
-    const location = useLocation()
-
-    if (!isAuthenticated) return <Navigate to="/auth/login" state={{ from: location }} />
-
-    return children
-}
+import { AuthenticatedRoute } from './components/auth'
 
 function App(): JSX.Element {
     return (

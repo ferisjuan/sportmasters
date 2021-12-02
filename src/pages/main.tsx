@@ -4,6 +4,7 @@ import { SMHeader, SMNavbar } from 'components/ui/index'
 
 export const Main = (): JSX.Element => (
     <AppShell
+        fixed
         header={<SMHeader />}
         navbar={<SMNavbar />}
         padding="md"
