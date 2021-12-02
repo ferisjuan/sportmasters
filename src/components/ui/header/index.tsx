@@ -30,7 +30,7 @@ export const SMHeader = (): JSX.Element => {
                         title="Toggle color scheme"
                     >
                         {dark ? (
-                            <SunIcon style={{ width: 18, height: 18 }} />
+                            <SunIcon style={{ height: 18, width: 18 }} />
                         ) : (
                             <MoonIcon style={{ width: 18, height: 18 }} />
                         )}

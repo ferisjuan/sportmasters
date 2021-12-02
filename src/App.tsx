@@ -1,28 +1,45 @@
+// @vendors
 import { useState } from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core'
 
+// @components
+import { Auth } from './pages/auth/login'
 import { Main } from './pages/main'
 import { NotFound } from './pages/not-found'
-import { Auth } from './pages/auth/login'
-import { RequireAuth } from './components/auth'
+
+// @context
+import { IChildren } from './interfaces'
+import { AuthContextProvider } from './context/auth-provider'
+import { useAuthState } from './hooks/auth'
+
+const AuthenticatedRoute = ({ children }: IChildren): JSX.Element => {
+    const { isAuthenticated } = useAuthState()
+    const location = useLocation()
+
+    if (!isAuthenticated) return <Navigate to="/auth/login" state={{ from: location }} />
+
+    return children
+}
 
 function App(): JSX.Element {
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/auth/login" element={<Auth />} />
-                <Route
-                    path="/"
-                    element={
-                        <RequireAuth>
-                            <Main />
-                        </RequireAuth>
-                    }
-                />
-                <Route path="*" element={<NotFound />} />
-            </Routes>
-        </BrowserRouter>
+        <AuthContextProvider>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/auth/login" element={<Auth />} />
+                    <Route
+                        path="/"
+                        element={
+                            <AuthenticatedRoute>
+                                <Main />
+                            </AuthenticatedRoute>
+                        }
+                    />
+                    <Route path="*" element={<NotFound />} />
+                </Routes>
+            </BrowserRouter>
+        </AuthContextProvider>
     )
 }
 

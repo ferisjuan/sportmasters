@@ -1,13 +1,12 @@
-import { getAuth } from '@firebase/auth'
-import { Navigate, useLocation } from 'react-router'
+import { useLocation, Navigate } from 'react-router-dom'
+import { useAuthState } from 'hooks/auth'
+import { IChildren } from 'interfaces'
 
-import { IChildren } from '../../interfaces/index'
-
-export const RequireAuth = ({ children }: IChildren): JSX.Element => {
-    const auth = getAuth()
+export const AuthenticatedRoute = ({ children }: IChildren): JSX.Element => {
+    const { isAuthenticated } = useAuthState()
     const location = useLocation()
 
-    if (!auth.currentUser) return <Navigate to="/auth/login" state={{ from: location }} />
+    if (!isAuthenticated) return <Navigate to="/auth/login" state={{ from: location }} />
 
     return children
 }
