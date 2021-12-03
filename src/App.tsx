@@ -28,7 +28,7 @@ function App(): JSX.Element {
                         }
                     >
                         <Route index element={<Title>Welcome to the dashboard</Title>} />
-                        <Route path={ROUTES.dashboard_main} element={<Title>Dashboard</Title>} />
+                        <Route path={ROUTES.dashboard_main} element={<Title>Main</Title>} />
                         <Route path={ROUTES.players} element={<Title>Players</Title>} />
                         <Route path={ROUTES.statistics} element={<Title>Statistics</Title>} />
                     </Route>

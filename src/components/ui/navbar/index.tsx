@@ -16,24 +16,17 @@ import { getInitials } from 'utils'
 
 export const SMNavbar = (): JSX.Element => {
     const [selected, setSelected] = useState(ROUTES.dashboard)
+    console.log('🚀🚀🚀 ~ file: index.tsx ~ line 19 ~ selected', selected)
     const location = useLocation()
 
     useEffect(() => {
         const path = location.pathname.replace('/dashboard/', '')
 
-        const isPathInRoutes = (): boolean => {
-            for (const route in ROUTES) {
-                if (route === path) {
-                    return true
-                    break
-                }
+        for (const route in ROUTES) {
+            if (route === path.replace('/', '')) {
+                setSelected(path as ROUTES)
+                break
             }
-
-            return false
-        }
-
-        if (isPathInRoutes()) {
-            setSelected(path as ROUTES)
         }
     }, [location])
 
