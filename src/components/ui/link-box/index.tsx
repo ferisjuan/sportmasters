@@ -41,10 +41,11 @@ export const LinkBox = ({ onClick, selected, text, to }: ILinkBoxProps): JSX.Ele
                 textAlign: 'left',
                 textDecoration: 'none',
                 textTransform: 'capitalize',
-                transition: 'background-color 0.5s ease-in-out',
+                transition: 'background-color, box-shadow 0.3s ease-in-out',
 
                 '&:hover': {
                     backgroundColor: isSelected ? theme.colors.indigo[7] : theme.colorScheme === 'dark' ? theme.colors.gray[4] : theme.colors.gray[1],
+                    boxShadow: '8px 8px 10px rgba(0, 0, 0, 0.25)',
                 },
             })}
         >
