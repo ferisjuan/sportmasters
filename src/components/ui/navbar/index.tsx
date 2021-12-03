@@ -1,12 +1,42 @@
 // @vendor
+import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { getAuth } from '@firebase/auth'
 import { Avatar, Box, Container, Navbar, Text, Title } from '@mantine/core'
 import { MantineTheme } from '@mantine/styles'
+
+// @components
+import { LinkBox } from '../link-box'
+
+// @constants
+import { NAV_ITEMS, ROUTES } from 'constants/index'
 
 // @utils
 import { getInitials } from 'utils'
 
 export const SMNavbar = (): JSX.Element => {
+    const [selected, setSelected] = useState(ROUTES.dashboard)
+    const location = useLocation()
+
+    useEffect(() => {
+        const path = location.pathname.replace('/dashboard/', '')
+
+        const isPathInRoutes = (): boolean => {
+            for (const route in ROUTES) {
+                if (route === path) {
+                    return true
+                    break
+                }
+            }
+
+            return false
+        }
+
+        if (isPathInRoutes()) {
+            setSelected(path as ROUTES)
+        }
+    }, [location])
+
     const user = getAuth().currentUser
     const userName = user?.displayName
 
@@ -14,6 +44,9 @@ export const SMNavbar = (): JSX.Element => {
         <Navbar width={{ base: 300 }} padding="sm">
             <Navbar.Section grow mt="lg">
                 <Title order={5}>Main Links</Title>
+                {NAV_ITEMS.map(({ text, to }) => (
+                    <LinkBox key={to} onClick={() => setSelected(to)} selected={selected} text={text} to={to} />
+                ))}
             </Navbar.Section>
 
             <Navbar.Section mb={70}>

@@ -1,7 +1,7 @@
 // @vendors
 import { useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core'
+import { ColorScheme, ColorSchemeProvider, MantineProvider, Title } from '@mantine/core'
 
 // @components
 import { Auth } from './pages/auth/login'
@@ -11,22 +11,28 @@ import { NotFound } from './pages/not-found'
 // @context
 import { AuthContextProvider } from './context/auth-provider'
 import { AuthenticatedRoute } from './components/auth'
+import { ROUTES } from './constants/routes'
 
 function App(): JSX.Element {
     return (
         <AuthContextProvider>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/auth/login" element={<Auth />} />
+                    <Route path={ROUTES.login} element={<Auth />} />
                     <Route
-                        path="/"
+                        path={ROUTES.dashboard}
                         element={
                             <AuthenticatedRoute>
                                 <Main />
                             </AuthenticatedRoute>
                         }
-                    />
-                    <Route path="*" element={<NotFound />} />
+                    >
+                        <Route index element={<Title>Welcome to the dashboard</Title>} />
+                        <Route path={ROUTES.dashboard_main} element={<Title>Dashboard</Title>} />
+                        <Route path={ROUTES.players} element={<Title>Players</Title>} />
+                        <Route path={ROUTES.statistics} element={<Title>Statistics</Title>} />
+                    </Route>
+                    <Route path={ROUTES.notFound} element={<NotFound />} />
                 </Routes>
             </BrowserRouter>
         </AuthContextProvider>

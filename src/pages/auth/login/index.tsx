@@ -35,7 +35,7 @@ export const Auth = (): JSX.Element => {
             setIsLoading(true)
             const auth = getAuth()
             await signInWithEmailAndPassword(auth, form.values.email, form.values.password)
-            navigate('/')
+            navigate('/dashboard')
         } catch (error) {
             console.log(error)
         }
