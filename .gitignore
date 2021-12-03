@@ -137,7 +137,10 @@ dist
 .tern-port
 
 # Idea
-.idea
+.idea/
 
 # VS Code extensions
-.vscode
+.vscode/
+
+# vim
+tags
