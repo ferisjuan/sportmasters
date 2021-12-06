@@ -2,7 +2,7 @@ import { ActionIcon, Group, Header, ThemeIcon, Title, useMantineColorScheme } fr
 import { FcSportsMode } from 'react-icons/fc'
 import { BsFillMoonStarsFill as MoonIcon, BsFillSunFill as SunIcon } from 'react-icons/bs'
 
-export const SMHeader = (): JSX.Element => {
+export const SMHeader: React.VFC = () => {
     // const colorScheme = useColorScheme()
     const { colorScheme, toggleColorScheme } = useMantineColorScheme()
     const dark = colorScheme === 'dark'

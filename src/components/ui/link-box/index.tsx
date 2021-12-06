@@ -15,7 +15,7 @@ interface ILinkBoxProps {
     to: ROUTES
 }
 
-export const LinkBox = ({ onClick, selected, text, to }: ILinkBoxProps): JSX.Element => {
+export const LinkBox: React.VFC<ILinkBoxProps> = ({ onClick, selected, text, to }) => {
     const [isSelected, setIsSelected] = useState(false)
 
     useEffect(() => {
@@ -28,24 +28,24 @@ export const LinkBox = ({ onClick, selected, text, to }: ILinkBoxProps): JSX.Ele
             onClick={onClick}
             to={to}
             sx={(theme) => ({
-                display: 'block',
+                display: 'flex',
                 backgroundColor: isSelected
-                    ? theme.colors.indigo[5] : theme.colorScheme === 'dark' ? theme.colors.gray[6] : theme.colors.gray[3],
-                borderRadius: theme.radius.sm,
+                    ? theme.colors.indigo[5] : theme.colorScheme === 'dark' ? theme.colors.gray[9] : theme.colors.gray[1],
+                borderRadius: theme.radius.lg,
                 color: isSelected ? 'white' :theme.colorScheme === 'dark' ? 'white' : 'black',
                 cursor: 'pointer',
                 fontSize: theme.fontSizes.xl,
                 fontWeight: isSelected ? 'bold' : 'normal',
-                padding: theme.spacing.lg,
-                marginBlock: theme.spacing.md,
+                height: 50,
+                marginBlock: theme.spacing.xs,
+                padding: theme.spacing.xs,
                 textAlign: 'left',
                 textDecoration: 'none',
                 textTransform: 'capitalize',
                 transition: 'background-color, box-shadow 0.3s ease-in-out',
 
                 '&:hover': {
-                    backgroundColor: isSelected ? theme.colors.indigo[7] : theme.colorScheme === 'dark' ? theme.colors.gray[4] : theme.colors.gray[1],
-                    boxShadow: '8px 8px 10px rgba(0, 0, 0, 0.25)',
+                    backgroundColor: isSelected ? theme.colors.indigo[7] : theme.colorScheme === 'dark' ? theme.colors.gray[8] : theme.colors.gray[2],
                 },
             })}
         >

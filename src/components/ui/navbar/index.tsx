@@ -14,7 +14,7 @@ import { NAV_ITEMS, ROUTES } from 'constants/index'
 // @utils
 import { getInitials } from 'utils'
 
-export const SMNavbar = (): JSX.Element => {
+export const SMNavbar: React.VFC = () => {
     const [selected, setSelected] = useState(ROUTES.dashboard)
     console.log('🚀🚀🚀 ~ file: index.tsx ~ line 19 ~ selected', selected)
     const location = useLocation()
