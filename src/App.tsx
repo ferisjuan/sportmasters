@@ -7,6 +7,7 @@ import { ColorScheme, ColorSchemeProvider, MantineProvider, Title } from '@manti
 import { Auth } from './pages/auth/login'
 import { Main } from './pages/main'
 import { NotFound } from './pages/not-found'
+import { PlayerProfile } from './components/ui/PlayerProfile'
 
 // @context
 import { AuthContextProvider } from './context/auth-provider'
@@ -30,6 +31,7 @@ function App(): JSX.Element {
                         <Route index element={<Title>Welcome to the dashboard</Title>} />
                         <Route path={ROUTES.dashboard_main} element={<Title>Main</Title>} />
                         <Route path={ROUTES.players} element={<Title>Players</Title>} />
+                        <Route path={ROUTES.player} element={<PlayerProfile />} />
                         <Route path={ROUTES.statistics} element={<Title>Statistics</Title>} />
                     </Route>
                     <Route path={ROUTES.notFound} element={<NotFound />} />

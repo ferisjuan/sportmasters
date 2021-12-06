@@ -5,6 +5,6 @@ export enum ROUTES {
     login = 'auth/login',
     notFound = '*',
     players = 'players',
-    player = 'players/:id',
+    player = 'player',
     statistics = 'statistics',
 }

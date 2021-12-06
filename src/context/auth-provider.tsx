@@ -17,7 +17,7 @@ export const AuthContextProvider = ({ children }: IChildren): JSX.Element => {
     const [user, setUser] = useState<User>(null)
     const [isAuthenticating, setIsAuthenticating] = useState(true)
 
-    const handleAuthStateChanged = (_user: User | null): void => {
+    const handleAuthStateChanged = (_user: User): void => {
         setUser(_user)
         setIsAuthenticating(false)
     }
