@@ -1,4 +1,4 @@
-import { Player } from './player'
+import { IPlayer } from './player'
 
 enum LEAGUE_DIVISION {
     FIRST,
@@ -18,8 +18,8 @@ export interface League {
     category: LEAGUE_CATEGORY
 }
 
-interface Team {
+export interface Team {
     id: string
     name: string
-    players: Player[]
+    players: IPlayer[]
 }

@@ -1,6 +1,7 @@
-import { Country } from '.'
+import { Country, Team } from '.'
 
-enum PLAYER_CATEGORY {
+export enum PLAYER_CATEGORY {
+    NONE,
     FIRST,
     SECOND,
     THIRD,
@@ -11,7 +12,8 @@ enum PLAYER_CATEGORY {
     EIGHTH,
 }
 
-enum FIELD_POSITION {
+export enum FIELD_POSITION {
+    NONE,
     ATTACKING_MIDFIELDER,
     CENTER_BACK,
     CENTER_FORWARD,
@@ -25,7 +27,8 @@ enum FIELD_POSITION {
     SWEEPER,
 }
 
-enum PHYSICAL_CAPABILITIES {
+export enum PHYSICAL_CAPABILITIES {
+    NONE,
     BALANCE,
     COORDINATION,
     FLEXIBILITY,
@@ -34,20 +37,23 @@ enum PHYSICAL_CAPABILITIES {
     STRENGTH,
 }
 
-enum PHYSICAL_QUALITIES {
+export enum PHYSICAL_QUALITIES {
+    NONE,
     AGILITY,
     DIRBLING,
     JUMPING,
 }
 
-enum PERSONAL_QUALITIES {
+export enum PERSONAL_QUALITIES {
+    NONE,
     FELLOWSHIP,
     PUNTUALITY,
     RESPONSABILITY,
     SOLIDARITY,
 }
 
-enum FAMILY_SUPPORT {
+export enum FAMILY_SUPPORT {
+    NONE,
     BOTH_GRANDFATHERS,
     BOTH_PARENTS,
     FATHER,
@@ -56,23 +62,25 @@ enum FAMILY_SUPPORT {
     MOTHER,
 }
 
-export interface Player {
+export interface IPlayer {
     birthday: Date
     category: PLAYER_CATEGORY
     familySupport: FAMILY_SUPPORT[]
     fieldPosition: FIELD_POSITION
     height: number
     hobbies: string[]
+    id: string
     imageUrl: string
     IMC: number
     lastName: string
     name: string
-    nationality: Country
+    placeOfBirth?: Country
     personalQualities: PERSONAL_QUALITIES[]
     physicalAttributes: PHYSICAL_CAPABILITIES[]
     physicalQualities: PHYSICAL_QUALITIES[]
     playerNumber: string
-    playingPosition: string
+    playingPosition: FIELD_POSITION
     sportHistory: string
+    teamId: string
     weight: number
 }
