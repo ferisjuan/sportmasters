@@ -12,17 +12,19 @@ import { IPlayer } from 'interfaces'
 import { v4 } from 'uuid'
 import { observer } from 'mobx-react-lite'
 import { useStores } from '../../hooks/store'
+import { PlayerStats } from '../../components/ui/PlayerProfile/PlayerStats'
 
 export const Player: React.VFC = observer(() => {
     const { playerProfileStore } = useStores()
 
-    playerProfileStore.getPlayer('E8zkbXrM1m12iQkE2VMr')
+    playerProfileStore.getPlayer('6TL5cLQyqZP7Y8UkTOC0')
 
     const handleClick = async (): Promise<void> => {
         try {
+            const birthDate = new Date(1993, 10, 10)
             const data: IPlayer = {
                 name: 'Robert',
-                birthday: new Date(1990, 1, 1),
+                birthday: { seconds: birthDate.getTime(), nanoseconds: 0 },
                 IMC: 1.8,
                 category: PLAYER_CATEGORY.FIRST,
                 familySupport: [FAMILY_SUPPORT.BOTH_PARENTS],
@@ -59,6 +61,7 @@ export const Player: React.VFC = observer(() => {
         <section>
             <PlayerProfile>
                 <PlayerAvatar />
+                <PlayerStats />
             </PlayerProfile>
             <button onClick={handleClick}>Add</button>
         </section>

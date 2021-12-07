@@ -4,22 +4,14 @@ import { observer } from 'mobx-react-lite'
 // @hooks
 import { useStores } from 'hooks/store'
 import { Card, Col, Container, Image, Text } from '@mantine/core'
-import { useEffect, useState } from 'react'
-import { IPlayer } from '../../../../interfaces'
 import { useTranslation } from 'react-i18next'
 
 export const PlayerAvatar: React.FC = observer(() => {
     const { t } = useTranslation()
 
-    const [player, setPlayer] = useState<IPlayer>({} as IPlayer)
-
     const {
         playerProfileStore: { playerProfile },
     } = useStores()
-
-    useEffect(() => {
-        setPlayer(playerProfile)
-    }, [playerProfile])
 
     return (
         <Col span={2}>
@@ -32,21 +24,26 @@ export const PlayerAvatar: React.FC = observer(() => {
             >
                 <Card.Section>
                     <Container fluid padding={0} sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <Image alt={player?.image?.alt} fit="contain" src={player?.image?.src} width={120} />
+                        <Image
+                            alt={playerProfile?.image?.alt}
+                            fit="contain"
+                            src={playerProfile?.image?.src}
+                            width={120}
+                        />
                     </Container>
                 </Card.Section>
 
                 <Container>
                     <Text align="center" mt={8} size="xl" transform="uppercase" weight={600}>
-                        {player?.lastName}
+                        {playerProfile?.lastName}
                     </Text>
                 </Container>
 
                 <Text align="center" size="md" weight={300}>
-                    {t(`fieldPosition.${player?.fieldPosition}`)}
+                    {t(`fieldPosition.${playerProfile?.fieldPosition}`)}
                 </Text>
                 <Text align="center" size="md" weight={300}>
-                    {player?.team?.name}
+                    {playerProfile?.team?.name}
                 </Text>
             </Card>
         </Col>

@@ -8,7 +8,7 @@ import {
     PHYSICAL_QUALITIES,
 } from '../enums'
 export interface IPlayer {
-    birthday: Date
+    birthday: FirebaseTimestamp
     category: PLAYER_CATEGORY
     familySupport: FAMILY_SUPPORT[]
     fieldPosition: FIELD_POSITION
@@ -27,6 +27,11 @@ export interface IPlayer {
     sportHistory: string
     team: IPlayerTeam
     weight: number
+}
+
+interface FirebaseTimestamp {
+    seconds: number
+    nanoseconds: number
 }
 
 interface IPlayerTeam {
