@@ -1,5 +1,4 @@
 import { addDoc, collection } from '@firebase/firestore'
-import { Button } from '@mantine/core'
 import { PlayerProfile } from 'components/ui/PlayerProfile'
 import { PlayerAvatar } from '../../components/ui/PlayerProfile/PlayerAvatar'
 import { db } from '../../db/connect'

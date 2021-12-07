@@ -1,4 +1,4 @@
-import { collection, DocumentData, Firestore, getDocs, QuerySnapshot } from '@firebase/firestore'
+import { collection, Firestore, getDocs } from '@firebase/firestore'
 import { db } from '../db/connect'
 
 export class FirebaseService<T> {
