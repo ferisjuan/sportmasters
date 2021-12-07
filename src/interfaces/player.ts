@@ -1,4 +1,4 @@
-import { Country, Team } from '.'
+import { Country, IImage } from '.'
 
 export enum PLAYER_CATEGORY {
     NONE,
@@ -70,7 +70,7 @@ export interface IPlayer {
     height: number
     hobbies: string[]
     id: string
-    imageUrl: string
+    image: IImage
     IMC: number
     lastName: string
     name: string

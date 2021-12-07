@@ -1,3 +1,4 @@
+import { IImage } from '.'
 import { IPlayer } from './player'
 
 enum LEAGUE_DIVISION {
@@ -12,14 +13,16 @@ enum LEAGUE_CATEGORY {
 
 export interface League {
     id: string
+    category: LEAGUE_CATEGORY
     division: LEAGUE_DIVISION
+    image: IImage
     name: string
     teams: Team[]
-    category: LEAGUE_CATEGORY
 }
 
 export interface Team {
     id: string
+    image: IImage
     name: string
     players: IPlayer[]
 }

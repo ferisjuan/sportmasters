@@ -1,8 +1,12 @@
+import { IImage } from '.'
+
 export interface Country {
-    name: string
     flag: Flag
+    id: string
+    name: string
 }
 
-interface Flag {
-    url: string
+interface Flag extends IImage {
+    id: string
+    name: string
 }

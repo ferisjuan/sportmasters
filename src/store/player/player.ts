@@ -1,12 +1,18 @@
+// @vendors
 import { makeObservable } from 'mobx'
-import { IPlayer } from '../../interfaces'
 
-class Player {
-    constructor() {
-        makeObservable(this)
+// @interface
+import { IPlayer } from 'interfaces'
+import { RootStore } from '..'
+
+export class PlayerProfileStore {
+    rootStore: RootStore
+
+    constructor(rootStore: RootStore) {
+        this.rootStore = rootStore
+
+        makeObservable(this, { rootStore: false })
     }
 
     player = {} as IPlayer
 }
-
-export const PlayerProfileStore = new Player()
