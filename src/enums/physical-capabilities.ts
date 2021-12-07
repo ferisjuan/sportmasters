@@ -1,0 +1,9 @@
+export enum PHYSICAL_CAPABILITIES {
+    NONE,
+    BALANCE,
+    COORDINATION,
+    FLEXIBILITY,
+    RESISTANCE,
+    SPEED,
+    STRENGTH,
+}

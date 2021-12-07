@@ -1,16 +1,15 @@
-import { addDoc, collection } from '@firebase/firestore'
 import { PlayerProfile } from 'components/ui/PlayerProfile'
 import { PlayerAvatar } from '../../components/ui/PlayerProfile/PlayerAvatar'
 import { db } from '../../db/connect'
 import {
     FAMILY_SUPPORT,
     FIELD_POSITION,
-    IPlayer,
     PERSONAL_QUALITIES,
     PHYSICAL_CAPABILITIES,
     PHYSICAL_QUALITIES,
     PLAYER_CATEGORY,
-} from '../../interfaces'
+} from 'enums'
+import { IPlayer } from 'interfaces'
 import { v4 } from 'uuid'
 import { useEffect, useState } from 'react'
 import { observer } from 'mobx-react-lite'
@@ -54,9 +53,7 @@ export const Player: React.VFC = observer(() => {
                 placeOfBirth: 'sincelejo',
             }
 
-            const docRef = await addDoc(collection(db, 'players'), data)
-
-            console.log(docRef)
+            playerProfileStore.addPlayer(data)
         } catch (error) {
             console.error(error)
         }
@@ -67,6 +64,7 @@ export const Player: React.VFC = observer(() => {
             <PlayerProfile>
                 <PlayerAvatar />
             </PlayerProfile>
+            <button onClick={handleClick}>Add</button>
         </section>
     )
 })

@@ -1,0 +1,6 @@
+export enum PHYSICAL_QUALITIES {
+    NONE,
+    AGILITY,
+    DIRBLING,
+    JUMPING,
+}

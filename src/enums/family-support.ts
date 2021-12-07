@@ -1,0 +1,9 @@
+export enum FAMILY_SUPPORT {
+    NONE,
+    BOTH_GRANDFATHERS,
+    BOTH_PARENTS,
+    FATHER,
+    GRANDFATHER,
+    GRANDMOTHER,
+    MOTHER,
+}
