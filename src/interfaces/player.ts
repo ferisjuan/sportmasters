@@ -74,12 +74,11 @@ export interface IPlayer {
     IMC: number
     lastName: string
     name: string
-    placeOfBirth?: Country
+    placeOfBirth: string
     personalQualities: PERSONAL_QUALITIES[]
-    physicalAttributes: PHYSICAL_CAPABILITIES[]
+    physicalCapabilities: PHYSICAL_CAPABILITIES[]
     physicalQualities: PHYSICAL_QUALITIES[]
     playerNumber: string
-    playingPosition: FIELD_POSITION
     sportHistory: string
     teamId: string
     weight: number
