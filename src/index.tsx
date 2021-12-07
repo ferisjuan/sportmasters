@@ -11,6 +11,9 @@ import App from './App'
 // @constants
 import { FIREBASE_CONFIG } from './constants/firebase'
 
+// @i18n
+import './i18n'
+
 // @styles
 import './index.css'
 

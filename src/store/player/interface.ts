@@ -3,7 +3,8 @@ import { IPlayer } from 'interfaces'
 
 export interface IPlayerProfileStore {
     addPlayer(player: IPlayer): void
-    player: IPlayer
+    playerProfile: IPlayer
     playersProfiles: IPlayer[]
+    getPlayer(id: string): Promise<void>
     getPlayers(): Promise<void>
 }

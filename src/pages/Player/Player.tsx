@@ -1,6 +1,5 @@
 import { PlayerProfile } from 'components/ui/PlayerProfile'
 import { PlayerAvatar } from '../../components/ui/PlayerProfile/PlayerAvatar'
-import { db } from '../../db/connect'
 import {
     FAMILY_SUPPORT,
     FIELD_POSITION,
@@ -11,20 +10,13 @@ import {
 } from 'enums'
 import { IPlayer } from 'interfaces'
 import { v4 } from 'uuid'
-import { useEffect, useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import { useStores } from '../../hooks/store'
 
 export const Player: React.VFC = observer(() => {
-    const [players, setPlayers] = useState<IPlayer[]>([] as IPlayer[])
-
     const { playerProfileStore } = useStores()
 
-    useEffect(() => {
-        playerProfileStore.getPlayers()
-        setPlayers(playerProfileStore.playersProfiles)
-        console.log(players)
-    }, [playerProfileStore, players])
+    playerProfileStore.getPlayer('zvyFBHcMk5PK76Gbr3LD')
 
     const handleClick = async (): Promise<void> => {
         try {

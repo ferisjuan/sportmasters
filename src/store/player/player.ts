@@ -8,12 +8,15 @@ import { FirebaseService } from '../../services/firebase'
 import { IPlayerProfileStore } from './interface'
 
 export class PlayerProfileStore implements IPlayerProfileStore {
-    firebaseService
-    playersProfiles
-    rootStore
+    public playerProfile
+    public playersProfiles
+
+    private firebaseService
+    readonly rootStore
 
     constructor(rootStore: RootStore) {
         this.firebaseService = new FirebaseService<IPlayer>('player')
+        this.playerProfile = {} as IPlayer
         this.playersProfiles = [] as IPlayer[]
         this.rootStore = rootStore
 
@@ -22,6 +25,14 @@ export class PlayerProfileStore implements IPlayerProfileStore {
 
     async addPlayer(player: IPlayer): Promise<void> {
         this.firebaseService.add(player)
+    }
+
+    async getPlayer(id: string): Promise<void> {
+        this.firebaseService.getById(id).then(
+            action((player) => {
+                this.playerProfile = player
+            }),
+        )
     }
 
     async getPlayers(): Promise<void> {
