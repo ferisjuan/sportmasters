@@ -25,6 +25,11 @@ export interface IPlayer {
     physicalQualities: PHYSICAL_QUALITIES[]
     playerNumber: string
     sportHistory: string
-    teamId: string
+    team: IPlayerTeam
     weight: number
+}
+
+interface IPlayerTeam {
+    id: string
+    name: string
 }

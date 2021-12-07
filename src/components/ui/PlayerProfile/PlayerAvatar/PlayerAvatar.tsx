@@ -37,16 +37,16 @@ export const PlayerAvatar: React.FC = observer(() => {
                 </Card.Section>
 
                 <Container>
-                    <Text align="center" mt={8} size="lg" transform="uppercase" weight={500}>
+                    <Text align="center" mt={8} size="xl" transform="uppercase" weight={600}>
                         {player?.lastName}
                     </Text>
                 </Container>
 
-                <Text align="center" size="sm">
+                <Text align="center" size="md" weight={300}>
                     {t(`fieldPosition.${player?.fieldPosition}`)}
                 </Text>
-                <Text align="center" size="sm">
-                    {player?.teamId}
+                <Text align="center" size="md" weight={300}>
+                    {player?.team?.name}
                 </Text>
             </Card>
         </Col>

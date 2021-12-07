@@ -23,8 +23,10 @@ export class PlayerProfileStore implements IPlayerProfileStore {
         makeObservable(this, { rootStore: false })
     }
 
-    async addPlayer(player: IPlayer): Promise<void> {
-        this.firebaseService.add(player)
+    async addPlayer(player: IPlayer): Promise<string> {
+        const response = await this.firebaseService.add(player)
+
+        return response
     }
 
     async getPlayer(id: string): Promise<void> {

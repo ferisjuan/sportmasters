@@ -16,7 +16,7 @@ import { useStores } from '../../hooks/store'
 export const Player: React.VFC = observer(() => {
     const { playerProfileStore } = useStores()
 
-    playerProfileStore.getPlayer('zvyFBHcMk5PK76Gbr3LD')
+    playerProfileStore.getPlayer('E8zkbXrM1m12iQkE2VMr')
 
     const handleClick = async (): Promise<void> => {
         try {
@@ -41,11 +41,15 @@ export const Player: React.VFC = observer(() => {
                 physicalQualities: [PHYSICAL_QUALITIES.DIRBLING],
                 playerNumber: '10',
                 sportHistory: 'lorem ipsum',
-                teamId: v4(),
+                team: {
+                    id: v4(),
+                    name: 'Real Madrid',
+                },
                 placeOfBirth: 'sincelejo',
             }
 
-            playerProfileStore.addPlayer(data)
+            const playerId = await playerProfileStore.addPlayer(data)
+            console.log('🚀🚀🚀 ~ file: Player.tsx ~ line 52 ~ handleClick ~ playerId', playerId)
         } catch (error) {
             console.error(error)
         }
