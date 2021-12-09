@@ -1,34 +1,50 @@
 // @vendors
 import { useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core'
+import { ColorScheme, ColorSchemeProvider, MantineProvider, Title } from '@mantine/core'
 
 // @components
-import { Auth } from './pages/auth/login'
-import { Main } from './pages/main'
-import { NotFound } from './pages/not-found'
+import { Auth } from 'pages/auth/login'
+import { AuthenticatedRoute } from 'components/auth'
+import { Main } from 'pages/main'
+import { NotFound } from 'pages/not-found'
+
+// @constants
+import { ROUTES } from 'constants/routes'
 
 // @context
-import { AuthContextProvider } from './context/auth-provider'
-import { AuthenticatedRoute } from './components/auth'
+import { AuthContextProvider } from 'context/auth-provider'
+import { StoreProvider } from 'context/store-provider'
+
+// @store
+import { rootStore } from 'store'
+import { Player } from './pages/Player'
 
 function App(): JSX.Element {
     return (
         <AuthContextProvider>
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/auth/login" element={<Auth />} />
-                    <Route
-                        path="/"
-                        element={
-                            <AuthenticatedRoute>
-                                <Main />
-                            </AuthenticatedRoute>
-                        }
-                    />
-                    <Route path="*" element={<NotFound />} />
-                </Routes>
-            </BrowserRouter>
+            <StoreProvider store={rootStore}>
+                <BrowserRouter>
+                    <Routes>
+                        <Route path={ROUTES.login} element={<Auth />} />
+                        <Route
+                            path={ROUTES.dashboard}
+                            element={
+                                <AuthenticatedRoute>
+                                    <Main />
+                                </AuthenticatedRoute>
+                            }
+                        >
+                            <Route index element={<Title>Welcome to the dashboard</Title>} />
+                            <Route path={ROUTES.dashboard_main} element={<Title>Main</Title>} />
+                            <Route path={ROUTES.players} element={<Title>Players</Title>} />
+                            <Route path={ROUTES.player} element={<Player />} />
+                            <Route path={ROUTES.statistics} element={<Title>Statistics</Title>} />
+                        </Route>
+                        <Route path={ROUTES.notFound} element={<NotFound />} />
+                    </Routes>
+                </BrowserRouter>
+            </StoreProvider>
         </AuthContextProvider>
     )
 }

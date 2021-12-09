@@ -1,0 +1,6 @@
+export enum PHYSICAL_QUALITIES {
+    NONE = 'NONE',
+    AGILITY = 'AGILITY',
+    DIRBLING = 'DIRBLING',
+    JUMPING = 'JUMPING',
+}

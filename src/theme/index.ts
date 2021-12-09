@@ -1,5 +1,15 @@
 export const theme = {
     colorScheme: 'light',
+    fontSizes: {
+        md: '1.6rem',
+    },
+    others: {
+        fontWeights: {
+            light: 300,
+            regular: 400,
+            bold: 700,
+        },
+    },
 }
 
 export const darkTheme = {
