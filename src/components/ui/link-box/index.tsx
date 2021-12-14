@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 
 // @constants
 import { ROUTES } from 'constants/index'
-import { useEffect, useState } from 'react'
 
 interface ILinkBoxProps {
     icon?: string
@@ -16,11 +15,7 @@ interface ILinkBoxProps {
 }
 
 export const LinkBox: React.VFC<ILinkBoxProps> = ({ onClick, selected, text, to }) => {
-    const [isSelected, setIsSelected] = useState(false)
-
-    useEffect(() => {
-        setIsSelected(selected === to)
-    }, [selected, to])
+    const isSelected = selected === to
 
     return (
         <Box

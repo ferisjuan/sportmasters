@@ -15,7 +15,7 @@ export class PlayerProfileStore implements IPlayerProfileStore {
     readonly rootStore
 
     constructor(rootStore: RootStore) {
-        this.firebaseService = new FirebaseService<IPlayer>('player')
+        this.firebaseService = new FirebaseService<IPlayer>('players')
         this.playerProfile = {} as IPlayer
         this.playersProfiles = [] as IPlayer[]
         this.rootStore = rootStore

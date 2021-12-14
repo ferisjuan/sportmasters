@@ -144,3 +144,10 @@ dist
 
 # vim
 tags
+tags.*
+
+# mac
+.DS_Store
+
+# mocks
+src/mock*

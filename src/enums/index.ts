@@ -1,5 +1,7 @@
 export * from './family-support'
 export * from './field-position'
+export * from './leage-category'
+export * from './league-division'
 export * from './player-category'
 export * from './personal-qualities'
 export * from './physical-capabilities'

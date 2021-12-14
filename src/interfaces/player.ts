@@ -1,4 +1,3 @@
-import { IImage } from '.'
 import {
     PLAYER_CATEGORY,
     FAMILY_SUPPORT,
@@ -7,6 +6,9 @@ import {
     PHYSICAL_CAPABILITIES,
     PHYSICAL_QUALITIES,
 } from '../enums'
+
+import { IImage } from '.'
+
 export interface IPlayer {
     birthday: FirebaseTimestamp
     category: PLAYER_CATEGORY
@@ -37,4 +39,5 @@ interface FirebaseTimestamp {
 interface IPlayerTeam {
     id: string
     name: string
+    image: IImage
 }

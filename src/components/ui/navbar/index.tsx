@@ -16,7 +16,6 @@ import { getInitials } from 'utils'
 
 export const SMNavbar: React.VFC = () => {
     const [selected, setSelected] = useState(ROUTES.dashboard)
-    console.log('🚀🚀🚀 ~ file: index.tsx ~ line 19 ~ selected', selected)
     const location = useLocation()
 
     useEffect(() => {
@@ -28,7 +27,7 @@ export const SMNavbar: React.VFC = () => {
                 break
             }
         }
-    }, [location])
+    }, [location.pathname])
 
     const user = getAuth().currentUser
     const userName = user?.displayName
