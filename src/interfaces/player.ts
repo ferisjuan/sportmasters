@@ -12,6 +12,7 @@ import { IImage } from '.'
 export interface IPlayer {
     birthday: FirebaseTimestamp
     category: PLAYER_CATEGORY
+    email: string
     familySupport: FAMILY_SUPPORT[]
     fieldPosition: FIELD_POSITION
     height: number
@@ -23,6 +24,7 @@ export interface IPlayer {
     name: string
     placeOfBirth: string
     personalQualities: PERSONAL_QUALITIES[]
+    phone: number
     physicalCapabilities: PHYSICAL_CAPABILITIES[]
     physicalQualities: PHYSICAL_QUALITIES[]
     playerNumber: string

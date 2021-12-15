@@ -4,19 +4,16 @@ import { Container, Group, Text, ThemeIcon } from '@mantine/core'
 import { BsPlus } from 'react-icons/bs'
 
 // @components
-import { SMModal } from 'components/Modal'
+import { SMModal } from 'components/modal'
+import { PlayerForm } from 'components/forms'
 
 export const Players: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false)
 
-    const handleAddPlayer = (): void => {
-        setIsOpen(true)
-    }
-
     return (
         <Container fluid>
             <SMModal isOpen={isOpen} setIsOpen={setIsOpen}>
-                Hola
+                <PlayerForm />
             </SMModal>
 
             <Group>
@@ -24,7 +21,7 @@ export const Players: React.FC = () => {
                     Players
                 </Text>
 
-                <ThemeIcon radius="lg" size="sm" onClick={handleAddPlayer} sx={{ cursor: 'pointer' }}>
+                <ThemeIcon radius="lg" size="sm" onClick={() => setIsOpen(true)} sx={{ cursor: 'pointer' }}>
                     <BsPlus size={100} />
                 </ThemeIcon>
             </Group>

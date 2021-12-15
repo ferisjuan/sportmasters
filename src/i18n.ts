@@ -66,6 +66,18 @@ i18n.use(initReactI18next).init({
                     SEVENTH: 'Pre juvenil',
                     EIGHTH: 'Juvenil',
                 },
+                playerData: {
+                    birthday: 'Cumpleaños',
+                    email: 'Correo electrónico',
+                    formTitle: 'Crea un nuevo jugador',
+                    height: 'Altura',
+                    lastName: 'Apellido (s)',
+                    name: 'Nombre (s)',
+                    phone: 'Teléfono',
+                    guardian: 'Acudiente',
+                    guardianPlaceholder: 'Selecciona un acudiente',
+                    weight: 'Peso',
+                },
                 stats: {
                     weight: 'Peso',
                 },

@@ -1,10 +1,10 @@
 // @vendors
 import { observer } from 'mobx-react-lite'
+import { useTranslation } from 'react-i18next'
+import { Card, Col, Container, Image, Text } from '@mantine/core'
 
 // @hooks
 import { useStores } from 'hooks/store'
-import { Card, Col, Container, Image, Text } from '@mantine/core'
-import { useTranslation } from 'react-i18next'
 
 export const PlayerAvatar: React.FC = observer(() => {
     const { t } = useTranslation()
