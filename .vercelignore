@@ -32,9 +32,13 @@ yarn-error.log*
 
 # vercel
 .vercel
+src/mock-gen/
 
 # typescript
 *.tsbuildinfo
 
 /.idea
 /.vscode
+
+# mocks
+src/mock*

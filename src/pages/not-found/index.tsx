@@ -16,7 +16,7 @@ export const NotFound = (): JSX.Element => {
         if (time === 0) {
             navigate(ROUTES.login, { replace: true })
         }
-    })
+    }, [navigate, time])
 
     return (
         <Container

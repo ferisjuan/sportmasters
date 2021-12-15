@@ -66,6 +66,9 @@ i18n.use(initReactI18next).init({
                     SEVENTH: 'Pre juvenil',
                     EIGHTH: 'Juvenil',
                 },
+                stats: {
+                    weight: 'Peso',
+                },
             },
         },
     },

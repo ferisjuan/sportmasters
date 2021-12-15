@@ -1,28 +1,13 @@
 import { IImage } from '.'
-import { IPlayer } from './player'
+import { LEAGUE_CATEGORY } from '../enums/leage-category'
+import { LEAGUE_DIVISION } from '../enums/league-division'
+import { ITeam } from './team'
 
-enum LEAGUE_DIVISION {
-    FIRST,
-    SECOND,
-}
-
-enum LEAGUE_CATEGORY {
-    FEMALE,
-    MALE,
-}
-
-export interface League {
+export interface ILeague {
     id: string
     category: LEAGUE_CATEGORY
     division: LEAGUE_DIVISION
     image: IImage
     name: string
-    teams: Team[]
-}
-
-export interface Team {
-    id: string
-    image: IImage
-    name: string
-    players: IPlayer[]
+    teams: ITeam[]
 }

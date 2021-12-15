@@ -20,7 +20,7 @@ export const PlayerAvatar: React.FC = observer(() => {
                 shadow="sm"
                 padding="md"
                 component="article"
-                sx={(theme) => ({ backgroundColor: theme.colors.yellow[5] })}
+                sx={(theme) => ({ backgroundColor: theme.colors.yellow[5], height: '230px' })}
             >
                 <Card.Section>
                     <Container fluid padding={0} sx={{ display: 'flex', justifyContent: 'center' }}>
