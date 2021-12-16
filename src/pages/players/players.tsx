@@ -8,12 +8,12 @@ import { SMModal } from 'components/modal'
 import { PlayerForm } from 'components/forms'
 
 export const Players: React.FC = () => {
-    const [isOpen, setIsOpen] = useState(false)
+    const [isModalOpen, setIsModalOpen] = useState(false)
 
     return (
         <Container fluid>
-            <SMModal isOpen={isOpen} setIsOpen={setIsOpen}>
-                <PlayerForm />
+            <SMModal isOpen={isModalOpen} setIsOpen={setIsModalOpen}>
+                <PlayerForm setIsModalOpen={setIsModalOpen} />
             </SMModal>
 
             <Group>
@@ -21,7 +21,7 @@ export const Players: React.FC = () => {
                     Players
                 </Text>
 
-                <ThemeIcon radius="lg" size="sm" onClick={() => setIsOpen(true)} sx={{ cursor: 'pointer' }}>
+                <ThemeIcon radius="lg" size="sm" onClick={() => setIsModalOpen(true)} sx={{ cursor: 'pointer' }}>
                     <BsPlus size={100} />
                 </ThemeIcon>
             </Group>

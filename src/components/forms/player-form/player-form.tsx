@@ -1,11 +1,16 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 // @vendors
-import { useEffect, useState } from 'react'
-import { Field, Formik, Form } from 'formik'
+import React, { useEffect, useState } from 'react'
+import { Field, Formik, Form, FormikProps } from 'formik'
 import { useTranslation } from 'react-i18next'
-import { Select, Text, TextInput } from '@mantine/core'
+import { Button, Group, Select, Text, TextInput } from '@mantine/core'
 
 // @components
 import { PlayerData } from './player-form.interface'
+
+// @icons
+import { BsSave } from 'react-icons/bs'
+import { FaTimes } from 'react-icons/fa'
 
 // @enums
 import { FAMILY_SUPPORT } from 'enums'
@@ -29,15 +34,19 @@ const guardianOptions = Object.entries(FAMILY_SUPPORT).map(([key, value]) => ({
 
 type TRecord = Record<string, string>[]
 
-export const PlayerForm: React.VFC = () => {
+interface PlayerFormProps {
+    setIsModalOpen: (isOpen: boolean) => void
+}
+
+export const PlayerForm: React.VFC<PlayerFormProps> = ({ setIsModalOpen }) => {
     const { t } = useTranslation()
 
     const [parsedGuardianOptions, setParsedGuardianOptions] = useState<TRecord>([])
 
     useEffect(() => {
         const _guardianOptions = guardianOptions.map(({ key, value }) => ({
-            key,
-            value: t(`familySupport.${value}`),
+            value: key,
+            label: t(`familySupport.${value}`),
         }))
 
         setParsedGuardianOptions(_guardianOptions)
@@ -51,7 +60,7 @@ export const PlayerForm: React.VFC = () => {
                 actions.setSubmitting(false)
             }}
         >
-            {({ values, handleChange }) => (
+            {({ values, setFieldValue }: FormikProps<PlayerData>) => (
                 <Form>
                     <Text size="md" weight={700}>
                         {t('playerData.formTitle')}
@@ -92,7 +101,7 @@ export const PlayerForm: React.VFC = () => {
                         name="guardian"
                         placeholder={t('playerData.guardianPlaceholder')}
                         value={values.guardian}
-                        onChange={(value: string) => handleChange(value)}
+                        onChange={(value: string) => setFieldValue('guardian', value)}
                     />
 
                     <Field
@@ -130,6 +139,14 @@ export const PlayerForm: React.VFC = () => {
                         name="weight"
                         placeholder={t('playerData.weight')}
                     />
+                    <Group mt={16} position="right">
+                        <Button leftIcon={<FaTimes />} onClick={() => setIsModalOpen(false)} variant="outline">
+                            {t('playerData.cancel')}
+                        </Button>
+                        <Button leftIcon={<BsSave />} type="submit">
+                            {t('playerData.save')}
+                        </Button>
+                    </Group>
                 </Form>
             )}
         </Formik>

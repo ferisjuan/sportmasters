@@ -68,14 +68,16 @@ i18n.use(initReactI18next).init({
                 },
                 playerData: {
                     birthday: 'Cumpleaños',
+                    cancel: 'Cancelar',
                     email: 'Correo electrónico',
                     formTitle: 'Crea un nuevo jugador',
+                    guardian: 'Acudiente',
+                    guardianPlaceholder: 'Selecciona un acudiente',
                     height: 'Altura',
                     lastName: 'Apellido (s)',
                     name: 'Nombre (s)',
                     phone: 'Teléfono',
-                    guardian: 'Acudiente',
-                    guardianPlaceholder: 'Selecciona un acudiente',
+                    save: 'Guardar',
                     weight: 'Peso',
                 },
                 stats: {
