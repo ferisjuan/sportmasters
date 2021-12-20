@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 // @vendors
-import React, { useEffect, useState } from 'react'
 import { Field, Formik, Form, FormikProps } from 'formik'
-import { useTranslation } from 'react-i18next'
 import { Button, Group, Select, Text } from '@mantine/core'
 
 // @components
@@ -14,7 +12,9 @@ import { BsSave } from 'react-icons/bs'
 import { FaTimes } from 'react-icons/fa'
 
 // @enums
-import { GUARDIAN_OPTIONS, SIZE } from 'enums'
+import { SIZE } from 'enums'
+import { useGuardianOptions } from './guardian-options'
+import { useTranslation } from 'react-i18next'
 
 const initialValues: PlayerData = {
     birthday: '',
@@ -28,13 +28,6 @@ const initialValues: PlayerData = {
     weight: 0,
 }
 
-const guardianOptions = Object.entries(GUARDIAN_OPTIONS).map(([key, value]) => ({
-    key,
-    value,
-}))
-
-type TRecord = Record<string, string>[]
-
 interface PlayerFormProps {
     setIsModalOpen: (isOpen: boolean) => void
 }
@@ -42,25 +35,7 @@ interface PlayerFormProps {
 export const PlayerForm: React.VFC<PlayerFormProps> = ({ setIsModalOpen }) => {
     const { t } = useTranslation()
 
-    const [parsedGuardianOptions, setParsedGuardianOptions] = useState<TRecord>([])
-
-    useEffect(() => {
-        const _guardianOptions = guardianOptions.map(({ key, value }) => ({
-            value: key,
-            label: t(`familySupport.${value}`),
-        }))
-
-        const sortedGuardianOptions = _guardianOptions
-            .sort((a, b) => a.label.localeCompare(b.label))
-            .filter(({ value }) => value !== GUARDIAN_OPTIONS.NONE)
-
-        sortedGuardianOptions.unshift({
-            value: GUARDIAN_OPTIONS.NONE,
-            label: t(`familySupport.${GUARDIAN_OPTIONS.NONE}`),
-        })
-
-        setParsedGuardianOptions(sortedGuardianOptions)
-    }, [t])
+    const { guardianOptions } = useGuardianOptions()
 
     return (
         <Formik
@@ -105,7 +80,7 @@ export const PlayerForm: React.VFC<PlayerFormProps> = ({ setIsModalOpen }) => {
                     <Group>
                         <Field
                             as={Select}
-                            data={parsedGuardianOptions}
+                            data={guardianOptions}
                             id="guardian"
                             label={t('playerData.guardianPlaceholder')}
                             name="guardian"
