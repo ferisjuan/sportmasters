@@ -67,10 +67,12 @@ i18n.use(initReactI18next).init({
                     EIGHTH: 'Juvenil',
                 },
                 playerData: {
-                    birthday: 'Cumpleaños',
+                    birthday: 'Fecha de nacimiento',
                     cancel: 'Cancelar',
                     email: 'Correo electrónico',
                     formTitle: 'Crea un nuevo jugador',
+                    formTitleStudentData: 'Datos del estudiante',
+                    formTitleGuardianData: 'Datos del acudiente',
                     guardian: 'Acudiente',
                     guardianPlaceholder: 'Selecciona un acudiente',
                     height: 'Altura',

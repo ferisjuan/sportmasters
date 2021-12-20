@@ -3,17 +3,18 @@
 import React, { useEffect, useState } from 'react'
 import { Field, Formik, Form, FormikProps } from 'formik'
 import { useTranslation } from 'react-i18next'
-import { Button, Group, Select, Text, TextInput } from '@mantine/core'
+import { Button, Group, Select, Text } from '@mantine/core'
 
 // @components
 import { PlayerData } from './player-form.interface'
+import { SMTextInput } from 'components/ui/textInput'
 
 // @icons
 import { BsSave } from 'react-icons/bs'
 import { FaTimes } from 'react-icons/fa'
 
 // @enums
-import { FAMILY_SUPPORT } from 'enums'
+import { GUARDIAN_OPTIONS, SIZE } from 'enums'
 
 const initialValues: PlayerData = {
     birthday: '',
@@ -27,7 +28,7 @@ const initialValues: PlayerData = {
     weight: 0,
 }
 
-const guardianOptions = Object.entries(FAMILY_SUPPORT).map(([key, value]) => ({
+const guardianOptions = Object.entries(GUARDIAN_OPTIONS).map(([key, value]) => ({
     key,
     value,
 }))
@@ -49,7 +50,16 @@ export const PlayerForm: React.VFC<PlayerFormProps> = ({ setIsModalOpen }) => {
             label: t(`familySupport.${value}`),
         }))
 
-        setParsedGuardianOptions(_guardianOptions)
+        const sortedGuardianOptions = _guardianOptions
+            .sort((a, b) => a.label.localeCompare(b.label))
+            .filter(({ value }) => value !== GUARDIAN_OPTIONS.NONE)
+
+        sortedGuardianOptions.unshift({
+            value: GUARDIAN_OPTIONS.NONE,
+            label: t(`familySupport.${GUARDIAN_OPTIONS.NONE}`),
+        })
+
+        setParsedGuardianOptions(sortedGuardianOptions)
     }, [t])
 
     return (
@@ -62,83 +72,58 @@ export const PlayerForm: React.VFC<PlayerFormProps> = ({ setIsModalOpen }) => {
         >
             {({ values, setFieldValue }: FormikProps<PlayerData>) => (
                 <Form>
-                    <Text size="md" weight={700}>
+                    <Text mb={30} size="lg" weight={700}>
                         {t('playerData.formTitle')}
                     </Text>
 
-                    <Field
-                        as={TextInput}
-                        required
-                        label={t('playerData.name')}
-                        id="name"
-                        name="name"
-                        placeholder={t('playerData.name')}
-                    />
+                    <Text size="md" weight={700}>
+                        {t('playerData.formTitleStudentData')}
+                    </Text>
 
-                    <Field
-                        as={TextInput}
-                        required
-                        label={t('playerData.lastName')}
-                        id="lastName"
-                        name="lastName"
-                        placeholder={t('playerData.lastName')}
-                    />
+                    <Group spacing="xs">
+                        <SMTextInput label={t('playerData.name')} name="name" required />
+                        <SMTextInput label={t('playerData.lastName')} name="lastName" required />
+                    </Group>
 
-                    <Field
-                        as={TextInput}
-                        required
-                        label={t('playerData.email')}
-                        id="email"
-                        name="email"
-                        placeholder={t('playerData.email')}
-                    />
+                    <Group>
+                        <SMTextInput label={t('playerData.email')} name="email" size={SIZE.sm} />
+                        <SMTextInput label={t('playerData.phone')} name="phone" />
+                    </Group>
 
-                    <Field
-                        as={Select}
-                        data={parsedGuardianOptions}
-                        id="guardian"
-                        label={t('playerData.guardianPlaceholder')}
-                        name="guardian"
-                        placeholder={t('playerData.guardianPlaceholder')}
-                        value={values.guardian}
-                        onChange={(value: string) => setFieldValue('guardian', value)}
-                    />
+                    <Group>
+                        <SMTextInput label={t('playerData.birthday')} name="birthday" size={SIZE.md} required />
+                        <SMTextInput label={t('playerData.height')} name="height" required />
+                        <SMTextInput label={t('playerData.weight')} name="weight" required />
+                    </Group>
 
-                    <Field
-                        as={TextInput}
-                        required
-                        label={t('playerData.phone')}
-                        id="phone"
-                        name="phone"
-                        placeholder={t('playerData.phone')}
-                    />
+                    <hr />
 
-                    <Field
-                        as={TextInput}
-                        required
-                        label={t('playerData.birthday')}
-                        id="birthday"
-                        name="birthday"
-                        placeholder={t('playerData.birthday')}
-                    />
+                    <Text size="md" weight={700}>
+                        {t('playerData.formTitleGuardianData')}
+                    </Text>
 
-                    <Field
-                        as={TextInput}
-                        required
-                        label={t('playerData.height')}
-                        id="height"
-                        name="height"
-                        placeholder={t('playerData.height')}
-                    />
+                    <Group>
+                        <Field
+                            as={Select}
+                            data={parsedGuardianOptions}
+                            id="guardian"
+                            label={t('playerData.guardianPlaceholder')}
+                            name="guardian"
+                            onChange={(value: string) => setFieldValue('guardian', value)}
+                            placeholder={t('playerData.guardianPlaceholder')}
+                            required
+                            value={values.guardian}
+                            sx={{ flex: 1 }}
+                        />
+                    </Group>
 
-                    <Field
-                        as={TextInput}
-                        required
-                        label={t('playerData.weight')}
-                        id="weight"
-                        name="weight"
-                        placeholder={t('playerData.weight')}
-                    />
+                    <Group>
+                        <SMTextInput label={t('playerData.email')} name="email" required size={SIZE.sm} />
+                        <SMTextInput label={t('playerData.phone')} name="phone" required />
+                    </Group>
+
+                    <hr />
+
                     <Group mt={16} position="right">
                         <Button leftIcon={<FaTimes />} onClick={() => setIsModalOpen(false)} variant="outline">
                             {t('playerData.cancel')}
