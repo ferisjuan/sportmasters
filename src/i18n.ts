@@ -81,6 +81,15 @@ i18n.use(initReactI18next).init({
                     phone: 'Teléfono',
                     save: 'Guardar',
                     weight: 'Peso',
+                    errors: {
+                        email: 'Correo electrónico inválido',
+                        max: 'Este campo no puede tener más de 10 caracteres',
+                        min: 'Este campo debe tener al menos 3 caracteres',
+                        phone: 'Teléfono inválido',
+                        minPhone: 'Este campo debe tener al menos 10 caracteres',
+                        maxPhone: 'Este campo no puede tener más de 10 caracteres',
+                        required: 'Este campo es obligatorio',
+                    },
                 },
                 stats: {
                     weight: 'Peso',
