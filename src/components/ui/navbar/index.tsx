@@ -33,15 +33,15 @@ export const SMNavbar: React.VFC = () => {
     const userName = user?.displayName
 
     return (
-        <Navbar width={{ base: 300 }} padding="sm">
-            <Navbar.Section grow mt="lg">
+        <Navbar width={{ base: 300 }} padding="sm" sx={{ height: 'calc(100vh - 60px)' }}>
+            <Navbar.Section grow>
                 <Title order={5}>Main Links</Title>
                 {NAV_ITEMS.map(({ text, to }) => (
                     <LinkBox key={to} onClick={() => setSelected(to)} selected={selected} text={text} to={to} />
                 ))}
             </Navbar.Section>
 
-            <Navbar.Section mb={70}>
+            {/* <Navbar.Section mb={70}>
                 <Box
                     sx={(theme: MantineTheme) => ({
                         alignItems: 'center',
@@ -66,7 +66,7 @@ export const SMNavbar: React.VFC = () => {
                         <Text size="xs">{user?.email}</Text>
                     </Container>
                 </Box>
-            </Navbar.Section>
+            </Navbar.Section> */}
         </Navbar>
     )
 }

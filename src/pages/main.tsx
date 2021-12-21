@@ -5,7 +5,6 @@ import { Outlet } from 'react-router'
 
 export const Main = (): JSX.Element => (
     <AppShell
-        fixed
         header={<SMHeader />}
         navbar={<SMNavbar />}
         padding="md"
