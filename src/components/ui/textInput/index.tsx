@@ -7,6 +7,7 @@ import { SIZE } from 'enums'
 interface SMTextInputProps {
     label: string
     description?: string
+    error?: string
     name: string
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
     required?: boolean
@@ -17,6 +18,7 @@ interface SMTextInputProps {
 export const SMTextInput: React.VFC<SMTextInputProps> = ({
     label,
     description,
+    error,
     name,
     onChange,
     required = false,
@@ -26,6 +28,7 @@ export const SMTextInput: React.VFC<SMTextInputProps> = ({
     <Field
         as={TextInput}
         description={description}
+        error={error}
         id={name}
         label={label}
         mt={16}

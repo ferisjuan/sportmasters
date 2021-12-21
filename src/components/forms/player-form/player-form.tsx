@@ -54,8 +54,9 @@ export const PlayerForm: React.VFC<PlayerFormProps> = ({ setIsModalOpen }) => {
                 actions.setSubmitting(false)
             }}
             validationSchema={PlayerFormSchema}
+            validateOnChange
         >
-            {({ values, setFieldValue }: FormikProps<PlayerData>) => (
+            {({ errors, touched, setFieldValue, values, isValid }: FormikProps<PlayerData>) => (
                 <Form>
                     <Text mb={30} size="lg" weight={700}>
                         {t('playerData.formTitle')}
@@ -65,8 +66,13 @@ export const PlayerForm: React.VFC<PlayerFormProps> = ({ setIsModalOpen }) => {
                         {t('playerData.formTitleStudentData')}
                     </Text>
 
-                    <Group spacing="xs">
+                    <Group align="start">
                         <SMTextInput
+                            error={
+                                errors.playerName && touched.playerName
+                                    ? t(`playerData.errors.${errors.playerName}`)
+                                    : undefined
+                            }
                             label={t('playerData.name')}
                             name="playerName"
                             onChange={({ target: { name, value } }) => setFieldValue(name, value, true)}
@@ -74,16 +80,25 @@ export const PlayerForm: React.VFC<PlayerFormProps> = ({ setIsModalOpen }) => {
                             value={values.playerName}
                         />
                         <SMTextInput
-                            label={t('playerData.lastName')}
+                            error={
+                                errors.playerLastName && touched.playerLastName
+                                    ? t(`playerData.errors.${errors.playerLastName}`)
+                                    : undefined
+                            }
                             name="playerLastName"
+                            label={t('playerData.lastName')}
                             onChange={({ target: { name, value } }) => setFieldValue(name, value, true)}
                             required
                             value={values.playerLastName}
                         />
                     </Group>
-
-                    <Group>
+                    <Group align="start">
                         <SMTextInput
+                            error={
+                                errors.playerEmail && touched.playerEmail
+                                    ? t(`playerData.errors.${errors.playerEmail}`)
+                                    : undefined
+                            }
                             label={t('playerData.email')}
                             name="playerEmail"
                             onChange={({ target: { name, value } }) => setFieldValue(name, value, true)}
@@ -91,6 +106,11 @@ export const PlayerForm: React.VFC<PlayerFormProps> = ({ setIsModalOpen }) => {
                             value={values.playerEmail}
                         />
                         <SMTextInput
+                            error={
+                                errors.playerPhone && touched.playerPhone
+                                    ? t(`playerData.errors.${errors.playerPhone}`)
+                                    : undefined
+                            }
                             label={t('playerData.phone')}
                             name="playerPhone"
                             onChange={({ target: { name, value } }) => setFieldValue(name, value, true)}
@@ -98,10 +118,15 @@ export const PlayerForm: React.VFC<PlayerFormProps> = ({ setIsModalOpen }) => {
                         />
                     </Group>
 
-                    <Group>
+                    <Group align="start">
                         <SMTextInput
-                            label={t('playerData.birthday')}
+                            error={
+                                errors.playerBirthday && touched.playerBirthday
+                                    ? t(`playerData.errors.${errors.playerBirthday}`)
+                                    : undefined
+                            }
                             description="dd/mm/yyyy"
+                            label={t('playerData.birthday')}
                             name="playerBirthday"
                             onChange={({ target: { name, value } }) => setFieldValue(name, value, true)}
                             size={SIZE.md}
@@ -109,16 +134,26 @@ export const PlayerForm: React.VFC<PlayerFormProps> = ({ setIsModalOpen }) => {
                             value={values.playerBirthday}
                         />
                         <SMTextInput
-                            label={t('playerData.height')}
+                            error={
+                                errors.playerHeight && touched.playerHeight
+                                    ? t(`playerData.errors.${errors.playerHeight}`)
+                                    : undefined
+                            }
                             description="(cm)"
+                            label={t('playerData.height')}
                             name="playerHeight"
                             onChange={({ target: { name, value } }) => setFieldValue(name, value, true)}
                             required
                             value={values.playerHeight}
                         />
                         <SMTextInput
-                            label={t('playerData.weight')}
+                            error={
+                                errors.playerWeight && touched.playerWeight
+                                    ? t(`playerData.errors.${errors.playerWeight}`)
+                                    : undefined
+                            }
                             description="(kg)"
+                            label={t('playerData.weight')}
                             name="playerWeight"
                             onChange={({ target: { name, value } }) => setFieldValue(name, value, true)}
                             required
@@ -132,10 +167,15 @@ export const PlayerForm: React.VFC<PlayerFormProps> = ({ setIsModalOpen }) => {
                         {t('playerData.formTitleGuardianData')}
                     </Text>
 
-                    <Group>
+                    <Group align="start">
                         <Field
                             as={Select}
                             data={guardianOptions}
+                            error={
+                                errors.guardian && touched.guardian
+                                    ? t(`playerData.errors.${errors.guardian}`)
+                                    : undefined
+                            }
                             id="guardian"
                             label={t('playerData.guardianPlaceholder')}
                             name="guardian"
@@ -147,8 +187,13 @@ export const PlayerForm: React.VFC<PlayerFormProps> = ({ setIsModalOpen }) => {
                         />
                     </Group>
 
-                    <Group spacing="xs">
+                    <Group align="start">
                         <SMTextInput
+                            error={
+                                errors.guardianName && touched.guardianName
+                                    ? t(`playerData.errors.${errors.guardianName}`)
+                                    : undefined
+                            }
                             label={t('playerData.name')}
                             name="guardianName"
                             onChange={({ target: { name, value } }) => setFieldValue(name, value, true)}
@@ -156,6 +201,11 @@ export const PlayerForm: React.VFC<PlayerFormProps> = ({ setIsModalOpen }) => {
                             value={values.guardianName}
                         />
                         <SMTextInput
+                            error={
+                                errors.guardianLastName && touched.guardianLastName
+                                    ? t(`playerData.errors.${errors.guardian}`)
+                                    : undefined
+                            }
                             label={t('playerData.lastName')}
                             name="guardianLastName"
                             onChange={({ target: { name, value } }) => setFieldValue(name, value, true)}
@@ -164,8 +214,13 @@ export const PlayerForm: React.VFC<PlayerFormProps> = ({ setIsModalOpen }) => {
                         />
                     </Group>
 
-                    <Group>
+                    <Group align="start">
                         <SMTextInput
+                            error={
+                                errors.guardianEmail && touched.guardianEmail
+                                    ? t(`playerData.errors.${errors.guardianEmail}`)
+                                    : undefined
+                            }
                             label={t('playerData.email')}
                             name="guardianEmail"
                             onChange={({ target: { name, value } }) => setFieldValue(name, value, true)}
@@ -174,6 +229,11 @@ export const PlayerForm: React.VFC<PlayerFormProps> = ({ setIsModalOpen }) => {
                             value={values.guardianEmail}
                         />
                         <SMTextInput
+                            error={
+                                errors.guardianPhone && touched.guardianPhone
+                                    ? t(`playerData.errors.${errors.guardian}`)
+                                    : undefined
+                            }
                             label={t('playerData.phone')}
                             name="guardianPhone"
                             onChange={({ target: { name, value } }) => setFieldValue(name, value, true)}
@@ -188,7 +248,7 @@ export const PlayerForm: React.VFC<PlayerFormProps> = ({ setIsModalOpen }) => {
                         <Button leftIcon={<FaTimes />} onClick={() => setIsModalOpen(false)} variant="outline">
                             {t('playerData.cancel')}
                         </Button>
-                        <Button leftIcon={<BsSave />} type="submit">
+                        <Button disabled={!isValid} leftIcon={<BsSave />} type="submit">
                             {t('playerData.save')}
                         </Button>
                     </Group>

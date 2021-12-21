@@ -1,15 +1,24 @@
 import * as Yup from 'yup'
 
-const phoneRegExp =
-    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+function validateNumberLength(val: number | undefined): boolean {
+    if (!val) return false
+    return val?.toString().length > 9 && val?.toString().length <= 10
+}
 
 export const PlayerFormSchema = Yup.object().shape({
-    birthday: Yup.date().required('required'),
-    email: Yup.string().email('email').required('required'),
     guardian: Yup.string().required('required'),
-    height: Yup.number().required('required'),
-    lastName: Yup.string().min(3, 'min').max(10, 'max').required('required'),
-    name: Yup.string().min(3, 'min').max(10, 'max').required('required'),
-    phone: Yup.string().matches(phoneRegExp, 'phone').min(10, 'minPhone').max(10, 'maxPhone').required('required'),
-    weight: Yup.number().required('required'),
+    guardianEmail: Yup.string().email('email').required('required'),
+    guardianLastName: Yup.string().min(3, 'min').max(10, 'max').required('required'),
+    guardianName: Yup.string().min(3, 'min').max(10, 'max').required('required'),
+    guardianPhone: Yup.number()
+        .typeError('number')
+        .test('len', 'phoneLenght', validateNumberLength)
+        .required('required'),
+    playerBirthday: Yup.date().typeError('date').required('required'),
+    playerEmail: Yup.string().email('email').required('required'),
+    playerHeight: Yup.number().typeError('number').required('required'),
+    playerLastName: Yup.string().min(3, 'min').max(10, 'max').required('required'),
+    playerName: Yup.string().min(3, 'min').max(10, 'max').required('required'),
+    playerPhone: Yup.number().typeError('number').test('len', 'phoneLenght', validateNumberLength).required('required'),
+    playerWeight: Yup.number().typeError('number').required('required'),
 })
