@@ -3,9 +3,13 @@ import { action, makeObservable } from 'mobx'
 
 // @interface
 import { IPlayer } from 'interfaces'
-import { RootStore } from '..'
-import { FirebaseService } from '../../services/firebase'
 import { IPlayerProfileStore } from './interface'
+
+// @services
+import { FirebaseService } from 'services/firebase'
+
+// @store
+import { RootStore } from '..'
 
 export class PlayerProfileStore implements IPlayerProfileStore {
     public playerProfile
@@ -36,14 +40,4 @@ export class PlayerProfileStore implements IPlayerProfileStore {
             }),
         )
     }
-
-    async getPlayers(): Promise<void> {
-        this.firebaseService.getCollection().then(
-            action((players) => {
-                this.playersProfiles.push(...players)
-            }),
-        )
-    }
-
-    player = {} as IPlayer
 }

@@ -6,5 +6,4 @@ export interface IPlayerProfileStore {
     playerProfile: IPlayer
     playersProfiles: IPlayer[]
     getPlayer(id: string): Promise<void>
-    getPlayers(): Promise<void>
 }

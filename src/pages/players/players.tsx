@@ -1,14 +1,27 @@
 // @vendors
-import { useState } from 'react'
-import { Container, Group, Text, ThemeIcon } from '@mantine/core'
+import { useEffect, useState } from 'react'
 import { BsPlus } from 'react-icons/bs'
+import { Container, ScrollArea, Text, ThemeIcon } from '@mantine/core'
+import { observer } from 'mobx-react-lite'
 
 // @components
 import { SMModal } from 'components/modal'
 import { PlayerForm } from 'components/forms'
 
-export const Players: React.FC = () => {
+// @stores
+import { IPlayer } from 'interfaces'
+
+// @hooks
+import { useStores } from '../../hooks/store'
+
+export const Players: React.FC = observer(() => {
+    const { playersStore } = useStores()
+
     const [isModalOpen, setIsModalOpen] = useState(false)
+
+    useEffect(() => {
+        playersStore.getPlayers()
+    }, [playersStore])
 
     return (
         <Container fluid sx={{ height: '100%', position: 'relative' }}>
@@ -16,9 +29,19 @@ export const Players: React.FC = () => {
                 <PlayerForm setIsModalOpen={setIsModalOpen} />
             </SMModal>
 
-            <Group>
-                <Text sx={{ fontSize: '48px', fontWeight: 700 }}>Players</Text>
-            </Group>
+            <Text sx={{ fontSize: '48px', fontWeight: 700 }}>Players</Text>
+
+            <ScrollArea
+                type="auto"
+                style={{ height: '50vh', width: '100%' }}
+                offsetScrollbars
+                scrollbarSize={4}
+                scrollHideDelay={350}
+            >
+                {playersStore.players.length > 0 &&
+                    playersStore.players.map((player: IPlayer) => <Text key={player.id}>{player.name}</Text>)}
+            </ScrollArea>
+
             <ThemeIcon
                 radius="md"
                 size="xl"
@@ -29,4 +52,4 @@ export const Players: React.FC = () => {
             </ThemeIcon>
         </Container>
     )
-}
+})

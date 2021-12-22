@@ -1,14 +1,23 @@
-import { PlayerProfile } from 'components/ui/PlayerProfile'
-import { PlayerAvatar } from '../../components/ui/PlayerProfile/PlayerAvatar'
+// @vendors
+import { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
-import { useStores } from '../../hooks/store'
-import { PlayerGeneralStats } from '../../components/ui/PlayerProfile/PlayerStats'
-import { SoccerField } from '../../components/ui/SoccerField/index'
+
+// @components
+import { PlayerProfile } from 'components/ui/PlayerProfile'
+import { PlayerAvatar, PlayerGeneralStats } from 'components/ui/PlayerProfile'
+
+// @hooks
+import { useStores } from 'hooks/store'
+
+// @stores
+import { SoccerField } from 'components/ui/SoccerField/index'
 
 export const Player: React.VFC = observer(() => {
     const { playerProfileStore } = useStores()
 
-    playerProfileStore.getPlayer('0192015c-5aa0-4604-b278-8e5dcc85c9bb')
+    useEffect(() => {
+        playerProfileStore.getPlayer('0192015c-5aa0-4604-b278-8e5dcc85c9bb')
+    }, [playerProfileStore])
 
     return (
         <section>
