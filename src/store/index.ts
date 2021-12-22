@@ -12,4 +12,6 @@ export class RootStore {
     }
 }
 
-export const rootStore = new RootStore()
+const rootStore = new RootStore()
+
+export { rootStore }

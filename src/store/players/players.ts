@@ -1,7 +1,7 @@
 // @interface
 import { IPlayer } from 'interfaces'
 import { IPlayersStore } from './interface'
-import { action, makeObservable } from 'mobx'
+import { action, makeAutoObservable } from 'mobx'
 
 // @services
 import { FirebaseService } from 'services/firebase'
@@ -20,7 +20,7 @@ export class PlayersStore implements IPlayersStore {
         this.players = [] as IPlayer[]
         this.rootStore = rootStore
 
-        makeObservable(this, { rootStore: false })
+        makeAutoObservable(this, { rootStore: false })
     }
 
     async getPlayers(): Promise<void> {

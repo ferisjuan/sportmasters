@@ -3,15 +3,15 @@ import { observer } from 'mobx-react-lite'
 import { useTranslation } from 'react-i18next'
 import { Card, Col, Container, Image, Text } from '@mantine/core'
 
-// @hooks
-import { useStores } from 'hooks/store'
+// @interfaces
+import { IPlayer } from 'interfaces'
 
-export const PlayerAvatar: React.FC = observer(() => {
+interface IPlayerAvatar {
+    player: IPlayer
+}
+
+export const PlayerAvatar: React.FC<IPlayerAvatar> = observer(({ player }) => {
     const { t } = useTranslation()
-
-    const {
-        playerProfileStore: { playerProfile },
-    } = useStores()
 
     return (
         <Col span={2}>
@@ -24,26 +24,21 @@ export const PlayerAvatar: React.FC = observer(() => {
             >
                 <Card.Section>
                     <Container fluid padding={0} sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <Image
-                            alt={playerProfile?.image?.alt}
-                            fit="contain"
-                            src={playerProfile?.image?.src}
-                            width={120}
-                        />
+                        <Image alt={player?.image?.alt} fit="contain" src={player?.image?.src} width={120} />
                     </Container>
                 </Card.Section>
 
                 <Container>
                     <Text align="center" mt={8} size="xl" transform="uppercase" weight={600}>
-                        {playerProfile?.lastName}
+                        {player?.lastName}
                     </Text>
                 </Container>
 
                 <Text align="center" size="md" weight={300}>
-                    {t(`fieldPosition.${playerProfile?.fieldPosition}`)}
+                    {t(`fieldPosition.${player?.fieldPosition}`)}
                 </Text>
                 <Text align="center" size="md" weight={300}>
-                    {playerProfile?.team?.name}
+                    {player?.team?.name}
                 </Text>
             </Card>
         </Col>

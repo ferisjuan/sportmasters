@@ -1,5 +1,5 @@
 // @vendors
-import { action, makeObservable } from 'mobx'
+import { action, makeAutoObservable } from 'mobx'
 
 // @interface
 import { IPlayer } from 'interfaces'
@@ -24,7 +24,7 @@ export class PlayerProfileStore implements IPlayerProfileStore {
         this.playersProfiles = [] as IPlayer[]
         this.rootStore = rootStore
 
-        makeObservable(this, { rootStore: false })
+        makeAutoObservable(this, { rootStore: false })
     }
 
     async addPlayer(player: IPlayer): Promise<string> {

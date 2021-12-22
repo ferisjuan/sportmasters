@@ -22,7 +22,7 @@ export const Player: React.VFC = observer(() => {
     return (
         <section>
             <PlayerProfile>
-                <PlayerAvatar />
+                <PlayerAvatar player={playerProfileStore.playerProfile} />
                 <PlayerGeneralStats />
                 <SoccerField />
             </PlayerProfile>

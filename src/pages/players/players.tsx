@@ -13,6 +13,7 @@ import { IPlayer } from 'interfaces'
 
 // @hooks
 import { useStores } from '../../hooks/store'
+import { PlayerAvatar } from '../../components/ui/PlayerProfile'
 
 export const Players: React.FC = observer(() => {
     const { playersStore } = useStores()
@@ -33,13 +34,13 @@ export const Players: React.FC = observer(() => {
 
             <ScrollArea
                 type="auto"
-                style={{ height: '50vh', width: '100%' }}
+                style={{ height: '80vh', width: '100%' }}
                 offsetScrollbars
                 scrollbarSize={4}
                 scrollHideDelay={350}
             >
                 {playersStore.players.length > 0 &&
-                    playersStore.players.map((player: IPlayer) => <Text key={player.id}>{player.name}</Text>)}
+                    playersStore.players.map((player: IPlayer) => <PlayerAvatar key={player.id} player={player} />)}
             </ScrollArea>
 
             <ThemeIcon
