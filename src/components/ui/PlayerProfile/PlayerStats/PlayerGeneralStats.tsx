@@ -16,7 +16,7 @@ export const PlayerGeneralStats: React.VFC = observer(() => {
     const { t } = useTranslation('stats')
 
     const {
-        playerProfileStore: { playerProfile },
+        playerStore: { player: playerProfile },
     } = useStores()
 
     return (

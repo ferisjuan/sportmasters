@@ -5,8 +5,8 @@ import { useStores } from '../../../hooks/store'
 export const SoccerField: React.VFC = () => {
     const { t } = useTranslation()
     const {
-        playerProfileStore: {
-            playerProfile: { fieldPosition },
+        playerStore: {
+            player: { fieldPosition },
         },
     } = useStores()
 

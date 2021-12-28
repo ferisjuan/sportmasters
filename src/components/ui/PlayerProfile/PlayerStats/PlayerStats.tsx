@@ -6,7 +6,7 @@ import { StatsLead } from 'components/ui/StatsLead'
 
 export const PlayerStats: React.VFC = observer(() => {
     const {
-        playerProfileStore: { playerProfile },
+        playerStore: { player: playerProfile },
     } = useStores()
 
     return (

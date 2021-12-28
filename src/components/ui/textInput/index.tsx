@@ -21,7 +21,7 @@ export const SMTextInput: React.VFC<SMTextInputProps> = ({
     error,
     name,
     onChange,
-    required = false,
+    required,
     size = SIZE.xs,
     value,
 }) => (
@@ -31,7 +31,6 @@ export const SMTextInput: React.VFC<SMTextInputProps> = ({
         error={error}
         id={name}
         label={label}
-        mt={16}
         name={name}
         onChange={onChange}
         placeholder={label}

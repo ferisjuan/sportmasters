@@ -11,17 +11,15 @@ import { FirebaseService } from 'services/firebase'
 // @store
 import { RootStore } from '..'
 
-export class PlayerProfileStore implements IPlayerProfileStore {
-    public playerProfile
-    public playersProfiles
+export class PlayerStore implements IPlayerProfileStore {
+    public player
 
     private firebaseService
     readonly rootStore
 
     constructor(rootStore: RootStore) {
         this.firebaseService = new FirebaseService<IPlayer>('players')
-        this.playerProfile = {} as IPlayer
-        this.playersProfiles = [] as IPlayer[]
+        this.player = {} as IPlayer
         this.rootStore = rootStore
 
         makeAutoObservable(this, { rootStore: false })
@@ -36,7 +34,7 @@ export class PlayerProfileStore implements IPlayerProfileStore {
     async getPlayer(id: string): Promise<void> {
         this.firebaseService.getById(id).then(
             action((player) => {
-                this.playerProfile = player
+                this.player = player
             }),
         )
     }

@@ -1,13 +1,13 @@
 // @stores
-import { PlayerProfileStore } from './player/player'
+import { PlayerStore } from './player/player'
 import { PlayersStore } from './players/players'
 
 export class RootStore {
-    playerProfileStore
+    playerStore
     playersStore
 
     constructor() {
-        this.playerProfileStore = new PlayerProfileStore(this)
+        this.playerStore = new PlayerStore(this)
         this.playersStore = new PlayersStore(this)
     }
 }

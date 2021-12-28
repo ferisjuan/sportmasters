@@ -1,15 +1,18 @@
 export interface PlayerData {
-    guardian: string
     guardianEmail: string
+    guardianId: string
+    guardianIdType: string
     guardianLastName: string
     guardianName: string
     guardianPhone: string
-    id: string
-    playerBirthday: string
+    guardianType: string
+    height: number
+    lastName: string
+    name: string
+    playerBirthday: Date
     playerEmail: string
-    playerHeight: number
-    playerName: string
-    playerLastName: string
+    playerId: string
+    playerIdType: string
     playerPhone: string
-    playerWeight: number
+    weight: number
 }
