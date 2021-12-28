@@ -60,9 +60,15 @@ export const PlayerForm: React.VFC<PlayerFormProps> = ({ setIsModalOpen }) => {
         <Formik
             initialValues={initialValues}
             onSubmit={async (values: PlayerData) => {
-                const rawPlayer = {} as IPlayer
-                const player = { ...rawPlayer, ...values }
-                playerStore.addPlayer(player)
+                try {
+                    const rawPlayer = {} as IPlayer
+                    const player = { ...rawPlayer, ...values }
+                    await playerStore.addPlayer(player)
+
+                    setIsModalOpen(false)
+                } catch (error) {
+                    console.error(error)
+                }
             }}
             validationSchema={PlayerFormSchema}
             validateOnChange

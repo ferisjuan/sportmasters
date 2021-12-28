@@ -17,7 +17,7 @@ export const Player: React.VFC = observer(() => {
 
     useEffect(() => {
         playerStore.getPlayer('0192015c-5aa0-4604-b278-8e5dcc85c9bb')
-    }, [])
+    }, [playerStore])
 
     return (
         <section>

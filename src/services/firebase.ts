@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, getDoc, getDocs } from '@firebase/firestore'
+import { addDoc, collection, doc, getDoc, getDocs, orderBy, query } from '@firebase/firestore'
 import { db } from '../db/connect'
 
 export class FirebaseService<T> {
@@ -15,9 +15,14 @@ export class FirebaseService<T> {
     }
 
     async getCollection(): Promise<T[]> {
-        const querySnapshot = await getDocs(collection(db, this.collection))
+        const q = query(collection(db, this.collection), orderBy('lastName', 'asc'))
+        const querySnapshot = await getDocs(q)
 
         const _collection = querySnapshot.docs.map((_doc) => _doc.data()) as T[]
+        console.log(
+            '🚀🚀🚀 ~ file: firebase.ts ~ line 27 ~ FirebaseService<T> ~ getCollection ~ _collection',
+            _collection,
+        )
 
         return [..._collection]
     }

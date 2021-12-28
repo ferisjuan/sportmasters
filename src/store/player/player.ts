@@ -1,5 +1,6 @@
 // @vendors
 import { action, makeAutoObservable } from 'mobx'
+import { v4 } from 'uuid'
 
 // @interface
 import { IPlayer } from 'interfaces'
@@ -27,6 +28,8 @@ export class PlayerStore implements IPlayerProfileStore {
 
     async addPlayer(player: IPlayer): Promise<string> {
         const response = await this.firebaseService.add(player)
+
+        this.rootStore.playersStore.getPlayers()
 
         return response
     }
