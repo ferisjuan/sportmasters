@@ -18,7 +18,8 @@ import { StoreProvider } from 'context/store-provider'
 
 // @store
 import { rootStore } from 'store'
-import { Player } from './pages/Player'
+import { Player } from 'pages/player'
+import { Players } from 'pages/players'
 
 function App(): JSX.Element {
     return (
@@ -37,7 +38,7 @@ function App(): JSX.Element {
                         >
                             <Route index element={<Title>Welcome to the dashboard</Title>} />
                             <Route path={ROUTES.dashboard_main} element={<Title>Main</Title>} />
-                            <Route path={ROUTES.players} element={<Title>Players</Title>} />
+                            <Route path={ROUTES.players} element={<Players />} />
                             <Route path={ROUTES.player} element={<Player />} />
                             <Route path={ROUTES.statistics} element={<Title>Statistics</Title>} />
                         </Route>

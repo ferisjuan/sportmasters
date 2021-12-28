@@ -14,6 +14,13 @@ export interface IPlayer {
     category: PLAYER_CATEGORY
     familySupport: FAMILY_SUPPORT[]
     fieldPosition: FIELD_POSITION
+    guardianEmail: string
+    guardianId: string
+    guardianIdType: string
+    guardianLastName: string
+    guardianName: string
+    guardianPhone: string
+    guardianType: string
     height: number
     hobbies: string[]
     id: string
@@ -21,11 +28,16 @@ export interface IPlayer {
     IMC: number
     lastName: string
     name: string
-    placeOfBirth: string
     personalQualities: PERSONAL_QUALITIES[]
     physicalCapabilities: PHYSICAL_CAPABILITIES[]
     physicalQualities: PHYSICAL_QUALITIES[]
+    placeOfBirth: string
+    playerBirthday?: Date
+    playerEmail: string
+    playerId: string
+    playerIdType: string
     playerNumber: string
+    playerPhone: string
     sportHistory: string
     team: IPlayerTeam
     weight: number

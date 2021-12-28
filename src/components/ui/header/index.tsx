@@ -3,12 +3,11 @@ import { FcSportsMode } from 'react-icons/fc'
 import { BsFillMoonStarsFill as MoonIcon, BsFillSunFill as SunIcon } from 'react-icons/bs'
 
 export const SMHeader: React.VFC = () => {
-    // const colorScheme = useColorScheme()
     const { colorScheme, toggleColorScheme } = useMantineColorScheme()
     const dark = colorScheme === 'dark'
 
     return (
-        <Header height={70} padding="sm">
+        <Header fixed height={70} padding="sm">
             <Group align="center" position="apart" ml={10}>
                 <Group>
                     <ThemeIcon>

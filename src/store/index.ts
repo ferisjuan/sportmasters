@@ -1,15 +1,17 @@
-// @interfaces
-import { IPlayerProfileStore } from './player/interface'
-
 // @stores
-import { PlayerProfileStore } from './player/player'
+import { PlayerStore } from './player'
+import { PlayersStore } from './players'
 
 export class RootStore {
-    playerProfileStore: IPlayerProfileStore
+    playerStore
+    playersStore
 
     constructor() {
-        this.playerProfileStore = new PlayerProfileStore(this)
+        this.playerStore = new PlayerStore(this)
+        this.playersStore = new PlayersStore(this)
     }
 }
 
-export const rootStore = new RootStore()
+const rootStore = new RootStore()
+
+export { rootStore }

@@ -86,7 +86,7 @@
         "no-use-before-define": "off",
         "no-shadow": "off",
         "react/jsx-filename-extension": [
-            "warn",
+            "error",
             {
                 "extensions": [
                     ".tsx"
