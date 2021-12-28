@@ -18,8 +18,8 @@ import { StoreProvider } from 'context/store-provider'
 
 // @store
 import { rootStore } from 'store'
-import { Player } from './pages/player'
-import { Players } from './pages/players/index'
+import { Player } from 'pages/player'
+import { Players } from 'pages/players'
 
 function App(): JSX.Element {
     return (

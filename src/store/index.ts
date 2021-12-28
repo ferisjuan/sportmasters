@@ -1,6 +1,6 @@
 // @stores
-import { PlayerStore } from './player/player'
-import { PlayersStore } from './players/players'
+import { PlayerStore } from './player'
+import { PlayersStore } from './players'
 
 export class RootStore {
     playerStore
