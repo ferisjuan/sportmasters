@@ -35,7 +35,7 @@ export class PlayerStore implements IPlayerProfileStore {
 
     async getPlayer(id: string): Promise<void> {
         this.firebaseService.getById(id).then(
-            action((player) => {
+            action((player: IPlayer) => {
                 this.player = player
             }),
         )

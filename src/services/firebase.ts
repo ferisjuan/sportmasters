@@ -1,5 +1,5 @@
 import { addDoc, collection, doc, getDoc, getDocs, orderBy, query } from '@firebase/firestore'
-import { db } from '../db/connect'
+import { db } from 'db/connect'
 
 export class FirebaseService<T> {
     private collection: string
