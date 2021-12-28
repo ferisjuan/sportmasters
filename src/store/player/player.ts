@@ -1,6 +1,5 @@
 // @vendors
 import { action, makeAutoObservable } from 'mobx'
-import { v4 } from 'uuid'
 
 // @interface
 import { IPlayer } from 'interfaces'

@@ -19,10 +19,6 @@ export class FirebaseService<T> {
         const querySnapshot = await getDocs(q)
 
         const _collection = querySnapshot.docs.map((_doc) => _doc.data()) as T[]
-        console.log(
-            '🚀🚀🚀 ~ file: firebase.ts ~ line 27 ~ FirebaseService<T> ~ getCollection ~ _collection',
-            _collection,
-        )
 
         return [..._collection]
     }
