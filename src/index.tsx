@@ -1,9 +1,9 @@
 // @vendors
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { browserLocalPersistence, getAuth, setPersistence } from '@firebase/auth'
+import { browserLocalPersistence, getAuth, setPersistence } from '~/firebase/auth'
 import { configure } from 'mobx'
-import { initializeApp, FirebaseOptions } from '@firebase/app'
+import { initializeApp, FirebaseOptions } from '~/firebase/app'
 
 // @components
 import App from './App'
