@@ -5,15 +5,15 @@ import { Container, ScrollArea, Text, ThemeIcon } from '@mantine/core'
 import { observer } from 'mobx-react-lite'
 
 // @components
-import { SMModal } from 'components/modal'
-import { PlayerAvatar } from 'components/ui/PlayerProfile'
-import { PlayerForm } from 'components/forms'
+import { SMModal } from '~/components/modal'
+import { PlayerAvatar } from '~/components/ui/PlayerProfile'
+import { PlayerForm } from '~/components/forms'
 
 // @stores
-import { IPlayer } from 'interfaces'
+import { IPlayer } from '~/interfaces'
 
 // @hooks
-import { useStores } from 'hooks/store'
+import { useStores } from '~/hooks/store'
 
 export const Players: React.FC = observer(() => {
     const { playersStore } = useStores()

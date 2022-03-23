@@ -1,8 +1,8 @@
 import { Card, Col } from '@mantine/core'
 import { observer } from 'mobx-react-lite'
-import { useStores } from 'hooks/store'
-import { formatDate, getAge } from 'utils/index'
-import { StatsLead } from 'components/ui/StatsLead'
+import { useStores } from '~/hooks/store'
+import { formatDate, getAge } from '~/utils/index'
+import { StatsLead } from '~/components/ui/StatsLead'
 
 export const PlayerStats: React.VFC = observer(() => {
     const {

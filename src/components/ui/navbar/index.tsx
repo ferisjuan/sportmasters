@@ -9,10 +9,10 @@ import { MantineTheme } from '@mantine/styles'
 import { LinkBox } from '../link-box'
 
 // @constants
-import { NAV_ITEMS, ROUTES } from 'constants/index'
+import { NAV_ITEMS, ROUTES } from '~/constants/index'
 
 // @utils
-import { getInitials } from 'utils'
+import { getInitials } from '~/utils'
 
 export const SMNavbar: React.VFC = () => {
     const [selected, setSelected] = useState(ROUTES.dashboard)

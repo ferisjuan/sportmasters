@@ -2,9 +2,9 @@
 import { createContext, useState, useEffect } from 'react'
 import { ErrorFn, getAuth, onAuthStateChanged } from 'firebase/auth'
 
-// @interfaces
-import { User } from 'interfaces/user'
-import { IChildren } from '../interfaces'
+// @~/interfaces
+import { User } from '~/interfaces/user'
+import { IChildren } from '~/interfaces'
 
 export interface IAuthContext {
     user?: User

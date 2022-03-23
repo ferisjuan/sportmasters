@@ -1,5 +1,5 @@
 // @interface
-import { IPlayer } from 'interfaces'
+import { IPlayer } from '~/interfaces'
 
 export interface IPlayerProfileStore {
     addPlayer(player: IPlayer): void

@@ -1,6 +1,9 @@
+// @vendors
 import { Col, Container, Text } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
-import { useStores } from '../../../hooks/store'
+
+// @hooks
+import { useStores } from '~/hooks/store'
 
 export const SoccerField: React.VFC = () => {
     const { t } = useTranslation()

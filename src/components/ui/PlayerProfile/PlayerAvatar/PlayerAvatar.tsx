@@ -3,8 +3,8 @@ import { observer } from 'mobx-react-lite'
 import { useTranslation } from 'react-i18next'
 import { Card, Col, Container, Image, Text } from '@mantine/core'
 
-// @interfaces
-import { IPlayer } from 'interfaces'
+// @~/interfaces
+import { IPlayer } from '~/interfaces'
 
 interface IPlayerAvatar {
     player: IPlayer

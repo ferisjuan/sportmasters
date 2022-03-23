@@ -1,6 +1,9 @@
+// @vendors
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { GUARDIAN_OPTIONS } from 'enums'
+
+// @enums
+import { GUARDIAN_OPTIONS } from '~/enums'
 
 const rawGuardianOptions = Object.entries(GUARDIAN_OPTIONS).map(([key, value]) => ({
     key,

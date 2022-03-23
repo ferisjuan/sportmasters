@@ -4,7 +4,7 @@ import { Box } from '@mantine/core'
 import { Link } from 'react-router-dom'
 
 // @constants
-import { ROUTES } from 'constants/index'
+import { ROUTES } from '~/constants/index'
 
 interface ILinkBoxProps {
     icon?: string

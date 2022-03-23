@@ -3,14 +3,14 @@ import { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 
 // @components
-import { PlayerProfile } from 'components/ui/PlayerProfile'
-import { PlayerAvatar, PlayerGeneralStats } from 'components/ui/PlayerProfile'
+import { PlayerProfile } from '~/components/ui/PlayerProfile'
+import { PlayerAvatar, PlayerGeneralStats } from '~/components/ui/PlayerProfile'
 
 // @hooks
-import { useStores } from 'hooks/store'
+import { useStores } from '~/hooks/store'
 
 // @stores
-import { SoccerField } from 'components/ui/SoccerField/index'
+import { SoccerField } from '~/components/ui/SoccerField/index'
 
 export const Player: React.VFC = observer(() => {
     const { playerStore } = useStores()

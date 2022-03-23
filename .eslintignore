@@ -1,6 +1,14 @@
-*.css
-*.svg
 node_modules/
-.eslintrc
-.prettierrc
-mock-gen/
+
+# Ignore artifacts:
+coverage/
+dist/
+public/
+__mocks__/
+
+commitlint.config.js
+jest.config.js
+postcss.config.js
+*.d.ts
+
+vite.config.ts

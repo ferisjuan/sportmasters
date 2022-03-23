@@ -3,7 +3,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { browserLocalPersistence, getAuth, setPersistence } from '@firebase/auth'
 import { configure } from 'mobx'
-import { initializeApp } from '@firebase/app'
+import { initializeApp, FirebaseOptions } from '@firebase/app'
 
 // @components
 import App from './App'
@@ -25,7 +25,7 @@ configure({
     disableErrorBoundaries: true,
 })
 
-initializeApp(FIREBASE_CONFIG)
+initializeApp(FIREBASE_CONFIG as FirebaseOptions)
 const auth = getAuth()
 setPersistence(auth, browserLocalPersistence)
 
