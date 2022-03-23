@@ -20,6 +20,7 @@
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
+    "outDir": "build",
     "resolveJsonModule": true,
     "skipLibCheck": false,
     "sourceMap": true,
