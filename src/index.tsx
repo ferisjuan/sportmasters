@@ -22,11 +22,12 @@ configure({
     computedRequiresReaction: true,
     reactionRequiresObservable: true,
     observableRequiresReaction: true,
-    disableErrorBoundaries: true,
+    disableErrorBoundaries: false,
 })
 
 initializeApp(FIREBASE_CONFIG as FirebaseOptions)
 const auth = getAuth()
+
 setPersistence(auth, browserLocalPersistence)
 
 ReactDOM.render(

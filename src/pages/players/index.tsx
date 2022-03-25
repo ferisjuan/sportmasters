@@ -6,7 +6,7 @@ import { observer } from 'mobx-react-lite'
 
 // @components
 import { SMModal } from '~/components/modal'
-import { PlayerAvatar } from '~/components/ui/PlayerProfile'
+import { PlayerCard } from '~/components/ui/PlayerProfile'
 import { PlayerForm } from '~/components/forms'
 
 // @stores
@@ -40,7 +40,7 @@ export const Players: React.FC = observer(() => {
                 scrollHideDelay={350}
             >
                 {playersStore.players.length > 0 &&
-                    playersStore.players.map((player: IPlayer) => <PlayerAvatar key={player.id} player={player} />)}
+                    playersStore.players.map((player: IPlayer) => <PlayerCard key={player.id} player={player} />)}
             </ScrollArea>
 
             <ThemeIcon

@@ -27,6 +27,7 @@ function App(): JSX.Element {
             <StoreProvider store={rootStore}>
                 <BrowserRouter>
                     <Routes>
+                        <Route path="/" element={<NotFound />} />
                         <Route path={ROUTES.login} element={<Auth />} />
                         <Route
                             path={ROUTES.dashboard}

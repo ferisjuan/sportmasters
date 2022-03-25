@@ -1,7 +1,7 @@
 // @vendors
 import { FormEvent, useEffect, useState } from 'react'
 import { AiFillEye, AiFillEyeInvisible, AiTwotoneLock } from 'react-icons/ai'
-import { getAuth, sendPasswordResetEmail, signInWithEmailAndPassword } from 'firebase/auth'
+import { getAuth, sendPasswordResetEmail, signInWithEmailAndPassword } from '@firebase/auth'
 import { TextInput, Button, PasswordInput, Container, Loader, Text } from '@mantine/core'
 import { useForm } from '@mantine/hooks'
 import { useNavigate } from 'react-router'

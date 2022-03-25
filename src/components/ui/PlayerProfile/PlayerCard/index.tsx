@@ -10,7 +10,7 @@ interface IPlayerAvatar {
     player: IPlayer
 }
 
-export const PlayerAvatar: React.FC<IPlayerAvatar> = observer(({ player }) => {
+export const PlayerCard: React.FC<IPlayerAvatar> = observer(({ player }) => {
     const { t } = useTranslation()
 
     return (

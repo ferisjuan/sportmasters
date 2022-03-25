@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite'
 
 // @components
 import { PlayerProfile } from '~/components/ui/PlayerProfile'
-import { PlayerAvatar, PlayerGeneralStats } from '~/components/ui/PlayerProfile'
+import { PlayerCard, PlayerGeneralStats } from '~/components/ui/PlayerProfile'
 
 // @hooks
 import { useStores } from '~/hooks/store'
@@ -22,7 +22,7 @@ export const Player: React.VFC = observer(() => {
     return (
         <section>
             <PlayerProfile>
-                <PlayerAvatar player={playerStore.player} />
+                <PlayerCard player={playerStore.player} />
                 <PlayerGeneralStats />
                 <SoccerField />
             </PlayerProfile>
