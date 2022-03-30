@@ -20,12 +20,10 @@ export const Player: React.VFC = observer(() => {
     }, [playerStore])
 
     return (
-        <section>
-            <PlayerProfile>
-                <PlayerCard player={playerStore.player} />
-                <PlayerGeneralStats />
-                <SoccerField />
-            </PlayerProfile>
-        </section>
+        <PlayerProfile>
+            <PlayerCard player={playerStore.player} />
+            <PlayerGeneralStats />
+            <SoccerField />
+        </PlayerProfile>
     )
 })

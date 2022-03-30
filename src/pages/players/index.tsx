@@ -1,7 +1,7 @@
 // @vendors
 import { useEffect, useState } from 'react'
 import { BsPlus } from 'react-icons/bs'
-import { Container, ScrollArea, Text, ThemeIcon } from '@mantine/core'
+import { Container, Grid, ScrollArea, Text, ThemeIcon } from '@mantine/core'
 import { observer } from 'mobx-react-lite'
 
 // @components
@@ -39,8 +39,10 @@ export const Players: React.FC = observer(() => {
                 scrollbarSize={4}
                 scrollHideDelay={350}
             >
-                {playersStore.players.length > 0 &&
-                    playersStore.players.map((player: IPlayer) => <PlayerCard key={player.id} player={player} />)}
+                <Grid>
+                    {playersStore.players.length > 0 &&
+                        playersStore.players.map((player: IPlayer) => <PlayerCard key={player.id} player={player} />)}
+                </Grid>
             </ScrollArea>
 
             <ThemeIcon

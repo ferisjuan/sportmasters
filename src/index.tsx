@@ -1,6 +1,5 @@
 // @vendors
-import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import { browserLocalPersistence, getAuth, setPersistence } from '@firebase/auth'
 import { initializeApp, FirebaseOptions } from '@firebase/app'
 import { configure } from 'mobx'
@@ -30,9 +29,7 @@ const auth = getAuth()
 
 setPersistence(auth, browserLocalPersistence)
 
-ReactDOM.render(
-    <React.StrictMode>
-        <App />
-    </React.StrictMode>,
-    document.getElementById('root'),
-)
+const container = document.getElementById('root')
+const root = createRoot(container as HTMLElement)
+
+root.render(<App />)

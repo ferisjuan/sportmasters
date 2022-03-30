@@ -18,13 +18,12 @@
   },
   "dependencies": {
     "@commitlint/config-conventional": "^15.0.0",
-    "@mantine/core": "^3.2.3",
-    "@mantine/hooks": "^3.2.3",
-    "@material-ui/core": "^4.12.3",
+    "@mantine/core": "^4.1.0",
+    "@mantine/hooks": "^4.1.0",
+    "@mantine/next": "^4.1.0",
     "@types/react": "^17.0.33",
     "@types/react-dom": "^17.0.10",
     "@types/uuid": "^8.3.3",
-    "axios": "^0.21.4",
     "commitlint": "^15.0.0",
     "eslint-plugin-prettier": "^4.0.0",
     "firebase": "9.0.1",
@@ -32,11 +31,10 @@
     "i18next": "^21.5.5",
     "mobx": "^6.3.8",
     "mobx-react-lite": "^3.2.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "react-i18next": "^11.14.3",
     "react-icons": "^4.3.1",
-    "react-query": "^3.23.2",
     "react-router-dom": "^6.0.2",
     "uuid": "^8.3.2",
     "vite-tsconfig-paths": "^3.4.1",
@@ -108,7 +106,10 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": ["yarn preview", "lint-staged"]
+      "pre-commit": [
+        "yarn preview",
+        "lint-staged"
+      ]
     }
   },
   "lint-staged": {
