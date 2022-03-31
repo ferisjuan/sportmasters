@@ -9,10 +9,10 @@ import { MantineTheme } from '@mantine/styles'
 import { LinkBox } from '../link-box'
 
 // @constants
-import { NAV_ITEMS, ROUTES } from 'constants/index'
+import { NAV_ITEMS, ROUTES } from '~/constants/index'
 
 // @utils
-import { getInitials } from 'utils'
+import { getInitials } from '~/utils'
 
 export const SMNavbar: React.VFC = () => {
     const [selected, setSelected] = useState(ROUTES.dashboard)
@@ -33,7 +33,7 @@ export const SMNavbar: React.VFC = () => {
     const userName = user?.displayName
 
     return (
-        <Navbar fixed position={{ top: 70 }} width={{ base: 300 }} padding="sm">
+        <Navbar fixed position={{ top: 70 }} width={{ base: 300 }}>
             <Navbar.Section grow>
                 <Title order={5}>Main Links</Title>
                 {NAV_ITEMS.map(({ text, to }) => (
@@ -62,7 +62,7 @@ export const SMNavbar: React.VFC = () => {
                     <Avatar alt="avatar" radius="xl">
                         {userName && getInitials(userName[0], userName[1])}
                     </Avatar>
-                    <Container m={0} padding={0}>
+                    <Container m={0}>
                         <Title order={5}>{user?.displayName}</Title>
                         <Text size="xs">{user?.email}</Text>
                     </Container>

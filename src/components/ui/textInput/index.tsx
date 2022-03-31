@@ -2,7 +2,7 @@ import { Field } from 'formik'
 import { TextInput } from '@mantine/core'
 
 // @enum
-import { SIZE } from 'enums'
+import { SIZE } from '~/enums'
 
 interface SMTextInputProps {
     label: string

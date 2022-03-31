@@ -2,11 +2,11 @@
 import { action, makeAutoObservable } from 'mobx'
 
 // @interface
-import { IPlayer } from 'interfaces'
+import { IPlayer } from '~/interfaces'
 import { IPlayerProfileStore } from './interface'
 
 // @services
-import { FirebaseService } from 'services/firebase'
+import { FirebaseService } from '~/services/firebase'
 
 // @store
 import { RootStore } from '..'

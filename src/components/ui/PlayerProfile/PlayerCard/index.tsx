@@ -1,29 +1,28 @@
 // @vendors
 import { observer } from 'mobx-react-lite'
 import { useTranslation } from 'react-i18next'
-import { Card, Col, Container, Image, Text } from '@mantine/core'
+import { Card, Container, Grid, Image, Text } from '@mantine/core'
 
-// @interfaces
-import { IPlayer } from 'interfaces'
+// @~/interfaces
+import { IPlayer } from '~/interfaces'
 
 interface IPlayerAvatar {
     player: IPlayer
 }
 
-export const PlayerAvatar: React.FC<IPlayerAvatar> = observer(({ player }) => {
+export const PlayerCard: React.FC<IPlayerAvatar> = observer(({ player }) => {
     const { t } = useTranslation()
 
     return (
-        <Col span={2}>
+        <Grid.Col span={2}>
             <Card
                 radius="lg"
                 shadow="sm"
-                padding="md"
                 component="article"
                 sx={(theme) => ({ backgroundColor: theme.colors.yellow[5], height: '230px' })}
             >
                 <Card.Section>
-                    <Container fluid padding={0} sx={{ display: 'flex', justifyContent: 'center' }}>
+                    <Container fluid sx={{ display: 'flex', justifyContent: 'center' }}>
                         <Image alt={player?.image?.alt} fit="contain" src={player?.image?.src} width={120} />
                     </Container>
                 </Card.Section>
@@ -41,6 +40,6 @@ export const PlayerAvatar: React.FC<IPlayerAvatar> = observer(({ player }) => {
                     {player?.team?.name}
                 </Text>
             </Card>
-        </Col>
+        </Grid.Col>
     )
 })

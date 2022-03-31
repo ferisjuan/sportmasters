@@ -1,5 +1,5 @@
 import { createContext, FC, ReactElement, ReactNode } from 'react'
-import { RootStore } from '../store'
+import { RootStore } from '~/store'
 
 export const StoreContext = createContext<RootStore>({} as RootStore)
 

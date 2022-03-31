@@ -1,10 +1,10 @@
 // @vendors
 import { createContext, useState, useEffect } from 'react'
-import { ErrorFn, getAuth, onAuthStateChanged } from 'firebase/auth'
+import { ErrorFn, getAuth, onAuthStateChanged } from '@firebase/auth'
 
-// @interfaces
-import { User } from 'interfaces/user'
-import { IChildren } from '../interfaces'
+// @~/interfaces
+import { User } from '~/interfaces/user'
+import { IChildren } from '~/interfaces'
 
 export interface IAuthContext {
     user?: User
@@ -35,5 +35,5 @@ export const AuthContextProvider = ({ children }: IChildren): JSX.Element => {
         user,
     }
 
-    return <AuthContext.Provider value={values}>{!isAuthenticating && children}</AuthContext.Provider>
+    return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>
 }

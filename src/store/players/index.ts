@@ -1,10 +1,10 @@
 // @interface
-import { IPlayer } from 'interfaces'
+import { IPlayer } from '~/interfaces'
 import { IPlayersStore } from './interface'
 import { action, makeAutoObservable } from 'mobx'
 
 // @services
-import { FirebaseService } from 'services/firebase'
+import { FirebaseService } from '~/services/firebase'
 
 // @store
 import { RootStore } from '..'

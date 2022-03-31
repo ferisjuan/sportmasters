@@ -1,6 +1,6 @@
 // @vendors
 import { useContext } from 'react'
-import { AuthContext, IAuthContext } from 'context/auth-provider'
+import { AuthContext, IAuthContext } from '~/context/auth-provider'
 
 interface IUseAuthState extends IAuthContext {
     isAuthenticated: boolean

@@ -4,13 +4,13 @@ import { observer } from 'mobx-react-lite'
 import { Card, Col, Container } from '@mantine/core'
 
 // @components
-import { StatsLead } from 'components/ui/StatsLead'
+import { StatsLead } from '~/components/ui/StatsLead'
 
 // @hooks
-import { useStores } from 'hooks/store'
+import { useStores } from '~/hooks/store'
 
 // @utils
-import { formatDate, getAge } from 'utils/index'
+import { formatDate, getAge } from '~/utils/index'
 
 export const PlayerGeneralStats: React.VFC = observer(() => {
     const { t } = useTranslation('stats')

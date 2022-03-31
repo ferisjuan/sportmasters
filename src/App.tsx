@@ -4,22 +4,22 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { ColorScheme, ColorSchemeProvider, MantineProvider, Title } from '@mantine/core'
 
 // @components
-import { Auth } from 'pages/auth/login'
-import { AuthenticatedRoute } from 'components/auth'
-import { Main } from 'pages/main'
-import { NotFound } from 'pages/not-found'
+import { Auth } from '~/pages/auth/login'
+import { AuthenticatedRoute } from '~/components/auth'
+import { Main } from '~/pages/main'
+import { NotFound } from '~/pages/not-found'
 
 // @constants
-import { ROUTES } from 'constants/routes'
+import { ROUTES } from '~/constants/routes'
 
 // @context
-import { AuthContextProvider } from 'context/auth-provider'
-import { StoreProvider } from 'context/store-provider'
+import { AuthContextProvider } from '~/context/auth-provider'
+import { StoreProvider } from '~/context/store-provider'
 
 // @store
-import { rootStore } from 'store'
-import { Player } from 'pages/player'
-import { Players } from 'pages/players'
+import { rootStore } from '~/store'
+import { Player } from '~/pages/player'
+import { Players } from '~/pages/players'
 
 function App(): JSX.Element {
     return (
@@ -27,6 +27,7 @@ function App(): JSX.Element {
             <StoreProvider store={rootStore}>
                 <BrowserRouter>
                     <Routes>
+                        <Route path="/" element={<NotFound />} />
                         <Route path={ROUTES.login} element={<Auth />} />
                         <Route
                             path={ROUTES.dashboard}
