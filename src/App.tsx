@@ -8,18 +8,17 @@ import { Auth } from '~/pages/auth/login'
 import { AuthenticatedRoute } from '~/components/auth'
 import { Main } from '~/pages/main'
 import { NotFound } from '~/pages/not-found'
+import { Player } from '~/pages/player'
+import { Players } from '~/pages/players'
 
 // @constants
 import { ROUTES } from '~/constants/routes'
 
 // @context
-import { AuthContextProvider } from '~/context/auth-provider'
-import { StoreProvider } from '~/context/store-provider'
+import { AuthContextProvider, StoreProvider } from '~/context'
 
 // @store
 import { rootStore } from '~/store'
-import { Player } from '~/pages/player'
-import { Players } from '~/pages/players'
 
 function App(): JSX.Element {
     return (
