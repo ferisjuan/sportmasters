@@ -11,7 +11,7 @@ i18n.use(initReactI18next).init({
         es: {
             translation: {
                 auth: {
-                    'reset-password': 'Revisa tu correo para resetear tu contraseña',
+                    resetPassword: 'Revisa tu correo para resetear tu contraseña',
                     wrongCredentials: 'Usuario o contraseña incorrectos',
                 },
                 familySupport: {

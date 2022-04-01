@@ -12,7 +12,7 @@ import { showSMNotification } from '~/utils'
 
 const newLocal = true
 export const Auth = (): JSX.Element => {
-    const { t } = useTranslation('auth')
+    const { t } = useTranslation()
     const [isDissabled, setIsDissabled] = useState(newLocal)
     const [isLoading, setIsLoading] = useState(false)
     const [, setIsResetEmailSent] = useState(false)
@@ -44,7 +44,7 @@ export const Auth = (): JSX.Element => {
             setIsLoading(false)
         } catch (error) {
             setIsLoading(false)
-            showSMNotification(t('wrongCredentials'), 'ERROR')
+            showSMNotification(t('auth.wrongCredentials'), 'ERROR')
         }
     }
 
@@ -53,7 +53,7 @@ export const Auth = (): JSX.Element => {
             const auth = getAuth()
             await sendPasswordResetEmail(auth, form.values.email)
             setIsResetEmailSent(true)
-            showSMNotification('Revisa tu correo para resetear tu contraseña', 'INFO')
+            showSMNotification(t('auth.resetPassword'), 'INFO')
         } catch (error) {
             setIsLoading(false)
             console.log(error)
