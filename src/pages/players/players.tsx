@@ -12,8 +12,11 @@ import { IPlayer } from '~/interfaces'
 
 // @hooks
 import { useStores } from '~/hooks'
+import { showSMNotification } from '../../utils'
+import { useTranslation } from 'react-i18next'
 
 export const Players: React.FC = observer(() => {
+    const { t } = useTranslation('playersPage')
     const { playersStore } = useStores()
 
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -21,6 +24,10 @@ export const Players: React.FC = observer(() => {
     useEffect(() => {
         playersStore.getPlayers()
     }, [playersStore])
+
+    useEffect(() => {
+        playersStore.players.length === 0 && showSMNotification(t('loadingPlayers'), 'LOADING')
+    }, [playersStore.players])
 
     return (
         <Container fluid sx={{ height: '100%', position: 'relative' }}>

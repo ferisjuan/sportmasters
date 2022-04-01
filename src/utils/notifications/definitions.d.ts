@@ -3,12 +3,14 @@ declare namespace notification {
         id: string
         title: string
         color: string
+        loading: boolean
     }
 
     enum ENUM {
-        SUCCESS = 'SUCCESS',
         ERROR = 'ERROR',
-        WARNING = 'WARNING',
         INFO = 'INFO',
+        LOADING = 'LOADING',
+        SUCCESS = 'SUCCESS',
+        WARNING = 'WARNING',
     }
 }

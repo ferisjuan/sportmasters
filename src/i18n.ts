@@ -105,6 +105,9 @@ i18n.use(initReactI18next).init({
                     weight: 'Peso',
                     weightUnit: '(kg)',
                 },
+                playersPage: {
+                    loadingPlayers: 'Cargando jugadores',
+                },
                 stats: {
                     weight: 'Peso',
                 },
