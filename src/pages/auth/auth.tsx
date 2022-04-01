@@ -2,7 +2,7 @@
 import { FormEvent, useEffect, useState } from 'react'
 import { AiFillEye, AiFillEyeInvisible, AiTwotoneLock } from 'react-icons/ai'
 import { getAuth, sendPasswordResetEmail, signInWithEmailAndPassword } from '@firebase/auth'
-import { TextInput, Button, PasswordInput, Container, Loader, Text } from '@mantine/core'
+import { TextInput, Button, PasswordInput, Container, Loader } from '@mantine/core'
 import { useForm } from '@mantine/hooks'
 import { useNavigate } from 'react-router'
 
@@ -13,7 +13,7 @@ const newLocal = true
 export const Auth = (): JSX.Element => {
     const [isDissabled, setIsDissabled] = useState(newLocal)
     const [isLoading, setIsLoading] = useState(false)
-    const [isResetEmailSent, setIsResetEmailSent] = useState(false)
+    const [, setIsResetEmailSent] = useState(false)
 
     const navigate = useNavigate()
 
