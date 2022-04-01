@@ -13,6 +13,7 @@ i18n.use(initReactI18next).init({
                 auth: {
                     resetPassword: 'Revisa tu correo para resetear tu contraseña',
                     wrongCredentials: 'Usuario o contraseña incorrectos',
+                    wrongEmail: 'El correo no existe',
                 },
                 familySupport: {
                     NONE: 'Ninguno',

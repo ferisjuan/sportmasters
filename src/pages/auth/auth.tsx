@@ -38,12 +38,16 @@ export const Auth = (): JSX.Element => {
 
         try {
             setIsLoading(true)
+
             const auth = getAuth()
             await signInWithEmailAndPassword(auth, form.values.email, form.values.password)
+
             navigate('/dashboard')
+
             setIsLoading(false)
         } catch (error) {
             setIsLoading(false)
+
             showSMNotification(t('auth.wrongCredentials'), 'ERROR')
         }
     }
@@ -52,11 +56,14 @@ export const Auth = (): JSX.Element => {
         try {
             const auth = getAuth()
             await sendPasswordResetEmail(auth, form.values.email)
+
             setIsResetEmailSent(true)
+
             showSMNotification(t('auth.resetPassword'), 'INFO')
         } catch (error) {
             setIsLoading(false)
-            console.log(error)
+
+            showSMNotification(t('auth.wrongEmail'), 'ERROR')
         }
     }
 
