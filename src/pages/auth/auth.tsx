@@ -12,7 +12,7 @@ import { showSMNotification } from '~/utils'
 
 const newLocal = true
 export const Auth = (): JSX.Element => {
-    const { t } = useTranslation()
+    const { t } = useTranslation('auth')
     const [isDissabled, setIsDissabled] = useState(newLocal)
     const [isLoading, setIsLoading] = useState(false)
     const [, setIsResetEmailSent] = useState(false)
@@ -44,7 +44,7 @@ export const Auth = (): JSX.Element => {
             setIsLoading(false)
         } catch (error) {
             setIsLoading(false)
-            showSMNotification(t('auth.wrongCredentials'), 'ERROR')
+            showSMNotification(t('wrongCredentials'), 'ERROR')
         }
     }
 
