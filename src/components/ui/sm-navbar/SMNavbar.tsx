@@ -9,7 +9,7 @@ import { MantineTheme } from '@mantine/styles'
 import { LinkBox } from '../link-box'
 
 // @constants
-import { NAV_ITEMS, ROUTES } from '~/constants/index'
+import { NAV_ITEMS, ROUTES } from '~/constants'
 
 // @utils
 import { getInitials } from '~/utils'

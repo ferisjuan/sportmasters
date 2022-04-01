@@ -5,9 +5,7 @@ import { Container, Grid, ScrollArea, Text, ThemeIcon } from '@mantine/core'
 import { observer } from 'mobx-react-lite'
 
 // @components
-import { SMModal } from '~/components/modal'
-import { PlayerCard } from '~/components/ui/PlayerProfile'
-import { PlayerForm } from '~/components/forms'
+import { PlayerCard, PlayerForm, SMModal } from '~/components'
 
 // @stores
 import { IPlayer } from '~/interfaces'

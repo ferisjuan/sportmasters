@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite'
 import { Card, Col, Container } from '@mantine/core'
 
 // @components
-import { StatsLead } from '~/components/ui/StatsLead'
+import { StatsLead } from '~/components'
 
 // @hooks
 import { useStores } from '~/hooks/store'

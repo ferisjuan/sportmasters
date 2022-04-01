@@ -1,3 +1,3 @@
 export * from './PlayerProfile'
-export * from './PlayerCard'
+export * from './PlayerCard/PlayerCard'
 export * from './PlayerStats'

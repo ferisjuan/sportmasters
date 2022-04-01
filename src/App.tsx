@@ -5,13 +5,13 @@ import { ColorScheme, ColorSchemeProvider, MantineProvider, Title } from '@manti
 
 // @components
 import { Auth, Main, NotFound, Player, Players } from '~/pages'
+import { AuthenticatedRoute } from '~/components'
 
 // @constants
 import { ROUTES } from '~/constants/routes'
 
 // @context
 import { AuthContextProvider, StoreProvider } from '~/context'
-import { AuthenticatedRoute } from './components/auth'
 
 // @store
 import { rootStore } from '~/store'
