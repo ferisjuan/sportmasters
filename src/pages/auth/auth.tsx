@@ -6,6 +6,9 @@ import { TextInput, Button, PasswordInput, Container, Loader, Text } from '@mant
 import { useForm } from '@mantine/hooks'
 import { useNavigate } from 'react-router'
 
+// @utils
+import { showSMNotification } from '~/utils'
+
 const newLocal = true
 export const Auth = (): JSX.Element => {
     const [isDissabled, setIsDissabled] = useState(newLocal)
@@ -36,19 +39,21 @@ export const Auth = (): JSX.Element => {
             const auth = getAuth()
             await signInWithEmailAndPassword(auth, form.values.email, form.values.password)
             navigate('/dashboard')
+            setIsLoading(false)
         } catch (error) {
-            console.log(error)
+            setIsLoading(false)
+            showSMNotification('Email o password errado', 'ERROR')
         }
     }
 
     const handleForgotPassword = async (): Promise<void> => {
         try {
-            setIsLoading(true)
             const auth = getAuth()
             await sendPasswordResetEmail(auth, form.values.email)
             setIsResetEmailSent(true)
-            setIsLoading(false)
+            showSMNotification('Revisa tu correo para resetear tu contraseña', 'INFO')
         } catch (error) {
+            setIsLoading(false)
             console.log(error)
         }
     }
@@ -86,9 +91,9 @@ export const Auth = (): JSX.Element => {
                         Login
                     </Button>
 
-                    <Text onClick={handleForgotPassword} sx={{ cursor: 'pointer', textAlign: 'center' }}>
-                        {!isResetEmailSent ? 'Olvidé mi password' : 'Revisa tu correo'}
-                    </Text>
+                    <Button disabled={!form.values.email} sx={{ marginTop: '20px' }} onClick={handleForgotPassword}>
+                        Olvidé mi password
+                    </Button>
                 </form>
             )}
         </Container>

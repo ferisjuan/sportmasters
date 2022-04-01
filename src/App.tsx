@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { ColorScheme, ColorSchemeProvider, MantineProvider, Title } from '@mantine/core'
+import { NotificationsProvider } from '@mantine/notifications'
 
 // @components
 import { Auth, Main, NotFound, Player, Players } from '~/pages'
@@ -56,7 +57,9 @@ function WithProvider(): JSX.Element {
     return (
         <ColorSchemeProvider colorScheme={colorScheme as ColorScheme} toggleColorScheme={toggleColorScheme}>
             <MantineProvider theme={{ colorScheme: colorScheme as ColorScheme }}>
-                <App />
+                <NotificationsProvider>
+                    <App />
+                </NotificationsProvider>
             </MantineProvider>
         </ColorSchemeProvider>
     )
