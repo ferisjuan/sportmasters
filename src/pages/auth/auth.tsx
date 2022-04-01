@@ -1,5 +1,5 @@
 // @vendors
-import { FormEvent, useEffect, useState } from 'react'
+import { FormEvent, useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AiFillEye, AiFillEyeInvisible, AiTwotoneLock } from 'react-icons/ai'
 import { getAuth, sendPasswordResetEmail, signInWithEmailAndPassword } from '@firebase/auth'
@@ -15,7 +15,6 @@ export const Auth = (): JSX.Element => {
     const { t } = useTranslation()
     const [isDissabled, setIsDissabled] = useState(newLocal)
     const [isLoading, setIsLoading] = useState(false)
-    const [, setIsResetEmailSent] = useState(false)
 
     const navigate = useNavigate()
 
@@ -33,39 +32,38 @@ export const Auth = (): JSX.Element => {
         setIsDissabled(!form.errors.email && form.values.password.length === 0)
     }, [form.errors.email, form.values.password])
 
-    const handleFormSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
-        event.preventDefault()
+    const handleFormSubmit = useCallback(
+        async (event: FormEvent<HTMLFormElement>): Promise<void> => {
+            event.preventDefault()
 
-        try {
-            setIsLoading(true)
+            try {
+                setIsLoading(true)
 
-            const auth = getAuth()
-            await signInWithEmailAndPassword(auth, form.values.email, form.values.password)
+                const auth = getAuth()
+                await signInWithEmailAndPassword(auth, form.values.email, form.values.password)
 
-            navigate('/dashboard')
+                navigate('/dashboard')
 
-            setIsLoading(false)
-        } catch (error) {
-            setIsLoading(false)
+                setIsLoading(false)
+            } catch (error) {
+                setIsLoading(false)
 
-            showSMNotification(t('auth.wrongCredentials'), 'ERROR')
-        }
-    }
+                showSMNotification(t('auth.wrongCredentials'), 'ERROR')
+            }
+        },
+        [form.values.email, form.values.password, setIsLoading, t],
+    )
 
-    const handleForgotPassword = async (): Promise<void> => {
+    const handleForgotPassword = useCallback(async (): Promise<void> => {
         try {
             const auth = getAuth()
             await sendPasswordResetEmail(auth, form.values.email)
 
-            setIsResetEmailSent(true)
-
             showSMNotification(t('auth.resetPassword'), 'INFO')
         } catch (error) {
-            setIsLoading(false)
-
             showSMNotification(t('auth.wrongEmail'), 'ERROR')
         }
-    }
+    }, [form.values.email, t])
 
     return (
         <Container size="xs" sx={{ display: 'flex', justifyContent: 'center', height: '100vh', alignItems: 'center' }}>
