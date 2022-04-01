@@ -10,6 +10,10 @@ i18n.use(initReactI18next).init({
     resources: {
         es: {
             translation: {
+                auth: {
+                    'reset-password': 'Revisa tu correo para resetear tu contraseña',
+                    wrongCredentials: 'Usuario o contraseña incorrectos',
+                },
                 familySupport: {
                     NONE: 'Ninguno',
                     BOTH_GRANDFATHERS: 'Ambos abuelos',

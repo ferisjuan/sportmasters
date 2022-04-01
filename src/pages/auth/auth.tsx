@@ -1,5 +1,6 @@
 // @vendors
 import { FormEvent, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { AiFillEye, AiFillEyeInvisible, AiTwotoneLock } from 'react-icons/ai'
 import { getAuth, sendPasswordResetEmail, signInWithEmailAndPassword } from '@firebase/auth'
 import { TextInput, Button, PasswordInput, Container, Loader } from '@mantine/core'
@@ -11,6 +12,7 @@ import { showSMNotification } from '~/utils'
 
 const newLocal = true
 export const Auth = (): JSX.Element => {
+    const { t } = useTranslation()
     const [isDissabled, setIsDissabled] = useState(newLocal)
     const [isLoading, setIsLoading] = useState(false)
     const [, setIsResetEmailSent] = useState(false)
@@ -42,7 +44,7 @@ export const Auth = (): JSX.Element => {
             setIsLoading(false)
         } catch (error) {
             setIsLoading(false)
-            showSMNotification('Email o password errado', 'ERROR')
+            showSMNotification(t('auth.wrongCredentials'), 'ERROR')
         }
     }
 
