@@ -1,5 +1,5 @@
 import { useLocation, Navigate } from 'react-router-dom'
-import { useAuthState } from '~/hooks/auth'
+import { useAuthState } from '~/hooks'
 import { IChildren } from '~/interfaces'
 import { ROUTES } from '~/constants'
 

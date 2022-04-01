@@ -6,7 +6,7 @@ import { observer } from 'mobx-react-lite'
 import { StatsLead } from '~/components'
 
 // @hooks
-import { useStores } from '~/hooks/store'
+import { useStores } from '~/hooks'
 
 // @utils
 import { formatDate, getAge } from '~/utils'

@@ -13,16 +13,13 @@ import { SMTextInput } from '~/components'
 import { SIZE } from '~/enums'
 
 // @hooks
-import { useGuardianOptions } from '~/hooks/guardian-options'
+import { useGuardianOptions, useStores } from '~/hooks'
 
 // @~/interfaces
 import { IPlayer } from '~/interfaces'
 
 //@schemas
 import { PlayerFormSchema } from './schema'
-
-// @stores
-import { useStores } from '~/hooks/store'
 
 const initialValues = {
     guardianEmail: '',

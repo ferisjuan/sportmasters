@@ -6,7 +6,7 @@ import { observer } from 'mobx-react-lite'
 import { PlayerProfile, PlayerCard, PlayerGeneralStats, SoccerField } from '~/components'
 
 // @hooks
-import { useStores } from '~/hooks/store'
+import { useStores } from '~/hooks'
 
 export const Player: React.VFC = observer(() => {
     const { playerStore } = useStores()

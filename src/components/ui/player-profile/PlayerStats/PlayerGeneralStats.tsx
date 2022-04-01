@@ -7,7 +7,7 @@ import { Card, Col, Container } from '@mantine/core'
 import { StatsLead } from '~/components'
 
 // @hooks
-import { useStores } from '~/hooks/store'
+import { useStores } from '~/hooks'
 
 // @utils
 import { formatDate, getAge } from '~/utils/index'

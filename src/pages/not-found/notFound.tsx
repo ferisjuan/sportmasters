@@ -4,8 +4,10 @@ import { useNavigate } from 'react-router'
 import { Blockquote, Container, Text, Title } from '@mantine/core'
 
 // @constants
-import { REDIRECT_NAVIGATION_TIME, ROUTES } from '~/constants/index'
-import { useTimer } from '~/hooks/timer'
+import { REDIRECT_NAVIGATION_TIME, ROUTES } from '~/constants'
+
+// @hooks
+import { useTimer } from '~/hooks'
 
 export const NotFound = (): JSX.Element => {
     const { time } = useTimer(REDIRECT_NAVIGATION_TIME, 1000)

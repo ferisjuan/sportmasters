@@ -11,7 +11,7 @@ import { PlayerCard, PlayerForm, SMModal } from '~/components'
 import { IPlayer } from '~/interfaces'
 
 // @hooks
-import { useStores } from '~/hooks/store'
+import { useStores } from '~/hooks'
 
 export const Players: React.FC = observer(() => {
     const { playersStore } = useStores()
