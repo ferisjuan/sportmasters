@@ -1,6 +1,4 @@
-import { NOTIFICATION_ENUM } from './enums'
-
-export const types: Record<keyof typeof NOTIFICATION_ENUM, Notification.Type> = {
+export const types: Record<keyof typeof notification.ENUM, notification.Type> = {
     INFO: {
         id: 'info-notification',
         title: 'Información',
@@ -11,6 +9,6 @@ export const types: Record<keyof typeof NOTIFICATION_ENUM, Notification.Type> = 
         title: 'Error',
         color: 'red',
     },
-    SUCCESS: {} as Notification.Type,
-    WARNING: {} as Notification.Type,
+    SUCCESS: {} as notification.Type,
+    WARNING: {} as notification.Type,
 }
