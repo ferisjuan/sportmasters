@@ -4,18 +4,14 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { ColorScheme, ColorSchemeProvider, MantineProvider, Title } from '@mantine/core'
 
 // @components
-import { Auth } from '~/pages/auth/login'
-import { AuthenticatedRoute } from '~/components/auth'
-import { Main } from '~/pages/main'
-import { NotFound } from '~/pages/not-found'
-import { Player } from '~/pages/player'
-import { Players } from '~/pages/players'
+import { Auth, Main, NotFound, Player, Players } from '~/pages'
 
 // @constants
 import { ROUTES } from '~/constants/routes'
 
 // @context
 import { AuthContextProvider, StoreProvider } from '~/context'
+import { AuthenticatedRoute } from './components/auth'
 
 // @store
 import { rootStore } from '~/store'
