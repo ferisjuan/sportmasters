@@ -21,6 +21,7 @@ export default defineConfig((({command, mode}) => ({
       '@firebase/firestore',
       '@mantine/core',
       '@mantine/hooks',
+      '@mantine/notifications',
       '@mantine/styles',
       'firebase/app',
       'firebase/auth',

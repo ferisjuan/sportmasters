@@ -2,29 +2,24 @@
 import { useTranslation } from 'react-i18next'
 import { Field, Formik, Form, FormikProps } from 'formik'
 import { Button, Group, Select, Text } from '@mantine/core'
+import { BsSave } from 'react-icons/bs'
+import { FaTimes } from 'react-icons/fa'
 
 // @components
 import { PlayerData } from './player-form.interface'
-import { SMTextInput } from '~/components/ui/textInput'
-
-// @icons
-import { BsSave } from 'react-icons/bs'
-import { FaTimes } from 'react-icons/fa'
+import { SMTextInput } from '~/components'
 
 // @enums
 import { SIZE } from '~/enums'
 
 // @hooks
-import { useGuardianOptions } from '~/hooks/guardian-options'
+import { useGuardianOptions, useStores } from '~/hooks'
 
 // @~/interfaces
 import { IPlayer } from '~/interfaces'
 
 //@schemas
 import { PlayerFormSchema } from './schema'
-
-// @stores
-import { useStores } from '~/hooks/store'
 
 const initialValues = {
     guardianEmail: '',

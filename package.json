@@ -20,6 +20,7 @@
     "@commitlint/config-conventional": "^15.0.0",
     "@mantine/core": "^4.1.0",
     "@mantine/hooks": "^4.1.0",
+    "@mantine/notifications": "^4.1.1",
     "@types/react": "^17.0.33",
     "@types/react-dom": "^17.0.10",
     "@types/uuid": "^8.3.3",

@@ -2,24 +2,20 @@
 import { useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { ColorScheme, ColorSchemeProvider, MantineProvider, Title } from '@mantine/core'
+import { NotificationsProvider } from '@mantine/notifications'
 
 // @components
-import { Auth } from '~/pages/auth/login'
-import { AuthenticatedRoute } from '~/components/auth'
-import { Main } from '~/pages/main'
-import { NotFound } from '~/pages/not-found'
+import { Auth, Main, NotFound, Player, Players } from '~/pages'
+import { AuthenticatedRoute } from '~/components'
 
 // @constants
 import { ROUTES } from '~/constants/routes'
 
 // @context
-import { AuthContextProvider } from '~/context/auth-provider'
-import { StoreProvider } from '~/context/store-provider'
+import { AuthContextProvider, StoreProvider } from '~/context'
 
 // @store
 import { rootStore } from '~/store'
-import { Player } from '~/pages/player'
-import { Players } from '~/pages/players'
 
 function App(): JSX.Element {
     return (
@@ -61,7 +57,9 @@ function WithProvider(): JSX.Element {
     return (
         <ColorSchemeProvider colorScheme={colorScheme as ColorScheme} toggleColorScheme={toggleColorScheme}>
             <MantineProvider theme={{ colorScheme: colorScheme as ColorScheme }}>
-                <App />
+                <NotificationsProvider>
+                    <App />
+                </NotificationsProvider>
             </MantineProvider>
         </ColorSchemeProvider>
     )

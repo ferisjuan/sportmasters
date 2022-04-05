@@ -10,6 +10,11 @@ i18n.use(initReactI18next).init({
     resources: {
         es: {
             translation: {
+                auth: {
+                    resetPassword: 'Revisa tu correo para resetear tu contraseña',
+                    wrongCredentials: 'Usuario o contraseña incorrectos',
+                    wrongEmail: 'El correo no existe',
+                },
                 familySupport: {
                     NONE: 'Ninguno',
                     BOTH_GRANDFATHERS: 'Ambos abuelos',
@@ -100,6 +105,9 @@ i18n.use(initReactI18next).init({
                     save: 'Guardar',
                     weight: 'Peso',
                     weightUnit: '(kg)',
+                },
+                playersPage: {
+                    loadingPlayers: 'Cargando jugadores',
                 },
                 stats: {
                     weight: 'Peso',

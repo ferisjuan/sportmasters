@@ -1,16 +1,20 @@
 // @vendors
-import { FormEvent, useEffect, useState } from 'react'
+import { FormEvent, useCallback, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { AiFillEye, AiFillEyeInvisible, AiTwotoneLock } from 'react-icons/ai'
 import { getAuth, sendPasswordResetEmail, signInWithEmailAndPassword } from '@firebase/auth'
-import { TextInput, Button, PasswordInput, Container, Loader, Text } from '@mantine/core'
+import { TextInput, Button, PasswordInput, Container, Loader } from '@mantine/core'
 import { useForm } from '@mantine/hooks'
 import { useNavigate } from 'react-router'
 
+// @utils
+import { showSMNotification } from '~/utils'
+
 const newLocal = true
 export const Auth = (): JSX.Element => {
+    const { t } = useTranslation()
     const [isDissabled, setIsDissabled] = useState(newLocal)
     const [isLoading, setIsLoading] = useState(false)
-    const [isResetEmailSent, setIsResetEmailSent] = useState(false)
 
     const navigate = useNavigate()
 
@@ -28,30 +32,38 @@ export const Auth = (): JSX.Element => {
         setIsDissabled(!form.errors.email && form.values.password.length === 0)
     }, [form.errors.email, form.values.password])
 
-    const handleFormSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
-        event.preventDefault()
+    const handleFormSubmit = useCallback(
+        async (event: FormEvent<HTMLFormElement>): Promise<void> => {
+            event.preventDefault()
 
-        try {
-            setIsLoading(true)
-            const auth = getAuth()
-            await signInWithEmailAndPassword(auth, form.values.email, form.values.password)
-            navigate('/dashboard')
-        } catch (error) {
-            console.log(error)
-        }
-    }
+            try {
+                setIsLoading(true)
 
-    const handleForgotPassword = async (): Promise<void> => {
+                const auth = getAuth()
+                await signInWithEmailAndPassword(auth, form.values.email, form.values.password)
+
+                navigate('/dashboard')
+
+                setIsLoading(false)
+            } catch (error) {
+                setIsLoading(false)
+
+                showSMNotification(t('auth.wrongCredentials'), 'ERROR')
+            }
+        },
+        [form.values.email, form.values.password, setIsLoading, t],
+    )
+
+    const handleForgotPassword = useCallback(async (): Promise<void> => {
         try {
-            setIsLoading(true)
             const auth = getAuth()
             await sendPasswordResetEmail(auth, form.values.email)
-            setIsResetEmailSent(true)
-            setIsLoading(false)
+
+            showSMNotification(t('auth.resetPassword'), 'INFO')
         } catch (error) {
-            console.log(error)
+            showSMNotification(t('auth.wrongEmail'), 'ERROR')
         }
-    }
+    }, [form.values.email, t])
 
     return (
         <Container size="xs" sx={{ display: 'flex', justifyContent: 'center', height: '100vh', alignItems: 'center' }}>
@@ -86,9 +98,9 @@ export const Auth = (): JSX.Element => {
                         Login
                     </Button>
 
-                    <Text onClick={handleForgotPassword} sx={{ cursor: 'pointer', textAlign: 'center' }}>
-                        {!isResetEmailSent ? 'Olvidé mi password' : 'Revisa tu correo'}
-                    </Text>
+                    <Button disabled={!form.values.email} sx={{ marginTop: '20px' }} onClick={handleForgotPassword}>
+                        Olvidé mi password
+                    </Button>
                 </form>
             )}
         </Container>

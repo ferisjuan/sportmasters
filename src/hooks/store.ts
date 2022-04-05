@@ -2,7 +2,7 @@
 import { useContext } from 'react'
 
 // @context
-import { StoreContext } from '~/context/store-provider'
+import { StoreContext } from '~/context'
 
 // @store
 import { RootStore } from '~/store'

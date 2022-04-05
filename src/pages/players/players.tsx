@@ -5,17 +5,18 @@ import { Container, Grid, ScrollArea, Text, ThemeIcon } from '@mantine/core'
 import { observer } from 'mobx-react-lite'
 
 // @components
-import { SMModal } from '~/components/modal'
-import { PlayerCard } from '~/components/ui/PlayerProfile'
-import { PlayerForm } from '~/components/forms'
+import { PlayerCard, PlayerForm, SMModal } from '~/components'
 
 // @stores
 import { IPlayer } from '~/interfaces'
 
 // @hooks
-import { useStores } from '~/hooks/store'
+import { useStores } from '~/hooks'
+import { showSMNotification } from '../../utils'
+import { useTranslation } from 'react-i18next'
 
 export const Players: React.FC = observer(() => {
+    const { t } = useTranslation('playersPage')
     const { playersStore } = useStores()
 
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -23,6 +24,10 @@ export const Players: React.FC = observer(() => {
     useEffect(() => {
         playersStore.getPlayers()
     }, [playersStore])
+
+    useEffect(() => {
+        playersStore.players.length === 0 && showSMNotification(t('loadingPlayers'), 'LOADING')
+    }, [playersStore.players])
 
     return (
         <Container fluid sx={{ height: '100%', position: 'relative' }}>
