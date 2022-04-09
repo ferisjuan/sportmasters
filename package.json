@@ -6,8 +6,10 @@
   "scripts": {
     "setup": "run-p setup:*",
     "setup:front": "yarn --cwd ./front && yarn",
+    "setup:back": "npm --prefix ./back/ install",
     "dev": "FORCE_COLOR=1 run-p dev:*",
-    "dev:front": "yarn --cwd front dev"
+    "dev:front": "yarn --cwd front dev",
+    "dev:back": "npm --prefix ./back/ run dev"
   },
   "repository": {
     "type": "git",
