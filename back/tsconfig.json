@@ -1,30 +1,40 @@
 {
   "extends": "ts-node/node16/tsconfig.json",
   "ts-node": {
+    "compilerOptions": {
+      "esModuleInterop": true,
+      "pretty": true,
+      "sourceMap": true,
+    },
     "files": true,
     "sourceMap": false,
+    "swc": true,
     "transpileOnly": true,
-    "compilerOptions": {
-      "sourceMap": true,
-      "pretty": true
-    }
   },
   "compilerOptions": {
-    "alwaysStrict": true,
     "allowSyntheticDefaultImports": true,
+    "alwaysStrict": true,
     "baseUrl": "./src",
+    "emitDecoratorMetadata": true,
     "esModuleInterop": true,
-    "lib": [
-      "es6"
-    ],
-    "noImplicitAny": true,
-    "outDir": "./dist",
-    "noUnusedParameters": true,
-    "noUnusedLocals": true,
-    "sourceMap": false,
-    "strict": true,
+    "experimentalDecorators": true,
     "incremental": true,
-    "target": "es6",
+    "isolatedModules": true,
+    "lib": [
+      "esnext",
+      "esnext.asynciterable"
+    ],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "sourceMap": false,
+    "skipLibCheck": true,
+    "target": "esnext",
   },
   "exclude": [
     "node_modules",
