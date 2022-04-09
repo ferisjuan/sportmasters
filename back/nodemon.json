@@ -1,5 +1,5 @@
 {
-    "exec": "ts-node-esm ./src/server.ts",
+    "exec": "NODE_OPTIONS='--experimental-specifier-resolution=node' ts-node-esm ./src/server.ts",
     "ext": "ts",
     "ignore": [
         "**/node_modules/**",

@@ -39,6 +39,7 @@
   "exclude": [
     "node_modules",
     "**/*.spec.ts",
-    "./jest-*"
+    "./jest-*",
+    "./tsconfig.json",
   ],
 }
