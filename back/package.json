@@ -12,7 +12,9 @@
     "dev": "dotenv -e ./development.env -- nodemon",
     "clean": "rm -rf dist",
     "prebuild": "rm -rf dist",
-    "build": "tsc ./tsconfig.json"
+    "build": "tsc ./tsconfig.json",
+    "migrate:dev": "dotenv -e ./development.env -- npx prisma migrate dev",
+    "studio:dev": "dotenv -e ./development.env -- npx prisma studio"
   },
   "keywords": [],
   "author": "",
