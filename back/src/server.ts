@@ -1,14 +1,17 @@
 // @vendors
 import "reflect-metadata"
 import "dotenv/config"
-import { ApolloServer } from "apollo-server";
+import { ApolloServer } from "apollo-server"
+import pkg from '@prisma/client'
 
 // @schema
-import { schema } from "./schema/index";
+import { schema } from "./schema/index"
 
-console.log(process.env.PORT)
+const { PrismaClient } = pkg
+const prisma = new PrismaClient()
 
 const server = new ApolloServer({
+    context: () => ({prisma}),
     schema,
 })
 

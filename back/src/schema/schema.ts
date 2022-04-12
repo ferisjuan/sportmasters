@@ -1,6 +1,6 @@
 import { buildSchema } from 'type-graphql';
-import { PlayersResolver } from './resolvers';
+import { resolvers } from "@generated/type-graphql";
 
 export const schema = await buildSchema({
-    resolvers: [PlayersResolver],
+    resolvers,
 })

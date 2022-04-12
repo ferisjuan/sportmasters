@@ -2,6 +2,10 @@ generator client {
   provider = "prisma-client-js"
 }
 
+generator typegraphql {
+  provider = "typegraphql-prisma"
+}
+
 datasource db {
   provider          = "postgresql"
   url               = env("DATABASE_URL")
@@ -30,7 +34,7 @@ enum FIELD_POSITION {
   LEFT_MIDDLEFIELDER
   RIGHT_FULLBACK
   RIGHT_MIDDLEFIELDER
-  SWEEPER
+  a
 }
 
 enum GUARDIAN_TYPE {
@@ -114,7 +118,7 @@ model Player {
   playerIdType         String
   playerNumber         String
   playerPhone          String
-  school               School @relation(fields: [schoolId], references: [id])
+  school               School                  @relation(fields: [schoolId], references: [id])
   schoolId             String
   sportHistory         String
   weight               Float

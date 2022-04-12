@@ -1,1 +1,0 @@
-export { PlayersResolver } from './PlayersResolver'
