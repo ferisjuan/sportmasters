@@ -1,0 +1,158 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator typegraphql {
+  provider = "typegraphql-prisma"
+}
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+enum FAMILY_SUPPORT {
+  NONE
+  BOTH_GRANDFATHERS
+  BOTH_PARENTS
+  FATHER
+  GRANDFATHER
+  GRANDMOTHER
+  MOTHER
+}
+
+enum FIELD_POSITION {
+  NONE
+  ATTACKING_MIDFIELDER
+  CENTER_BACK
+  CENTER_FORWARD
+  CENTER_MIDDLEFIELDER
+  DEFENSIVE_MIDFIELDER
+  GOAL_KEEPER
+  LEFT_FULLBACK
+  LEFT_MIDDLEFIELDER
+  RIGHT_FULLBACK
+  RIGHT_MIDDLEFIELDER
+  SWEEPER
+}
+
+enum GUARDIAN_TYPE {
+  NONE
+  FATHER
+  GRANDFATHER
+  GRANDMOTHER
+  MOTHER
+}
+
+enum PERSONAL_QUALITIES {
+  NONE
+  FELLOWSHIP
+  PUNTUALITY
+  RESPONSABILITY
+  SOLIDARITY
+}
+
+enum PHYSICAL_CAPABILITIES {
+  NONE
+  BALANCE
+  COORDINATION
+  FLEXIBILITY
+  RESISTANCE
+  SPEED
+  STRENGTH
+}
+
+enum PHYSICAL_QUALITIES {
+  NONE
+  AGILITY
+  DIRBLING
+  JUMPING
+}
+
+enum PLAYER_CATEGORY {
+  NONE
+  FIRST
+  SECOND
+  THIRD
+  FOURTH
+  FIFTH
+  SIXTH
+  SEVENTH
+  EIGHTH
+}
+
+enum TIER {
+  BASIC
+  INTERMEDIATE
+  ADVANCED
+  EXPERT
+}
+
+model Player {
+  id                   String                  @id @default(cuid())
+  birthday             DateTime
+  category             PLAYER_CATEGORY
+  familySupport        FAMILY_SUPPORT[]
+  fieldPosition        FIELD_POSITION
+  guardianEmail        String
+  guardianId           String
+  guardianIdType       String
+  guardianLastName     String
+  guardianName         String
+  guardianPhone        String
+  guardianType         GUARDIAN_TYPE
+  height               Float
+  hobbies              String[]
+  image                String
+  IMC                  Float
+  lastName             String
+  name                 String
+  personalQualities    PERSONAL_QUALITIES[]
+  physicalCapabilities PHYSICAL_CAPABILITIES[]
+  physicalQualities    PHYSICAL_QUALITIES[]
+  placeOfBirth         String
+  playerBirthday       DateTime
+  playerEmail          String
+  playerId             String
+  playerIdType         String
+  playerNumber         String
+  playerPhone          String
+  school               School                  @relation(fields: [schoolId], references: [id])
+  schoolId             String
+  sportHistory         String
+  weight               Float
+  createdAt            DateTime                @default(now())
+  updatedAt            DateTime                @updatedAt
+}
+
+model School {
+  id        String   @id @default(cuid())
+  address   String
+  email     String   @unique
+  name      String
+  password  String
+  phone     String
+  players   Player[]
+  tier      TIER     @default(BASIC)
+  users     User[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model User {
+  id                    String   @id @default(cuid())
+  acceptsPrivacyPolicy  Boolean  @default(false)
+  acceptsTermsOfService Boolean  @default(false)
+  address               String
+  createdAt             DateTime @default(now())
+  email                 String   @unique
+  isAdmin               Boolean  @default(false)
+  lastName              String
+  name                  String
+  password              String
+  phone                 String
+  School                School   @relation(fields: [schoolId], references: [id])
+  schoolId              String
+  updatedAt             DateTime @updatedAt
+}
