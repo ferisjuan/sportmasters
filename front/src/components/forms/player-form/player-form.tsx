@@ -15,30 +15,11 @@ import { SIZE } from '~/enums'
 // @hooks
 import { useGuardianOptions, useStores } from '~/hooks'
 
-// @~/interfaces
-import { IPlayer } from '~/interfaces'
+// @interfaces
+import { Player } from '~/generated/graphql'
 
 //@schemas
 import { PlayerFormSchema } from './schema'
-
-const initialValues = {
-    guardianEmail: '',
-    guardianId: '',
-    guardianIdType: '',
-    guardianLastName: '',
-    guardianName: '',
-    guardianPhone: '',
-    guardianType: 'NONE',
-    height: 0,
-    lastName: '',
-    name: '',
-    playerBirthday: new Date(),
-    playerEmail: '',
-    playerId: '',
-    playerIdType: '',
-    playerPhone: '',
-    weight: 0,
-}
 
 interface PlayerFormProps {
     setIsModalOpen: (isOpen: boolean) => void
@@ -53,10 +34,10 @@ export const PlayerForm: React.VFC<PlayerFormProps> = ({ setIsModalOpen }) => {
 
     return (
         <Formik
-            initialValues={initialValues}
-            onSubmit={async (values: PlayerData) => {
+            initialValues={{} as Player}
+            onSubmit={async (values: Player) => {
                 try {
-                    const rawPlayer = {} as IPlayer
+                    const rawPlayer = {} as Player
                     const player = { ...rawPlayer, ...values }
                     await playerStore.addPlayer(player)
 

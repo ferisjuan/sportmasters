@@ -17,8 +17,8 @@ i18n.use(initReactI18next).init({
                 },
                 familySupport: {
                     NONE: 'Ninguno',
-                    BOTH_GRANDFATHERS: 'Ambos abuelos',
-                    BOTH_PARENTS: 'Ambos padres',
+                    BOTHgRANDFATHERS: 'Ambos abuelos',
+                    BOTHpARENTS: 'Ambos padres',
                     FATHER: 'Padre',
                     GRANDFATHER: 'Abuelo',
                     GRANDMOTHER: 'Abuela',

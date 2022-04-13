@@ -657,7 +657,6 @@ export type Player = {
   physicalCapabilities: Array<Physical_Capabilities>;
   physicalQualities: Array<Physical_Qualities>;
   placeOfBirth: Scalars['String'];
-  playerBirthday: Scalars['DateTime'];
   playerEmail: Scalars['String'];
   playerId: Scalars['String'];
   playerIdType: Scalars['String'];
@@ -709,7 +708,6 @@ export type PlayerCountAggregate = {
   physicalCapabilities: Scalars['Int'];
   physicalQualities: Scalars['Int'];
   placeOfBirth: Scalars['Int'];
-  playerBirthday: Scalars['Int'];
   playerEmail: Scalars['Int'];
   playerId: Scalars['Int'];
   playerIdType: Scalars['Int'];
@@ -745,7 +743,6 @@ export type PlayerCountOrderByAggregateInput = {
   physicalCapabilities?: InputMaybe<SortOrder>;
   physicalQualities?: InputMaybe<SortOrder>;
   placeOfBirth?: InputMaybe<SortOrder>;
-  playerBirthday?: InputMaybe<SortOrder>;
   playerEmail?: InputMaybe<SortOrder>;
   playerId?: InputMaybe<SortOrder>;
   playerIdType?: InputMaybe<SortOrder>;
@@ -781,7 +778,6 @@ export type PlayerCreateInput = {
   physicalCapabilities?: InputMaybe<PlayerCreatephysicalCapabilitiesInput>;
   physicalQualities?: InputMaybe<PlayerCreatephysicalQualitiesInput>;
   placeOfBirth: Scalars['String'];
-  playerBirthday: Scalars['DateTime'];
   playerEmail: Scalars['String'];
   playerId: Scalars['String'];
   playerIdType: Scalars['String'];
@@ -817,7 +813,6 @@ export type PlayerCreateManyInput = {
   physicalCapabilities?: InputMaybe<PlayerCreatephysicalCapabilitiesInput>;
   physicalQualities?: InputMaybe<PlayerCreatephysicalQualitiesInput>;
   placeOfBirth: Scalars['String'];
-  playerBirthday: Scalars['DateTime'];
   playerEmail: Scalars['String'];
   playerId: Scalars['String'];
   playerIdType: Scalars['String'];
@@ -853,7 +848,6 @@ export type PlayerCreateManySchoolInput = {
   physicalCapabilities?: InputMaybe<PlayerCreatephysicalCapabilitiesInput>;
   physicalQualities?: InputMaybe<PlayerCreatephysicalQualitiesInput>;
   placeOfBirth: Scalars['String'];
-  playerBirthday: Scalars['DateTime'];
   playerEmail: Scalars['String'];
   playerId: Scalars['String'];
   playerIdType: Scalars['String'];
@@ -905,7 +899,6 @@ export type PlayerCreateWithoutSchoolInput = {
   physicalCapabilities?: InputMaybe<PlayerCreatephysicalCapabilitiesInput>;
   physicalQualities?: InputMaybe<PlayerCreatephysicalQualitiesInput>;
   placeOfBirth: Scalars['String'];
-  playerBirthday: Scalars['DateTime'];
   playerEmail: Scalars['String'];
   playerId: Scalars['String'];
   playerIdType: Scalars['String'];
@@ -966,7 +959,6 @@ export type PlayerGroupBy = {
   physicalCapabilities?: Maybe<Array<Physical_Capabilities>>;
   physicalQualities?: Maybe<Array<Physical_Qualities>>;
   placeOfBirth: Scalars['String'];
-  playerBirthday: Scalars['DateTime'];
   playerEmail: Scalars['String'];
   playerId: Scalars['String'];
   playerIdType: Scalars['String'];
@@ -1004,7 +996,6 @@ export type PlayerMaxAggregate = {
   lastName?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   placeOfBirth?: Maybe<Scalars['String']>;
-  playerBirthday?: Maybe<Scalars['DateTime']>;
   playerEmail?: Maybe<Scalars['String']>;
   playerId?: Maybe<Scalars['String']>;
   playerIdType?: Maybe<Scalars['String']>;
@@ -1035,7 +1026,6 @@ export type PlayerMaxOrderByAggregateInput = {
   lastName?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   placeOfBirth?: InputMaybe<SortOrder>;
-  playerBirthday?: InputMaybe<SortOrder>;
   playerEmail?: InputMaybe<SortOrder>;
   playerId?: InputMaybe<SortOrder>;
   playerIdType?: InputMaybe<SortOrder>;
@@ -1067,7 +1057,6 @@ export type PlayerMinAggregate = {
   lastName?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   placeOfBirth?: Maybe<Scalars['String']>;
-  playerBirthday?: Maybe<Scalars['DateTime']>;
   playerEmail?: Maybe<Scalars['String']>;
   playerId?: Maybe<Scalars['String']>;
   playerIdType?: Maybe<Scalars['String']>;
@@ -1098,7 +1087,6 @@ export type PlayerMinOrderByAggregateInput = {
   lastName?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   placeOfBirth?: InputMaybe<SortOrder>;
-  playerBirthday?: InputMaybe<SortOrder>;
   playerEmail?: InputMaybe<SortOrder>;
   playerId?: InputMaybe<SortOrder>;
   playerIdType?: InputMaybe<SortOrder>;
@@ -1143,7 +1131,6 @@ export type PlayerOrderByWithAggregationInput = {
   physicalCapabilities?: InputMaybe<SortOrder>;
   physicalQualities?: InputMaybe<SortOrder>;
   placeOfBirth?: InputMaybe<SortOrder>;
-  playerBirthday?: InputMaybe<SortOrder>;
   playerEmail?: InputMaybe<SortOrder>;
   playerId?: InputMaybe<SortOrder>;
   playerIdType?: InputMaybe<SortOrder>;
@@ -1179,7 +1166,6 @@ export type PlayerOrderByWithRelationInput = {
   physicalCapabilities?: InputMaybe<SortOrder>;
   physicalQualities?: InputMaybe<SortOrder>;
   placeOfBirth?: InputMaybe<SortOrder>;
-  playerBirthday?: InputMaybe<SortOrder>;
   playerEmail?: InputMaybe<SortOrder>;
   playerId?: InputMaybe<SortOrder>;
   playerIdType?: InputMaybe<SortOrder>;
@@ -1216,7 +1202,6 @@ export enum PlayerScalarFieldEnum {
   PhysicalCapabilities = 'physicalCapabilities',
   PhysicalQualities = 'physicalQualities',
   PlaceOfBirth = 'placeOfBirth',
-  PlayerBirthday = 'playerBirthday',
   PlayerEmail = 'playerEmail',
   PlayerId = 'playerId',
   PlayerIdType = 'playerIdType',
@@ -1255,7 +1240,6 @@ export type PlayerScalarWhereInput = {
   physicalCapabilities?: InputMaybe<EnumPhysical_CapabilitiesNullableListFilter>;
   physicalQualities?: InputMaybe<EnumPhysical_QualitiesNullableListFilter>;
   placeOfBirth?: InputMaybe<StringFilter>;
-  playerBirthday?: InputMaybe<DateTimeFilter>;
   playerEmail?: InputMaybe<StringFilter>;
   playerId?: InputMaybe<StringFilter>;
   playerIdType?: InputMaybe<StringFilter>;
@@ -1294,7 +1278,6 @@ export type PlayerScalarWhereWithAggregatesInput = {
   physicalCapabilities?: InputMaybe<EnumPhysical_CapabilitiesNullableListFilter>;
   physicalQualities?: InputMaybe<EnumPhysical_QualitiesNullableListFilter>;
   placeOfBirth?: InputMaybe<StringWithAggregatesFilter>;
-  playerBirthday?: InputMaybe<DateTimeWithAggregatesFilter>;
   playerEmail?: InputMaybe<StringWithAggregatesFilter>;
   playerId?: InputMaybe<StringWithAggregatesFilter>;
   playerIdType?: InputMaybe<StringWithAggregatesFilter>;
@@ -1343,7 +1326,6 @@ export type PlayerUpdateInput = {
   physicalCapabilities?: InputMaybe<PlayerUpdatephysicalCapabilitiesInput>;
   physicalQualities?: InputMaybe<PlayerUpdatephysicalQualitiesInput>;
   placeOfBirth?: InputMaybe<StringFieldUpdateOperationsInput>;
-  playerBirthday?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   playerEmail?: InputMaybe<StringFieldUpdateOperationsInput>;
   playerId?: InputMaybe<StringFieldUpdateOperationsInput>;
   playerIdType?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -1379,7 +1361,6 @@ export type PlayerUpdateManyMutationInput = {
   physicalCapabilities?: InputMaybe<PlayerUpdatephysicalCapabilitiesInput>;
   physicalQualities?: InputMaybe<PlayerUpdatephysicalQualitiesInput>;
   placeOfBirth?: InputMaybe<StringFieldUpdateOperationsInput>;
-  playerBirthday?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   playerEmail?: InputMaybe<StringFieldUpdateOperationsInput>;
   playerId?: InputMaybe<StringFieldUpdateOperationsInput>;
   playerIdType?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -1438,7 +1419,6 @@ export type PlayerUpdateWithoutSchoolInput = {
   physicalCapabilities?: InputMaybe<PlayerUpdatephysicalCapabilitiesInput>;
   physicalQualities?: InputMaybe<PlayerUpdatephysicalQualitiesInput>;
   placeOfBirth?: InputMaybe<StringFieldUpdateOperationsInput>;
-  playerBirthday?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   playerEmail?: InputMaybe<StringFieldUpdateOperationsInput>;
   playerId?: InputMaybe<StringFieldUpdateOperationsInput>;
   playerIdType?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -1507,7 +1487,6 @@ export type PlayerWhereInput = {
   physicalCapabilities?: InputMaybe<EnumPhysical_CapabilitiesNullableListFilter>;
   physicalQualities?: InputMaybe<EnumPhysical_QualitiesNullableListFilter>;
   placeOfBirth?: InputMaybe<StringFilter>;
-  playerBirthday?: InputMaybe<DateTimeFilter>;
   playerEmail?: InputMaybe<StringFilter>;
   playerId?: InputMaybe<StringFilter>;
   playerIdType?: InputMaybe<StringFilter>;
@@ -2527,7 +2506,15 @@ export type UserWhereUniqueInput = {
 export type PlayersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type PlayersQuery = { __typename?: 'Query', players: Array<{ __typename?: 'Player', id: string, birthday: any, category: Player_Category, familySupport: Array<Family_Support>, fieldPosition: Field_Position, guardianEmail: string, guardianId: string, guardianIdType: string, guardianLastName: string, guardianName: string, guardianPhone: string, guardianType: Guardian_Type, height: number, hobbies: Array<string>, image: string, IMC: number, lastName: string, name: string, personalQualities: Array<Personal_Qualities>, physicalCapabilities: Array<Physical_Capabilities>, physicalQualities: Array<Physical_Qualities>, placeOfBirth: string, playerBirthday: any, playerEmail: string, playerId: string, playerIdType: string, playerNumber: string, playerPhone: string, schoolId: string, sportHistory: string, weight: number, createdAt: any, updatedAt: any, school: { __typename?: 'School', id: string } }> };
+export type PlayersQuery = { __typename?: 'Query', players: Array<{ __typename?: 'Player', id: string, birthday: any, category: Player_Category, familySupport: Array<Family_Support>, fieldPosition: Field_Position, guardianEmail: string, guardianId: string, guardianIdType: string, guardianLastName: string, guardianName: string, guardianPhone: string, guardianType: Guardian_Type, height: number, hobbies: Array<string>, image: string, IMC: number, lastName: string, name: string, personalQualities: Array<Personal_Qualities>, physicalCapabilities: Array<Physical_Capabilities>, physicalQualities: Array<Physical_Qualities>, placeOfBirth: string, playerEmail: string, playerId: string, playerIdType: string, playerNumber: string, playerPhone: string, schoolId: string, sportHistory: string, weight: number, createdAt: any, updatedAt: any, school: { __typename?: 'School', id: string } }> };
+
+export type CreatePlayerMutationVariables = Exact<{
+  data: Array<PlayerCreateManyInput> | PlayerCreateManyInput;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+}>;
+
+
+export type CreatePlayerMutation = { __typename?: 'Mutation', createManyPlayer: { __typename?: 'AffectedRowsOutput', count: number } };
 
 export type GetSchoolByIdQueryVariables = Exact<{
   where: SchoolWhereUniqueInput;
@@ -2562,7 +2549,6 @@ export const PlayersDocument = gql`
     physicalCapabilities
     physicalQualities
     placeOfBirth
-    playerBirthday
     playerEmail
     playerId
     playerIdType
@@ -2576,6 +2562,13 @@ export const PlayersDocument = gql`
     school {
       id
     }
+  }
+}
+    `;
+export const CreatePlayerDocument = gql`
+    mutation CreatePlayer($data: [PlayerCreateManyInput!]!, $skipDuplicates: Boolean) {
+  createManyPlayer(data: $data, skipDuplicates: $skipDuplicates) {
+    count
   }
 }
     `;
@@ -2604,6 +2597,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
   return {
     Players(variables?: PlayersQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PlayersQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PlayersQuery>(PlayersDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Players', 'query');
+    },
+    CreatePlayer(variables: CreatePlayerMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CreatePlayerMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CreatePlayerMutation>(CreatePlayerDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'CreatePlayer', 'mutation');
     },
     getSchoolById(variables: GetSchoolByIdQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetSchoolByIdQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetSchoolByIdQuery>(GetSchoolByIdDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getSchoolById', 'query');

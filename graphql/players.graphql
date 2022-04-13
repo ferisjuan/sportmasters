@@ -22,7 +22,6 @@ query Players {
     physicalCapabilities
     physicalQualities
     placeOfBirth
-    playerBirthday
     playerEmail
     playerId
     playerIdType
@@ -36,5 +35,11 @@ query Players {
     school {
       id
     }
+  }
+}
+
+mutation CreatePlayer($data: [PlayerCreateManyInput!]!, $skipDuplicates: Boolean) {
+  createManyPlayer(data: $data, skipDuplicates: $skipDuplicates) {
+    count
   }
 }

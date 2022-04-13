@@ -112,7 +112,6 @@ model Player {
   physicalCapabilities PHYSICAL_CAPABILITIES[]
   physicalQualities    PHYSICAL_QUALITIES[]
   placeOfBirth         String
-  playerBirthday       DateTime
   playerEmail          String
   playerId             String
   playerIdType         String

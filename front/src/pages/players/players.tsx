@@ -7,8 +7,8 @@ import { observer } from 'mobx-react-lite'
 // @components
 import { PlayerCard, PlayerForm, SMModal } from '~/components'
 
-// @stores
-import { IPlayer } from '~/interfaces'
+// @interfaces
+import { Player } from '~/generated/graphql'
 
 // @hooks
 import { useStores } from '~/hooks'
@@ -46,7 +46,7 @@ export const Players: React.FC = observer(() => {
             >
                 <Grid>
                     {playersStore.players.length > 0 &&
-                        playersStore.players.map((player: IPlayer) => <PlayerCard key={player.id} player={player} />)}
+                        playersStore.players.map((player: Player) => <PlayerCard key={player.id} player={player} />)}
                 </Grid>
             </ScrollArea>
 

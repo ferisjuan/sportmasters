@@ -2,7 +2,7 @@
 import { action, makeAutoObservable } from 'mobx'
 
 // @interface
-import { IPlayer } from '~/interfaces'
+import { Player } from '~/generated/graphql'
 import { IPlayerProfileStore } from './interface'
 
 // @services
@@ -18,14 +18,14 @@ export class PlayerStore implements IPlayerProfileStore {
     readonly rootStore
 
     constructor(rootStore: RootStore) {
-        this.firebaseService = new FirebaseService<IPlayer>('players')
-        this.player = {} as IPlayer
+        this.firebaseService = new FirebaseService<Player>('players')
+        this.player = {} as Player
         this.rootStore = rootStore
 
         makeAutoObservable(this, { rootStore: false })
     }
 
-    async addPlayer(player: IPlayer): Promise<string> {
+    async addPlayer(player: Player): Promise<string> {
         const response = await this.firebaseService.add(player)
 
         this.rootStore.playersStore.getPlayers()
@@ -35,7 +35,7 @@ export class PlayerStore implements IPlayerProfileStore {
 
     async getPlayer(id: string): Promise<void> {
         this.firebaseService.getById(id).then(
-            action((player: IPlayer) => {
+            action((player: Player) => {
                 this.player = player
             }),
         )
