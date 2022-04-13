@@ -13,3 +13,5 @@ postcss.config.js
 *.d.ts
 
 vite.config.ts
+
+generated/
