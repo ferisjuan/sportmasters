@@ -2524,16 +2524,73 @@ export type UserWhereUniqueInput = {
   id?: InputMaybe<Scalars['String']>;
 };
 
-export type GetPlayersQueryVariables = Exact<{ [key: string]: never; }>;
+export type PlayersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetPlayersQuery = { __typename?: 'Query', players: Array<{ __typename?: 'Player', name: string }> };
+export type PlayersQuery = { __typename?: 'Query', players: Array<{ __typename?: 'Player', id: string, birthday: any, category: Player_Category, familySupport: Array<Family_Support>, fieldPosition: Field_Position, guardianEmail: string, guardianId: string, guardianIdType: string, guardianLastName: string, guardianName: string, guardianPhone: string, guardianType: Guardian_Type, height: number, hobbies: Array<string>, image: string, IMC: number, lastName: string, name: string, personalQualities: Array<Personal_Qualities>, physicalCapabilities: Array<Physical_Capabilities>, physicalQualities: Array<Physical_Qualities>, placeOfBirth: string, playerBirthday: any, playerEmail: string, playerId: string, playerIdType: string, playerNumber: string, playerPhone: string, schoolId: string, sportHistory: string, weight: number, createdAt: any, updatedAt: any, school: { __typename?: 'School', id: string } }> };
+
+export type GetSchoolByIdQueryVariables = Exact<{
+  where: SchoolWhereUniqueInput;
+}>;
 
 
-export const GetPlayersDocument = gql`
-    query getPlayers {
+export type GetSchoolByIdQuery = { __typename?: 'Query', school?: { __typename?: 'School', id: string, address: string, email: string, name: string, password: string, phone: string, tier: Tier, createdAt: any, updatedAt: any } | null };
+
+
+export const PlayersDocument = gql`
+    query Players {
   players {
+    id
+    birthday
+    category
+    familySupport
+    fieldPosition
+    guardianEmail
+    guardianId
+    guardianIdType
+    guardianLastName
+    guardianName
+    guardianPhone
+    guardianType
+    height
+    hobbies
+    image
+    IMC
+    lastName
     name
+    personalQualities
+    physicalCapabilities
+    physicalQualities
+    placeOfBirth
+    playerBirthday
+    playerEmail
+    playerId
+    playerIdType
+    playerNumber
+    playerPhone
+    schoolId
+    sportHistory
+    weight
+    createdAt
+    updatedAt
+    school {
+      id
+    }
+  }
+}
+    `;
+export const GetSchoolByIdDocument = gql`
+    query getSchoolById($where: SchoolWhereUniqueInput!) {
+  school(where: $where) {
+    id
+    address
+    email
+    name
+    password
+    phone
+    tier
+    createdAt
+    updatedAt
   }
 }
     `;
@@ -2545,8 +2602,11 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    getPlayers(variables?: GetPlayersQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetPlayersQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GetPlayersQuery>(GetPlayersDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getPlayers', 'query');
+    Players(variables?: PlayersQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PlayersQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PlayersQuery>(PlayersDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Players', 'query');
+    },
+    getSchoolById(variables: GetSchoolByIdQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetSchoolByIdQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetSchoolByIdQuery>(GetSchoolByIdDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getSchoolById', 'query');
     }
   };
 }
