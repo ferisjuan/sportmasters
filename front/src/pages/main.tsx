@@ -10,7 +10,7 @@ export const Main = (): JSX.Element => (
         header={<SMHeader />}
         navbar={<SMNavbar />}
         padding="md"
-        styles={(theme) => ({
+        styles={theme => ({
             body: {
                 backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
                 height: '100vh',

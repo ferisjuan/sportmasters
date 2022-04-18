@@ -1,5 +1,5 @@
 // @interface
-import { IPlayer } from '~/interfaces'
+import { Player } from '~/generated/graphql'
 import { IPlayersStore } from './interface'
 import { action, makeAutoObservable } from 'mobx'
 
@@ -16,8 +16,8 @@ export class PlayersStore implements IPlayersStore {
     readonly rootStore
 
     constructor(rootStore: RootStore) {
-        this.firebaseService = new FirebaseService<IPlayer>('players')
-        this.players = [] as IPlayer[]
+        this.firebaseService = new FirebaseService<Player>('players')
+        this.players = [] as Player[]
         this.rootStore = rootStore
 
         makeAutoObservable(this, { rootStore: false })
@@ -25,7 +25,7 @@ export class PlayersStore implements IPlayersStore {
 
     async getPlayers(): Promise<void> {
         this.firebaseService.getCollection().then(
-            action((players: IPlayer[]) => {
+            action((players: Player[]) => {
                 this.players = players
             }),
         )

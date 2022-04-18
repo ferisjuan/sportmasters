@@ -1,0 +1,45 @@
+query Players {
+  players {
+    id
+    birthday
+    category
+    familySupport
+    fieldPosition
+    guardianEmail
+    guardianId
+    guardianIdType
+    guardianLastName
+    guardianName
+    guardianPhone
+    guardianType
+    height
+    hobbies
+    image
+    IMC
+    lastName
+    name
+    personalQualities
+    physicalCapabilities
+    physicalQualities
+    placeOfBirth
+    playerEmail
+    playerId
+    playerIdType
+    playerNumber
+    playerPhone
+    schoolId
+    sportHistory
+    weight
+    createdAt
+    updatedAt
+    school {
+      id
+    }
+  }
+}
+
+mutation CreatePlayer($data: [PlayerCreateManyInput!]!, $skipDuplicates: Boolean) {
+  createManyPlayer(data: $data, skipDuplicates: $skipDuplicates) {
+    count
+  }
+}

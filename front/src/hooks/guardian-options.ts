@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 // @enums
-import { GUARDIAN_OPTIONS } from '~/enums'
+import { Guardian_Type } from '../generated/graphql'
 
-const rawGuardianOptions = Object.entries(GUARDIAN_OPTIONS).map(([key, value]) => ({
+const rawGuardianOptions = Object.entries(Guardian_Type).map(([key, value]) => ({
     key,
     value,
 }))
@@ -29,11 +29,11 @@ export function useGuardianOptions(): IGuardianOptions {
 
         const sortedGuardianOptions = _guardianOptions
             .sort((a, b) => a.label.localeCompare(b.label))
-            .filter(({ value }) => value !== GUARDIAN_OPTIONS.NONE)
+            .filter(({ value }) => value !== Guardian_Type.None)
 
         sortedGuardianOptions.unshift({
-            value: GUARDIAN_OPTIONS.NONE,
-            label: t(`familySupport.${GUARDIAN_OPTIONS.NONE}`),
+            value: Guardian_Type.None,
+            label: t(`familySupport.${Guardian_Type.None}`),
         })
 
         setParsedGuardianOptions(sortedGuardianOptions)

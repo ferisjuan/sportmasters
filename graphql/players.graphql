@@ -1,5 +1,0 @@
-query getPlayers {
-    players {
-        name
-    }
-}
