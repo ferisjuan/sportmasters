@@ -1,17 +1,18 @@
 // @vendors
 import { observer } from 'mobx-react-lite'
-import { useTranslation } from 'react-i18next'
 import { Card, Container, Grid, Image, Text } from '@mantine/core'
 
 // @interfaces
 import { Player } from '~/generated/graphql'
 
+// @utils
+import { getNsTranslation } from '~/utils/getTranslation'
 interface IPlayerAvatar {
     player: Player
 }
 
 export const PlayerCard: React.FC<IPlayerAvatar> = observer(({ player }) => {
-    const { t } = useTranslation()
+    const t = getNsTranslation('fieldPosition')
 
     return (
         <Grid.Col span={2}>
@@ -34,7 +35,7 @@ export const PlayerCard: React.FC<IPlayerAvatar> = observer(({ player }) => {
                 </Container>
 
                 <Text align="center" size="md" weight={300}>
-                    {t(`fieldPosition.${player?.fieldPosition}`)}
+                    {t(`${player?.fieldPosition}`)}
                 </Text>
             </Card>
         </Grid.Col>

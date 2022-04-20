@@ -9,7 +9,7 @@ export interface PlayerData {
     height: number
     lastName: string
     name: string
-    playerBirthday: Date
+    playerBirthday: string
     playerEmail: string
     playerId: string
     playerIdType: string

@@ -1,0 +1,12 @@
+{
+    "date": "Fecha inválida",
+    "email": "Correo electrónico inválido",
+    "max": "Este campo no puede tener más de 10 caracteres",
+    "number": "Este campo debe ser un número",
+    "phoneErrors": {
+        "phoneRequired": "Teléfono Requerido",
+        "phoneInvalidLenght": "Este campo debe tener 10 dígitos",
+        "phoneInvalidNumber": "Este campo debe ser un número"
+    },
+    "required": "Este campo es obligatorio"
+}
