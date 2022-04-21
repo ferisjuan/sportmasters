@@ -22,8 +22,13 @@ interface PlayerFormProps {
     setIsModalOpen: (isOpen: boolean) => void
 }
 
+const { guardianOptions } = useGuardianOptions()
+
 export const PlayerForm: React.VFC<PlayerFormProps> = ({ setIsModalOpen }) => {
-    const { guardianOptions } = useGuardianOptions()
+    const guardianOptionsMap = guardianOptions.map(option => ({
+        value: option.value,
+        label: option.label,
+    }))
 
     const t = getNsTranslation('playerData')
     const { playerStore } = useStores()
@@ -118,7 +123,7 @@ export const PlayerForm: React.VFC<PlayerFormProps> = ({ setIsModalOpen }) => {
             </Text>
             <Group align="start" mb={16}>
                 <Select
-                    data={guardianOptions}
+                    data={guardianOptionsMap}
                     id="guardianType"
                     label={t('guardianPlaceholder')}
                     name="guardianType"
