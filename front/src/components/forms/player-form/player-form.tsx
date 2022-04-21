@@ -17,14 +17,13 @@ import { PlayerFormSchema } from './schema'
 
 //@utils
 import { getNsTranslation } from '~/utils/getTranslation'
-import { initialValues } from './initialValues'
 
 interface PlayerFormProps {
     setIsModalOpen: (isOpen: boolean) => void
 }
 
 export const PlayerForm: React.VFC<PlayerFormProps> = ({ setIsModalOpen }) => {
-    // const { guardianOptions } = useGuardianOptions()
+    const { guardianOptions } = useGuardianOptions()
 
     const t = getNsTranslation('playerData')
     const { playerStore } = useStores()
@@ -41,9 +40,9 @@ export const PlayerForm: React.VFC<PlayerFormProps> = ({ setIsModalOpen }) => {
         }
     }
 
-    const form = useForm({
+    const form = useForm<Player>({
         schema: yupResolver(PlayerFormSchema),
-        initialValues: initialValues,
+        initialValues: {} as Player,
     })
 
     return (
@@ -119,10 +118,7 @@ export const PlayerForm: React.VFC<PlayerFormProps> = ({ setIsModalOpen }) => {
             </Text>
             <Group align="start" mb={16}>
                 <Select
-                    data={[
-                        { label: t('idSelect.dni'), value: 'dni' },
-                        { label: t('idSelect.passport'), value: 'passport' },
-                    ]}
+                    data={guardianOptions}
                     id="guardianType"
                     label={t('guardianPlaceholder')}
                     name="guardianType"
