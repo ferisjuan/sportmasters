@@ -7,7 +7,7 @@ import { NotificationsProvider } from '@mantine/notifications'
 import { QueryClientProvider } from 'react-query'
 
 // @components
-import { Auth, Main, NotFound, Player, Players } from '~/pages'
+import { Auth, Main, NotFound, Player, Playerss } from '~/pages'
 import { AuthenticatedRoute } from '~/components'
 
 // @constants
@@ -39,7 +39,7 @@ const App: React.VFC = () => (
                     >
                         <Route index element={<Title>Welcome to the dashboard</Title>} />
                         <Route path={ROUTES.dashboard_main} element={<Title>Main</Title>} />
-                        <Route path={ROUTES.players} element={<Players />} />
+                        <Route path={ROUTES.players} element={<Playerss />} />
                         <Route path={ROUTES.player} element={<Player />} />
                         <Route path={ROUTES.statistics} element={<Title>Statistics</Title>} />
                     </Route>

@@ -22,9 +22,9 @@ interface PlayerFormProps {
     setIsModalOpen: (isOpen: boolean) => void
 }
 
-const { guardianOptions } = useGuardianOptions()
-
 export const PlayerForm: React.VFC<PlayerFormProps> = ({ setIsModalOpen }) => {
+    const { guardianOptions } = useGuardianOptions()
+
     const guardianOptionsMap = guardianOptions.map(option => ({
         value: option.value,
         label: option.label,
@@ -33,25 +33,25 @@ export const PlayerForm: React.VFC<PlayerFormProps> = ({ setIsModalOpen }) => {
     const t = getNsTranslation('playerData')
     const { playerStore } = useStores()
 
-    const onSubmit = async (values: Player): Promise<void> => {
-        try {
-            const rawPlayer = {} as Player
-            const player = { ...rawPlayer, ...values }
-            await playerStore.addPlayer(player)
-
-            setIsModalOpen(false)
-        } catch (error) {
-            console.error(error)
-        }
-    }
-
     const form = useForm<Player>({
         schema: yupResolver(PlayerFormSchema),
         initialValues: {} as Player,
     })
 
     return (
-        <form onSubmit={form.onSubmit(values => onSubmit(values))}>
+        <form
+            onSubmit={form.onSubmit(async (values: Player): Promise<void> => {
+                try {
+                    const rawPlayer = {} as Player
+                    const player = { ...rawPlayer, ...values }
+                    await playerStore.addPlayer(player)
+
+                    setIsModalOpen(false)
+                } catch (error) {
+                    console.error(error)
+                }
+            })}
+        >
             <Text mb={30} size="lg" weight={700}>
                 {t('formTitle')}
             </Text>

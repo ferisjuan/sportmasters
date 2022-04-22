@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { BsPlus } from 'react-icons/bs'
 import { Container, Grid, ScrollArea, Text, ThemeIcon } from '@mantine/core'
 import { observer } from 'mobx-react-lite'
+import { useTranslation } from 'react-i18next'
 
 // @components
 import { PlayerCard, PlayerForm, SMModal } from '~/components'
@@ -12,18 +13,30 @@ import { Player } from '~/generated/graphql'
 
 // @hooks
 import { useStores } from '~/hooks'
-import { showSMNotification } from '../../utils'
-import { useTranslation } from 'react-i18next'
 
-export const Players: React.FC = observer(() => {
+// @util
+import { showSMNotification } from '~/utils'
+
+// @queries
+import { Players } from '~/query-client/queries'
+
+export const Playerss: React.FC = observer(() => {
     const { t } = useTranslation('playersPage')
     const { playersStore } = useStores()
 
     const [isModalOpen, setIsModalOpen] = useState(false)
 
+    const [players, setPlayers] = useState<Player[]>([])
+
     useEffect(() => {
-        playersStore.getPlayers()
-    }, [playersStore])
+        Players().then(res => {
+            return setPlayers(res.players as Player[])
+        })
+    }, [])
+
+    // useEffect(() => {
+    //     playersStore.getPlayers()
+    // }, [playersStore])
 
     useEffect(() => {
         playersStore.players.length === 0 && showSMNotification(t('loadingPlayers'), 'LOADING')
@@ -45,8 +58,8 @@ export const Players: React.FC = observer(() => {
                 scrollHideDelay={350}
             >
                 <Grid>
-                    {playersStore.players.length > 0 &&
-                        playersStore.players.map((player: Player) => <PlayerCard key={player.id} player={player} />)}
+                    {players.length > 0 &&
+                        players?.map((player: Player) => <PlayerCard key={player.id} player={player} />)}
                 </Grid>
             </ScrollArea>
 
