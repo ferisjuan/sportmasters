@@ -10,11 +10,6 @@
 //     resources: {
 //         es: {
 //             translation: {
-//                 auth: {
-//                     resetPassword: 'Revisa tu correo para resetear tu contraseña',
-//                     wrongCredentials: 'Usuario o contraseña incorrectos',
-//                     wrongEmail: 'El correo no existe',
-//                 },
 //                 personalQualities: {
 //                     NONE: 'Ninguno',
 //                     FELLOWSHIP: 'Compañerismo',
@@ -47,9 +42,6 @@
 //                     SIXTH: 'Infantil',
 //                     SEVENTH: 'Pre juvenil',
 //                     EIGHTH: 'Juvenil',
-//                 },
-//                 playersPage: {
-//                     loadingPlayers: 'Cargando jugadores',
 //                 },
 //                 stats: {
 //                     weight: 'Peso',

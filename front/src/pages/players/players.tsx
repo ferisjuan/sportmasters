@@ -1,9 +1,9 @@
 // @vendors
 import { useEffect, useState } from 'react'
 import { BsPlus } from 'react-icons/bs'
-import { Container, Grid, ScrollArea, Text, ThemeIcon } from '@mantine/core'
+import { Container, ScrollArea, Text, ThemeIcon, Grid } from '@mantine/core'
 import { observer } from 'mobx-react-lite'
-import { useTranslation } from 'react-i18next'
+import { useQuery } from 'react-query'
 
 // @components
 import { PlayerCard, PlayerForm, SMModal } from '~/components'
@@ -11,36 +11,29 @@ import { PlayerCard, PlayerForm, SMModal } from '~/components'
 // @interfaces
 import { Player } from '~/generated/graphql'
 
-// @hooks
-import { useStores } from '~/hooks'
-
 // @util
 import { showSMNotification } from '~/utils'
+import { getNsTranslation } from '~/utils/getTranslation'
 
 // @queries
 import { Players } from '~/query-client/queries'
 
 export const Playerss: React.FC = observer(() => {
-    const { t } = useTranslation('playersPage')
-    const { playersStore } = useStores()
+    const t = getNsTranslation('notifications')
 
     const [isModalOpen, setIsModalOpen] = useState(false)
 
     const [players, setPlayers] = useState<Player[]>([])
 
-    useEffect(() => {
-        Players().then(res => {
-            return setPlayers(res.players as Player[])
-        })
-    }, [])
-
-    // useEffect(() => {
-    //     playersStore.getPlayers()
-    // }, [playersStore])
+    const { data } = useQuery('players', () => Players().then(res => res))
 
     useEffect(() => {
-        playersStore.players.length === 0 && showSMNotification(t('loadingPlayers'), 'LOADING')
-    }, [playersStore.players])
+        setPlayers(data?.players as Player[])
+    }, [data])
+
+    useEffect(() => {
+        players?.length === 0 && showSMNotification(t('loadingPlayers'), 'LOADING')
+    }, [players?.length])
 
     return (
         <Container fluid sx={{ height: '100%', position: 'relative' }}>
@@ -58,7 +51,7 @@ export const Playerss: React.FC = observer(() => {
                 scrollHideDelay={350}
             >
                 <Grid>
-                    {players.length > 0 &&
+                    {players?.length > 0 &&
                         players?.map((player: Player) => <PlayerCard key={player.id} player={player} />)}
                 </Grid>
             </ScrollArea>

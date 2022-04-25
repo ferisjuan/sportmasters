@@ -31,6 +31,7 @@ export const PlayerForm: React.VFC<PlayerFormProps> = ({ setIsModalOpen }) => {
     }))
 
     const t = getNsTranslation('playerData')
+
     const { playerStore } = useStores()
 
     const form = useForm<Player>({
