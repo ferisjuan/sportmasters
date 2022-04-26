@@ -1,12 +1,10 @@
 // @vendors
 import { observer } from 'mobx-react-lite'
 import { Card, Container, Grid, Image, Text } from '@mantine/core'
+import { useTranslation } from 'react-i18next'
 
 // @interfaces
 import { Player } from '~/generated/graphql'
-
-// @utils
-import { useTranslation } from 'react-i18next'
 
 interface IPlayerAvatar {
     player: Player
@@ -36,7 +34,7 @@ export const PlayerCard: React.FC<IPlayerAvatar> = observer(({ player }) => {
                 </Container>
 
                 <Text align="center" size="md" weight={300}>
-                    {t(`${player?.fieldPosition}`)}
+                    {t(`${player?.fieldPosition} || "Position not found"`)}
                 </Text>
             </Card>
         </Grid.Col>

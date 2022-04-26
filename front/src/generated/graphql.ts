@@ -2503,7 +2503,10 @@ export type UserWhereUniqueInput = {
   id?: InputMaybe<Scalars['String']>;
 };
 
-export type PlayersQueryVariables = Exact<{ [key: string]: never; }>;
+export type PlayersQueryVariables = Exact<{
+  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+}>;
 
 
 export type PlayersQuery = { __typename?: 'Query', players: Array<{ __typename?: 'Player', id: string, birthday: any, category: Player_Category, familySupport: Array<Family_Support>, fieldPosition: Field_Position, guardianEmail: string, guardianId: string, guardianIdType: string, guardianLastName: string, guardianName: string, guardianPhone: string, guardianType: Guardian_Type, height: number, hobbies: Array<string>, image: string, IMC: number, lastName: string, name: string, personalQualities: Array<Personal_Qualities>, physicalCapabilities: Array<Physical_Capabilities>, physicalQualities: Array<Physical_Qualities>, placeOfBirth: string, playerEmail: string, playerId: string, playerIdType: string, playerNumber: string, playerPhone: string, schoolId: string, sportHistory: string, weight: number, createdAt: any, updatedAt: any, school: { __typename?: 'School', id: string } }> };
@@ -2517,8 +2520,8 @@ export type GetSchoolByIdQuery = { __typename?: 'Query', school?: { __typename?:
 
 
 export const PlayersDocument = gql`
-    query Players {
-  players {
+    query Players($take: Int, $skip: Int) {
+  players(take: $take, skip: $skip) {
     id
     birthday
     category

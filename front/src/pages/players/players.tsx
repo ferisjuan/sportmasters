@@ -4,6 +4,7 @@ import { BsPlus } from 'react-icons/bs'
 import { Container, ScrollArea, Text, ThemeIcon, Grid } from '@mantine/core'
 import { observer } from 'mobx-react-lite'
 import { useQuery } from 'react-query'
+import { useTranslation } from 'react-i18next'
 
 // @components
 import { PlayerCard, PlayerForm, SMModal } from '~/components'
@@ -11,24 +12,24 @@ import { PlayerCard, PlayerForm, SMModal } from '~/components'
 // @interfaces
 import { Player } from '~/generated/graphql'
 
-// @util
+// @utils
 import { showSMNotification } from '~/utils'
-
-import { useTranslation } from 'react-i18next'
 
 // @queries
 import { Players as PlayerQuery } from '~/query-client/queries'
 
-export const Players: React.FC = observer(() => {
+export const Players = observer(() => {
     const { t } = useTranslation('notifications')
 
     const [isModalOpen, setIsModalOpen] = useState(false)
 
-    const { data } = useQuery('players', () => PlayerQuery().then(res => res))
+    const { data, isLoading } = useQuery('players', async () => await PlayerQuery().then(res => res), {
+        keepPreviousData: true,
+    })
 
     useEffect(() => {
-        data?.players || showSMNotification(t('loadingPlayers'), 'LOADING')
-    }, [data?.players])
+        isLoading && showSMNotification(t('loadingPlayers'), 'LOADING')
+    }, [])
 
     return (
         <Container fluid sx={{ height: '100%', position: 'relative' }}>
@@ -45,7 +46,7 @@ export const Players: React.FC = observer(() => {
                 scrollbarSize={4}
                 scrollHideDelay={350}
             >
-                <Grid>
+                <Grid grow>
                     {data?.players?.map(player => (
                         <PlayerCard key={player.id} player={player as Player} />
                     ))}

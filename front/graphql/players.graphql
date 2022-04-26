@@ -1,5 +1,5 @@
-query Players {
-    players {
+query Players($take: Int, $skip: Int) {
+    players(take: $take, skip: $skip) {
         id
         birthday
         category
