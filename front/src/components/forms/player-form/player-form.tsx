@@ -16,7 +16,8 @@ import { Player } from '~/generated/graphql'
 import { PlayerFormSchema } from './schema'
 
 //@utils
-import { getNsTranslation } from '~/utils/getTranslation'
+// import { getNsTranslation } from '~/i18n'
+import { useTranslation } from 'react-i18next'
 
 interface PlayerFormProps {
     setIsModalOpen: (isOpen: boolean) => void
@@ -30,7 +31,7 @@ export const PlayerForm: React.VFC<PlayerFormProps> = ({ setIsModalOpen }) => {
         label: option.label,
     }))
 
-    const t = getNsTranslation('playerData')
+    const { t } = useTranslation('playerData')
 
     const { playerStore } = useStores()
 

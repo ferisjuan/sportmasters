@@ -1,54 +1,25 @@
-// import i18n from 'i18next'
-// import { initReactI18next } from 'react-i18next'
+// @vendors
+import i18n from 'i18next'
+import { initReactI18next } from 'react-i18next'
 
-// i18n.use(initReactI18next).init({
-//     debug: true,
-//     fallbackLng: 'es',
-//     interpolation: {
-//         escapeValue: false,
-//     },
-//     resources: {
-//         es: {
-//             translation: {
-//                 personalQualities: {
-//                     NONE: 'Ninguno',
-//                     FELLOWSHIP: 'Compañerismo',
-//                     PUNTUALITY: 'Puntualidad',
-//                     RESPONSABILITY: 'Responsabilidad',
-//                     SOLIDARITY: 'Solidaridad',
-//                 },
-//                 physicalCapabilities: {
-//                     NONE: 'Ninguno',
-//                     BALANCE: 'Balance',
-//                     COORDINATION: 'Coordinación',
-//                     FLEXIBILITY: 'Flexibilidad',
-//                     RESISTANCE: 'Resistencia',
-//                     SPEED: 'Velocidad',
-//                     STRENGTH: 'Fuerza',
-//                 },
-//                 physicalQualities: {
-//                     NONE: 'Ninguno',
-//                     AGILITY: 'Agilidad',
-//                     DIRBLING: 'Dribling',
-//                     JUMPING: 'Salto',
-//                 },
-//                 playerCategory: {
-//                     NONE: 'Ninguno',
-//                     FIRST: 'Huevito',
-//                     SECOND: 'Teterito',
-//                     THIRD: 'Pre pollito',
-//                     FOURTH: 'Pollito',
-//                     FIFTH: 'Pre infantil',
-//                     SIXTH: 'Infantil',
-//                     SEVENTH: 'Pre juvenil',
-//                     EIGHTH: 'Juvenil',
-//                 },
-//                 stats: {
-//                     weight: 'Peso',
-//                 },
-//             },
-//         },
-//     },
-// })
+// @translations
+import { esCO } from './translation/index'
 
-// export default i18n
+export const getNsTranslation = (ns: string) => (key: string) => i18n.t(key, { ns, returnObjects: true })
+
+const resources = {
+    esCO,
+}
+
+i18n.use(initReactI18next).init({
+    debug: true,
+    compatibilityJSON: 'v3',
+    fallbackLng: 'esCO',
+    interpolation: {
+        escapeValue: false,
+    },
+    lng: 'esCO',
+    resources,
+})
+
+export default i18n

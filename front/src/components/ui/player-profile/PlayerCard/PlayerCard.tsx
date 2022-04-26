@@ -6,13 +6,14 @@ import { Card, Container, Grid, Image, Text } from '@mantine/core'
 import { Player } from '~/generated/graphql'
 
 // @utils
-import { getNsTranslation } from '~/utils/getTranslation'
+import { useTranslation } from 'react-i18next'
+
 interface IPlayerAvatar {
     player: Player
 }
 
 export const PlayerCard: React.FC<IPlayerAvatar> = observer(({ player }) => {
-    const t = getNsTranslation('fieldPosition')
+    const { t } = useTranslation('fieldPosition')
 
     return (
         <Grid.Col span={2}>

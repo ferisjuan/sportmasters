@@ -13,27 +13,22 @@ import { Player } from '~/generated/graphql'
 
 // @util
 import { showSMNotification } from '~/utils'
-import { getNsTranslation } from '~/utils/getTranslation'
+
+import { useTranslation } from 'react-i18next'
 
 // @queries
-import { Players } from '~/query-client/queries'
+import { Players as PlayerQuery } from '~/query-client/queries'
 
-export const Playerss: React.FC = observer(() => {
-    const t = getNsTranslation('notifications')
+export const Players: React.FC = observer(() => {
+    const { t } = useTranslation('notifications')
 
     const [isModalOpen, setIsModalOpen] = useState(false)
 
-    const [players, setPlayers] = useState<Player[]>([])
-
-    const { data } = useQuery('players', () => Players().then(res => res))
+    const { data } = useQuery('players', () => PlayerQuery().then(res => res))
 
     useEffect(() => {
-        setPlayers(data?.players as Player[])
-    }, [data])
-
-    useEffect(() => {
-        players?.length === 0 && showSMNotification(t('loadingPlayers'), 'LOADING')
-    }, [players?.length])
+        data?.players || showSMNotification(t('loadingPlayers'), 'LOADING')
+    }, [data?.players])
 
     return (
         <Container fluid sx={{ height: '100%', position: 'relative' }}>
@@ -51,8 +46,9 @@ export const Playerss: React.FC = observer(() => {
                 scrollHideDelay={350}
             >
                 <Grid>
-                    {players?.length > 0 &&
-                        players?.map((player: Player) => <PlayerCard key={player.id} player={player} />)}
+                    {data?.players?.map(player => (
+                        <PlayerCard key={player.id} player={player as Player} />
+                    ))}
                 </Grid>
             </ScrollArea>
 

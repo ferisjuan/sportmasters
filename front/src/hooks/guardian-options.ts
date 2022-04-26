@@ -5,7 +5,8 @@ import { useEffect, useState } from 'react'
 import { Guardian_Type } from '../generated/graphql'
 
 // @utils
-import { getNsTranslation } from '~/utils/getTranslation'
+
+import { useTranslation } from 'react-i18next'
 
 const rawGuardianOptions = Object.entries(Guardian_Type).map(([key, value]) => ({
     key,
@@ -19,7 +20,7 @@ interface IGuardianOptions {
 }
 
 export function useGuardianOptions(): IGuardianOptions {
-    const t = getNsTranslation('familySupport')
+    const { t } = useTranslation('familySupport')
 
     const [guardianOptions, setParsedGuardianOptions] = useState<TRecord>([])
 
