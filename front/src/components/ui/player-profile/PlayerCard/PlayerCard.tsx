@@ -13,6 +13,8 @@ interface IPlayerAvatar {
 export const PlayerCard: React.FC<IPlayerAvatar> = observer(({ player }) => {
     const { t } = useTranslation('fieldPosition')
 
+    console.log(player?.image)
+
     return (
         <Grid.Col span={2}>
             <Card
@@ -34,7 +36,7 @@ export const PlayerCard: React.FC<IPlayerAvatar> = observer(({ player }) => {
                 </Container>
 
                 <Text align="center" size="md" weight={300}>
-                    {t(`${player?.fieldPosition} || "Position not found"`)}
+                    {'Position not found' || t(`${player?.fieldPosition}`)}
                 </Text>
             </Card>
         </Grid.Col>

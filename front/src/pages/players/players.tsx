@@ -16,7 +16,7 @@ import { Player } from '~/generated/graphql'
 import { showSMNotification } from '~/utils'
 
 // @queries
-import { Players as PlayerQuery } from '~/query-client/queries'
+import { Players as PlayerQuery } from '~/queries'
 
 export const Players = observer(() => {
     const { t } = useTranslation('notifications')
