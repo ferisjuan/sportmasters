@@ -12,7 +12,7 @@ import { showSMNotification } from '~/utils'
 
 const newLocal = true
 export const Auth = (): JSX.Element => {
-    const { t } = useTranslation()
+    const { t } = useTranslation('notifications')
     const [isDissabled, setIsDissabled] = useState(newLocal)
     const [isLoading, setIsLoading] = useState(false)
 
@@ -24,7 +24,7 @@ export const Auth = (): JSX.Element => {
             password: '',
         },
         validationRules: {
-            email: (value) => /^\S+@\S+$/.test(value),
+            email: value => /^\S+@\S+$/.test(value),
         },
     })
 
@@ -71,7 +71,7 @@ export const Auth = (): JSX.Element => {
                 <Loader color="indigo" variant="bars" />
             ) : (
                 <form
-                    onSubmit={(event) => handleFormSubmit(event)}
+                    onSubmit={event => handleFormSubmit(event)}
                     style={{ display: 'flex', gap: '10px', flexDirection: 'column' }}
                 >
                     <TextInput
@@ -80,14 +80,14 @@ export const Auth = (): JSX.Element => {
                         placeholder="your@email.com"
                         error={form.errors.email && 'Please specify valid email'}
                         value={form.values.email}
-                        onChange={(event) => form.setFieldValue('email', event.currentTarget.value)}
+                        onChange={event => form.setFieldValue('email', event.currentTarget.value)}
                     />
 
                     <PasswordInput
                         label="Password"
                         placeholder="Password"
                         value={form.values.password}
-                        onChange={(event) => form.setFieldValue('password', event.currentTarget.value)}
+                        onChange={event => form.setFieldValue('password', event.currentTarget.value)}
                         visibilityToggleIcon={({ reveal, size }) =>
                             reveal ? <AiFillEyeInvisible size={size} /> : <AiFillEye />
                         }

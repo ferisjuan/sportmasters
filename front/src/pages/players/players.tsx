@@ -1,7 +1,7 @@
 // @vendors
 import { useEffect, useState } from 'react'
 import { BsPlus } from 'react-icons/bs'
-import { Container, ScrollArea, Text, ThemeIcon, Grid } from '@mantine/core'
+import { Container, Grid, ScrollArea, Text, ThemeIcon } from '@mantine/core'
 import { observer } from 'mobx-react-lite'
 import { useQuery } from 'react-query'
 import { useTranslation } from 'react-i18next'
@@ -23,7 +23,7 @@ export const Players = observer(() => {
 
     const [isModalOpen, setIsModalOpen] = useState(false)
 
-    const { data, isLoading } = useQuery('players', async () => await PlayerQuery().then(res => res), {
+    const { data, isLoading } = useQuery('players', async () => await PlayerQuery(), {
         keepPreviousData: true,
     })
 
