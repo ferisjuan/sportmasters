@@ -1,4 +1,3 @@
-import { Field } from 'formik'
 import { TextInput } from '@mantine/core'
 
 // @enum
@@ -12,7 +11,7 @@ interface SMTextInputProps {
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
     required?: boolean
     size?: SIZE
-    value: unknown
+    value?: string
 }
 
 export const SMTextInput: React.VFC<SMTextInputProps> = ({
@@ -25,8 +24,7 @@ export const SMTextInput: React.VFC<SMTextInputProps> = ({
     size = SIZE.xs,
     value,
 }) => (
-    <Field
-        as={TextInput}
+    <TextInput
         description={description}
         error={error}
         id={name}

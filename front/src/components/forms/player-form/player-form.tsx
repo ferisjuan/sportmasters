@@ -1,16 +1,10 @@
 // @vendors
-import { useTranslation } from 'react-i18next'
-import { Field, Formik, Form, FormikProps } from 'formik'
-import { Button, Group, Select, Text } from '@mantine/core'
+
+import { Button, Group, Select, Text, TextInput } from '@mantine/core'
+import { useForm, yupResolver } from '@mantine/form'
+import { DatePicker } from '@mantine/dates'
 import { BsSave } from 'react-icons/bs'
 import { FaTimes } from 'react-icons/fa'
-
-// @components
-import { PlayerData } from './player-form.interface'
-import { SMTextInput } from '~/components'
-
-// @enums
-import { SIZE } from '~/enums'
 
 // @hooks
 import { useGuardianOptions, useStores } from '~/hooks'
@@ -21,21 +15,34 @@ import { Player } from '~/generated/graphql'
 //@schemas
 import { PlayerFormSchema } from './schema'
 
+//@utils
+// import { getNsTranslation } from '~/i18n'
+import { useTranslation } from 'react-i18next'
+
 interface PlayerFormProps {
     setIsModalOpen: (isOpen: boolean) => void
 }
 
 export const PlayerForm: React.VFC<PlayerFormProps> = ({ setIsModalOpen }) => {
-    const { t } = useTranslation()
+    const { guardianOptions } = useGuardianOptions()
+
+    const guardianOptionsMap = guardianOptions.map(option => ({
+        value: option.value,
+        label: option.label,
+    }))
+
+    const { t } = useTranslation('playerData')
 
     const { playerStore } = useStores()
 
-    const { guardianOptions } = useGuardianOptions()
+    const form = useForm<Player>({
+        schema: yupResolver(PlayerFormSchema),
+        initialValues: {} as Player,
+    })
 
     return (
-        <Formik
-            initialValues={{} as Player}
-            onSubmit={async (values: Player) => {
+        <form
+            onSubmit={form.onSubmit(async (values: Player): Promise<void> => {
                 try {
                     const rawPlayer = {} as Player
                     const player = { ...rawPlayer, ...values }
@@ -45,274 +52,134 @@ export const PlayerForm: React.VFC<PlayerFormProps> = ({ setIsModalOpen }) => {
                 } catch (error) {
                     console.error(error)
                 }
-            }}
-            validationSchema={PlayerFormSchema}
-            validateOnChange
+            })}
         >
-            {({ errors, isValid, touched, setFieldValue, values }: FormikProps<PlayerData>) => (
-                <Form>
-                    <Text mb={30} size="lg" weight={700}>
-                        {t('playerData.formTitle')}
-                    </Text>
+            <Text mb={30} size="lg" weight={700}>
+                {t('formTitle')}
+            </Text>
+            <Text size="md" weight={700}>
+                {t('formTitleStudentData')}
+            </Text>
+            <Group align="start" mb={16} grow>
+                <TextInput label={t('name')} name="name" required {...form.getInputProps('name')} />
+                <TextInput name="lastName" label={t('lastName')} required {...form.getInputProps('lastName')} />
+            </Group>
 
-                    <Text size="md" weight={700}>
-                        {t('playerData.formTitleStudentData')}
-                    </Text>
+            <Group align="start" mb={16} grow>
+                <Select
+                    data={[
+                        { label: t('idSelect.dni'), value: 'dni' },
+                        { label: t('idSelect.passport'), value: 'passport' },
+                    ]}
+                    id="playerIdType"
+                    label={t('idSelect.placeholder')}
+                    name="playerIdType"
+                    placeholder={t('idSelect.placeholder')}
+                    required
+                    sx={{ flex: 1 }}
+                    {...form.getInputProps('playerIdType')}
+                />
 
-                    <Group align="start" mb={16}>
-                        <SMTextInput
-                            error={errors.name && touched.name ? t(`playerData.errors.${errors.name}`) : undefined}
-                            label={t('playerData.name')}
-                            name="name"
-                            onChange={({ target: { name, value } }) => setFieldValue(name, value, true)}
-                            required
-                            value={values.name}
-                        />
-                        <SMTextInput
-                            error={
-                                errors.lastName && touched.lastName
-                                    ? t(`playerData.errors.${errors.lastName}`)
-                                    : undefined
-                            }
-                            name="lastName"
-                            label={t('playerData.lastName')}
-                            onChange={({ target: { name, value } }) => setFieldValue(name, value, true)}
-                            required
-                            value={values.lastName}
-                        />
-                    </Group>
+                <TextInput
+                    label={t('playerIdPlaceholder')}
+                    name="playerId"
+                    required
+                    {...form.getInputProps('playerId')}
+                />
+            </Group>
+            <Group align="start" mb={16} grow>
+                <TextInput required label={t('email')} name="playerEmail" {...form.getInputProps('playerEmail')} />
 
-                    <Group align="start" mb={16}>
-                        <Field
-                            as={Select}
-                            data={[
-                                { label: t('playerData.idSelect.dni'), value: 'dni' },
-                                { label: t('playerData.idSelect.passport'), value: 'passport' },
-                            ]}
-                            error={
-                                errors.playerIdType && touched.playerIdType
-                                    ? t(`playerData.errors.${errors.playerIdType}`)
-                                    : undefined
-                            }
-                            id="playerIdType"
-                            label={t('playerData.idSelect.placeholder')}
-                            name="playerIdType"
-                            onChange={(value: string) => setFieldValue('playerIdType', value)}
-                            placeholder={t('playerData.idSelect.placeholder')}
-                            required
-                            value={values.playerIdType}
-                            sx={{ flex: 1 }}
-                        />
+                <TextInput required label={t('phone')} name="playerPhone" {...form.getInputProps('playerPhone')} />
+            </Group>
+            <Group grow>
+                <DatePicker
+                    locale="es"
+                    placeholder={t('birthday')}
+                    label={t('birthday')}
+                    required
+                    {...form.getInputProps('placeOfBirth')}
+                    description={t('dateDescription')}
+                />
+                <Group position="right" grow>
+                    <TextInput
+                        sx={() => ({
+                            width: '50px',
+                        })}
+                        description={t('weightUnit')}
+                        required
+                        label={t('height')}
+                        {...form.getInputProps('weight')}
+                    />
+                    <TextInput
+                        required
+                        label={t('weight')}
+                        description={t('weightUnit')}
+                        {...form.getInputProps('height')}
+                    />
+                </Group>
+            </Group>
+            <hr />
+            <Text size="md" weight={700}>
+                {t('formTitleGuardianData')}
+            </Text>
+            <Group align="start" mb={16}>
+                <Select
+                    data={guardianOptionsMap}
+                    id="guardianType"
+                    label={t('guardianPlaceholder')}
+                    name="guardianType"
+                    placeholder={t('guardianPlaceholder')}
+                    required
+                    sx={{ flex: 1 }}
+                    {...form.getInputProps('guardianType')}
+                />
+            </Group>
+            <Group align="start" mb={16} grow>
+                <TextInput label={t('name')} name="guardianName" required {...form.getInputProps('guardianName')} />
 
-                        <SMTextInput
-                            error={
-                                errors.playerId && touched.playerId
-                                    ? t(`playerData.errors.${errors.playerId}`)
-                                    : undefined
-                            }
-                            label={t('playerData.playerIdPlaceholder')}
-                            name="playerId"
-                            onChange={({ target: { name, value } }) => setFieldValue(name, value, true)}
-                            required
-                            value={values.playerId}
-                        />
-                    </Group>
+                <TextInput
+                    label={t('lastName')}
+                    name="guardianLastName"
+                    required
+                    {...form.getInputProps('guardianLastName')}
+                />
+            </Group>
+            <Group align="start" mb={16} grow>
+                <Select
+                    data={[
+                        { label: t('idSelect.dni'), value: 'dni' },
+                        { label: t('idSelect.passport'), value: 'passport' },
+                    ]}
+                    id="guardianIdType"
+                    label={t('idSelect.placeholder')}
+                    name="guardianIdType"
+                    placeholder={t('idSelect.placeholder')}
+                    required
+                    {...form.getInputProps('guardianIdType')}
+                    sx={{ flex: 1 }}
+                />
 
-                    <Group align="start" mb={16}>
-                        <SMTextInput
-                            error={
-                                errors.playerEmail && touched.playerEmail
-                                    ? t(`playerData.errors.${errors.playerEmail}`)
-                                    : undefined
-                            }
-                            label={t('playerData.email')}
-                            name="playerEmail"
-                            onChange={({ target: { name, value } }) => setFieldValue(name, value, true)}
-                            value={values.playerEmail}
-                        />
+                <TextInput
+                    label={t('guardianIdPlaceholder')}
+                    name="guardianId"
+                    required
+                    {...form.getInputProps('guardianId')}
+                />
+            </Group>
+            <Group align="start" grow>
+                <TextInput label={t('email')} name="guardianEmail" required {...form.getInputProps('guardianEmail')} />
 
-                        <SMTextInput
-                            error={
-                                errors.playerPhone && touched.playerPhone
-                                    ? t(`playerData.errors.${errors.playerPhone}`)
-                                    : undefined
-                            }
-                            label={t('playerData.phone')}
-                            name="playerPhone"
-                            onChange={({ target: { name, value } }) => setFieldValue(name, value, true)}
-                            value={values.playerPhone}
-                        />
-                    </Group>
-
-                    <Group align="start" mb={16}>
-                        <SMTextInput
-                            error={
-                                errors.playerBirthday && touched.playerBirthday
-                                    ? t(`playerData.errors.${errors.playerBirthday}`)
-                                    : undefined
-                            }
-                            description={t('playerData.dateDescription')}
-                            label={t('playerData.birthday')}
-                            name="playerBirthday"
-                            onChange={({ target: { name, value } }) => setFieldValue(name, value, true)}
-                            size={SIZE.md}
-                            required
-                            value={values.playerBirthday}
-                        />
-
-                        <SMTextInput
-                            error={
-                                errors.height && touched.height ? t(`playerData.errors.${errors.height}`) : undefined
-                            }
-                            description={t('playerData.heightUnit')}
-                            label={t('playerData.height')}
-                            name="height"
-                            onChange={({ target: { name, value } }) => setFieldValue(name, value, true)}
-                            required
-                            value={values.height}
-                        />
-                        <SMTextInput
-                            error={
-                                errors.weight && touched.weight ? t(`playerData.errors.${errors.weight}`) : undefined
-                            }
-                            description={t('playerData.weightUnit')}
-                            label={t('playerData.weight')}
-                            name="weight"
-                            onChange={({ target: { name, value } }) => setFieldValue(name, value, true)}
-                            required
-                            value={values.weight}
-                        />
-                    </Group>
-
-                    <hr />
-
-                    <Text size="md" weight={700}>
-                        {t('playerData.formTitleGuardianData')}
-                    </Text>
-
-                    <Group align="start" mb={16}>
-                        <Field
-                            as={Select}
-                            data={guardianOptions}
-                            error={
-                                errors.guardianType && touched.guardianType
-                                    ? t(`playerData.errors.${errors.guardianType}`)
-                                    : undefined
-                            }
-                            id="guardianType"
-                            label={t('playerData.guardianPlaceholder')}
-                            name="guardianType"
-                            onChange={(option: string) => setFieldValue('guardianType', option)}
-                            placeholder={t('playerData.guardianPlaceholder')}
-                            required
-                            value={values.guardianType}
-                            sx={{ flex: 1 }}
-                        />
-                    </Group>
-
-                    <Group align="start" mb={16}>
-                        <SMTextInput
-                            error={
-                                errors.guardianName && touched.guardianName
-                                    ? t(`playerData.errors.${errors.guardianName}`)
-                                    : undefined
-                            }
-                            label={t('playerData.name')}
-                            name="guardianName"
-                            onChange={({ target: { name, value } }) => setFieldValue(name, value, true)}
-                            required
-                            value={values.guardianName}
-                        />
-
-                        <SMTextInput
-                            error={
-                                errors.guardianLastName && touched.guardianLastName
-                                    ? t(`playerData.errors.${errors.guardianLastName}`)
-                                    : undefined
-                            }
-                            label={t('playerData.lastName')}
-                            name="guardianLastName"
-                            onChange={({ target: { name, value } }) => setFieldValue(name, value, true)}
-                            required
-                            value={values.guardianLastName}
-                        />
-                    </Group>
-
-                    <Group align="start" mb={16}>
-                        <Field
-                            as={Select}
-                            data={[
-                                { label: t('playerData.idSelect.dni'), value: 'dni' },
-                                { label: t('playerData.idSelect.passport'), value: 'passport' },
-                            ]}
-                            error={
-                                errors.guardianIdType && touched.guardianIdType
-                                    ? t(`playerData.errors.${errors.guardianIdType}`)
-                                    : undefined
-                            }
-                            id="guardianIdType"
-                            label={t('playerData.idSelect.placeholder')}
-                            name="guardianIdType"
-                            onChange={(value: string) => setFieldValue('guardianIdType', value)}
-                            placeholder={t('playerData.idSelect.placeholder')}
-                            required
-                            value={values.guardianIdType}
-                            sx={{ flex: 1 }}
-                        />
-
-                        <SMTextInput
-                            error={
-                                errors.guardianId && touched.guardianId
-                                    ? t(`playerData.errors.${errors.guardianId}`)
-                                    : undefined
-                            }
-                            label={t('playerData.guardianIdPlaceholder')}
-                            name="guardianId"
-                            onChange={({ target: { name, value } }) => setFieldValue(name, value, true)}
-                            required
-                            value={values.guardianId}
-                        />
-                    </Group>
-
-                    <Group align="start">
-                        <SMTextInput
-                            error={
-                                errors.guardianEmail && touched.guardianEmail
-                                    ? t(`playerData.errors.${errors.guardianEmail}`)
-                                    : undefined
-                            }
-                            label={t('playerData.email')}
-                            name="guardianEmail"
-                            onChange={({ target: { name, value } }) => setFieldValue(name, value, true)}
-                            required
-                            size={SIZE.sm}
-                            value={values.guardianEmail}
-                        />
-
-                        <SMTextInput
-                            error={
-                                errors.guardianPhone && touched.guardianPhone
-                                    ? t(`playerData.errors.${errors.guardianPhone}`)
-                                    : undefined
-                            }
-                            label={t('playerData.phone')}
-                            name="guardianPhone"
-                            onChange={({ target: { name, value } }) => setFieldValue(name, value, true)}
-                            required
-                            value={values.guardianPhone}
-                        />
-                    </Group>
-
-                    <Group mt={30} position="right">
-                        <Button leftIcon={<FaTimes />} onClick={() => setIsModalOpen(false)} variant="outline">
-                            {t('playerData.cancel')}
-                        </Button>
-                        <Button disabled={!isValid} leftIcon={<BsSave />} type="submit">
-                            {t('playerData.save')}
-                        </Button>
-                    </Group>
-                </Form>
-            )}
-        </Formik>
+                <TextInput label={t('phone')} name="guardianPhone" required {...form.getInputProps('guardianPhone')} />
+            </Group>
+            <Group mt={30} position="right">
+                <Button leftIcon={<FaTimes />} onClick={() => setIsModalOpen(false)} variant="outline">
+                    {t('cancel')}
+                </Button>
+                <Button disabled={false} leftIcon={<BsSave />} type="submit">
+                    {t('save')}
+                </Button>
+            </Group>
+        </form>
     )
 }

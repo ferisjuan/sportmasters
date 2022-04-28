@@ -17,7 +17,7 @@ import { ROUTES } from '~/constants/routes'
 import { AuthContextProvider, StoreProvider } from '~/context'
 
 // @query
-import { queryClient } from './query-client'
+import { queryClient } from './queries'
 
 // @store
 import { rootStore } from '~/store'

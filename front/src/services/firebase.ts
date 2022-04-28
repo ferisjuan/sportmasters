@@ -18,7 +18,7 @@ export class FirebaseService<T> {
         const q = query(collection(db, this.collection), orderBy('lastName', 'asc'))
         const querySnapshot = await getDocs(q)
 
-        const _collection = querySnapshot.docs.map((_doc) => _doc.data()) as T[]
+        const _collection = querySnapshot.docs.map(_doc => _doc.data()) as T[]
 
         return [..._collection]
     }
