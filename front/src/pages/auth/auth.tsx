@@ -48,7 +48,7 @@ export const Auth = (): JSX.Element => {
             } catch (error) {
                 setIsLoading(false)
 
-                showSMNotification(t('auth.wrongCredentials'), 'ERROR')
+                showSMNotification(t('auth.wrongCredentials'), 'ERROR', false)
             }
         },
         [form.values.email, form.values.password, setIsLoading, t],
@@ -59,9 +59,9 @@ export const Auth = (): JSX.Element => {
             const auth = getAuth()
             await sendPasswordResetEmail(auth, form.values.email)
 
-            showSMNotification(t('auth.resetPassword'), 'INFO')
+            showSMNotification(t('auth.resetPassword'), 'INFO', false)
         } catch (error) {
-            showSMNotification(t('auth.wrongEmail'), 'ERROR')
+            showSMNotification(t('auth.wrongEmail'), 'ERROR', false)
         }
     }, [form.values.email, t])
 

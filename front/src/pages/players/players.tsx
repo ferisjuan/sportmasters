@@ -28,8 +28,10 @@ export const Players = observer(() => {
     })
 
     useEffect(() => {
-        isLoading && showSMNotification(t('loadingPlayers'), 'LOADING')
-    }, [])
+        {
+            isLoading && showSMNotification(t('loadingPlayers'), 'LOADING', isLoading)
+        }
+    }, [isLoading])
 
     return (
         <Container fluid sx={{ height: '100%', position: 'relative' }}>

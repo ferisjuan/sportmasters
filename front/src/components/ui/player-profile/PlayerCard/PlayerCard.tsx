@@ -12,9 +12,6 @@ interface IPlayerAvatar {
 
 export const PlayerCard: React.FC<IPlayerAvatar> = observer(({ player }) => {
     const { t } = useTranslation('fieldPosition')
-
-    console.log(player)
-
     return (
         <Grid.Col span={2}>
             <Card
