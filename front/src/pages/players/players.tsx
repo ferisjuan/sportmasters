@@ -1,7 +1,7 @@
 // @vendors
 import { useEffect, useState } from 'react'
 import { BsPlus } from 'react-icons/bs'
-import { Container, Grid, ScrollArea, Text, ThemeIcon } from '@mantine/core'
+import { Container, Grid, Pagination, ScrollArea, Skeleton, Text, ThemeIcon } from '@mantine/core'
 import { observer } from 'mobx-react-lite'
 import { useQuery } from 'react-query'
 import { useTranslation } from 'react-i18next'
@@ -22,8 +22,14 @@ export const Players = observer(() => {
     const { t } = useTranslation('notifications')
 
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const [activePage, setPage] = useState(0)
 
-    const { data, isLoading } = useQuery('players', async () => await PlayerQuery(), {
+    const variables = {
+        take: 6,
+        skip: activePage,
+    }
+
+    const { data, isLoading } = useQuery(['players', variables], async () => await PlayerQuery(variables), {
         keepPreviousData: true,
     })
 
@@ -31,7 +37,7 @@ export const Players = observer(() => {
         {
             isLoading && showSMNotification(t('loadingPlayers'), 'LOADING', isLoading)
         }
-    }, [isLoading])
+    }, [isLoading, data])
 
     return (
         <Container fluid sx={{ height: '100%', position: 'relative' }}>
@@ -48,11 +54,15 @@ export const Players = observer(() => {
                 scrollbarSize={4}
                 scrollHideDelay={350}
             >
-                <Grid grow>
-                    {data?.players?.map(player => (
-                        <PlayerCard key={player.id} player={player as Player} />
-                    ))}
-                </Grid>
+                <Skeleton visible={true}>
+                    <Grid grow>
+                        {data?.players?.map(player => (
+                            <PlayerCard key={player.id} player={player as Player} />
+                        ))}
+                    </Grid>
+                </Skeleton>
+
+                <Pagination page={activePage} total={10} onChange={setPage} />
             </ScrollArea>
 
             <ThemeIcon
