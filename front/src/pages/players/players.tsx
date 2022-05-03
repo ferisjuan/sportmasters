@@ -1,7 +1,7 @@
 // @vendors
 import { useEffect, useState } from 'react'
 import { BsPlus } from 'react-icons/bs'
-import { Container, Grid, Pagination, ScrollArea, Skeleton, Text, ThemeIcon } from '@mantine/core'
+import { Box, Container, Grid, Pagination, Skeleton, Text, ThemeIcon } from '@mantine/core'
 import { observer } from 'mobx-react-lite'
 import { useQuery } from 'react-query'
 import { useTranslation } from 'react-i18next'
@@ -47,14 +47,8 @@ export const Players = observer(() => {
 
             <Text sx={{ fontSize: '48px', fontWeight: 700 }}>Players</Text>
 
-            <ScrollArea
-                type="auto"
-                style={{ height: '80vh', width: '100%' }}
-                offsetScrollbars
-                scrollbarSize={4}
-                scrollHideDelay={350}
-            >
-                <Grid grow>
+            <Box style={{ height: '80vh', width: '100%' }}>
+                <Grid>
                     {data?.players?.map(player => (
                         <PlayerCard key={player.id} player={player as Player} />
                     ))}
@@ -63,7 +57,7 @@ export const Players = observer(() => {
                 <Skeleton visible={true} />
 
                 <Pagination style={{ marginTop: '2rem' }} page={activePage} total={10} onChange={setPage} />
-            </ScrollArea>
+            </Box>
 
             <ThemeIcon
                 radius="md"

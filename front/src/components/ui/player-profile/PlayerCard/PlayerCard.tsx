@@ -13,7 +13,7 @@ interface IPlayerAvatar {
 export const PlayerCard: React.FC<IPlayerAvatar> = observer(({ player }) => {
     const { t } = useTranslation('fieldPosition')
     return (
-        <Grid.Col span={2}>
+        <Grid.Col span={4}>
             <Card
                 radius="lg"
                 shadow="sm"
