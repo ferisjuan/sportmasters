@@ -33,7 +33,7 @@ export const SMNavbar: React.VFC = () => {
     const userName = user?.displayName
 
     return (
-        <Navbar fixed position={{ top: 70 }} width={{ base: 300 }}>
+        <Navbar fixed position={{ top: 70 }} width={{ base: 210 }}>
             <Navbar.Section grow>
                 <Title order={5}>Main Links</Title>
                 {NAV_ITEMS.map(({ text, to }) => (
@@ -49,10 +49,9 @@ export const SMNavbar: React.VFC = () => {
                         borderRadius: theme.radius.sm,
                         cursor: 'pointer',
                         display: 'flex',
-                        gap: '20px',
                         justifyContent: 'flex-start',
                         margin: 0,
-                        padding: theme.spacing.xl,
+                        padding: theme.spacing.xs,
 
                         '&:hover': {
                             backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1],

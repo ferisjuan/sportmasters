@@ -22,16 +22,19 @@ export const LinkBox: React.VFC<ILinkBoxProps> = ({ onClick, selected, text, to 
             component={Link}
             onClick={onClick}
             to={to}
-            sx={(theme) => ({
+            sx={theme => ({
                 display: 'flex',
                 backgroundColor: isSelected
-                    ? theme.colors.indigo[5] : theme.colorScheme === 'dark' ? theme.colors.gray[9] : theme.colors.gray[1],
+                    ? theme.colors.indigo[5]
+                    : theme.colorScheme === 'dark'
+                    ? theme.colors.gray[9]
+                    : theme.colors.gray[1],
                 borderRadius: theme.radius.lg,
-                color: isSelected ? 'white' :theme.colorScheme === 'dark' ? 'white' : 'black',
+                color: isSelected ? 'white' : theme.colorScheme === 'dark' ? 'white' : 'black',
                 cursor: 'pointer',
                 fontSize: theme.fontSizes.xl,
                 fontWeight: isSelected ? 'bold' : 'normal',
-                height: 50,
+                height: 40,
                 marginBlock: theme.spacing.xs,
                 padding: theme.spacing.xs,
                 textAlign: 'left',
@@ -40,7 +43,11 @@ export const LinkBox: React.VFC<ILinkBoxProps> = ({ onClick, selected, text, to 
                 transition: 'background-color, box-shadow 0.3s ease-in-out',
 
                 '&:hover': {
-                    backgroundColor: isSelected ? theme.colors.indigo[7] : theme.colorScheme === 'dark' ? theme.colors.gray[8] : theme.colors.gray[2],
+                    backgroundColor: isSelected
+                        ? theme.colors.indigo[7]
+                        : theme.colorScheme === 'dark'
+                        ? theme.colors.gray[8]
+                        : theme.colors.gray[2],
                 },
             })}
         >

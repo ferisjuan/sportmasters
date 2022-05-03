@@ -25,7 +25,7 @@ export const Players = observer(() => {
     const [activePage, setPage] = useState(0)
 
     const variables = {
-        take: 6,
+        take: 9,
         skip: activePage,
     }
 
@@ -54,15 +54,15 @@ export const Players = observer(() => {
                 scrollbarSize={4}
                 scrollHideDelay={350}
             >
-                <Skeleton visible={true}>
-                    <Grid grow>
-                        {data?.players?.map(player => (
-                            <PlayerCard key={player.id} player={player as Player} />
-                        ))}
-                    </Grid>
-                </Skeleton>
+                <Grid grow>
+                    {data?.players?.map(player => (
+                        <PlayerCard key={player.id} player={player as Player} />
+                    ))}
+                </Grid>
 
-                <Pagination page={activePage} total={10} onChange={setPage} />
+                <Skeleton visible={true} />
+
+                <Pagination style={{ marginTop: '2rem' }} page={activePage} total={10} onChange={setPage} />
             </ScrollArea>
 
             <ThemeIcon
