@@ -1,7 +1,7 @@
 // @vendors
 import { useEffect, useState } from 'react'
 import { BsPlus } from 'react-icons/bs'
-import { Box, Button, Container, Grid, Pagination, Skeleton, ThemeIcon } from '@mantine/core'
+import { Box, Container, Grid, Pagination, Skeleton, ThemeIcon } from '@mantine/core'
 import { observer } from 'mobx-react-lite'
 import { useTranslation } from 'react-i18next'
 
