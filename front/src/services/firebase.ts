@@ -37,10 +37,6 @@ export class FirebaseService<T> {
         const documentSnapshots = await getDocs(q)
 
         const lastVisible = documentSnapshots.docs[documentSnapshots.docs.length - 1]
-        console.log(
-            '🚀 ~ file: firebase.ts ~ line 40 ~ FirebaseService<T> ~ pagination ~ documentSnapshots.docs.length',
-            documentSnapshots.docs.length,
-        )
 
         const next = query(collection(db, this.collection), orderBy('lastName', 'asc'), limit(9), startAt(lastVisible))
         const querySnapshot = await getDocs(next)
