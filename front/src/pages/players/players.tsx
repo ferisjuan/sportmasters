@@ -1,9 +1,8 @@
 // @vendors
 import { useEffect, useState } from 'react'
 import { BsPlus } from 'react-icons/bs'
-import { Box, Container, Grid, Pagination, Skeleton, Text, ThemeIcon } from '@mantine/core'
+import { Box, Button, Container, Grid, Pagination, Skeleton, ThemeIcon } from '@mantine/core'
 import { observer } from 'mobx-react-lite'
-import { useQuery } from 'react-query'
 import { useTranslation } from 'react-i18next'
 
 // @components
@@ -15,29 +14,21 @@ import { Player } from '~/generated/graphql'
 // @utils
 import { showSMNotification } from '~/utils'
 
-// @queries
-import { Players as PlayerQuery } from '~/queries'
+// @hooks
+import { useStores } from '~/hooks'
 
 export const Players = observer(() => {
     const { t } = useTranslation('notifications')
+    const { playersStore } = useStores()
 
     const [isModalOpen, setIsModalOpen] = useState(false)
-    const [activePage, setPage] = useState(0)
-
-    const variables = {
-        take: 9,
-        skip: activePage,
-    }
-
-    const { data, isLoading } = useQuery(['players', variables], async () => await PlayerQuery(variables), {
-        keepPreviousData: true,
-    })
+    const [activePage, setPage] = useState(1)
 
     useEffect(() => {
-        {
-            isLoading && showSMNotification(t('loadingPlayers'), 'LOADING', isLoading)
-        }
-    }, [isLoading, data])
+        playersStore.pagination()
+
+        playersStore.players.length === 0 && showSMNotification(t('loadingPlayers'), 'LOADING', true)
+    }, [playersStore])
 
     return (
         <Container fluid sx={{ height: '100%', position: 'relative' }}>
@@ -45,18 +36,22 @@ export const Players = observer(() => {
                 <PlayerForm setIsModalOpen={setIsModalOpen} />
             </SMModal>
 
-            <Text sx={{ fontSize: '48px', fontWeight: 700 }}>Players</Text>
-
             <Box style={{ height: '80vh', width: '100%' }}>
                 <Grid>
-                    {data?.players?.map(player => (
+                    {playersStore?.players?.map(player => (
                         <PlayerCard key={player.id} player={player as Player} />
                     ))}
                 </Grid>
 
                 <Skeleton visible={true} />
 
-                <Pagination style={{ marginTop: '2rem' }} page={activePage} total={10} onChange={setPage} />
+                <Pagination
+                    onClick={() => playersStore.nextPagination()}
+                    style={{ marginTop: '7rem' }}
+                    page={activePage}
+                    total={10}
+                    onChange={setPage}
+                />
             </Box>
 
             <ThemeIcon
