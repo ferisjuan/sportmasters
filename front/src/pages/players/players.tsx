@@ -13,22 +13,21 @@ import { Player } from '~/generated/graphql'
 
 // @utils
 import { showSMNotification } from '~/utils'
+import { pagination } from '~/utils/pagination/'
 
 // @hooks
-import { useStores } from '~/hooks'
 
 export const Players = observer(() => {
     const { t } = useTranslation('notifications')
-    const { playersStore } = useStores()
 
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [activePage, setPage] = useState(1)
+    const [players, setPlayers] = useState<Player[]>([])
 
     useEffect(() => {
-        playersStore.pagination()
-
-        playersStore.players.length === 0 && showSMNotification(t('loadingPlayers'), 'LOADING', true)
-    }, [playersStore])
+        pagination().then(n => setPlayers(n))
+        players.length === 0 && showSMNotification(t('loadingPlayers'), 'LOADING', true)
+    }, [])
 
     return (
         <Container fluid sx={{ height: '100%', position: 'relative' }}>
@@ -38,20 +37,14 @@ export const Players = observer(() => {
 
             <Box style={{ height: '80vh', width: '100%' }}>
                 <Grid>
-                    {playersStore?.players?.map(player => (
+                    {players?.map(player => (
                         <PlayerCard key={player.id} player={player as Player} />
                     ))}
                 </Grid>
 
                 <Skeleton visible={true} />
 
-                <Pagination
-                    onClick={() => playersStore.nextPagination()}
-                    style={{ marginTop: '7rem' }}
-                    page={activePage}
-                    total={10}
-                    onChange={setPage}
-                />
+                <Pagination style={{ marginTop: '7rem' }} page={activePage} total={10} onChange={setPage} />
             </Box>
 
             <ThemeIcon

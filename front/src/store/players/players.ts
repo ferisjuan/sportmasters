@@ -30,20 +30,4 @@ export class PlayersStore implements IPlayersStore {
             }),
         )
     }
-
-    async pagination(): Promise<void> {
-        this.firebaseService.getPagination().then(
-            action((players: Player[]) => {
-                this.players = players
-            }),
-        )
-    }
-
-    async nextPagination(): Promise<void> {
-        this.firebaseService.pagination().then(
-            action((players: Player[]) => {
-                this.players = players
-            }),
-        )
-    }
 }
