@@ -1,8 +1,7 @@
 // @vendors
 import { useEffect, useState } from 'react'
 import { BsPlus } from 'react-icons/bs'
-import { Box, Container, Grid, Pagination, Skeleton, ThemeIcon } from '@mantine/core'
-import { observer } from 'mobx-react-lite'
+import { Box, Container, Grid, Pagination, ThemeIcon } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
 
 // @components
@@ -12,12 +11,9 @@ import { PlayerCard, PlayerForm, SMModal } from '~/components'
 import { Player } from '~/generated/graphql'
 
 // @utils
-import { showSMNotification } from '~/utils'
-import { pagination } from '~/utils/pagination/'
+import { showSMNotification, pagination } from '~/utils'
 
-// @hooks
-
-export const Players = observer(() => {
+export const Players = (): JSX.Element => {
     const { t } = useTranslation('notifications')
 
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -42,8 +38,6 @@ export const Players = observer(() => {
                     ))}
                 </Grid>
 
-                <Skeleton visible={true} />
-
                 <Pagination style={{ marginTop: '7rem' }} page={activePage} total={10} onChange={setPage} />
             </Box>
 
@@ -57,4 +51,4 @@ export const Players = observer(() => {
             </ThemeIcon>
         </Container>
     )
-})
+}

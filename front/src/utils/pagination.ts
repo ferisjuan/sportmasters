@@ -6,8 +6,8 @@ import { FirebaseService } from '~/services/firebase'
 
 const firebaseService = new FirebaseService<Player>('players')
 
-export const pagination = async (): Promise<Array<Player>> => {
+export const pagination = async (): Promise<Player[]> => {
     return new Promise(resolve => {
-        firebaseService.getPagination().then(pag => resolve(pag))
+        firebaseService.pagination().then(pag => resolve(pag))
     })
 }
