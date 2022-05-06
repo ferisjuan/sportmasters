@@ -1,7 +1,7 @@
 // @vendors
 import { useEffect, useState } from 'react'
 import { BsPlus } from 'react-icons/bs'
-import { Box, Container, Grid, Pagination, ThemeIcon } from '@mantine/core'
+import { Box, Button, Container, Grid, ThemeIcon } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
 
 // @components
@@ -11,19 +11,42 @@ import { PlayerCard, PlayerForm, SMModal } from '~/components'
 import { Player } from '~/generated/graphql'
 
 // @utils
-import { showSMNotification, pagination } from '~/utils'
+import { showSMNotification, firstPagination, nextScroll } from '~/utils'
 
 export const Players = (): JSX.Element => {
     const { t } = useTranslation('notifications')
 
     const [isModalOpen, setIsModalOpen] = useState(false)
-    const [activePage, setPage] = useState(1)
     const [players, setPlayers] = useState<Player[]>([])
+    const [lastKey, setLastKey] = useState('')
+    const [isLoading, setIsloading] = useState(false)
+    console.log(isLoading)
 
     useEffect(() => {
-        pagination().then(n => setPlayers(n))
-        players.length === 0 && showSMNotification(t('loadingPlayers'), 'LOADING', true)
+        firstPagination().then(n => {
+            setPlayers(n.players)
+            setLastKey(n.lastKey)
+        })
+        {
+            isLoading && showSMNotification(t('loadingPlayers'), 'LOADING', isLoading)
+        }
     }, [])
+
+    const handleNextPosts = (key: string): void => {
+        if (key.length > 0) {
+            setIsloading(true)
+            nextScroll(key)
+                .then(n => {
+                    setPlayers(players.concat(n.players))
+                    setLastKey(n.lastKey)
+                    setIsloading(false)
+                })
+                .catch(err => {
+                    console.log('error', err)
+                    setIsloading(false)
+                })
+        }
+    }
 
     return (
         <Container fluid sx={{ height: '100%', position: 'relative' }}>
@@ -38,7 +61,7 @@ export const Players = (): JSX.Element => {
                     ))}
                 </Grid>
 
-                <Pagination style={{ marginTop: '7rem' }} page={activePage} total={10} onChange={setPage} />
+                <Button onClick={() => handleNextPosts(lastKey)} />
             </Box>
 
             <ThemeIcon
