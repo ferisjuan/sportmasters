@@ -1,6 +1,6 @@
 import { applyResolversEnhanceMap } from '@generated/type-graphql'
 import { UseMiddleware } from 'type-graphql'
-import { isAuth } from '../modules/middleware'
+import { isAuth } from '../middleware'
 
 export const appliedResolversEnhanceMap = () => applyResolversEnhanceMap({
     Player: {

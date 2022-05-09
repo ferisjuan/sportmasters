@@ -14,7 +14,7 @@ export class ConfirmUserResolver {
     async confirmUser(
         @Arg("token") token: string,
         @Ctx() ctx: Context
-    ) {
+    ): Promise<boolean> {
         try {
             const userId = await redis.get(token)
 
@@ -23,6 +23,10 @@ export class ConfirmUserResolver {
             await ctx.prisma.user.update({ where: { id: userId }, data: { confirmed: true } })
 
             await redis.del(token)
+
+            const user = await ctx.prisma.user.findUnique({ where: { id: userId } })
+
+            ctx.req.session!.userId = user?.id
 
             return true
         } catch (error) {

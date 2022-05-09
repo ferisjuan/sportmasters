@@ -16,7 +16,7 @@ import { prisma } from './context'
 import { logger } from './logger'
 
 // @schema
-import { SigninResolver, SignupResolver } from './modules'
+import { ChangePasswordResolver, ConfirmUserResolver, ForgotPassword, SigninResolver, SignupResolver } from './modules'
 
 // @redis
 import { redis } from './redis'
@@ -28,7 +28,7 @@ const main = async () => {
     appliedResolversEnhanceMap()
 
     const schema = await buildSchema({
-        resolvers: [...resolvers, SigninResolver, SignupResolver],
+        resolvers: [...resolvers, ChangePasswordResolver, ConfirmUserResolver, ForgotPassword, SigninResolver, SignupResolver],
     })
 
     const apolloServer = new ApolloServer({
@@ -65,7 +65,7 @@ const main = async () => {
             cookie: {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production',
-                maxAge: 1000 * 60 * 60 * 24,
+                maxAge: 1000 * 60 * 60 * 24, // 1 day
             },
         })
     )

@@ -3,13 +3,14 @@ import "reflect-metadata"
 import { Arg, Ctx, Mutation, Resolver } from 'type-graphql'
 import bcrypt from 'bcryptjs'
 import { User } from '@generated/type-graphql'
-import { SignupInput } from './signup/SignupInput';
+import { SignupInput } from './signup/Signup.input';
 
 // @context
 import { Context } from '../../context';
 
 // @utils
 import { createConfirmationUrl, sendMail } from '../../utils'
+import { HASH_SALT } from '../../constants/encryptation';
 
 @Resolver(User)
 export class SignupResolver {
@@ -25,7 +26,7 @@ export class SignupResolver {
     }: SignupInput,
         @Ctx() ctx: Context): Promise<Partial<User> | null> {
         try {
-            const hashedPassword = await bcrypt.hash(password, 12);
+            const hashedPassword = await bcrypt.hash(password, HASH_SALT);
 
             const user = await ctx.prisma.user.create({
                 data: {

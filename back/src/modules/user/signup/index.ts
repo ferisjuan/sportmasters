@@ -1,1 +1,1 @@
-export * from './SignupInput'
+export * from './Signup.input'

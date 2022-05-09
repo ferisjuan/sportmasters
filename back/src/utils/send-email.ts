@@ -17,6 +17,7 @@ export async function sendMail(email: string, url: string) {
             },
         });
 
+        // TODO: add email templates for confirmation and forgot password
         const info = await transporter.sendMail({
             from: '"Fred Foo 👻" <foo@example.com>',
             to: email,
