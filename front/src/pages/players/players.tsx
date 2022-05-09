@@ -11,7 +11,7 @@ import { PlayerCard, PlayerForm, SMModal } from '~/components'
 import { Player } from '~/generated/graphql'
 
 // @utils
-import { showSMNotification, firstPagination, nextScroll } from '~/utils'
+import { showSMNotification, firstPagination, nextPagination } from '~/utils'
 
 export const Players = (): JSX.Element => {
     const { t } = useTranslation('notifications')
@@ -32,10 +32,10 @@ export const Players = (): JSX.Element => {
         }
     }, [])
 
-    const handleNextPosts = (key: string): void => {
+    const handleNextPagination = (key: string): void => {
         if (key.length > 0) {
             setIsloading(true)
-            nextScroll(key)
+            nextPagination(key)
                 .then(n => {
                     setPlayers(n.players)
                     setLastKey(n.lastKey)
@@ -63,7 +63,7 @@ export const Players = (): JSX.Element => {
 
                 <Pagination
                     style={{ marginTop: '2rem' }}
-                    onClick={() => handleNextPosts(lastKey)}
+                    onClick={() => handleNextPagination(lastKey)}
                     page={activePage}
                     onChange={setPage}
                     total={10}

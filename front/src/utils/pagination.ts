@@ -19,7 +19,7 @@ export const firstPagination = async (): Promise<any> => {
     return { players, lastKey }
 }
 
-export const nextScroll = async (key: string): Promise<any> => {
+export const nextPagination = async (key: string): Promise<any> => {
     const q = query(collection(db, 'players'), orderBy('lastName', 'asc'), limit(9), startAfter(key))
     const querySnapshot = await getDocs(q)
 
