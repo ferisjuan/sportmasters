@@ -171,6 +171,8 @@ model User {
   phone                 String?  @default("")
   School                School   @relation(fields: [schoolId], references: [id])
   schoolId              String
+  /// @TypeGraphQL.omit(input: ["update", "where", "orderBy"])
+  confirmed             Boolean  @default(false)
   /// @TypeGraphQL.omit(output: true)
   updatedAt             DateTime @updatedAt
 }

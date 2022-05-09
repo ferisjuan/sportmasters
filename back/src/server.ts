@@ -15,9 +15,6 @@ import { prisma } from './context'
 // @logger
 import { logger } from './logger'
 
-// @middlewares
-import { schemaLogger } from './modules/middleware'
-
 // @schema
 import { SigninResolver, SignupResolver } from './modules'
 
@@ -31,8 +28,6 @@ const main = async () => {
     appliedResolversEnhanceMap()
 
     const schema = await buildSchema({
-        globalMiddlewares: [
-            schemaLogger],
         resolvers: [...resolvers, SigninResolver, SignupResolver],
     })
 

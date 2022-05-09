@@ -4,5 +4,6 @@ import { Request } from 'express';
 export const prisma = new PrismaClient()
 
 export interface Context {
+    prisma: PrismaClient,
     req: Request,
 }

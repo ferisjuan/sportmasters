@@ -2,8 +2,11 @@
 import "reflect-metadata"
 import { Arg, Ctx, Mutation, Resolver } from 'type-graphql'
 import { compare } from 'bcryptjs'
-import { Context, prisma } from '../../context';
 import { User } from '@generated/type-graphql'
+
+// @context
+import { Context } from '../../context';
+import { createConfirmationUrl, sendMail } from '../../utils';
 
 @Resolver(User)
 export class SigninResolver {
@@ -14,13 +17,19 @@ export class SigninResolver {
         @Ctx() ctx: Context
     ) {
         try {
-            const user = await prisma.user.findUnique({ where: { email } });
+            const user = await ctx.prisma.user.findUnique({ where: { email } });
 
             if (!user) return null
 
             const valid = await compare(password, user.password);
 
             if (!valid) return null
+
+            if (!user.confirmed) {
+                await sendMail(user.email, await createConfirmationUrl(user.id))
+
+                throw new Error('Please check your email and confirm your email address')
+            }
 
             ctx.req.session!.userId = user.id
         } catch (error) {

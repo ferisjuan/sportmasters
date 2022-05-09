@@ -1,10 +1,15 @@
 // @vendors
 import "reflect-metadata"
-import { Arg, Mutation, Resolver } from 'type-graphql'
+import { Arg, Ctx, Mutation, Resolver } from 'type-graphql'
 import bcrypt from 'bcryptjs'
-import { prisma } from '../../context';
 import { User } from '@generated/type-graphql'
 import { SignupInput } from './signup/SignupInput';
+
+// @context
+import { Context } from '../../context';
+
+// @utils
+import { createConfirmationUrl, sendMail } from '../../utils'
 
 @Resolver(User)
 export class SignupResolver {
@@ -17,11 +22,12 @@ export class SignupResolver {
         lastName,
         password,
         schoolId
-    }: SignupInput): Promise<Partial<User> | null> {
-        const hashedPassword = await bcrypt.hash(password, 12);
-
+    }: SignupInput,
+        @Ctx() ctx: Context): Promise<Partial<User> | null> {
         try {
-            return await prisma.user.create({
+            const hashedPassword = await bcrypt.hash(password, 12);
+
+            const user = await ctx.prisma.user.create({
                 data: {
                     acceptsPrivacyPolicy,
                     acceptsTermsOfService,
@@ -32,6 +38,10 @@ export class SignupResolver {
                     schoolId
                 }
             })
+
+            await sendMail(user.email, await createConfirmationUrl(user.id))
+
+            return user
         } catch (error) {
             return error
         }
