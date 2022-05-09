@@ -1,7 +1,7 @@
 // @vendors
 import { useEffect, useState } from 'react'
 import { BsPlus } from 'react-icons/bs'
-import { Box, Button, Container, Grid, ThemeIcon } from '@mantine/core'
+import { Box, Container, Grid, Pagination, ThemeIcon } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
 
 // @components
@@ -20,7 +20,7 @@ export const Players = (): JSX.Element => {
     const [players, setPlayers] = useState<Player[]>([])
     const [lastKey, setLastKey] = useState('')
     const [isLoading, setIsloading] = useState(false)
-    console.log(isLoading)
+    const [activePage, setPage] = useState(1)
 
     useEffect(() => {
         firstPagination().then(n => {
@@ -37,7 +37,7 @@ export const Players = (): JSX.Element => {
             setIsloading(true)
             nextScroll(key)
                 .then(n => {
-                    setPlayers(players.concat(n.players))
+                    setPlayers(n.players)
                     setLastKey(n.lastKey)
                     setIsloading(false)
                 })
@@ -61,7 +61,7 @@ export const Players = (): JSX.Element => {
                     ))}
                 </Grid>
 
-                <Button onClick={() => handleNextPosts(lastKey)} />
+                <Pagination onClick={() => handleNextPosts(lastKey)} page={activePage} onChange={setPage} total={10} />
             </Box>
 
             <ThemeIcon
