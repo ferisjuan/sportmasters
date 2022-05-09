@@ -1,5 +1,4 @@
 // @vendors
-import { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 
 // @components
@@ -10,10 +9,6 @@ import { useStores } from '~/hooks'
 
 export const Player: React.VFC = observer(() => {
     const { playerStore } = useStores()
-
-    useEffect(() => {
-        playerStore.getPlayer('0192015c-5aa0-4604-b278-8e5dcc85c9bb')
-    }, [playerStore])
 
     return (
         <PlayerProfile>

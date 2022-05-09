@@ -2,9 +2,16 @@
 import { observer } from 'mobx-react-lite'
 import { useTranslation } from 'react-i18next'
 import { Card, Container, Grid, Image, Text } from '@mantine/core'
+import { useNavigate } from 'react-router-dom'
 
 // @interfaces
 import { Player } from '~/generated/graphql'
+
+// @hooks
+import { useStores } from '~/hooks'
+
+// @constant
+import { ROUTES } from '~/constants'
 
 interface IPlayerAvatar {
     player: Player
@@ -12,6 +19,12 @@ interface IPlayerAvatar {
 
 export const PlayerCard: React.FC<IPlayerAvatar> = observer(({ player }) => {
     const { t } = useTranslation()
+    const { playerStore } = useStores()
+    const navigate = useNavigate()
+    const handleClick = (): void => {
+        playerStore.getPlayer(player.id)
+        navigate(`../${ROUTES.player}`, { replace: true })
+    }
 
     return (
         <Grid.Col span={2}>
@@ -20,6 +33,7 @@ export const PlayerCard: React.FC<IPlayerAvatar> = observer(({ player }) => {
                 shadow="sm"
                 component="article"
                 sx={theme => ({ backgroundColor: theme.colors.yellow[5], height: '230px' })}
+                onClick={handleClick}
             >
                 <Card.Section>
                     <Container fluid sx={{ display: 'flex', justifyContent: 'center' }}>
