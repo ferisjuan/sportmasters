@@ -1,8 +1,8 @@
 // @vendors
 import { useEffect, useState } from 'react'
 import { BsPlus } from 'react-icons/bs'
-import { Container, Grid, ScrollArea, Text, ThemeIcon } from '@mantine/core'
-import { observer } from 'mobx-react-lite'
+import { Box, Container, Grid, Pagination, ThemeIcon } from '@mantine/core'
+import { useTranslation } from 'react-i18next'
 
 // @components
 import { PlayerCard, PlayerForm, SMModal } from '~/components'
@@ -10,24 +10,43 @@ import { PlayerCard, PlayerForm, SMModal } from '~/components'
 // @interfaces
 import { Player } from '~/generated/graphql'
 
-// @hooks
-import { useStores } from '~/hooks'
-import { showSMNotification } from '../../utils'
-import { useTranslation } from 'react-i18next'
+// @utils
+import { showSMNotification, firstPagination, nextPagination } from '~/utils'
 
-export const Players: React.FC = observer(() => {
-    const { t } = useTranslation('playersPage')
-    const { playersStore } = useStores()
+export const Players = (): JSX.Element => {
+    const { t } = useTranslation('notifications')
 
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const [players, setPlayers] = useState<Player[]>([])
+    const [lastKey, setLastKey] = useState('')
+    const [isLoading, setIsloading] = useState(false)
+    const [activePage, setPage] = useState(1)
 
     useEffect(() => {
-        playersStore.getPlayers()
-    }, [playersStore])
+        firstPagination().then(n => {
+            setPlayers(n.players)
+            setLastKey(n.lastKey)
+        })
+        {
+            isLoading && showSMNotification(t('loadingPlayers'), 'LOADING', isLoading)
+        }
+    }, [])
 
-    useEffect(() => {
-        playersStore.players.length === 0 && showSMNotification(t('loadingPlayers'), 'LOADING')
-    }, [playersStore.players])
+    const handleNextPagination = (key: string): void => {
+        if (key.length > 0) {
+            setIsloading(true)
+            nextPagination(key)
+                .then(n => {
+                    setPlayers(n.players)
+                    setLastKey(n.lastKey)
+                    setIsloading(false)
+                })
+                .catch(err => {
+                    console.log('error', err)
+                    setIsloading(false)
+                })
+        }
+    }
 
     return (
         <Container fluid sx={{ height: '100%', position: 'relative' }}>
@@ -35,20 +54,21 @@ export const Players: React.FC = observer(() => {
                 <PlayerForm setIsModalOpen={setIsModalOpen} />
             </SMModal>
 
-            <Text sx={{ fontSize: '48px', fontWeight: 700 }}>Players</Text>
-
-            <ScrollArea
-                type="auto"
-                style={{ height: '80vh', width: '100%' }}
-                offsetScrollbars
-                scrollbarSize={4}
-                scrollHideDelay={350}
-            >
+            <Box style={{ height: '80vh', width: '100%' }}>
                 <Grid>
-                    {playersStore.players.length > 0 &&
-                        playersStore.players.map((player: Player) => <PlayerCard key={player.id} player={player} />)}
+                    {players?.map(player => (
+                        <PlayerCard key={player.id} player={player as Player} />
+                    ))}
                 </Grid>
-            </ScrollArea>
+
+                <Pagination
+                    style={{ marginTop: '2rem' }}
+                    onClick={() => handleNextPagination(lastKey)}
+                    page={activePage}
+                    onChange={setPage}
+                    total={10}
+                />
+            </Box>
 
             <ThemeIcon
                 radius="md"
@@ -60,4 +80,4 @@ export const Players: React.FC = observer(() => {
             </ThemeIcon>
         </Container>
     )
-})
+}

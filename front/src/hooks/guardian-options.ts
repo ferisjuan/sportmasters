@@ -17,14 +17,14 @@ interface IGuardianOptions {
 }
 
 export function useGuardianOptions(): IGuardianOptions {
-    const { t } = useTranslation()
+    const { t } = useTranslation('familySupport')
 
     const [guardianOptions, setParsedGuardianOptions] = useState<TRecord>([])
 
     useEffect(() => {
         const _guardianOptions = rawGuardianOptions.map(({ key, value }) => ({
             value: key,
-            label: t(`familySupport.${value}`),
+            label: t(`${value}`),
         }))
 
         const sortedGuardianOptions = _guardianOptions
@@ -33,7 +33,7 @@ export function useGuardianOptions(): IGuardianOptions {
 
         sortedGuardianOptions.unshift({
             value: Guardian_Type.None,
-            label: t(`familySupport.${Guardian_Type.None}`),
+            label: t(`${Guardian_Type.None}`),
         })
 
         setParsedGuardianOptions(sortedGuardianOptions)

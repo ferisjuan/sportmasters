@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, getDoc, getDocs, orderBy, query } from '@firebase/firestore'
+import { addDoc, collection, doc, getDoc, getDocs, orderBy, query, limit, startAt } from '@firebase/firestore'
 import { db } from '~/db/connect'
 
 export class FirebaseService<T> {
@@ -18,7 +18,30 @@ export class FirebaseService<T> {
         const q = query(collection(db, this.collection), orderBy('lastName', 'asc'))
         const querySnapshot = await getDocs(q)
 
-        const _collection = querySnapshot.docs.map((_doc) => _doc.data()) as T[]
+        const _collection = querySnapshot.docs.map(_doc => _doc.data()) as T[]
+
+        return [..._collection]
+    }
+
+    async getPagination(): Promise<T[]> {
+        const q = query(collection(db, this.collection), orderBy('lastName', 'asc'), limit(9))
+        const querySnapshot = await getDocs(q)
+
+        const _collection = querySnapshot.docs.map(_doc => _doc.data()) as T[]
+
+        return [..._collection]
+    }
+
+    async pagination(): Promise<T[]> {
+        const q = query(collection(db, this.collection), orderBy('lastName', 'asc'), limit(9))
+        const documentSnapshots = await getDocs(q)
+
+        const lastVisible = documentSnapshots.docs[documentSnapshots.docs.length - 1]
+
+        const next = query(collection(db, this.collection), orderBy('lastName', 'asc'), limit(9), startAt(lastVisible))
+        const querySnapshot = await getDocs(next)
+
+        const _collection = querySnapshot.docs.map(_doc => _doc.data()) as T[]
 
         return [..._collection]
     }

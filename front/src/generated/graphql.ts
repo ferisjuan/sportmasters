@@ -2503,30 +2503,25 @@ export type UserWhereUniqueInput = {
   id?: InputMaybe<Scalars['String']>;
 };
 
-export type PlayersQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type PlayersQuery = { __typename?: 'Query', players: Array<{ __typename?: 'Player', id: string, birthday: any, category: Player_Category, familySupport: Array<Family_Support>, fieldPosition: Field_Position, guardianEmail: string, guardianId: string, guardianIdType: string, guardianLastName: string, guardianName: string, guardianPhone: string, guardianType: Guardian_Type, height: number, hobbies: Array<string>, image: string, IMC: number, lastName: string, name: string, personalQualities: Array<Personal_Qualities>, physicalCapabilities: Array<Physical_Capabilities>, physicalQualities: Array<Physical_Qualities>, placeOfBirth: string, playerEmail: string, playerId: string, playerIdType: string, playerNumber: string, playerPhone: string, schoolId: string, sportHistory: string, weight: number, createdAt: any, updatedAt: any, school: { __typename?: 'School', id: string } }> };
-
-export type CreatePlayerMutationVariables = Exact<{
-  data: Array<PlayerCreateManyInput> | PlayerCreateManyInput;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+export type PlayersQueryVariables = Exact<{
+  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
 }>;
 
 
-export type CreatePlayerMutation = { __typename?: 'Mutation', createManyPlayer: { __typename?: 'AffectedRowsOutput', count: number } };
+export type PlayersQuery = { __typename?: 'Query', players: Array<{ __typename?: 'Player', id: string, birthday: any, category: Player_Category, familySupport: Array<Family_Support>, fieldPosition: Field_Position, guardianEmail: string, guardianId: string, guardianIdType: string, guardianLastName: string, guardianName: string, guardianPhone: string, guardianType: Guardian_Type, height: number, hobbies: Array<string>, image: string, IMC: number, lastName: string, name: string, personalQualities: Array<Personal_Qualities>, physicalCapabilities: Array<Physical_Capabilities>, physicalQualities: Array<Physical_Qualities>, placeOfBirth: string, playerEmail: string, playerId: string, playerIdType: string, playerNumber: string, playerPhone: string, schoolId: string, sportHistory: string, weight: number, createdAt: any, updatedAt: any, school: { __typename?: 'School', id: string } }> };
 
 export type GetSchoolByIdQueryVariables = Exact<{
   where: SchoolWhereUniqueInput;
 }>;
 
 
-export type GetSchoolByIdQuery = { __typename?: 'Query', school?: { __typename?: 'School', id: string, address: string, email: string, name: string, password: string, phone: string, tier: Tier, createdAt: any, updatedAt: any } | null };
+export type GetSchoolByIdQuery = { __typename?: 'Query', school?: { __typename?: 'School', id: string, address: string, email: string, name: string, phone: string, tier: Tier, createdAt: any, updatedAt: any } | null };
 
 
 export const PlayersDocument = gql`
-    query Players {
-  players {
+    query Players($take: Int, $skip: Int) {
+  players(take: $take, skip: $skip) {
     id
     birthday
     category
@@ -2565,13 +2560,6 @@ export const PlayersDocument = gql`
   }
 }
     `;
-export const CreatePlayerDocument = gql`
-    mutation CreatePlayer($data: [PlayerCreateManyInput!]!, $skipDuplicates: Boolean) {
-  createManyPlayer(data: $data, skipDuplicates: $skipDuplicates) {
-    count
-  }
-}
-    `;
 export const GetSchoolByIdDocument = gql`
     query getSchoolById($where: SchoolWhereUniqueInput!) {
   school(where: $where) {
@@ -2579,7 +2567,6 @@ export const GetSchoolByIdDocument = gql`
     address
     email
     name
-    password
     phone
     tier
     createdAt
@@ -2597,9 +2584,6 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
   return {
     Players(variables?: PlayersQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PlayersQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PlayersQuery>(PlayersDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Players', 'query');
-    },
-    CreatePlayer(variables: CreatePlayerMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CreatePlayerMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<CreatePlayerMutation>(CreatePlayerDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'CreatePlayer', 'mutation');
     },
     getSchoolById(variables: GetSchoolByIdQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetSchoolByIdQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetSchoolByIdQuery>(GetSchoolByIdDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getSchoolById', 'query');

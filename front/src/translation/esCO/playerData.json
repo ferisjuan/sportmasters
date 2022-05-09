@@ -1,0 +1,26 @@
+{
+    "birthday": "Fecha de nacimiento",
+    "cancel": "Cancelar",
+    "dateDescription": "dd/mm/yy",
+    "email": "Correo electrónico",
+    "formTitle": "Crea un nuevo jugador",
+    "formTitleGuardianData": "Datos del acudiente",
+    "formTitleStudentData": "Datos del estudiante",
+    "guardian": "Acudiente",
+    "guardianPlaceholder": "Selecciona un acudiente",
+    "height": "Altura",
+    "heightUnit": "(cm)",
+    "idSelect": {
+        "dni": "Cedula de ciudadania",
+        "passport": "Pasaporte",
+        "placeholder": "Tipo de documento"
+    },
+    "lastName": "Apellido (s)",
+    "name": "Nombre (s)",
+    "phone": "Teléfono",
+    "playerIdPlaceholder": "ID del estudiante",
+    "guardianIdPlaceholder": "ID del acudiente",
+    "save": "Guardar",
+    "weight": "Peso",
+    "weightUnit": "(kg)"
+}

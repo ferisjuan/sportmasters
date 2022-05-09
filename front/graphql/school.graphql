@@ -4,7 +4,6 @@ query getSchoolById($where: SchoolWhereUniqueInput!) {
         address
         email
         name
-        password
         phone
         tier
         createdAt

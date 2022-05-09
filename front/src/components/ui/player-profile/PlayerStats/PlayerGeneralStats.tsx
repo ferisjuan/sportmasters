@@ -21,7 +21,7 @@ export const PlayerGeneralStats: React.VFC = observer(() => {
 
     return (
         <Col span={4}>
-            <Card sx={(theme) => ({ backgroundColor: theme.colors.violet[9], height: '230px', width: '600px' })}>
+            <Card sx={theme => ({ backgroundColor: theme.colors.violet[9], height: '230px', width: '600px' })}>
                 <Card.Section>
                     <Container
                         sx={{

@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { useStores } from '~/hooks'
 
 export const SoccerField: React.VFC = () => {
-    const { t } = useTranslation()
+    const { t } = useTranslation('fieldPosition')
     const {
         playerStore: {
             player: { fieldPosition },
@@ -16,7 +16,7 @@ export const SoccerField: React.VFC = () => {
     return (
         <Col span={3}>
             <Container
-                sx={(theme) => ({
+                sx={theme => ({
                     backgroundColor: '#180829',
                     borderRadius: theme?.radius.sm,
                     height: '230px',
@@ -85,7 +85,7 @@ export const SoccerField: React.VFC = () => {
                 </Container>
                 <Container>
                     <Text align="center" sx={{ color: 'white' }}>
-                        {t(`fieldPosition.${fieldPosition}`)}
+                        {t(`${fieldPosition}`)}
                     </Text>
                 </Container>
             </Container>

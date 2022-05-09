@@ -1,9 +1,9 @@
 import { showNotification } from '@mantine/notifications'
 import { types } from './types.description'
 
-export const showSMNotification = (message: string, type: keyof typeof notification.ENUM): void =>
+export const showSMNotification = (message: string, type: keyof typeof notification.ENUM, loading: boolean): void =>
     showNotification({
-        autoClose: 2000,
+        autoClose: loading,
         color: types[type].color,
         id: types[type].id,
         loading: types[type].loading,
