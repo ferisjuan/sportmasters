@@ -61,7 +61,13 @@ export const Players = (): JSX.Element => {
                     ))}
                 </Grid>
 
-                <Pagination onClick={() => handleNextPosts(lastKey)} page={activePage} onChange={setPage} total={10} />
+                <Pagination
+                    style={{ marginTop: '2rem' }}
+                    onClick={() => handleNextPosts(lastKey)}
+                    page={activePage}
+                    onChange={setPage}
+                    total={10}
+                />
             </Box>
 
             <ThemeIcon
