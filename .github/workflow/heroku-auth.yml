@@ -52,7 +52,7 @@ jobs:
       # - run: npm run test
   deploy:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/develop' # only develop
+    # if: github.event_name == 'push' && github.ref == 'refs/heads/develop' # only develop
     # needs: test
     steps:
       - uses: actions/checkout@v2
