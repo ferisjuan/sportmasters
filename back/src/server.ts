@@ -12,11 +12,14 @@ import session from 'express-session'
 // @context
 import { prisma } from './context'
 
+// @constants
+import { AUTH_COOKIE_NAME } from './constants'
+
 // @logger
 import { logger } from './logger'
 
 // @schema
-import { ChangePasswordResolver, ConfirmUserResolver, ForgotPassword, SigninResolver, SignupResolver } from './modules'
+import { ChangePasswordResolver, ConfirmUserResolver, ForgotPassword, LogoutResolver, SigninResolver, SignupResolver } from './modules'
 
 // @redis
 import { redis } from './redis'
@@ -28,13 +31,21 @@ const main = async () => {
     appliedResolversEnhanceMap()
 
     const schema = await buildSchema({
-        resolvers: [...resolvers, ChangePasswordResolver, ConfirmUserResolver, ForgotPassword, SigninResolver, SignupResolver],
+        resolvers: [
+            ...resolvers,
+            ChangePasswordResolver,
+            ConfirmUserResolver,
+            ForgotPassword,
+            LogoutResolver,
+            SigninResolver, SignupResolver
+        ],
     })
 
     const apolloServer = new ApolloServer({
-        context: ({ req }) => ({
+        context: ({ req, res }) => ({
             prisma,
             req,
+            res
         }),
         logger: logger.child({ module: 'apollo' }),
         formatError: (error) => {
@@ -58,7 +69,7 @@ const main = async () => {
             store: new RedisStore({
                 client: redis,
             }),
-            name: 'spm',
+            name: AUTH_COOKIE_NAME,
             secret: process.env.SESSION_SECRET!,
             resave: false,
             saveUninitialized: false,

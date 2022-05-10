@@ -1,12 +1,8 @@
-import { Length } from 'class-validator';
 import { Field, InputType } from 'type-graphql';
+import { PasswordInput } from '../../shared';
 
 @InputType()
-export class ChangePasswordInput {
-    @Field()
-    @Length(8, 100)
-    password: string
-
+export class ChangePasswordInput extends PasswordInput {
     @Field()
     token: string
 }

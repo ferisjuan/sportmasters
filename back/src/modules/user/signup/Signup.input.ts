@@ -1,10 +1,16 @@
+// @vendors
 import { IsEmail, Length } from 'class-validator';
 import { Field, InputType } from 'type-graphql';
+
+// @decorators
 import { IsEmailAlreadyExists } from './IsEmailAlreadyExists';
 import { IsSchoolExists } from './IsSchoolExists';
 
+// @shared
+import { PasswordInput } from '../../shared';
+
 @InputType()
-export class SignupInput {
+export class SignupInput extends PasswordInput {
     @Field()
     acceptsPrivacyPolicy: boolean
 
@@ -23,10 +29,6 @@ export class SignupInput {
     @Field()
     @Length(2, 15)
     lastName: string
-
-    @Field()
-    @Length(8, 100)
-    password: string
 
     @Field()
     @IsSchoolExists({ message: 'School does not exist' })

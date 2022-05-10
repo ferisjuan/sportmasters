@@ -2,7 +2,7 @@
 import "reflect-metadata"
 import { Arg, Ctx, Mutation, Resolver } from 'type-graphql'
 import { v4 } from 'uuid';
-import { forgotPasswordPrefix } from '../../constants';
+import { FORGOT_PASSWORD_PREFIX } from '../../constants';
 
 // @context
 import { Context } from '../../context';
@@ -27,7 +27,7 @@ export class ForgotPassword {
 
             const token = v4()
 
-            await redis.set(`${forgotPasswordPrefix}${token}`, user.id, "EX", 60 * 15) // 15 min expiration
+            await redis.set(`${FORGOT_PASSWORD_PREFIX}${token}`, user.id, "EX", 60 * 15) // 15 min expiration
 
             await sendMail(user.email, `${process.env.FRONT_URL}/user/change-password/${token}'`)
 

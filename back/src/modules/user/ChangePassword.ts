@@ -5,7 +5,7 @@ import { User } from '@generated/type-graphql'
 import { hash } from 'bcryptjs';
 
 // @contants
-import { HASH_SALT, forgotPasswordPrefix } from '../../constants';
+import { HASH_SALT, FORGOT_PASSWORD_PREFIX } from '../../constants';
 
 // @context
 import { Context } from '../../context';
@@ -24,7 +24,7 @@ export class ChangePasswordResolver {
         @Ctx() ctx: Context
     ): Promise<User | null> {
         try {
-            const userId = await redis.get(`${forgotPasswordPrefix}${token}`)
+            const userId = await redis.get(`${FORGOT_PASSWORD_PREFIX}${token}`)
 
             if (!userId) return null
 
