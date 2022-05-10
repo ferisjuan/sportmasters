@@ -42,9 +42,13 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '14.x'
-      - run: npm ci
+      - name: Run clean install
+        run: npm ci
+        working-directory: ./back
       # run the migration in the test database
-      - run: npx prisma migrate dev
+      - name: Run migrations
+        run: npx prisma migrate dev
+        working-directory: ./back
       # - run: npm run test
   deploy:
     runs-on: ubuntu-latest
@@ -52,9 +56,12 @@ jobs:
     # needs: test
     steps:
       - uses: actions/checkout@v2
-      - run: npm ci
+      - name: Run clean install
+        run: npm ci
+        working-directory: ./back
       - name: Run stage migration
         run: npm run migrate:deploy
+        working-directory: ./back
         env:
           DATABASE_URL: ${{secrets.DATABASE_URL}}
           FRONT_URL: ${{secrets.FRONT_URL}}
