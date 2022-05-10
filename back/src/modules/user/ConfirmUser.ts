@@ -20,13 +20,11 @@ export class ConfirmUserResolver {
 
             if (!userId) return false
 
-            await ctx.prisma.user.update({ where: { id: userId }, data: { confirmed: true } })
+            const user = await ctx.prisma.user.update({ where: { id: userId }, data: { confirmed: true } })
 
             await redis.del(token)
 
-            const user = await ctx.prisma.user.findUnique({ where: { id: userId } })
-
-            ctx.req.session!.userId = user?.id
+            ctx.req.session!.userId = user.id
 
             return true
         } catch (error) {
