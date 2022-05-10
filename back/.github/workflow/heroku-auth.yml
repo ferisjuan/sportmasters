@@ -45,18 +45,23 @@ jobs:
       - run: npm ci
       # run the migration in the test database
       - run: npx prisma migrate dev
-      - run: npm run test
+      # - run: npm run test
   deploy:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master' # only master
-    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/develop' # only develop
+    # needs: test
     steps:
       - uses: actions/checkout@v2
       - run: npm ci
-      - name: Run production migration
+      - name: Run stage migration
         run: npm run migrate:deploy
         env:
           DATABASE_URL: ${{secrets.DATABASE_URL}}
+          FRONT_URL: ${{secrets.FRONT_URL}}
+          JWT_SECRET: ${{secrets.JWT_SECRET}}
+          PORT: ${{secrets.PORT}}
+          REDIS_URL: ${{secrets.REDIS_URL}}
+          SESSION_SECRET: ${{secrets.SESSION_SECRET}}
       - uses: akhileshns/heroku-deploy@v3.4.6
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
