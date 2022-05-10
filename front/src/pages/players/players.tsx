@@ -1,7 +1,7 @@
 // @vendors
 import { useEffect, useState } from 'react'
 import { BsPlus } from 'react-icons/bs'
-import { Box, Container, Grid, Pagination, ThemeIcon } from '@mantine/core'
+import { Container, Grid, Pagination, ThemeIcon, Group, Button, NativeSelect, ScrollArea } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
 
 // @components
@@ -12,6 +12,9 @@ import { Player } from '~/generated/graphql'
 
 // @utils
 import { showSMNotification, firstPagination, nextPagination } from '~/utils'
+
+// @constants
+import { CATEGORYFILTERS, FIELDPOSITIONS, MONTHLYSTATUS } from '~/constants'
 
 export const Players = (): JSX.Element => {
     const { t } = useTranslation('notifications')
@@ -53,22 +56,47 @@ export const Players = (): JSX.Element => {
             <SMModal isOpen={isModalOpen} setIsOpen={setIsModalOpen}>
                 <PlayerForm setIsModalOpen={setIsModalOpen} />
             </SMModal>
+            <Group grow>
+                <NativeSelect
+                    data={CATEGORYFILTERS}
+                    placeholder="Elige una opción"
+                    label="Categoria"
+                    variant="filled"
+                    style={{ marginTop: '1rem', marginBottom: '1rem' }}
+                />
 
-            <Box style={{ height: '80vh', width: '100%' }}>
+                <NativeSelect
+                    data={FIELDPOSITIONS}
+                    placeholder="Elige una opción"
+                    label="Posicion"
+                    variant="filled"
+                    style={{ marginTop: '1rem', marginBottom: '1rem' }}
+                />
+                <NativeSelect
+                    data={MONTHLYSTATUS}
+                    placeholder="Elige una opción"
+                    label="Estado mensual"
+                    variant="filled"
+                    style={{ marginTop: '1rem', marginBottom: '1rem' }}
+                />
+                <Button style={{ alignSelf: 'end', marginBottom: '1rem' }}>Filtrar</Button>
+            </Group>
+
+            <ScrollArea style={{ height: '70vh' }}>
                 <Grid>
                     {players?.map(player => (
                         <PlayerCard key={player.id} player={player as Player} />
                     ))}
                 </Grid>
+            </ScrollArea>
 
-                <Pagination
-                    style={{ marginTop: '2rem' }}
-                    onClick={() => handleNextPagination(lastKey)}
-                    page={activePage}
-                    onChange={setPage}
-                    total={10}
-                />
-            </Box>
+            <Pagination
+                style={{ marginTop: '2rem', position: 'absolute', bottom: 0 }}
+                onClick={() => handleNextPagination(lastKey)}
+                page={activePage}
+                onChange={setPage}
+                total={10}
+            />
 
             <ThemeIcon
                 radius="md"
