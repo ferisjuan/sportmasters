@@ -6,10 +6,6 @@ export const NAV_ITEMS = [
         text: 'main',
     },
     {
-        to: ROUTES.player,
-        text: 'player',
-    },
-    {
         to: ROUTES.players,
         text: 'players',
     },
