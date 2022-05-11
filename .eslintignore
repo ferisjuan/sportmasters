@@ -1,5 +1,20 @@
-*.css
-*.svg
 node_modules/
-.eslintrc.js
-.prettierrc.js
+
+# Ignore artifacts:
+coverage/
+dist/
+build/
+public/
+__mocks__/
+
+commitlint.config.js
+jest.config.js
+postcss.config.js
+*.d.ts
+
+vite.config.ts
+
+generated/
+*.config.js
+
+backend/src/generated/

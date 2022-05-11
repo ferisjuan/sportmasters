@@ -1,0 +1,14 @@
+{
+    "NONE": "Ninguno",
+    "ATTACKING_MIDFIELDER": "Mediocampista ofensivo",
+    "CENTER_BACK": "Centro-Pivote",
+    "CENTER_FORWARD": "Centro-Delantero",
+    "CENTER_MIDDLEFIELDER": "Mediocampista central",
+    "DEFENSIVE_MIDFIELDER": "Mediocampista defensivo",
+    "GOAL_KEEPER": "Portero",
+    "LEFT_FULLBACK": "Lateral-Pivote",
+    "LEFT_MIDDLEFIELDER": "Mediocampista lateral",
+    "RIGHT_FULLBACK": "Lateral-Pivote",
+    "RIGHT_MIDDLEFIELDER": "Mediocampista lateral",
+    "SWEEPER": "Rematador"
+}

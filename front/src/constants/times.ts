@@ -1,0 +1,1 @@
+export const REDIRECT_NAVIGATION_TIME = 2000
