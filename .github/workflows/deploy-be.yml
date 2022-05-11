@@ -25,8 +25,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - name: Run clean install
+      run: npm ci
     - name: Run stage migration
       run: npx prisma migrate deploy
+    - name: Run types generation
+      run: npx prisma generate
+    - name: build the app
+      run: npm run build
       env:
         DATABASE_URL: ${{secrets.DATABASE_URL}}
         FRONT_URL: ${{secrets.FRONT_URL}}
