@@ -28,10 +28,8 @@ jobs:
         cache: 'npm'
     - name: Run clean install
       run: npm ci
-      working-directory: back
     - name: Run stage migration
       run: npx prisma migrate deploy
-      working-directory: back
       env:
         DATABASE_URL: ${{secrets.DATABASE_URL}}
         FRONT_URL: ${{secrets.FRONT_URL}}
