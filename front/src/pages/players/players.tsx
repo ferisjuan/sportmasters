@@ -24,6 +24,7 @@ export const Players = (): JSX.Element => {
     const [lastKey, setLastKey] = useState('')
     const [isLoading, setIsloading] = useState(false)
     const [activePage, setPage] = useState(1)
+    const [value, setValue] = useState({ category: '', position: '', status: '' })
 
     useEffect(() => {
         firstPagination().then(n => {
@@ -58,6 +59,10 @@ export const Players = (): JSX.Element => {
             </SMModal>
             <Group grow>
                 <NativeSelect
+                    value={value.category}
+                    onChange={e => {
+                        setValue({ ...value, category: e.target.value })
+                    }}
                     data={CATEGORYFILTERS}
                     placeholder="Elige una opción"
                     label="Categoria"
@@ -66,6 +71,10 @@ export const Players = (): JSX.Element => {
                 />
 
                 <NativeSelect
+                    value={value.position}
+                    onChange={e => {
+                        setValue({ ...value, position: e.target.value })
+                    }}
                     data={FIELDPOSITIONS}
                     placeholder="Elige una opción"
                     label="Posicion"
@@ -73,6 +82,10 @@ export const Players = (): JSX.Element => {
                     style={{ marginTop: '1rem', marginBottom: '1rem' }}
                 />
                 <NativeSelect
+                    value={value.status}
+                    onChange={e => {
+                        setValue({ ...value, status: e.target.value })
+                    }}
                     data={MONTHLYSTATUS}
                     placeholder="Elige una opción"
                     label="Estado mensual"
