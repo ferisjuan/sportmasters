@@ -29,7 +29,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - name: CI install
-      run: npm run ci
+      run: npm ci
     - name: Run stage migration
       run: npx prisma migrate deploy
       env:
