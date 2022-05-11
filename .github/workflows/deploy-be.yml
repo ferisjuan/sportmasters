@@ -28,6 +28,13 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+      env:
+        DATABASE_URL: ${{secrets.DATABASE_URL}}
+        FRONT_URL: ${{secrets.FRONT_URL}}
+        JWT_SECRET: ${{secrets.JWT_SECRET}}
+        PORT: ${{secrets.PORT}}
+        REDIS_URL: ${{secrets.REDIS_URL}}
+        SESSION_SECRET: ${{secrets.SESSION_SECRET}}
     - name: Run clean install
       run: npm ci
     - name: Run stage migration
@@ -36,13 +43,6 @@ jobs:
       run: npx prisma generate
     - name: build the app
       run: npm run build
-      env:
-        DATABASE_URL: ${{secrets.DATABASE_URL}}
-        FRONT_URL: ${{secrets.FRONT_URL}}
-        JWT_SECRET: ${{secrets.JWT_SECRET}}
-        PORT: ${{secrets.PORT}}
-        REDIS_URL: ${{secrets.REDIS_URL}}
-        SESSION_SECRET: ${{secrets.SESSION_SECRET}}
     - uses: akhileshns/heroku-deploy@v3.4.6
       with:
         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
