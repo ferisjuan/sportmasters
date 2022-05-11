@@ -28,10 +28,10 @@ jobs:
         cache: 'npm'
     - name: Run clean install
       run: npm ci
-      working-directory: ./back
+      working-directory: back
     - name: Run stage migration
       run: npm run migrate:deploy
-      working-directory: ./back
+      working-directory: back
       env:
         DATABASE_URL: ${{secrets.DATABASE_URL}}
         FRONT_URL: ${{secrets.FRONT_URL}}
