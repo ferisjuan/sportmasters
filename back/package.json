@@ -11,7 +11,8 @@
     "dev": "dotenv -e ./development.env -- ts-node-dev --respawn --transpile-only src/server.ts",
     "clean": "rm -rf dist",
     "prebuild": "rm -rf dist",
-    "build": "tsc ./tsconfig.json",
+    "build": "npm -s run clean && npm -s run generate && tsc --project ./tsconfig.json",
+    "start": "node ./dist/server.js",
     "generate": "npx prisma generate",
     "migrate:dev": "dotenv -e ./development.env -- npx prisma migrate dev",
     "studio:dev": "dotenv -e ./development.env -- npx prisma studio"
