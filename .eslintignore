@@ -16,3 +16,5 @@ vite.config.ts
 
 generated/
 *.config.js
+
+backend/src/generated/

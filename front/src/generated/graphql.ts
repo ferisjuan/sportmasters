@@ -1667,7 +1667,6 @@ export type School = {
   email: Scalars['String'];
   id: Scalars['String'];
   name: Scalars['String'];
-  password: Scalars['String'];
   phone: Scalars['String'];
   players: Array<Player>;
   tier: Tier;
@@ -2097,7 +2096,6 @@ export type User = {
   isAdmin: Scalars['Boolean'];
   lastName: Scalars['String'];
   name: Scalars['String'];
-  password: Scalars['String'];
   phone: Scalars['String'];
   schoolId: Scalars['String'];
   updatedAt: Scalars['DateTime'];
@@ -2518,6 +2516,14 @@ export type GetSchoolByIdQueryVariables = Exact<{
 
 export type GetSchoolByIdQuery = { __typename?: 'Query', school?: { __typename?: 'School', id: string, address: string, email: string, name: string, phone: string, tier: Tier, createdAt: any, updatedAt: any } | null };
 
+export type GetSchoolsQueryVariables = Exact<{
+  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+}>;
+
+
+export type GetSchoolsQuery = { __typename?: 'Query', schools: Array<{ __typename?: 'School', id: string, address: string, email: string, name: string, phone: string, tier: Tier, createdAt: any, updatedAt: any, _count?: { __typename?: 'SchoolCount', users: number, players: number } | null, players: Array<{ __typename?: 'Player', id: string }>, users: Array<{ __typename?: 'User', id: string }> }> };
+
 
 export const PlayersDocument = gql`
     query Players($take: Int, $skip: Int) {
@@ -2574,6 +2580,30 @@ export const GetSchoolByIdDocument = gql`
   }
 }
     `;
+export const GetSchoolsDocument = gql`
+    query getSchools($take: Int, $skip: Int) {
+  schools(take: $take, skip: $skip) {
+    id
+    address
+    email
+    name
+    phone
+    tier
+    createdAt
+    updatedAt
+    _count {
+      users
+      players
+    }
+    players {
+      id
+    }
+    users {
+      id
+    }
+  }
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
@@ -2587,6 +2617,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     getSchoolById(variables: GetSchoolByIdQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetSchoolByIdQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetSchoolByIdQuery>(GetSchoolByIdDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getSchoolById', 'query');
+    },
+    getSchools(variables?: GetSchoolsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetSchoolsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetSchoolsQuery>(GetSchoolsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getSchools', 'query');
     }
   };
 }
