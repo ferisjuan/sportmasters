@@ -1,6 +1,11 @@
-import { applyResolversEnhanceMap } from '@generated/type-graphql'
+// @vendors
 import { UseMiddleware } from 'type-graphql'
+
+// @middlewares
 import { isAuth } from '../middleware'
+
+// @generated
+import { applyResolversEnhanceMap } from '../generated/typegraphql-prisma.ts'
 
 export const appliedResolversEnhanceMap = () => applyResolversEnhanceMap({
     Player: {
