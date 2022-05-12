@@ -3,7 +3,6 @@ import "reflect-metadata"
 import "dotenv/config"
 import { ApolloServer } from "apollo-server-express"
 import { buildSchema } from 'type-graphql'
-import { resolvers } from '@generated/type-graphql'
 import cors from 'cors'
 import Express from 'express'
 import connectRedis from 'connect-redis'
@@ -26,6 +25,7 @@ import { redis } from './redis'
 
 // @utils
 import { appliedResolversEnhanceMap } from './enhance-maps'
+import { resolvers } from './generated/typegraphql-prisma.ts'
 
 const main = async () => {
     appliedResolversEnhanceMap()

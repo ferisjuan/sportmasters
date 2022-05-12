@@ -2,9 +2,9 @@ name: Backend CI
 
 on:
   push:
-    branches: [ master, develop ]
+    branches: [ master ]
   pull_request:
-    branches: [ master, develop ]
+    branches: [ master ]
 
   workflow_dispatch:
 
@@ -14,37 +14,21 @@ defaults:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [16.x]
-
-    # if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
-
     steps:
     - uses: actions/checkout@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - name: CI install
-      run: npm ci
-    - name: Run stage migration
-      run: npx prisma migrate deploy
+    - uses: akhileshns/heroku-deploy@v3.4.6
       env:
-        DATABASE_URL: ${{secrets.DATABASE_URL}}
-    - name: build the app
-      run: npm run build
-      env:
+        NODE_ENV: production
+        CORS_ORIGIN: ${{secrets.CORS_ORIGIN}}
         DATABASE_URL: ${{secrets.DATABASE_URL}}
         FRONT_URL: ${{secrets.FRONT_URL}}
         JWT_SECRET: ${{secrets.JWT_SECRET}}
         PORT: ${{secrets.PORT}}
         REDIS_URL: ${{secrets.REDIS_URL}}
         SESSION_SECRET: ${{secrets.SESSION_SECRET}}
-    - uses: akhileshns/heroku-deploy@v3.4.6
       with:
+        node-version: 16.x
         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
         heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
         heroku_email: ${{secrets.HEROKU_EMAIL}}

@@ -1,9 +1,11 @@
 generator client {
-  provider = "prisma-client-js"
+  provider  = "prisma-client-js"
+  output    = "../src/generated/prisma-client-ts.ts"
 }
 
 generator typegraphql {
   provider = "typegraphql-prisma"
+  output   = "../src/generated/typegraphql-prisma.ts"
 }
 
 datasource db {
