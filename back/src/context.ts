@@ -1,8 +1,8 @@
 // @vendors
+import { PrismaClient } from '@prisma/client';
 import { Request, Response } from 'express';
 
 // @generated
-import { PrismaClient } from './generated/prisma-client-ts.ts';
 
 export const prisma = new PrismaClient()
 

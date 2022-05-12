@@ -14,6 +14,9 @@ import { prisma } from './context'
 // @constants
 import { AUTH_COOKIE_NAME } from './constants'
 
+// @generated
+import { resolvers } from './generated/typegraphql-prisma.ts'
+
 // @logger
 import { logger } from './logger'
 
@@ -25,7 +28,6 @@ import { redis } from './redis'
 
 // @utils
 import { appliedResolversEnhanceMap } from './enhance-maps'
-import { resolvers } from './generated/typegraphql-prisma.ts'
 
 const main = async () => {
     appliedResolversEnhanceMap()
