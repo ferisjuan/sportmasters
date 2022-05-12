@@ -17,4 +17,5 @@ vite.config.ts
 generated/
 *.config.js
 
-backend/src/generated/
+# backend generated files
+back/src/generated

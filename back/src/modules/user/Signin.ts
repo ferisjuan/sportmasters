@@ -2,11 +2,13 @@
 import "reflect-metadata"
 import { Arg, Ctx, Mutation, Resolver } from 'type-graphql'
 import { compare } from 'bcryptjs'
-import { User } from '@generated/type-graphql'
 
 // @context
 import { Context } from '../../context';
 import { createConfirmationUrl, sendMail } from '../../utils';
+
+// @generated
+import { User } from '../../generated/typegraphql-prisma.ts';
 
 @Resolver(User)
 export class SigninResolver {

@@ -1,7 +1,6 @@
 // @vendors
 import "reflect-metadata"
 import { Arg, Ctx, Mutation, Resolver } from 'type-graphql'
-import { User } from '@generated/type-graphql'
 import { hash } from 'bcryptjs';
 
 // @contants
@@ -9,6 +8,9 @@ import { HASH_SALT, FORGOT_PASSWORD_PREFIX } from '../../constants';
 
 // @context
 import { Context } from '../../context';
+
+// @generated
+import { User } from '../../generated/typegraphql-prisma.ts';
 
 // @redis
 import { redis } from '../../redis';

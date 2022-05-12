@@ -3,7 +3,6 @@ import "reflect-metadata"
 import "dotenv/config"
 import { ApolloServer } from "apollo-server-express"
 import { buildSchema } from 'type-graphql'
-import { resolvers } from '@generated/type-graphql'
 import cors from 'cors'
 import Express from 'express'
 import connectRedis from 'connect-redis'
@@ -14,6 +13,9 @@ import { prisma } from './context'
 
 // @constants
 import { AUTH_COOKIE_NAME } from './constants'
+
+// @generated
+import { resolvers } from './generated/typegraphql-prisma.ts'
 
 // @logger
 import { logger } from './logger'
