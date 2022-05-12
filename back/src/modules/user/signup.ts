@@ -2,11 +2,13 @@
 import "reflect-metadata"
 import { Arg, Ctx, Mutation, Resolver } from 'type-graphql'
 import bcrypt from 'bcryptjs'
-import { User } from '@generated/type-graphql'
 import { SignupInput } from './signup/Signup.input';
 
 // @context
 import { Context } from '../../context';
+
+// @generated
+import { User } from '../../generated/typegraphql-prisma.ts';
 
 // @utils
 import { createConfirmationUrl, sendMail } from '../../utils'

@@ -178,3 +178,6 @@ out
 .pnp.*
 
 # End of https://www.toptal.com/developers/gitignore/api/jetbrains,macos,node
+
+# backend generated files
+back/src/generated
