@@ -1,8 +1,6 @@
 name: Backend CI
 
 on:
-  push:
-    branches: [ master, develop ]
   pull_request:
     branches: [ master, develop ]
 
@@ -20,19 +18,15 @@ jobs:
       with:
         node-version: 16.x
         cache: 'npm'
+    - name: DB migration
+      run: npx prisma migrate dev
+      env:
+        DATABASE_URL: ${{secrets.DATABASE_URL}}
+        SHADOW_DATABASE_URL: ${{secrets.SHADOW_DATABASE_URL}}
     - name: CI install
       run: npm ci
     - name: build the app
       run: npm run build
-      env:
-        NODE_ENV: production
-        CORS_ORIGIN: ${{secrets.CORS_ORIGIN}}
-        DATABASE_URL: ${{secrets.DATABASE_URL}}
-        FRONT_URL: ${{secrets.FRONT_URL}}
-        JWT_SECRET: ${{secrets.JWT_SECRET}}
-        PORT: ${{secrets.PORT}}
-        REDIS_URL: ${{secrets.REDIS_URL}}
-        SESSION_SECRET: ${{secrets.SESSION_SECRET}}
     - uses: akhileshns/heroku-deploy@v3.4.6
       with:
         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
