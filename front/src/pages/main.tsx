@@ -5,7 +5,7 @@ import { Outlet } from 'react-router'
 // @components
 import { SMHeader, SMNavbar } from '~/components/ui/index'
 
-export const Main = (): JSX.Element => (
+const Main = (): JSX.Element => (
     <AppShell
         header={<SMHeader />}
         navbar={<SMNavbar />}
@@ -27,3 +27,5 @@ export const Main = (): JSX.Element => (
         <Outlet />
     </AppShell>
 )
+
+export default Main

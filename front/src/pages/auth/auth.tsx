@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router'
 import { showSMNotification } from '~/utils'
 
 const newLocal = true
-export const Auth = (): JSX.Element => {
+const Auth = (): JSX.Element => {
     const { t } = useTranslation('notifications')
     const [isDissabled, setIsDissabled] = useState(newLocal)
     const [isLoading, setIsLoading] = useState(false)
@@ -106,3 +106,5 @@ export const Auth = (): JSX.Element => {
         </Container>
     )
 }
+
+export default Auth

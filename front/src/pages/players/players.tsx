@@ -13,7 +13,7 @@ import { Player } from '~/generated/graphql'
 // @utils
 import { showSMNotification, firstPagination, nextPagination } from '~/utils'
 
-export const Players = (): JSX.Element => {
+const Players = (): JSX.Element => {
     const { t } = useTranslation('notifications')
 
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -81,3 +81,5 @@ export const Players = (): JSX.Element => {
         </Container>
     )
 }
+
+export default Players

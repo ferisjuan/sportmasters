@@ -9,7 +9,7 @@ import { REDIRECT_NAVIGATION_TIME, ROUTES } from '~/constants'
 // @hooks
 import { useTimer } from '~/hooks'
 
-export const NotFound = (): JSX.Element => {
+const NotFound = (): JSX.Element => {
     const { time } = useTimer(REDIRECT_NAVIGATION_TIME, 1000)
 
     const navigate = useNavigate()
@@ -44,3 +44,5 @@ export const NotFound = (): JSX.Element => {
         </Container>
     )
 }
+
+export default NotFound

@@ -62,6 +62,11 @@ export type BoolWithAggregatesFilter = {
   not?: InputMaybe<NestedBoolWithAggregatesFilter>;
 };
 
+export type ChangePasswordInput = {
+  password: Scalars['String'];
+  token: Scalars['String'];
+};
+
 export type DateTimeFieldUpdateOperationsInput = {
   set?: InputMaybe<Scalars['DateTime']>;
 };
@@ -186,25 +191,12 @@ export type EnumPlayer_CategoryWithAggregatesFilter = {
   notIn?: InputMaybe<Array<Player_Category>>;
 };
 
-export type EnumTierFieldUpdateOperationsInput = {
-  set?: InputMaybe<Tier>;
-};
-
-export type EnumTierFilter = {
-  equals?: InputMaybe<Tier>;
-  in?: InputMaybe<Array<Tier>>;
-  not?: InputMaybe<NestedEnumTierFilter>;
-  notIn?: InputMaybe<Array<Tier>>;
-};
-
-export type EnumTierWithAggregatesFilter = {
-  _count?: InputMaybe<NestedIntFilter>;
-  _max?: InputMaybe<NestedEnumTierFilter>;
-  _min?: InputMaybe<NestedEnumTierFilter>;
-  equals?: InputMaybe<Tier>;
-  in?: InputMaybe<Array<Tier>>;
-  not?: InputMaybe<NestedEnumTierWithAggregatesFilter>;
-  notIn?: InputMaybe<Array<Tier>>;
+export type EnumRolesNullableListFilter = {
+  equals?: InputMaybe<Array<Roles>>;
+  has?: InputMaybe<Roles>;
+  hasEvery?: InputMaybe<Array<Roles>>;
+  hasSome?: InputMaybe<Array<Roles>>;
+  isEmpty?: InputMaybe<Scalars['Boolean']>;
 };
 
 export enum Family_Support {
@@ -277,6 +269,8 @@ export enum Guardian_Type {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  changePassword?: Maybe<User>;
+  confirmUser: Scalars['Boolean'];
   createManyPlayer: AffectedRowsOutput;
   createManySchool: AffectedRowsOutput;
   createManyUser: AffectedRowsOutput;
@@ -289,6 +283,10 @@ export type Mutation = {
   deletePlayer?: Maybe<Player>;
   deleteSchool?: Maybe<School>;
   deleteUser?: Maybe<User>;
+  forgotPassword: Scalars['Boolean'];
+  logout: Scalars['Boolean'];
+  signin?: Maybe<User>;
+  signup: User;
   updateManyPlayer: AffectedRowsOutput;
   updateManySchool: AffectedRowsOutput;
   updateManyUser: AffectedRowsOutput;
@@ -298,6 +296,16 @@ export type Mutation = {
   upsertPlayer: Player;
   upsertSchool: School;
   upsertUser: User;
+};
+
+
+export type MutationChangePasswordArgs = {
+  data: ChangePasswordInput;
+};
+
+
+export type MutationConfirmUserArgs = {
+  token: Scalars['String'];
 };
 
 
@@ -361,6 +369,22 @@ export type MutationDeleteSchoolArgs = {
 
 export type MutationDeleteUserArgs = {
   where: UserWhereUniqueInput;
+};
+
+
+export type MutationForgotPasswordArgs = {
+  email: Scalars['String'];
+};
+
+
+export type MutationSigninArgs = {
+  email: Scalars['String'];
+  password: Scalars['String'];
+};
+
+
+export type MutationSignupArgs = {
+  data: SignupInput;
 };
 
 
@@ -509,23 +533,6 @@ export type NestedEnumPlayer_CategoryWithAggregatesFilter = {
   notIn?: InputMaybe<Array<Player_Category>>;
 };
 
-export type NestedEnumTierFilter = {
-  equals?: InputMaybe<Tier>;
-  in?: InputMaybe<Array<Tier>>;
-  not?: InputMaybe<NestedEnumTierFilter>;
-  notIn?: InputMaybe<Array<Tier>>;
-};
-
-export type NestedEnumTierWithAggregatesFilter = {
-  _count?: InputMaybe<NestedIntFilter>;
-  _max?: InputMaybe<NestedEnumTierFilter>;
-  _min?: InputMaybe<NestedEnumTierFilter>;
-  equals?: InputMaybe<Tier>;
-  in?: InputMaybe<Array<Tier>>;
-  not?: InputMaybe<NestedEnumTierWithAggregatesFilter>;
-  notIn?: InputMaybe<Array<Tier>>;
-};
-
 export type NestedFloatFilter = {
   equals?: InputMaybe<Scalars['Float']>;
   gt?: InputMaybe<Scalars['Float']>;
@@ -564,6 +571,17 @@ export type NestedIntFilter = {
   notIn?: InputMaybe<Array<Scalars['Int']>>;
 };
 
+export type NestedIntNullableFilter = {
+  equals?: InputMaybe<Scalars['Int']>;
+  gt?: InputMaybe<Scalars['Int']>;
+  gte?: InputMaybe<Scalars['Int']>;
+  in?: InputMaybe<Array<Scalars['Int']>>;
+  lt?: InputMaybe<Scalars['Int']>;
+  lte?: InputMaybe<Scalars['Int']>;
+  not?: InputMaybe<NestedIntNullableFilter>;
+  notIn?: InputMaybe<Array<Scalars['Int']>>;
+};
+
 export type NestedStringFilter = {
   contains?: InputMaybe<Scalars['String']>;
   endsWith?: InputMaybe<Scalars['String']>;
@@ -574,6 +592,37 @@ export type NestedStringFilter = {
   lt?: InputMaybe<Scalars['String']>;
   lte?: InputMaybe<Scalars['String']>;
   not?: InputMaybe<NestedStringFilter>;
+  notIn?: InputMaybe<Array<Scalars['String']>>;
+  startsWith?: InputMaybe<Scalars['String']>;
+};
+
+export type NestedStringNullableFilter = {
+  contains?: InputMaybe<Scalars['String']>;
+  endsWith?: InputMaybe<Scalars['String']>;
+  equals?: InputMaybe<Scalars['String']>;
+  gt?: InputMaybe<Scalars['String']>;
+  gte?: InputMaybe<Scalars['String']>;
+  in?: InputMaybe<Array<Scalars['String']>>;
+  lt?: InputMaybe<Scalars['String']>;
+  lte?: InputMaybe<Scalars['String']>;
+  not?: InputMaybe<NestedStringNullableFilter>;
+  notIn?: InputMaybe<Array<Scalars['String']>>;
+  startsWith?: InputMaybe<Scalars['String']>;
+};
+
+export type NestedStringNullableWithAggregatesFilter = {
+  _count?: InputMaybe<NestedIntNullableFilter>;
+  _max?: InputMaybe<NestedStringNullableFilter>;
+  _min?: InputMaybe<NestedStringNullableFilter>;
+  contains?: InputMaybe<Scalars['String']>;
+  endsWith?: InputMaybe<Scalars['String']>;
+  equals?: InputMaybe<Scalars['String']>;
+  gt?: InputMaybe<Scalars['String']>;
+  gte?: InputMaybe<Scalars['String']>;
+  in?: InputMaybe<Array<Scalars['String']>>;
+  lt?: InputMaybe<Scalars['String']>;
+  lte?: InputMaybe<Scalars['String']>;
+  not?: InputMaybe<NestedStringNullableWithAggregatesFilter>;
   notIn?: InputMaybe<Array<Scalars['String']>>;
   startsWith?: InputMaybe<Scalars['String']>;
 };
@@ -593,6 +642,10 @@ export type NestedStringWithAggregatesFilter = {
   not?: InputMaybe<NestedStringWithAggregatesFilter>;
   notIn?: InputMaybe<Array<Scalars['String']>>;
   startsWith?: InputMaybe<Scalars['String']>;
+};
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: InputMaybe<Scalars['String']>;
 };
 
 export enum Personal_Qualities {
@@ -637,7 +690,6 @@ export type Player = {
   IMC: Scalars['Float'];
   birthday: Scalars['DateTime'];
   category: Player_Category;
-  createdAt: Scalars['DateTime'];
   familySupport: Array<Family_Support>;
   fieldPosition: Field_Position;
   guardianEmail: Scalars['String'];
@@ -665,7 +717,6 @@ export type Player = {
   school: School;
   schoolId: Scalars['String'];
   sportHistory: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
   weight: Scalars['Float'];
 };
 
@@ -723,7 +774,6 @@ export type PlayerCountOrderByAggregateInput = {
   IMC?: InputMaybe<SortOrder>;
   birthday?: InputMaybe<SortOrder>;
   category?: InputMaybe<SortOrder>;
-  createdAt?: InputMaybe<SortOrder>;
   familySupport?: InputMaybe<SortOrder>;
   fieldPosition?: InputMaybe<SortOrder>;
   guardianEmail?: InputMaybe<SortOrder>;
@@ -750,7 +800,6 @@ export type PlayerCountOrderByAggregateInput = {
   playerPhone?: InputMaybe<SortOrder>;
   schoolId?: InputMaybe<SortOrder>;
   sportHistory?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
   weight?: InputMaybe<SortOrder>;
 };
 
@@ -758,7 +807,6 @@ export type PlayerCreateInput = {
   IMC: Scalars['Float'];
   birthday: Scalars['DateTime'];
   category: Player_Category;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
   familySupport?: InputMaybe<PlayerCreatefamilySupportInput>;
   fieldPosition: Field_Position;
   guardianEmail: Scalars['String'];
@@ -785,7 +833,6 @@ export type PlayerCreateInput = {
   playerPhone: Scalars['String'];
   school: SchoolCreateNestedOneWithoutPlayersInput;
   sportHistory: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
   weight: Scalars['Float'];
 };
 
@@ -793,7 +840,6 @@ export type PlayerCreateManyInput = {
   IMC: Scalars['Float'];
   birthday: Scalars['DateTime'];
   category: Player_Category;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
   familySupport?: InputMaybe<PlayerCreatefamilySupportInput>;
   fieldPosition: Field_Position;
   guardianEmail: Scalars['String'];
@@ -820,7 +866,6 @@ export type PlayerCreateManyInput = {
   playerPhone: Scalars['String'];
   schoolId: Scalars['String'];
   sportHistory: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
   weight: Scalars['Float'];
 };
 
@@ -828,7 +873,6 @@ export type PlayerCreateManySchoolInput = {
   IMC: Scalars['Float'];
   birthday: Scalars['DateTime'];
   category: Player_Category;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
   familySupport?: InputMaybe<PlayerCreatefamilySupportInput>;
   fieldPosition: Field_Position;
   guardianEmail: Scalars['String'];
@@ -854,7 +898,6 @@ export type PlayerCreateManySchoolInput = {
   playerNumber: Scalars['String'];
   playerPhone: Scalars['String'];
   sportHistory: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
   weight: Scalars['Float'];
 };
 
@@ -879,7 +922,6 @@ export type PlayerCreateWithoutSchoolInput = {
   IMC: Scalars['Float'];
   birthday: Scalars['DateTime'];
   category: Player_Category;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
   familySupport?: InputMaybe<PlayerCreatefamilySupportInput>;
   fieldPosition: Field_Position;
   guardianEmail: Scalars['String'];
@@ -905,7 +947,6 @@ export type PlayerCreateWithoutSchoolInput = {
   playerNumber: Scalars['String'];
   playerPhone: Scalars['String'];
   sportHistory: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
   weight: Scalars['Float'];
 };
 
@@ -1011,7 +1052,6 @@ export type PlayerMaxOrderByAggregateInput = {
   IMC?: InputMaybe<SortOrder>;
   birthday?: InputMaybe<SortOrder>;
   category?: InputMaybe<SortOrder>;
-  createdAt?: InputMaybe<SortOrder>;
   fieldPosition?: InputMaybe<SortOrder>;
   guardianEmail?: InputMaybe<SortOrder>;
   guardianId?: InputMaybe<SortOrder>;
@@ -1033,7 +1073,6 @@ export type PlayerMaxOrderByAggregateInput = {
   playerPhone?: InputMaybe<SortOrder>;
   schoolId?: InputMaybe<SortOrder>;
   sportHistory?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
   weight?: InputMaybe<SortOrder>;
 };
 
@@ -1072,7 +1111,6 @@ export type PlayerMinOrderByAggregateInput = {
   IMC?: InputMaybe<SortOrder>;
   birthday?: InputMaybe<SortOrder>;
   category?: InputMaybe<SortOrder>;
-  createdAt?: InputMaybe<SortOrder>;
   fieldPosition?: InputMaybe<SortOrder>;
   guardianEmail?: InputMaybe<SortOrder>;
   guardianId?: InputMaybe<SortOrder>;
@@ -1094,7 +1132,6 @@ export type PlayerMinOrderByAggregateInput = {
   playerPhone?: InputMaybe<SortOrder>;
   schoolId?: InputMaybe<SortOrder>;
   sportHistory?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
   weight?: InputMaybe<SortOrder>;
 };
 
@@ -1111,7 +1148,6 @@ export type PlayerOrderByWithAggregationInput = {
   _sum?: InputMaybe<PlayerSumOrderByAggregateInput>;
   birthday?: InputMaybe<SortOrder>;
   category?: InputMaybe<SortOrder>;
-  createdAt?: InputMaybe<SortOrder>;
   familySupport?: InputMaybe<SortOrder>;
   fieldPosition?: InputMaybe<SortOrder>;
   guardianEmail?: InputMaybe<SortOrder>;
@@ -1138,7 +1174,6 @@ export type PlayerOrderByWithAggregationInput = {
   playerPhone?: InputMaybe<SortOrder>;
   schoolId?: InputMaybe<SortOrder>;
   sportHistory?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
   weight?: InputMaybe<SortOrder>;
 };
 
@@ -1146,7 +1181,6 @@ export type PlayerOrderByWithRelationInput = {
   IMC?: InputMaybe<SortOrder>;
   birthday?: InputMaybe<SortOrder>;
   category?: InputMaybe<SortOrder>;
-  createdAt?: InputMaybe<SortOrder>;
   familySupport?: InputMaybe<SortOrder>;
   fieldPosition?: InputMaybe<SortOrder>;
   guardianEmail?: InputMaybe<SortOrder>;
@@ -1174,7 +1208,6 @@ export type PlayerOrderByWithRelationInput = {
   school?: InputMaybe<SchoolOrderByWithRelationInput>;
   schoolId?: InputMaybe<SortOrder>;
   sportHistory?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
   weight?: InputMaybe<SortOrder>;
 };
 
@@ -1220,7 +1253,6 @@ export type PlayerScalarWhereInput = {
   OR?: InputMaybe<Array<PlayerScalarWhereInput>>;
   birthday?: InputMaybe<DateTimeFilter>;
   category?: InputMaybe<EnumPlayer_CategoryFilter>;
-  createdAt?: InputMaybe<DateTimeFilter>;
   familySupport?: InputMaybe<EnumFamily_SupportNullableListFilter>;
   fieldPosition?: InputMaybe<EnumField_PositionFilter>;
   guardianEmail?: InputMaybe<StringFilter>;
@@ -1247,7 +1279,6 @@ export type PlayerScalarWhereInput = {
   playerPhone?: InputMaybe<StringFilter>;
   schoolId?: InputMaybe<StringFilter>;
   sportHistory?: InputMaybe<StringFilter>;
-  updatedAt?: InputMaybe<DateTimeFilter>;
   weight?: InputMaybe<FloatFilter>;
 };
 
@@ -1258,7 +1289,6 @@ export type PlayerScalarWhereWithAggregatesInput = {
   OR?: InputMaybe<Array<PlayerScalarWhereWithAggregatesInput>>;
   birthday?: InputMaybe<DateTimeWithAggregatesFilter>;
   category?: InputMaybe<EnumPlayer_CategoryWithAggregatesFilter>;
-  createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   familySupport?: InputMaybe<EnumFamily_SupportNullableListFilter>;
   fieldPosition?: InputMaybe<EnumField_PositionWithAggregatesFilter>;
   guardianEmail?: InputMaybe<StringWithAggregatesFilter>;
@@ -1285,7 +1315,6 @@ export type PlayerScalarWhereWithAggregatesInput = {
   playerPhone?: InputMaybe<StringWithAggregatesFilter>;
   schoolId?: InputMaybe<StringWithAggregatesFilter>;
   sportHistory?: InputMaybe<StringWithAggregatesFilter>;
-  updatedAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   weight?: InputMaybe<FloatWithAggregatesFilter>;
 };
 
@@ -1306,7 +1335,6 @@ export type PlayerUpdateInput = {
   IMC?: InputMaybe<FloatFieldUpdateOperationsInput>;
   birthday?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   category?: InputMaybe<EnumPlayer_CategoryFieldUpdateOperationsInput>;
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   familySupport?: InputMaybe<PlayerUpdatefamilySupportInput>;
   fieldPosition?: InputMaybe<EnumField_PositionFieldUpdateOperationsInput>;
   guardianEmail?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -1333,7 +1361,6 @@ export type PlayerUpdateInput = {
   playerPhone?: InputMaybe<StringFieldUpdateOperationsInput>;
   school?: InputMaybe<SchoolUpdateOneRequiredWithoutPlayersInput>;
   sportHistory?: InputMaybe<StringFieldUpdateOperationsInput>;
-  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   weight?: InputMaybe<FloatFieldUpdateOperationsInput>;
 };
 
@@ -1341,7 +1368,6 @@ export type PlayerUpdateManyMutationInput = {
   IMC?: InputMaybe<FloatFieldUpdateOperationsInput>;
   birthday?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   category?: InputMaybe<EnumPlayer_CategoryFieldUpdateOperationsInput>;
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   familySupport?: InputMaybe<PlayerUpdatefamilySupportInput>;
   fieldPosition?: InputMaybe<EnumField_PositionFieldUpdateOperationsInput>;
   guardianEmail?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -1367,7 +1393,6 @@ export type PlayerUpdateManyMutationInput = {
   playerNumber?: InputMaybe<StringFieldUpdateOperationsInput>;
   playerPhone?: InputMaybe<StringFieldUpdateOperationsInput>;
   sportHistory?: InputMaybe<StringFieldUpdateOperationsInput>;
-  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   weight?: InputMaybe<FloatFieldUpdateOperationsInput>;
 };
 
@@ -1399,7 +1424,6 @@ export type PlayerUpdateWithoutSchoolInput = {
   IMC?: InputMaybe<FloatFieldUpdateOperationsInput>;
   birthday?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   category?: InputMaybe<EnumPlayer_CategoryFieldUpdateOperationsInput>;
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   familySupport?: InputMaybe<PlayerUpdatefamilySupportInput>;
   fieldPosition?: InputMaybe<EnumField_PositionFieldUpdateOperationsInput>;
   guardianEmail?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -1425,7 +1449,6 @@ export type PlayerUpdateWithoutSchoolInput = {
   playerNumber?: InputMaybe<StringFieldUpdateOperationsInput>;
   playerPhone?: InputMaybe<StringFieldUpdateOperationsInput>;
   sportHistory?: InputMaybe<StringFieldUpdateOperationsInput>;
-  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   weight?: InputMaybe<FloatFieldUpdateOperationsInput>;
 };
 
@@ -1467,7 +1490,6 @@ export type PlayerWhereInput = {
   OR?: InputMaybe<Array<PlayerWhereInput>>;
   birthday?: InputMaybe<DateTimeFilter>;
   category?: InputMaybe<EnumPlayer_CategoryFilter>;
-  createdAt?: InputMaybe<DateTimeFilter>;
   familySupport?: InputMaybe<EnumFamily_SupportNullableListFilter>;
   fieldPosition?: InputMaybe<EnumField_PositionFilter>;
   guardianEmail?: InputMaybe<StringFilter>;
@@ -1495,7 +1517,6 @@ export type PlayerWhereInput = {
   school?: InputMaybe<SchoolRelationFilter>;
   schoolId?: InputMaybe<StringFilter>;
   sportHistory?: InputMaybe<StringFilter>;
-  updatedAt?: InputMaybe<DateTimeFilter>;
   weight?: InputMaybe<FloatFilter>;
 };
 
@@ -1659,18 +1680,23 @@ export enum QueryMode {
   Insensitive = 'insensitive'
 }
 
+export enum Roles {
+  Admin = 'ADMIN',
+  Coach = 'COACH',
+  Guardian = 'GUARDIAN',
+  None = 'NONE',
+  Player = 'PLAYER'
+}
+
 export type School = {
   __typename?: 'School';
   _count?: Maybe<SchoolCount>;
   address: Scalars['String'];
-  createdAt: Scalars['DateTime'];
   email: Scalars['String'];
   id: Scalars['String'];
   name: Scalars['String'];
   phone: Scalars['String'];
   players: Array<Player>;
-  tier: Tier;
-  updatedAt: Scalars['DateTime'];
   users: Array<User>;
 };
 
@@ -1722,7 +1748,6 @@ export type SchoolCountOrderByAggregateInput = {
   name?: InputMaybe<SortOrder>;
   password?: InputMaybe<SortOrder>;
   phone?: InputMaybe<SortOrder>;
-  tier?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
 
@@ -1735,7 +1760,6 @@ export type SchoolCreateInput = {
   password: Scalars['String'];
   phone: Scalars['String'];
   players?: InputMaybe<PlayerCreateNestedManyWithoutSchoolInput>;
-  tier?: InputMaybe<Tier>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   users?: InputMaybe<UserCreateNestedManyWithoutSchoolInput>;
 };
@@ -1748,7 +1772,6 @@ export type SchoolCreateManyInput = {
   name: Scalars['String'];
   password: Scalars['String'];
   phone: Scalars['String'];
-  tier?: InputMaybe<Tier>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
@@ -1782,7 +1805,6 @@ export type SchoolCreateWithoutPlayersInput = {
   name: Scalars['String'];
   password: Scalars['String'];
   phone: Scalars['String'];
-  tier?: InputMaybe<Tier>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   users?: InputMaybe<UserCreateNestedManyWithoutSchoolInput>;
 };
@@ -1796,7 +1818,6 @@ export type SchoolCreateWithoutUsersInput = {
   password: Scalars['String'];
   phone: Scalars['String'];
   players?: InputMaybe<PlayerCreateNestedManyWithoutSchoolInput>;
-  tier?: InputMaybe<Tier>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
@@ -1837,7 +1858,6 @@ export type SchoolMaxOrderByAggregateInput = {
   name?: InputMaybe<SortOrder>;
   password?: InputMaybe<SortOrder>;
   phone?: InputMaybe<SortOrder>;
-  tier?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
 
@@ -1862,7 +1882,6 @@ export type SchoolMinOrderByAggregateInput = {
   name?: InputMaybe<SortOrder>;
   password?: InputMaybe<SortOrder>;
   phone?: InputMaybe<SortOrder>;
-  tier?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
 
@@ -1877,7 +1896,6 @@ export type SchoolOrderByWithAggregationInput = {
   name?: InputMaybe<SortOrder>;
   password?: InputMaybe<SortOrder>;
   phone?: InputMaybe<SortOrder>;
-  tier?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
 
@@ -1890,7 +1908,6 @@ export type SchoolOrderByWithRelationInput = {
   password?: InputMaybe<SortOrder>;
   phone?: InputMaybe<SortOrder>;
   players?: InputMaybe<PlayerOrderByRelationAggregateInput>;
-  tier?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
   users?: InputMaybe<UserOrderByRelationAggregateInput>;
 };
@@ -1923,7 +1940,6 @@ export type SchoolScalarWhereWithAggregatesInput = {
   name?: InputMaybe<StringWithAggregatesFilter>;
   password?: InputMaybe<StringWithAggregatesFilter>;
   phone?: InputMaybe<StringWithAggregatesFilter>;
-  tier?: InputMaybe<EnumTierWithAggregatesFilter>;
   updatedAt?: InputMaybe<DateTimeWithAggregatesFilter>;
 };
 
@@ -1936,7 +1952,6 @@ export type SchoolUpdateInput = {
   password?: InputMaybe<StringFieldUpdateOperationsInput>;
   phone?: InputMaybe<StringFieldUpdateOperationsInput>;
   players?: InputMaybe<PlayerUpdateManyWithoutSchoolInput>;
-  tier?: InputMaybe<EnumTierFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   users?: InputMaybe<UserUpdateManyWithoutSchoolInput>;
 };
@@ -1949,7 +1964,6 @@ export type SchoolUpdateManyMutationInput = {
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   password?: InputMaybe<StringFieldUpdateOperationsInput>;
   phone?: InputMaybe<StringFieldUpdateOperationsInput>;
-  tier?: InputMaybe<EnumTierFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -1977,7 +1991,6 @@ export type SchoolUpdateWithoutPlayersInput = {
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   password?: InputMaybe<StringFieldUpdateOperationsInput>;
   phone?: InputMaybe<StringFieldUpdateOperationsInput>;
-  tier?: InputMaybe<EnumTierFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   users?: InputMaybe<UserUpdateManyWithoutSchoolInput>;
 };
@@ -1991,7 +2004,6 @@ export type SchoolUpdateWithoutUsersInput = {
   password?: InputMaybe<StringFieldUpdateOperationsInput>;
   phone?: InputMaybe<StringFieldUpdateOperationsInput>;
   players?: InputMaybe<PlayerUpdateManyWithoutSchoolInput>;
-  tier?: InputMaybe<EnumTierFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -2017,7 +2029,6 @@ export type SchoolWhereInput = {
   password?: InputMaybe<StringFilter>;
   phone?: InputMaybe<StringFilter>;
   players?: InputMaybe<PlayerListRelationFilter>;
-  tier?: InputMaybe<EnumTierFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
   users?: InputMaybe<UserListRelationFilter>;
 };
@@ -2025,6 +2036,16 @@ export type SchoolWhereInput = {
 export type SchoolWhereUniqueInput = {
   email?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
+};
+
+export type SignupInput = {
+  acceptsPrivacyPolicy: Scalars['Boolean'];
+  acceptsTermsOfService: Scalars['Boolean'];
+  email: Scalars['String'];
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
+  password: Scalars['String'];
+  schoolId: Scalars['String'];
 };
 
 export enum SortOrder {
@@ -2051,12 +2072,45 @@ export type StringFilter = {
   startsWith?: InputMaybe<Scalars['String']>;
 };
 
+export type StringNullableFilter = {
+  contains?: InputMaybe<Scalars['String']>;
+  endsWith?: InputMaybe<Scalars['String']>;
+  equals?: InputMaybe<Scalars['String']>;
+  gt?: InputMaybe<Scalars['String']>;
+  gte?: InputMaybe<Scalars['String']>;
+  in?: InputMaybe<Array<Scalars['String']>>;
+  lt?: InputMaybe<Scalars['String']>;
+  lte?: InputMaybe<Scalars['String']>;
+  mode?: InputMaybe<QueryMode>;
+  not?: InputMaybe<NestedStringNullableFilter>;
+  notIn?: InputMaybe<Array<Scalars['String']>>;
+  startsWith?: InputMaybe<Scalars['String']>;
+};
+
 export type StringNullableListFilter = {
   equals?: InputMaybe<Array<Scalars['String']>>;
   has?: InputMaybe<Scalars['String']>;
   hasEvery?: InputMaybe<Array<Scalars['String']>>;
   hasSome?: InputMaybe<Array<Scalars['String']>>;
   isEmpty?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type StringNullableWithAggregatesFilter = {
+  _count?: InputMaybe<NestedIntNullableFilter>;
+  _max?: InputMaybe<NestedStringNullableFilter>;
+  _min?: InputMaybe<NestedStringNullableFilter>;
+  contains?: InputMaybe<Scalars['String']>;
+  endsWith?: InputMaybe<Scalars['String']>;
+  equals?: InputMaybe<Scalars['String']>;
+  gt?: InputMaybe<Scalars['String']>;
+  gte?: InputMaybe<Scalars['String']>;
+  in?: InputMaybe<Array<Scalars['String']>>;
+  lt?: InputMaybe<Scalars['String']>;
+  lte?: InputMaybe<Scalars['String']>;
+  mode?: InputMaybe<QueryMode>;
+  not?: InputMaybe<NestedStringNullableWithAggregatesFilter>;
+  notIn?: InputMaybe<Array<Scalars['String']>>;
+  startsWith?: InputMaybe<Scalars['String']>;
 };
 
 export type StringWithAggregatesFilter = {
@@ -2087,18 +2141,15 @@ export enum Tier {
 export type User = {
   __typename?: 'User';
   School: School;
-  acceptsPrivacyPolicy: Scalars['Boolean'];
-  acceptsTermsOfService: Scalars['Boolean'];
-  address: Scalars['String'];
-  createdAt: Scalars['DateTime'];
+  address?: Maybe<Scalars['String']>;
+  confirmed: Scalars['Boolean'];
   email: Scalars['String'];
+  firstName: Scalars['String'];
   id: Scalars['String'];
-  isAdmin: Scalars['Boolean'];
   lastName: Scalars['String'];
-  name: Scalars['String'];
-  phone: Scalars['String'];
+  phone?: Maybe<Scalars['String']>;
+  roles: Array<Roles>;
   schoolId: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
 };
 
 export type UserCountAggregate = {
@@ -2107,14 +2158,15 @@ export type UserCountAggregate = {
   acceptsPrivacyPolicy: Scalars['Int'];
   acceptsTermsOfService: Scalars['Int'];
   address: Scalars['Int'];
+  confirmed: Scalars['Int'];
   createdAt: Scalars['Int'];
   email: Scalars['Int'];
+  firstName: Scalars['Int'];
   id: Scalars['Int'];
-  isAdmin: Scalars['Int'];
   lastName: Scalars['Int'];
-  name: Scalars['Int'];
   password: Scalars['Int'];
   phone: Scalars['Int'];
+  roles: Scalars['Int'];
   schoolId: Scalars['Int'];
   updatedAt: Scalars['Int'];
 };
@@ -2125,12 +2177,12 @@ export type UserCountOrderByAggregateInput = {
   address?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   email?: InputMaybe<SortOrder>;
+  firstName?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
-  isAdmin?: InputMaybe<SortOrder>;
   lastName?: InputMaybe<SortOrder>;
-  name?: InputMaybe<SortOrder>;
   password?: InputMaybe<SortOrder>;
   phone?: InputMaybe<SortOrder>;
+  roles?: InputMaybe<SortOrder>;
   schoolId?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
@@ -2139,30 +2191,32 @@ export type UserCreateInput = {
   School: SchoolCreateNestedOneWithoutUsersInput;
   acceptsPrivacyPolicy?: InputMaybe<Scalars['Boolean']>;
   acceptsTermsOfService?: InputMaybe<Scalars['Boolean']>;
-  address: Scalars['String'];
+  address?: InputMaybe<Scalars['String']>;
+  confirmed?: InputMaybe<Scalars['Boolean']>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
+  firstName: Scalars['String'];
   id?: InputMaybe<Scalars['String']>;
-  isAdmin?: InputMaybe<Scalars['Boolean']>;
   lastName: Scalars['String'];
-  name: Scalars['String'];
   password: Scalars['String'];
-  phone: Scalars['String'];
+  phone?: InputMaybe<Scalars['String']>;
+  roles?: InputMaybe<UserCreaterolesInput>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type UserCreateManyInput = {
   acceptsPrivacyPolicy?: InputMaybe<Scalars['Boolean']>;
   acceptsTermsOfService?: InputMaybe<Scalars['Boolean']>;
-  address: Scalars['String'];
+  address?: InputMaybe<Scalars['String']>;
+  confirmed?: InputMaybe<Scalars['Boolean']>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
+  firstName: Scalars['String'];
   id?: InputMaybe<Scalars['String']>;
-  isAdmin?: InputMaybe<Scalars['Boolean']>;
   lastName: Scalars['String'];
-  name: Scalars['String'];
   password: Scalars['String'];
-  phone: Scalars['String'];
+  phone?: InputMaybe<Scalars['String']>;
+  roles?: InputMaybe<UserCreaterolesInput>;
   schoolId: Scalars['String'];
   updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
@@ -2170,15 +2224,16 @@ export type UserCreateManyInput = {
 export type UserCreateManySchoolInput = {
   acceptsPrivacyPolicy?: InputMaybe<Scalars['Boolean']>;
   acceptsTermsOfService?: InputMaybe<Scalars['Boolean']>;
-  address: Scalars['String'];
+  address?: InputMaybe<Scalars['String']>;
+  confirmed?: InputMaybe<Scalars['Boolean']>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
+  firstName: Scalars['String'];
   id?: InputMaybe<Scalars['String']>;
-  isAdmin?: InputMaybe<Scalars['Boolean']>;
   lastName: Scalars['String'];
-  name: Scalars['String'];
   password: Scalars['String'];
-  phone: Scalars['String'];
+  phone?: InputMaybe<Scalars['String']>;
+  roles?: InputMaybe<UserCreaterolesInput>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
@@ -2202,16 +2257,21 @@ export type UserCreateOrConnectWithoutSchoolInput = {
 export type UserCreateWithoutSchoolInput = {
   acceptsPrivacyPolicy?: InputMaybe<Scalars['Boolean']>;
   acceptsTermsOfService?: InputMaybe<Scalars['Boolean']>;
-  address: Scalars['String'];
+  address?: InputMaybe<Scalars['String']>;
+  confirmed?: InputMaybe<Scalars['Boolean']>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
+  firstName: Scalars['String'];
   id?: InputMaybe<Scalars['String']>;
-  isAdmin?: InputMaybe<Scalars['Boolean']>;
   lastName: Scalars['String'];
-  name: Scalars['String'];
   password: Scalars['String'];
-  phone: Scalars['String'];
+  phone?: InputMaybe<Scalars['String']>;
+  roles?: InputMaybe<UserCreaterolesInput>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type UserCreaterolesInput = {
+  set: Array<Roles>;
 };
 
 export type UserGroupBy = {
@@ -2221,15 +2281,16 @@ export type UserGroupBy = {
   _min?: Maybe<UserMinAggregate>;
   acceptsPrivacyPolicy: Scalars['Boolean'];
   acceptsTermsOfService: Scalars['Boolean'];
-  address: Scalars['String'];
+  address?: Maybe<Scalars['String']>;
+  confirmed: Scalars['Boolean'];
   createdAt: Scalars['DateTime'];
   email: Scalars['String'];
+  firstName: Scalars['String'];
   id: Scalars['String'];
-  isAdmin: Scalars['Boolean'];
   lastName: Scalars['String'];
-  name: Scalars['String'];
   password: Scalars['String'];
-  phone: Scalars['String'];
+  phone?: Maybe<Scalars['String']>;
+  roles?: Maybe<Array<Roles>>;
   schoolId: Scalars['String'];
   updatedAt: Scalars['DateTime'];
 };
@@ -2245,12 +2306,12 @@ export type UserMaxAggregate = {
   acceptsPrivacyPolicy?: Maybe<Scalars['Boolean']>;
   acceptsTermsOfService?: Maybe<Scalars['Boolean']>;
   address?: Maybe<Scalars['String']>;
+  confirmed?: Maybe<Scalars['Boolean']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   email?: Maybe<Scalars['String']>;
+  firstName?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
-  isAdmin?: Maybe<Scalars['Boolean']>;
   lastName?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
   password?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
   schoolId?: Maybe<Scalars['String']>;
@@ -2263,10 +2324,9 @@ export type UserMaxOrderByAggregateInput = {
   address?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   email?: InputMaybe<SortOrder>;
+  firstName?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
-  isAdmin?: InputMaybe<SortOrder>;
   lastName?: InputMaybe<SortOrder>;
-  name?: InputMaybe<SortOrder>;
   password?: InputMaybe<SortOrder>;
   phone?: InputMaybe<SortOrder>;
   schoolId?: InputMaybe<SortOrder>;
@@ -2278,12 +2338,12 @@ export type UserMinAggregate = {
   acceptsPrivacyPolicy?: Maybe<Scalars['Boolean']>;
   acceptsTermsOfService?: Maybe<Scalars['Boolean']>;
   address?: Maybe<Scalars['String']>;
+  confirmed?: Maybe<Scalars['Boolean']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   email?: Maybe<Scalars['String']>;
+  firstName?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
-  isAdmin?: Maybe<Scalars['Boolean']>;
   lastName?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
   password?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
   schoolId?: Maybe<Scalars['String']>;
@@ -2296,10 +2356,9 @@ export type UserMinOrderByAggregateInput = {
   address?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   email?: InputMaybe<SortOrder>;
+  firstName?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
-  isAdmin?: InputMaybe<SortOrder>;
   lastName?: InputMaybe<SortOrder>;
-  name?: InputMaybe<SortOrder>;
   password?: InputMaybe<SortOrder>;
   phone?: InputMaybe<SortOrder>;
   schoolId?: InputMaybe<SortOrder>;
@@ -2319,12 +2378,12 @@ export type UserOrderByWithAggregationInput = {
   address?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   email?: InputMaybe<SortOrder>;
+  firstName?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
-  isAdmin?: InputMaybe<SortOrder>;
   lastName?: InputMaybe<SortOrder>;
-  name?: InputMaybe<SortOrder>;
   password?: InputMaybe<SortOrder>;
   phone?: InputMaybe<SortOrder>;
+  roles?: InputMaybe<SortOrder>;
   schoolId?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
@@ -2336,12 +2395,12 @@ export type UserOrderByWithRelationInput = {
   address?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   email?: InputMaybe<SortOrder>;
+  firstName?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
-  isAdmin?: InputMaybe<SortOrder>;
   lastName?: InputMaybe<SortOrder>;
-  name?: InputMaybe<SortOrder>;
   password?: InputMaybe<SortOrder>;
   phone?: InputMaybe<SortOrder>;
+  roles?: InputMaybe<SortOrder>;
   schoolId?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
@@ -2350,14 +2409,15 @@ export enum UserScalarFieldEnum {
   AcceptsPrivacyPolicy = 'acceptsPrivacyPolicy',
   AcceptsTermsOfService = 'acceptsTermsOfService',
   Address = 'address',
+  Confirmed = 'confirmed',
   CreatedAt = 'createdAt',
   Email = 'email',
+  FirstName = 'firstName',
   Id = 'id',
-  IsAdmin = 'isAdmin',
   LastName = 'lastName',
-  Name = 'name',
   Password = 'password',
   Phone = 'phone',
+  Roles = 'roles',
   SchoolId = 'schoolId',
   UpdatedAt = 'updatedAt'
 }
@@ -2368,15 +2428,15 @@ export type UserScalarWhereInput = {
   OR?: InputMaybe<Array<UserScalarWhereInput>>;
   acceptsPrivacyPolicy?: InputMaybe<BoolFilter>;
   acceptsTermsOfService?: InputMaybe<BoolFilter>;
-  address?: InputMaybe<StringFilter>;
+  address?: InputMaybe<StringNullableFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
   email?: InputMaybe<StringFilter>;
+  firstName?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
-  isAdmin?: InputMaybe<BoolFilter>;
   lastName?: InputMaybe<StringFilter>;
-  name?: InputMaybe<StringFilter>;
   password?: InputMaybe<StringFilter>;
-  phone?: InputMaybe<StringFilter>;
+  phone?: InputMaybe<StringNullableFilter>;
+  roles?: InputMaybe<EnumRolesNullableListFilter>;
   schoolId?: InputMaybe<StringFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
 };
@@ -2387,15 +2447,15 @@ export type UserScalarWhereWithAggregatesInput = {
   OR?: InputMaybe<Array<UserScalarWhereWithAggregatesInput>>;
   acceptsPrivacyPolicy?: InputMaybe<BoolWithAggregatesFilter>;
   acceptsTermsOfService?: InputMaybe<BoolWithAggregatesFilter>;
-  address?: InputMaybe<StringWithAggregatesFilter>;
+  address?: InputMaybe<StringNullableWithAggregatesFilter>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   email?: InputMaybe<StringWithAggregatesFilter>;
+  firstName?: InputMaybe<StringWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
-  isAdmin?: InputMaybe<BoolWithAggregatesFilter>;
   lastName?: InputMaybe<StringWithAggregatesFilter>;
-  name?: InputMaybe<StringWithAggregatesFilter>;
   password?: InputMaybe<StringWithAggregatesFilter>;
-  phone?: InputMaybe<StringWithAggregatesFilter>;
+  phone?: InputMaybe<StringNullableWithAggregatesFilter>;
+  roles?: InputMaybe<EnumRolesNullableListFilter>;
   schoolId?: InputMaybe<StringWithAggregatesFilter>;
   updatedAt?: InputMaybe<DateTimeWithAggregatesFilter>;
 };
@@ -2404,30 +2464,30 @@ export type UserUpdateInput = {
   School?: InputMaybe<SchoolUpdateOneRequiredWithoutUsersInput>;
   acceptsPrivacyPolicy?: InputMaybe<BoolFieldUpdateOperationsInput>;
   acceptsTermsOfService?: InputMaybe<BoolFieldUpdateOperationsInput>;
-  address?: InputMaybe<StringFieldUpdateOperationsInput>;
+  address?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
+  firstName?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  isAdmin?: InputMaybe<BoolFieldUpdateOperationsInput>;
   lastName?: InputMaybe<StringFieldUpdateOperationsInput>;
-  name?: InputMaybe<StringFieldUpdateOperationsInput>;
   password?: InputMaybe<StringFieldUpdateOperationsInput>;
-  phone?: InputMaybe<StringFieldUpdateOperationsInput>;
+  phone?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  roles?: InputMaybe<UserUpdaterolesInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type UserUpdateManyMutationInput = {
   acceptsPrivacyPolicy?: InputMaybe<BoolFieldUpdateOperationsInput>;
   acceptsTermsOfService?: InputMaybe<BoolFieldUpdateOperationsInput>;
-  address?: InputMaybe<StringFieldUpdateOperationsInput>;
+  address?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
+  firstName?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  isAdmin?: InputMaybe<BoolFieldUpdateOperationsInput>;
   lastName?: InputMaybe<StringFieldUpdateOperationsInput>;
-  name?: InputMaybe<StringFieldUpdateOperationsInput>;
   password?: InputMaybe<StringFieldUpdateOperationsInput>;
-  phone?: InputMaybe<StringFieldUpdateOperationsInput>;
+  phone?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  roles?: InputMaybe<UserUpdaterolesInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -2458,16 +2518,21 @@ export type UserUpdateWithWhereUniqueWithoutSchoolInput = {
 export type UserUpdateWithoutSchoolInput = {
   acceptsPrivacyPolicy?: InputMaybe<BoolFieldUpdateOperationsInput>;
   acceptsTermsOfService?: InputMaybe<BoolFieldUpdateOperationsInput>;
-  address?: InputMaybe<StringFieldUpdateOperationsInput>;
+  address?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
+  firstName?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  isAdmin?: InputMaybe<BoolFieldUpdateOperationsInput>;
   lastName?: InputMaybe<StringFieldUpdateOperationsInput>;
-  name?: InputMaybe<StringFieldUpdateOperationsInput>;
   password?: InputMaybe<StringFieldUpdateOperationsInput>;
-  phone?: InputMaybe<StringFieldUpdateOperationsInput>;
+  phone?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  roles?: InputMaybe<UserUpdaterolesInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type UserUpdaterolesInput = {
+  push?: InputMaybe<Array<Roles>>;
+  set?: InputMaybe<Array<Roles>>;
 };
 
 export type UserUpsertWithWhereUniqueWithoutSchoolInput = {
@@ -2483,15 +2548,15 @@ export type UserWhereInput = {
   School?: InputMaybe<SchoolRelationFilter>;
   acceptsPrivacyPolicy?: InputMaybe<BoolFilter>;
   acceptsTermsOfService?: InputMaybe<BoolFilter>;
-  address?: InputMaybe<StringFilter>;
+  address?: InputMaybe<StringNullableFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
   email?: InputMaybe<StringFilter>;
+  firstName?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
-  isAdmin?: InputMaybe<BoolFilter>;
   lastName?: InputMaybe<StringFilter>;
-  name?: InputMaybe<StringFilter>;
   password?: InputMaybe<StringFilter>;
-  phone?: InputMaybe<StringFilter>;
+  phone?: InputMaybe<StringNullableFilter>;
+  roles?: InputMaybe<EnumRolesNullableListFilter>;
   schoolId?: InputMaybe<StringFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
 };
@@ -2501,20 +2566,25 @@ export type UserWhereUniqueInput = {
   id?: InputMaybe<Scalars['String']>;
 };
 
+export type MutationMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type MutationMutation = { __typename?: 'Mutation', logout: boolean };
+
 export type PlayersQueryVariables = Exact<{
   take?: InputMaybe<Scalars['Int']>;
   skip?: InputMaybe<Scalars['Int']>;
 }>;
 
 
-export type PlayersQuery = { __typename?: 'Query', players: Array<{ __typename?: 'Player', id: string, birthday: any, category: Player_Category, familySupport: Array<Family_Support>, fieldPosition: Field_Position, guardianEmail: string, guardianId: string, guardianIdType: string, guardianLastName: string, guardianName: string, guardianPhone: string, guardianType: Guardian_Type, height: number, hobbies: Array<string>, image: string, IMC: number, lastName: string, name: string, personalQualities: Array<Personal_Qualities>, physicalCapabilities: Array<Physical_Capabilities>, physicalQualities: Array<Physical_Qualities>, placeOfBirth: string, playerEmail: string, playerId: string, playerIdType: string, playerNumber: string, playerPhone: string, schoolId: string, sportHistory: string, weight: number, createdAt: any, updatedAt: any, school: { __typename?: 'School', id: string } }> };
+export type PlayersQuery = { __typename?: 'Query', players: Array<{ __typename?: 'Player', id: string, birthday: any, category: Player_Category, familySupport: Array<Family_Support>, fieldPosition: Field_Position, guardianEmail: string, guardianId: string, guardianIdType: string, guardianLastName: string, guardianName: string, guardianPhone: string, guardianType: Guardian_Type, height: number, hobbies: Array<string>, image: string, IMC: number, lastName: string, name: string, personalQualities: Array<Personal_Qualities>, physicalCapabilities: Array<Physical_Capabilities>, physicalQualities: Array<Physical_Qualities>, placeOfBirth: string, playerEmail: string, playerId: string, playerIdType: string, playerNumber: string, playerPhone: string, schoolId: string, sportHistory: string, weight: number, school: { __typename?: 'School', id: string } }> };
 
 export type GetSchoolByIdQueryVariables = Exact<{
   where: SchoolWhereUniqueInput;
 }>;
 
 
-export type GetSchoolByIdQuery = { __typename?: 'Query', school?: { __typename?: 'School', id: string, address: string, email: string, name: string, phone: string, tier: Tier, createdAt: any, updatedAt: any } | null };
+export type GetSchoolByIdQuery = { __typename?: 'Query', school?: { __typename?: 'School', id: string, address: string, email: string, name: string, phone: string } | null };
 
 export type GetSchoolsQueryVariables = Exact<{
   take?: InputMaybe<Scalars['Int']>;
@@ -2522,9 +2592,22 @@ export type GetSchoolsQueryVariables = Exact<{
 }>;
 
 
-export type GetSchoolsQuery = { __typename?: 'Query', schools: Array<{ __typename?: 'School', id: string, address: string, email: string, name: string, phone: string, tier: Tier, createdAt: any, updatedAt: any, _count?: { __typename?: 'SchoolCount', users: number, players: number } | null, players: Array<{ __typename?: 'Player', id: string }>, users: Array<{ __typename?: 'User', id: string }> }> };
+export type GetSchoolsQuery = { __typename?: 'Query', schools: Array<{ __typename?: 'School', id: string, address: string, email: string, name: string, phone: string, _count?: { __typename?: 'SchoolCount', users: number, players: number } | null, players: Array<{ __typename?: 'Player', id: string }>, users: Array<{ __typename?: 'User', id: string }> }> };
+
+export type SigninMutationVariables = Exact<{
+  email: Scalars['String'];
+  password: Scalars['String'];
+}>;
 
 
+export type SigninMutation = { __typename?: 'Mutation', signin?: { __typename?: 'User', id: string } | null };
+
+
+export const MutationDocument = gql`
+    mutation Mutation {
+  logout
+}
+    `;
 export const PlayersDocument = gql`
     query Players($take: Int, $skip: Int) {
   players(take: $take, skip: $skip) {
@@ -2558,8 +2641,6 @@ export const PlayersDocument = gql`
     schoolId
     sportHistory
     weight
-    createdAt
-    updatedAt
     school {
       id
     }
@@ -2574,9 +2655,6 @@ export const GetSchoolByIdDocument = gql`
     email
     name
     phone
-    tier
-    createdAt
-    updatedAt
   }
 }
     `;
@@ -2588,9 +2666,6 @@ export const GetSchoolsDocument = gql`
     email
     name
     phone
-    tier
-    createdAt
-    updatedAt
     _count {
       users
       players
@@ -2604,6 +2679,13 @@ export const GetSchoolsDocument = gql`
   }
 }
     `;
+export const SigninDocument = gql`
+    mutation Signin($email: String!, $password: String!) {
+  signin(email: $email, password: $password) {
+    id
+  }
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
@@ -2612,6 +2694,9 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
+    Mutation(variables?: MutationMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MutationMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MutationMutation>(MutationDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Mutation', 'mutation');
+    },
     Players(variables?: PlayersQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PlayersQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PlayersQuery>(PlayersDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Players', 'query');
     },
@@ -2620,6 +2705,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     getSchools(variables?: GetSchoolsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetSchoolsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetSchoolsQuery>(GetSchoolsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getSchools', 'query');
+    },
+    Signin(variables: SigninMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SigninMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SigninMutation>(SigninDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Signin', 'mutation');
     }
   };
 }

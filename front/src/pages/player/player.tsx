@@ -7,7 +7,7 @@ import { PlayerProfile, PlayerCard, PlayerGeneralStats, SoccerField } from '~/co
 // @hooks
 import { useStores } from '~/hooks'
 
-export const Player: React.VFC = observer(() => {
+const Player: React.VFC = observer(() => {
     const { playerStore } = useStores()
 
     return (
@@ -18,3 +18,5 @@ export const Player: React.VFC = observer(() => {
         </PlayerProfile>
     )
 })
+
+export default Player

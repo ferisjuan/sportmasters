@@ -5,9 +5,6 @@ query getSchools($take: Int, $skip: Int) {
     email
     name
     phone
-    tier
-    createdAt
-    updatedAt
     _count {
       users
       players
