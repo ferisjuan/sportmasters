@@ -18,11 +18,6 @@ jobs:
       with:
         node-version: 16.x
         cache: 'npm'
-    - name: DB migration
-      run: npx prisma migrate dev
-      env:
-        DATABASE_URL: ${{secrets.DATABASE_URL}}
-        SHADOW_DATABASE_URL: ${{secrets.SHADOW_DATABASE_URL}}
     - name: CI install
       run: npm ci
     - name: build the app
