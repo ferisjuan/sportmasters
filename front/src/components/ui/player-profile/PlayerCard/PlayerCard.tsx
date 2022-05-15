@@ -4,7 +4,6 @@ import { Card, Container, Grid, Image, Text } from '@mantine/core'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
-
 // @interfaces
 import { Player } from '~/generated/graphql'
 
@@ -19,14 +18,14 @@ interface IPlayerAvatar {
 }
 
 export const PlayerCard: React.FC<IPlayerAvatar> = observer(({ player }) => {
-    const { t } = useTranslation()
+    const { t } = useTranslation('fieldPosition')
     const { playerStore } = useStores()
     const navigate = useNavigate()
     const handleClick = (): void => {
         playerStore.getPlayer(player.id)
         navigate(`../${ROUTES.player}`, { replace: true })
     }
-  
+
     return (
         <Grid.Col span={4}>
             <Card
