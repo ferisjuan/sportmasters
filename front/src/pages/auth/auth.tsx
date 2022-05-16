@@ -2,21 +2,24 @@
 import { FormEvent, useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AiFillEye, AiFillEyeInvisible, AiTwotoneLock } from 'react-icons/ai'
-import { getAuth, sendPasswordResetEmail, signInWithEmailAndPassword } from '@firebase/auth'
+import { getAuth, sendPasswordResetEmail } from '@firebase/auth'
 import { TextInput, Button, PasswordInput, Container, Loader } from '@mantine/core'
 import { useForm } from '@mantine/hooks'
-import { useNavigate } from 'react-router'
+
+// @generated
+import { useSigninMutation } from '~/generated/graphql'
 
 // @utils
 import { showSMNotification } from '~/utils'
+import { getSessionCookie } from '../../utils/cookies'
 
 const newLocal = true
 const Auth = (): JSX.Element => {
     const { t } = useTranslation('notifications')
     const [isDissabled, setIsDissabled] = useState(newLocal)
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoginLoading, setIsLoginLoading] = useState(false)
 
-    const navigate = useNavigate()
+    const signin = useSigninMutation()
 
     const form = useForm({
         initialValues: {
@@ -36,23 +39,16 @@ const Auth = (): JSX.Element => {
         async (event: FormEvent<HTMLFormElement>): Promise<void> => {
             event.preventDefault()
 
-            try {
-                setIsLoading(true)
+            signin.mutate(form.values)
 
-                const auth = getAuth()
-                await signInWithEmailAndPassword(auth, form.values.email, form.values.password)
-
-                navigate('/dashboard')
-
-                setIsLoading(false)
-            } catch (error) {
-                setIsLoading(false)
-
-                showSMNotification(t('auth.wrongCredentials'), 'ERROR', false)
-            }
+            setIsLoginLoading(true)
+            showSMNotification(t('auth.wrongCredentials'), 'ERROR', false)
         },
-        [form.values.email, form.values.password, setIsLoading, t],
+        [form.values.email, form.values.password, t],
     )
+    useEffect(() => {
+        console.log('🚀🚀🚀 ~ file: auth.tsx ~ line 42 ~ res', getSessionCookie())
+    })
 
     const handleForgotPassword = useCallback(async (): Promise<void> => {
         try {
@@ -67,7 +63,7 @@ const Auth = (): JSX.Element => {
 
     return (
         <Container size="xs" sx={{ display: 'flex', justifyContent: 'center', height: '100vh', alignItems: 'center' }}>
-            {isLoading ? (
+            {isLoginLoading ? (
                 <Loader color="indigo" variant="bars" />
             ) : (
                 <form

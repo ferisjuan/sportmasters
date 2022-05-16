@@ -1,5 +1,4 @@
 import { Ctx, Mutation, Resolver } from "type-graphql"
-import { AUTH_COOKIE_NAME } from '../../constants'
 import { Context } from '../../context'
 import { logger } from '../../logger'
 
@@ -16,7 +15,7 @@ export class LogoutResolver {
                     return rej(false)
                 }
 
-                res.clearCookie(AUTH_COOKIE_NAME)
+                res.clearCookie(process.env.SESSION_COOKIE_NAME)
 
                 responce(true)
             })

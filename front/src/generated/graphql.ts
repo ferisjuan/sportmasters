@@ -1,11 +1,29 @@
-import { GraphQLClient } from 'graphql-request';
-import * as Dom from 'graphql-request/dist/types.dom';
-import gql from 'graphql-tag';
+import { useMutation, useQuery, UseMutationOptions, UseQueryOptions } from 'react-query';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+
+function fetcher<TData, TVariables>(query: string, variables?: TVariables) {
+  return async (): Promise<TData> => {
+    const res = await fetch("http://localhost:4000/graphql", {
+    method: "POST",
+    ...({"headers":{"Content-Type":"application/json","Accept":"application/json"},"credentials":"include"}),
+      body: JSON.stringify({ query, variables }),
+    });
+
+    const json = await res.json();
+
+    if (json.errors) {
+      const { message } = json.errors[0];
+
+      throw new Error(message);
+    }
+
+    return json.data;
+  }
+}
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -714,7 +732,6 @@ export type Player = {
   playerIdType: Scalars['String'];
   playerNumber: Scalars['String'];
   playerPhone: Scalars['String'];
-  school: School;
   schoolId: Scalars['String'];
   sportHistory: Scalars['String'];
   weight: Scalars['Float'];
@@ -2140,7 +2157,6 @@ export enum Tier {
 
 export type User = {
   __typename?: 'User';
-  School: School;
   address?: Maybe<Scalars['String']>;
   confirmed: Scalars['Boolean'];
   email: Scalars['String'];
@@ -2566,10 +2582,10 @@ export type UserWhereUniqueInput = {
   id?: InputMaybe<Scalars['String']>;
 };
 
-export type MutationMutationVariables = Exact<{ [key: string]: never; }>;
+export type LogoutMutationVariables = Exact<{ [key: string]: never; }>;
 
 
-export type MutationMutation = { __typename?: 'Mutation', logout: boolean };
+export type LogoutMutation = { __typename?: 'Mutation', logout: boolean };
 
 export type PlayersQueryVariables = Exact<{
   take?: InputMaybe<Scalars['Int']>;
@@ -2577,7 +2593,7 @@ export type PlayersQueryVariables = Exact<{
 }>;
 
 
-export type PlayersQuery = { __typename?: 'Query', players: Array<{ __typename?: 'Player', id: string, birthday: any, category: Player_Category, familySupport: Array<Family_Support>, fieldPosition: Field_Position, guardianEmail: string, guardianId: string, guardianIdType: string, guardianLastName: string, guardianName: string, guardianPhone: string, guardianType: Guardian_Type, height: number, hobbies: Array<string>, image: string, IMC: number, lastName: string, name: string, personalQualities: Array<Personal_Qualities>, physicalCapabilities: Array<Physical_Capabilities>, physicalQualities: Array<Physical_Qualities>, placeOfBirth: string, playerEmail: string, playerId: string, playerIdType: string, playerNumber: string, playerPhone: string, schoolId: string, sportHistory: string, weight: number, school: { __typename?: 'School', id: string } }> };
+export type PlayersQuery = { __typename?: 'Query', players: Array<{ __typename?: 'Player', id: string, birthday: any, category: Player_Category, familySupport: Array<Family_Support>, fieldPosition: Field_Position, guardianEmail: string, guardianId: string, guardianIdType: string, guardianLastName: string, guardianName: string, guardianPhone: string, guardianType: Guardian_Type, height: number, hobbies: Array<string>, image: string, IMC: number, lastName: string, name: string, personalQualities: Array<Personal_Qualities>, physicalCapabilities: Array<Physical_Capabilities>, physicalQualities: Array<Physical_Qualities>, placeOfBirth: string, playerEmail: string, playerId: string, playerIdType: string, playerNumber: string, playerPhone: string, schoolId: string, sportHistory: string, weight: number }> };
 
 export type GetSchoolByIdQueryVariables = Exact<{
   where: SchoolWhereUniqueInput;
@@ -2603,12 +2619,21 @@ export type SigninMutationVariables = Exact<{
 export type SigninMutation = { __typename?: 'Mutation', signin?: { __typename?: 'User', id: string } | null };
 
 
-export const MutationDocument = gql`
-    mutation Mutation {
+export const LogoutDocument = `
+    mutation Logout {
   logout
 }
     `;
-export const PlayersDocument = gql`
+export const useLogoutMutation = <
+      TError = unknown,
+      TContext = unknown
+    >(options?: UseMutationOptions<LogoutMutation, TError, LogoutMutationVariables, TContext>) =>
+    useMutation<LogoutMutation, TError, LogoutMutationVariables, TContext>(
+      ['Logout'],
+      (variables?: LogoutMutationVariables) => fetcher<LogoutMutation, LogoutMutationVariables>(LogoutDocument, variables)(),
+      options
+    );
+export const PlayersDocument = `
     query Players($take: Int, $skip: Int) {
   players(take: $take, skip: $skip) {
     id
@@ -2641,13 +2666,23 @@ export const PlayersDocument = gql`
     schoolId
     sportHistory
     weight
-    school {
-      id
-    }
+    schoolId
   }
 }
     `;
-export const GetSchoolByIdDocument = gql`
+export const usePlayersQuery = <
+      TData = PlayersQuery,
+      TError = unknown
+    >(
+      variables?: PlayersQueryVariables,
+      options?: UseQueryOptions<PlayersQuery, TError, TData>
+    ) =>
+    useQuery<PlayersQuery, TError, TData>(
+      variables === undefined ? ['Players'] : ['Players', variables],
+      fetcher<PlayersQuery, PlayersQueryVariables>(PlayersDocument, variables),
+      options
+    );
+export const GetSchoolByIdDocument = `
     query getSchoolById($where: SchoolWhereUniqueInput!) {
   school(where: $where) {
     id
@@ -2658,7 +2693,19 @@ export const GetSchoolByIdDocument = gql`
   }
 }
     `;
-export const GetSchoolsDocument = gql`
+export const useGetSchoolByIdQuery = <
+      TData = GetSchoolByIdQuery,
+      TError = unknown
+    >(
+      variables: GetSchoolByIdQueryVariables,
+      options?: UseQueryOptions<GetSchoolByIdQuery, TError, TData>
+    ) =>
+    useQuery<GetSchoolByIdQuery, TError, TData>(
+      ['getSchoolById', variables],
+      fetcher<GetSchoolByIdQuery, GetSchoolByIdQueryVariables>(GetSchoolByIdDocument, variables),
+      options
+    );
+export const GetSchoolsDocument = `
     query getSchools($take: Int, $skip: Int) {
   schools(take: $take, skip: $skip) {
     id
@@ -2679,36 +2726,31 @@ export const GetSchoolsDocument = gql`
   }
 }
     `;
-export const SigninDocument = gql`
+export const useGetSchoolsQuery = <
+      TData = GetSchoolsQuery,
+      TError = unknown
+    >(
+      variables?: GetSchoolsQueryVariables,
+      options?: UseQueryOptions<GetSchoolsQuery, TError, TData>
+    ) =>
+    useQuery<GetSchoolsQuery, TError, TData>(
+      variables === undefined ? ['getSchools'] : ['getSchools', variables],
+      fetcher<GetSchoolsQuery, GetSchoolsQueryVariables>(GetSchoolsDocument, variables),
+      options
+    );
+export const SigninDocument = `
     mutation Signin($email: String!, $password: String!) {
   signin(email: $email, password: $password) {
     id
   }
 }
     `;
-
-export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
-
-
-const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationType) => action();
-
-export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
-  return {
-    Mutation(variables?: MutationMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MutationMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<MutationMutation>(MutationDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Mutation', 'mutation');
-    },
-    Players(variables?: PlayersQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PlayersQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PlayersQuery>(PlayersDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Players', 'query');
-    },
-    getSchoolById(variables: GetSchoolByIdQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetSchoolByIdQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GetSchoolByIdQuery>(GetSchoolByIdDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getSchoolById', 'query');
-    },
-    getSchools(variables?: GetSchoolsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetSchoolsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GetSchoolsQuery>(GetSchoolsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getSchools', 'query');
-    },
-    Signin(variables: SigninMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SigninMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SigninMutation>(SigninDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Signin', 'mutation');
-    }
-  };
-}
-export type Sdk = ReturnType<typeof getSdk>;
+export const useSigninMutation = <
+      TError = unknown,
+      TContext = unknown
+    >(options?: UseMutationOptions<SigninMutation, TError, SigninMutationVariables, TContext>) =>
+    useMutation<SigninMutation, TError, SigninMutationVariables, TContext>(
+      ['Signin'],
+      (variables?: SigninMutationVariables) => fetcher<SigninMutation, SigninMutationVariables>(SigninDocument, variables)(),
+      options
+    );

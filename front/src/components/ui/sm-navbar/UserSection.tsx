@@ -1,0 +1,43 @@
+// @vendor
+import { Avatar, Box, Container, Title, Text } from '@mantine/core'
+import { MantineTheme } from '@mantine/styles'
+import { getAuth } from '@firebase/auth'
+
+// @generated
+import { useLogoutMutation } from '../../../generated/graphql'
+
+// @utils
+import { getInitials } from '~/utils'
+
+export const UserSection: React.FC = () => {
+    const user = getAuth().currentUser
+    const userName = user?.displayName
+
+    return (
+        <Box
+            onClick={() => useLogoutMutation()}
+            sx={(theme: MantineTheme) => ({
+                alignItems: 'center',
+                backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+                borderRadius: theme.radius.sm,
+                cursor: 'pointer',
+                display: 'flex',
+                justifyContent: 'flex-start',
+                margin: 0,
+                padding: theme.spacing.xs,
+
+                '&:hover': {
+                    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1],
+                },
+            })}
+        >
+            <Avatar alt="avatar" radius="xl">
+                {userName && getInitials(userName[0], userName[1])}
+            </Avatar>
+            <Container m={0}>
+                <Title order={5}>{user?.displayName}</Title>
+                <Text size="xs">{user?.email}</Text>
+            </Container>
+        </Box>
+    )
+}

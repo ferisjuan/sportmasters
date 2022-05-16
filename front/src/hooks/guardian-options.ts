@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 // @enums
-import { Guardian_Type } from '../generated/graphql'
+import { Guardian_Type } from '~/generated/graphql'
 
 const rawGuardianOptions = Object.entries(Guardian_Type).map(([key, value]) => ({
     key,

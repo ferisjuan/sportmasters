@@ -30,8 +30,6 @@ query Players($take: Int, $skip: Int) {
         schoolId
         sportHistory
         weight
-        school {
-            id
-        }
+        schoolId
     }
 }

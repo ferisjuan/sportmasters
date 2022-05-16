@@ -1,6 +1,5 @@
 // @vendors
 import { createRoot } from 'react-dom/client'
-import { browserLocalPersistence, getAuth, setPersistence } from '@firebase/auth'
 import { initializeApp, FirebaseOptions } from '@firebase/app'
 import { configure } from 'mobx'
 
@@ -25,9 +24,9 @@ configure({
 })
 
 initializeApp(FIREBASE_CONFIG as FirebaseOptions)
-const auth = getAuth()
+// const auth = getAuth()
 
-setPersistence(auth, browserLocalPersistence)
+// setPersistence(auth, browserLocalPersistence)
 
 const container = document.getElementById('root')
 const root = createRoot(container as HTMLElement)

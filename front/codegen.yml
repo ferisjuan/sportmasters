@@ -1,8 +1,22 @@
-schema: http://localhost:4000/graphql
-documents: './graphql/**/*.graphql'
+overwrite: true
+schema: "http://localhost:4000/graphql"
+documents: "src/**/*.graphql"
 generates:
-  ./src/generated/graphql.ts:
+  src/generated/graphql.ts:
     plugins:
-      - typescript
-      - typescript-operations
-      - typescript-graphql-request
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-query"
+    config:
+      fetcher:
+        endpoint: "http://localhost:4000/graphql"
+        fetchParams: {
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+          },
+          credentials: "include",
+        }
+  ./graphql.schema.json:
+    plugins:
+      - "introspection"
