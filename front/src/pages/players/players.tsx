@@ -35,13 +35,16 @@ export const Players = (): JSX.Element => {
             setLastKey(n.lastKey)
         })
 
-        // filtersPlayers().then(n => {
-        //     setPlayers(n.players)
-        // })
         {
             isLoading && showSMNotification(t('loadingPlayers'), 'LOADING', isLoading)
         }
     }, [])
+
+    const handleFilters = (e: string): void => {
+        filtersPlayers(e).then(n => {
+            setPlayers(n)
+        })
+    }
 
     const handleNextPagination = (key: string): void => {
         if (key.length > 0) {
@@ -99,7 +102,12 @@ export const Players = (): JSX.Element => {
                     variant="filled"
                     style={{ marginTop: '1rem', marginBottom: '1rem' }}
                 />
-                <Button style={{ alignSelf: 'end', marginBottom: '1rem' }}>Filtrar</Button>
+                <Button
+                    onClick={() => handleFilters(value.position)}
+                    style={{ alignSelf: 'end', marginBottom: '1rem' }}
+                >
+                    Filtrar
+                </Button>
             </Group>
 
             <ScrollArea style={{ height: '70vh' }}>
