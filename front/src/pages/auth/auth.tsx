@@ -1,29 +1,30 @@
 // @vendors
 import { FormEvent, useCallback, useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import { AiFillEye, AiFillEyeInvisible, AiTwotoneLock } from 'react-icons/ai'
-import { getAuth, sendPasswordResetEmail } from '@firebase/auth'
 import { TextInput, Button, PasswordInput, Container, Loader } from '@mantine/core'
 import { useForm } from '@mantine/hooks'
+import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+
+// @constants
+import { ROUTES } from '~/constants'
 
 // @generated
-import { useSigninMutation } from '~/generated/graphql'
+import { useForgotPasswordMutation, useSigninMutation } from '~/generated/graphql'
 
 // @utils
 import { showSMNotification } from '~/utils'
-import { useNavigate } from 'react-router-dom'
-import { ROUTES } from '../../constants'
 
-const newLocal = true
 const Auth = (): JSX.Element => {
     const { t } = useTranslation('notifications')
 
     const navigate = useNavigate()
 
-    const [isDissabled, setIsDissabled] = useState(newLocal)
+    const [isDissabled, setIsDissabled] = useState(true)
     const [isLoginLoading, setIsLoginLoading] = useState(false)
 
     const signin = useSigninMutation()
+    const reqPasswordChange = useForgotPasswordMutation()
 
     const form = useForm({
         initialValues: {
@@ -58,16 +59,18 @@ const Auth = (): JSX.Element => {
         [form.values.email, form.values.password, t],
     )
 
-    const handleForgotPassword = useCallback(async (): Promise<void> => {
-        try {
-            const auth = getAuth()
-            await sendPasswordResetEmail(auth, form.values.email)
+    const handleForgotPassword = useCallback(
+        async (email: string): Promise<void> => {
+            try {
+                reqPasswordChange.mutate({ email })
 
-            showSMNotification(t('auth.resetPassword'), 'INFO', false)
-        } catch (error) {
-            showSMNotification(t('auth.wrongEmail'), 'ERROR', false)
-        }
-    }, [form.values.email, t])
+                showSMNotification(t('auth.resetPassword'), 'INFO', false)
+            } catch (error) {
+                showSMNotification(t('auth.wrongEmail'), 'ERROR', false)
+            }
+        },
+        [form.values.email, t],
+    )
 
     return (
         <Container size="xs" sx={{ display: 'flex', justifyContent: 'center', height: '100vh', alignItems: 'center' }}>
@@ -102,7 +105,11 @@ const Auth = (): JSX.Element => {
                         Login
                     </Button>
 
-                    <Button disabled={!form.values.email} sx={{ marginTop: '20px' }} onClick={handleForgotPassword}>
+                    <Button
+                        disabled={!form.values.email}
+                        sx={{ marginTop: '20px' }}
+                        onClick={() => handleForgotPassword(form.values.email)}
+                    >
                         Olvidé mi password
                     </Button>
                 </form>

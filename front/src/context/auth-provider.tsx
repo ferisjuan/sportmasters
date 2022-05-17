@@ -15,7 +15,7 @@ export const AuthContext = createContext<IAuthContext | null>(null)
 
 export const AuthContextProvider = ({ children }: IChildren): JSX.Element => {
     const [user] = useState<User>({} as User)
-    const [isAuthenticating] = useState(true)
+    const [isAuthenticating] = useState(false)
 
     const values = {
         isAuthenticating,

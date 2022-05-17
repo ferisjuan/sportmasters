@@ -3,20 +3,20 @@ import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Avatar, Box, Container, Title, Text } from '@mantine/core'
 import { MantineTheme } from '@mantine/styles'
-import { getAuth } from '@firebase/auth'
 
 // @constants
-import { ROUTES } from '../../../constants'
+import { ROUTES } from '~/constants'
 
 // @generated
-import { useLogoutMutation } from '../../../generated/graphql'
+import { useLogoutMutation, useUserQuery } from '~/generated/graphql'
 
 // @utils
 import { getInitials, showSMNotification } from '~/utils'
 
 export const UserSection: React.FC = () => {
-    const user = getAuth().currentUser
-    const userName = user?.displayName
+    const email = localStorage.getItem('email')
+    const { data } = useUserQuery({ where: { email } })
+    const user = data?.user
 
     const navigate = useNavigate()
 
@@ -52,10 +52,10 @@ export const UserSection: React.FC = () => {
             })}
         >
             <Avatar alt="avatar" radius="xl">
-                {userName && getInitials(userName[0], userName[1])}
+                {user?.firstName && getInitials(user?.firstName[0], user?.firstName[1])}
             </Avatar>
             <Container m={0}>
-                <Title order={5}>{user?.displayName}</Title>
+                <Title order={5}>{`${user?.firstName} ${user?.lastName}`}</Title>
                 <Text size="xs">{user?.email}</Text>
             </Container>
         </Box>

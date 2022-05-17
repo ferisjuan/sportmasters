@@ -2582,6 +2582,20 @@ export type UserWhereUniqueInput = {
   id?: InputMaybe<Scalars['String']>;
 };
 
+export type ChangePasswordMutationVariables = Exact<{
+  data: ChangePasswordInput;
+}>;
+
+
+export type ChangePasswordMutation = { __typename?: 'Mutation', changePassword?: { __typename?: 'User', id: string, email: string, roles: Array<Roles>, confirmed: boolean } | null };
+
+export type ForgotPasswordMutationVariables = Exact<{
+  email: Scalars['String'];
+}>;
+
+
+export type ForgotPasswordMutation = { __typename?: 'Mutation', forgotPassword: boolean };
+
 export type LogoutMutationVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -2626,6 +2640,39 @@ export type UserQueryVariables = Exact<{
 export type UserQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, address?: string | null, email: string, lastName: string, firstName: string, roles: Array<Roles>, phone?: string | null, schoolId: string } | null };
 
 
+export const ChangePasswordDocument = `
+    mutation ChangePassword($data: ChangePasswordInput!) {
+  changePassword(data: $data) {
+    id
+    email
+    roles
+    confirmed
+  }
+}
+    `;
+export const useChangePasswordMutation = <
+      TError = unknown,
+      TContext = unknown
+    >(options?: UseMutationOptions<ChangePasswordMutation, TError, ChangePasswordMutationVariables, TContext>) =>
+    useMutation<ChangePasswordMutation, TError, ChangePasswordMutationVariables, TContext>(
+      ['ChangePassword'],
+      (variables?: ChangePasswordMutationVariables) => fetcher<ChangePasswordMutation, ChangePasswordMutationVariables>(ChangePasswordDocument, variables)(),
+      options
+    );
+export const ForgotPasswordDocument = `
+    mutation ForgotPassword($email: String!) {
+  forgotPassword(email: $email)
+}
+    `;
+export const useForgotPasswordMutation = <
+      TError = unknown,
+      TContext = unknown
+    >(options?: UseMutationOptions<ForgotPasswordMutation, TError, ForgotPasswordMutationVariables, TContext>) =>
+    useMutation<ForgotPasswordMutation, TError, ForgotPasswordMutationVariables, TContext>(
+      ['ForgotPassword'],
+      (variables?: ForgotPasswordMutationVariables) => fetcher<ForgotPasswordMutation, ForgotPasswordMutationVariables>(ForgotPasswordDocument, variables)(),
+      options
+    );
 export const LogoutDocument = `
     mutation Logout {
   logout
