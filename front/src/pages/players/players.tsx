@@ -11,7 +11,10 @@ import { PlayerCard, PlayerForm, SMModal } from '~/components'
 import { Player } from '~/generated/graphql'
 
 // @utils
-import { showSMNotification, firstPagination, nextPagination } from '~/utils'
+import { showSMNotification } from '~/utils'
+
+// @services
+import { firstPagination, nextPagination, filtersPlayers } from '~/services'
 
 // @constants
 import { CATEGORYFILTERS, FIELDPOSITIONS, MONTHLYSTATUS } from '~/constants'
@@ -31,6 +34,10 @@ export const Players = (): JSX.Element => {
             setPlayers(n.players)
             setLastKey(n.lastKey)
         })
+
+        // filtersPlayers().then(n => {
+        //     setPlayers(n.players)
+        // })
         {
             isLoading && showSMNotification(t('loadingPlayers'), 'LOADING', isLoading)
         }
