@@ -21,9 +21,7 @@ const Players = (): JSX.Element => {
     const { data: playersCount } = usePlayersCountQuery()
     const count = playersCount?.aggregatePlayer._count?.id
 
-    const pages = (): number | undefined => {
-        if (count) return Math.ceil(count / PLAYERS_BY_PAGE)
-    }
+    const pages = Math.ceil((count || 0) / PLAYERS_BY_PAGE)
 
     return (
         <Container fluid sx={{ height: '100%', position: 'relative' }}>
@@ -38,7 +36,7 @@ const Players = (): JSX.Element => {
                     ))}
                 </Grid>
 
-                <Pagination onChange={setSkip} page={skip || 1} position="center" pt="lg" total={pages() || 0} />
+                <Pagination onChange={setSkip} page={skip || 1} position="center" pt="lg" total={pages} />
             </Box>
 
             <ThemeIcon
