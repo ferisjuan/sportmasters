@@ -1,35 +1,15 @@
 query Players($take: Int, $skip: Int) {
     players(take: $take, skip: $skip) {
         id
-        birthday
-        category
-        familySupport
-        fieldPosition
-        guardianEmail
-        guardianId
-        guardianIdType
-        guardianLastName
-        guardianName
-        guardianPhone
-        guardianType
-        height
-        hobbies
-        image
-        IMC
         lastName
         name
-        personalQualities
-        physicalCapabilities
-        physicalQualities
-        placeOfBirth
-        playerEmail
-        playerId
-        playerIdType
-        playerNumber
-        playerPhone
-        schoolId
-        sportHistory
-        weight
-        schoolId
     }
+}
+
+query PlayersCount {
+  aggregatePlayer {
+    _count {
+      id
+    }
+  }
 }

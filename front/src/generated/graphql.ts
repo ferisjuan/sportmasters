@@ -2607,7 +2607,12 @@ export type PlayersQueryVariables = Exact<{
 }>;
 
 
-export type PlayersQuery = { __typename?: 'Query', players: Array<{ __typename?: 'Player', id: string, birthday: any, category: Player_Category, familySupport: Array<Family_Support>, fieldPosition: Field_Position, guardianEmail: string, guardianId: string, guardianIdType: string, guardianLastName: string, guardianName: string, guardianPhone: string, guardianType: Guardian_Type, height: number, hobbies: Array<string>, image: string, IMC: number, lastName: string, name: string, personalQualities: Array<Personal_Qualities>, physicalCapabilities: Array<Physical_Capabilities>, physicalQualities: Array<Physical_Qualities>, placeOfBirth: string, playerEmail: string, playerId: string, playerIdType: string, playerNumber: string, playerPhone: string, schoolId: string, sportHistory: string, weight: number }> };
+export type PlayersQuery = { __typename?: 'Query', players: Array<{ __typename?: 'Player', id: string, lastName: string, name: string }> };
+
+export type PlayersCountQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type PlayersCountQuery = { __typename?: 'Query', aggregatePlayer: { __typename?: 'AggregatePlayer', _count?: { __typename?: 'PlayerCountAggregate', id: number } | null } };
 
 export type GetSchoolByIdQueryVariables = Exact<{
   where: SchoolWhereUniqueInput;
@@ -2691,36 +2696,8 @@ export const PlayersDocument = `
     query Players($take: Int, $skip: Int) {
   players(take: $take, skip: $skip) {
     id
-    birthday
-    category
-    familySupport
-    fieldPosition
-    guardianEmail
-    guardianId
-    guardianIdType
-    guardianLastName
-    guardianName
-    guardianPhone
-    guardianType
-    height
-    hobbies
-    image
-    IMC
     lastName
     name
-    personalQualities
-    physicalCapabilities
-    physicalQualities
-    placeOfBirth
-    playerEmail
-    playerId
-    playerIdType
-    playerNumber
-    playerPhone
-    schoolId
-    sportHistory
-    weight
-    schoolId
   }
 }
     `;
@@ -2734,6 +2711,27 @@ export const usePlayersQuery = <
     useQuery<PlayersQuery, TError, TData>(
       variables === undefined ? ['Players'] : ['Players', variables],
       fetcher<PlayersQuery, PlayersQueryVariables>(PlayersDocument, variables),
+      options
+    );
+export const PlayersCountDocument = `
+    query PlayersCount {
+  aggregatePlayer {
+    _count {
+      id
+    }
+  }
+}
+    `;
+export const usePlayersCountQuery = <
+      TData = PlayersCountQuery,
+      TError = unknown
+    >(
+      variables?: PlayersCountQueryVariables,
+      options?: UseQueryOptions<PlayersCountQuery, TError, TData>
+    ) =>
+    useQuery<PlayersCountQuery, TError, TData>(
+      variables === undefined ? ['PlayersCount'] : ['PlayersCount', variables],
+      fetcher<PlayersCountQuery, PlayersCountQueryVariables>(PlayersCountDocument, variables),
       options
     );
 export const GetSchoolByIdDocument = `

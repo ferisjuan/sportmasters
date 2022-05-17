@@ -1,51 +1,28 @@
 // @vendors
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { BsPlus } from 'react-icons/bs'
 import { Box, Container, Grid, Pagination, ThemeIcon } from '@mantine/core'
-import { useTranslation } from 'react-i18next'
 
 // @components
 import { PlayerCard, PlayerForm, SMModal } from '~/components'
 
-// @interfaces
-import { Player } from '~/generated/graphql'
+// @generated
+import { Player, usePlayersCountQuery, usePlayersQuery } from '~/generated/graphql'
 
-// @utils
-import { showSMNotification, firstPagination, nextPagination } from '~/utils'
+const PLAYERS_BY_PAGE = 12
 
 const Players = (): JSX.Element => {
-    const { t } = useTranslation('notifications')
+    const [skip, setSkip] = useState(0)
+    const [take] = useState(PLAYERS_BY_PAGE)
 
     const [isModalOpen, setIsModalOpen] = useState(false)
-    const [players, setPlayers] = useState<Player[]>([])
-    const [lastKey, setLastKey] = useState('')
-    const [isLoading, setIsloading] = useState(false)
-    const [activePage, setPage] = useState(1)
 
-    useEffect(() => {
-        firstPagination().then(n => {
-            setPlayers(n.players)
-            setLastKey(n.lastKey)
-        })
-        {
-            isLoading && showSMNotification(t('loadingPlayers'), 'LOADING', isLoading)
-        }
-    }, [])
+    const { data: playersData } = usePlayersQuery({ skip, take })
+    const { data: playersCount } = usePlayersCountQuery()
+    const count = playersCount?.aggregatePlayer._count?.id
 
-    const handleNextPagination = (key: string): void => {
-        if (key.length > 0) {
-            setIsloading(true)
-            nextPagination(key)
-                .then(n => {
-                    setPlayers(n.players)
-                    setLastKey(n.lastKey)
-                    setIsloading(false)
-                })
-                .catch(err => {
-                    console.log('error', err)
-                    setIsloading(false)
-                })
-        }
+    const pages = (): number | undefined => {
+        if (count) return Math.ceil(count / PLAYERS_BY_PAGE)
     }
 
     return (
@@ -56,18 +33,12 @@ const Players = (): JSX.Element => {
 
             <Box style={{ height: '80vh', width: '100%' }}>
                 <Grid>
-                    {players?.map(player => (
+                    {playersData?.players?.map(player => (
                         <PlayerCard key={player.id} player={player as Player} />
                     ))}
                 </Grid>
 
-                <Pagination
-                    style={{ marginTop: '2rem' }}
-                    onClick={() => handleNextPagination(lastKey)}
-                    page={activePage}
-                    onChange={setPage}
-                    total={10}
-                />
+                <Pagination onChange={setSkip} page={skip || 1} position="center" pt="lg" total={pages() || 0} />
             </Box>
 
             <ThemeIcon
