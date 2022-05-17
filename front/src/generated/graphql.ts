@@ -9,7 +9,7 @@ function fetcher<TData, TVariables>(query: string, variables?: TVariables) {
   return async (): Promise<TData> => {
     const res = await fetch("http://localhost:4000/graphql", {
     method: "POST",
-    ...({"headers":{"Content-Type":"application/json","Accept":"application/json"},"credentials":"include"}),
+    ...({"headers":{"Allow-Control-Allow-Origin":"http://localhost:4000","Accept":"application/json","Content-Type":"application/json"},"credentials":"include"}),
       body: JSON.stringify({ query, variables }),
     });
 
@@ -2618,6 +2618,13 @@ export type SigninMutationVariables = Exact<{
 
 export type SigninMutation = { __typename?: 'Mutation', signin?: { __typename?: 'User', id: string } | null };
 
+export type UserQueryVariables = Exact<{
+  where: UserWhereUniqueInput;
+}>;
+
+
+export type UserQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, address?: string | null, email: string, lastName: string, firstName: string, roles: Array<Roles>, phone?: string | null, schoolId: string } | null };
+
 
 export const LogoutDocument = `
     mutation Logout {
@@ -2752,5 +2759,31 @@ export const useSigninMutation = <
     useMutation<SigninMutation, TError, SigninMutationVariables, TContext>(
       ['Signin'],
       (variables?: SigninMutationVariables) => fetcher<SigninMutation, SigninMutationVariables>(SigninDocument, variables)(),
+      options
+    );
+export const UserDocument = `
+    query User($where: UserWhereUniqueInput!) {
+  user(where: $where) {
+    id
+    address
+    email
+    lastName
+    firstName
+    roles
+    phone
+    schoolId
+  }
+}
+    `;
+export const useUserQuery = <
+      TData = UserQuery,
+      TError = unknown
+    >(
+      variables: UserQueryVariables,
+      options?: UseQueryOptions<UserQuery, TError, TData>
+    ) =>
+    useQuery<UserQuery, TError, TData>(
+      ['User', variables],
+      fetcher<UserQuery, UserQueryVariables>(UserDocument, variables),
       options
     );

@@ -1,21 +1,41 @@
 // @vendor
+import { useCallback } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Avatar, Box, Container, Title, Text } from '@mantine/core'
 import { MantineTheme } from '@mantine/styles'
 import { getAuth } from '@firebase/auth'
+
+// @constants
+import { ROUTES } from '../../../constants'
 
 // @generated
 import { useLogoutMutation } from '../../../generated/graphql'
 
 // @utils
-import { getInitials } from '~/utils'
+import { getInitials, showSMNotification } from '~/utils'
 
 export const UserSection: React.FC = () => {
     const user = getAuth().currentUser
     const userName = user?.displayName
 
+    const navigate = useNavigate()
+
+    const { error, mutate } = useLogoutMutation()
+
+    const handleOnClick = useCallback(() => {
+        mutate({})
+        localStorage.removeItem('email')
+
+        navigate(`../${ROUTES.login}`, { replace: true })
+
+        if (error) {
+            showSMNotification(error as string, 'ERROR', false)
+        }
+    }, [])
+
     return (
         <Box
-            onClick={() => useLogoutMutation()}
+            onClick={handleOnClick}
             sx={(theme: MantineTheme) => ({
                 alignItems: 'center',
                 backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],

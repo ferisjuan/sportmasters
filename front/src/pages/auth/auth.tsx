@@ -11,11 +11,15 @@ import { useSigninMutation } from '~/generated/graphql'
 
 // @utils
 import { showSMNotification } from '~/utils'
-import { getSessionCookie } from '../../utils/cookies'
+import { useNavigate } from 'react-router-dom'
+import { ROUTES } from '../../constants'
 
 const newLocal = true
 const Auth = (): JSX.Element => {
     const { t } = useTranslation('notifications')
+
+    const navigate = useNavigate()
+
     const [isDissabled, setIsDissabled] = useState(newLocal)
     const [isLoginLoading, setIsLoginLoading] = useState(false)
 
@@ -39,16 +43,20 @@ const Auth = (): JSX.Element => {
         async (event: FormEvent<HTMLFormElement>): Promise<void> => {
             event.preventDefault()
 
-            signin.mutate(form.values)
+            try {
+                signin.mutate(form.values)
 
-            setIsLoginLoading(true)
-            showSMNotification(t('auth.wrongCredentials'), 'ERROR', false)
+                setIsLoginLoading(true)
+
+                localStorage.setItem('email', form.values.email)
+
+                navigate(`../${ROUTES.dashboard}`, { replace: true })
+            } catch (error) {
+                showSMNotification(t('auth.wrongCredentials'), 'ERROR', false)
+            }
         },
         [form.values.email, form.values.password, t],
     )
-    useEffect(() => {
-        console.log('🚀🚀🚀 ~ file: auth.tsx ~ line 42 ~ res', getSessionCookie())
-    })
 
     const handleForgotPassword = useCallback(async (): Promise<void> => {
         try {

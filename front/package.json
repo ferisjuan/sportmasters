@@ -15,7 +15,6 @@
         "old.prepare": "husky install",
         "preci": "rm -fr node_modules",
         "ci": "yarn install --frozen-lockfile",
-        "generate": "graphql-codegen --config codegen.yml",
         "graphql:codegen": "graphql-codegen --config codegen.yml"
     },
     "dependencies": {
@@ -38,7 +37,6 @@
         "mobx": "^6.3.8",
         "mobx-react-lite": "^3.2.2",
         "react": "^18.0.0",
-        "react-cookies": "^0.1.1",
         "react-dom": "^18.0.0",
         "react-i18next": "^11.14.3",
         "react-icons": "^4.3.1",

@@ -3,8 +3,9 @@ import "reflect-metadata"
 import "dotenv/config"
 import { ApolloServer } from "apollo-server-express"
 import { buildSchema } from 'type-graphql'
-import Express from 'express'
+import { expressjwt as jwt } from 'express-jwt'
 import connectRedis from 'connect-redis'
+import Express from 'express'
 import session from 'express-session'
 
 // @context
@@ -58,9 +59,11 @@ const main = async () => {
         schema,
     })
 
-    const app = Express()
-    const RedisStore = connectRedis(session)
+    await apolloServer.start()
 
+    const app = Express()
+    const path = '/graphql'
+    const RedisStore = connectRedis(session)
 
     app.use(
         session({
@@ -79,14 +82,21 @@ const main = async () => {
         })
     )
 
-    await apolloServer.start()
+    app.use(
+        path,
+        jwt({
+            algorithms: ['HS256'],
+            secret: process.env.JWT_SECRET,
+            credentialsRequired: false,
+        }),
+    );
 
     const corsOptions = {
         credentials: true,
         origin: process.env.CORS_ORIGIN || '*',
     }
 
-    apolloServer.applyMiddleware({ app, path: '/graphql', cors: corsOptions })
+    apolloServer.applyMiddleware({ app, path, cors: corsOptions })
 
     app.listen(process.env.PORT || 4000, () => {
         logger.info(`🚀 Server ready at http//:localhost${process.env.PORT || 4000

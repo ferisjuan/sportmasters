@@ -33,7 +33,7 @@ export class SigninResolver {
                 throw new Error('Please check your email and confirm your email address')
             }
 
-            ctx.req.session!.userId = user.id
+            ctx.req.session.userId = user.id
         } catch (error) {
             return error
         }
