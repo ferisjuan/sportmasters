@@ -1,5 +1,5 @@
 generator client {
-  provider  = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 generator typegraphql {
@@ -99,6 +99,7 @@ enum TIER {
 }
 
 model Player {
+  /// @TypeGraphQL.omit(input: true)
   id                   String                  @id @default(cuid())
   birthday             DateTime
   category             PLAYER_CATEGORY
@@ -137,6 +138,7 @@ model Player {
 }
 
 model School {
+  /// @TypeGraphQL.omit(input: true)
   id        String   @id @default(cuid())
   address   String
   email     String   @unique
@@ -155,6 +157,7 @@ model School {
 }
 
 model User {
+  /// @TypeGraphQL.omit(input: true)
   id                    String   @id @default(cuid())
   /// @TypeGraphQL.omit(output: true)
   acceptsPrivacyPolicy  Boolean  @default(false)

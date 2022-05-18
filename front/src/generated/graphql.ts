@@ -2608,6 +2608,13 @@ export type PlayerQueryVariables = Exact<{
 
 export type PlayerQuery = { __typename?: 'Query', player?: { __typename?: 'Player', id: string, birthday: any, category: Player_Category, familySupport: Array<Family_Support>, fieldPosition: Field_Position, guardianEmail: string, guardianId: string, guardianIdType: string, guardianLastName: string, guardianName: string, guardianPhone: string, guardianType: Guardian_Type, height: number, hobbies: Array<string>, image: string, IMC: number, lastName: string, name: string, personalQualities: Array<Personal_Qualities>, physicalCapabilities: Array<Physical_Capabilities>, physicalQualities: Array<Physical_Qualities>, placeOfBirth: string, playerEmail: string, playerId: string, playerIdType: string, playerNumber: string, playerPhone: string, schoolId: string, sportHistory: string, weight: number } | null };
 
+export type MutationMutationVariables = Exact<{
+  data: PlayerCreateInput;
+}>;
+
+
+export type MutationMutation = { __typename?: 'Mutation', createPlayer: { __typename?: 'Player', birthday: any, category: Player_Category, familySupport: Array<Family_Support>, fieldPosition: Field_Position, guardianEmail: string, guardianId: string, guardianIdType: string, guardianLastName: string, guardianName: string, guardianPhone: string, guardianType: Guardian_Type, height: number, hobbies: Array<string>, image: string, IMC: number, lastName: string, name: string, personalQualities: Array<Personal_Qualities>, physicalCapabilities: Array<Physical_Capabilities>, physicalQualities: Array<Physical_Qualities>, placeOfBirth: string, playerEmail: string, playerId: string, playerIdType: string, playerNumber: string, playerPhone: string, schoolId: string, sportHistory: string, weight: number } };
+
 export type PlayersQueryVariables = Exact<{
   take?: InputMaybe<Scalars['Int']>;
   skip?: InputMaybe<Scalars['Int']>;
@@ -2745,6 +2752,50 @@ export const usePlayerQuery = <
     useQuery<PlayerQuery, TError, TData>(
       ['Player', variables],
       fetcher<PlayerQuery, PlayerQueryVariables>(PlayerDocument, variables),
+      options
+    );
+export const MutationDocument = `
+    mutation Mutation($data: PlayerCreateInput!) {
+  createPlayer(data: $data) {
+    birthday
+    category
+    familySupport
+    fieldPosition
+    guardianEmail
+    guardianId
+    guardianIdType
+    guardianLastName
+    guardianName
+    guardianPhone
+    guardianType
+    height
+    hobbies
+    image
+    IMC
+    lastName
+    name
+    personalQualities
+    physicalCapabilities
+    physicalQualities
+    placeOfBirth
+    playerEmail
+    playerId
+    playerIdType
+    playerNumber
+    playerPhone
+    schoolId
+    sportHistory
+    weight
+  }
+}
+    `;
+export const useMutationMutation = <
+      TError = unknown,
+      TContext = unknown
+    >(options?: UseMutationOptions<MutationMutation, TError, MutationMutationVariables, TContext>) =>
+    useMutation<MutationMutation, TError, MutationMutationVariables, TContext>(
+      ['Mutation'],
+      (variables?: MutationMutationVariables) => fetcher<MutationMutation, MutationMutationVariables>(MutationDocument, variables)(),
       options
     );
 export const PlayersDocument = `

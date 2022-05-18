@@ -10,7 +10,7 @@ import { FaTimes } from 'react-icons/fa'
 import { useGuardianOptions, useStores } from '~/hooks'
 
 // @interfaces
-import { Player } from '~/generated/graphql'
+import { CreatePlayerMutationVariables, Player, useCreatePlayerMutation } from '~/generated/graphql'
 
 //@schemas
 import { PlayerFormSchema } from './schema'
@@ -18,12 +18,13 @@ import { PlayerFormSchema } from './schema'
 //@utils
 // import { getNsTranslation } from '~/i18n'
 import { useTranslation } from 'react-i18next'
+import { showSMNotification } from '../../../utils'
 
 interface PlayerFormProps {
     setIsModalOpen: (isOpen: boolean) => void
 }
 
-export const PlayerForm: React.VFC<PlayerFormProps> = ({ setIsModalOpen }) => {
+export const PlayerForm: React.FC<PlayerFormProps> = ({ setIsModalOpen }) => {
     const { guardianOptions } = useGuardianOptions()
 
     const guardianOptionsMap = guardianOptions.map(option => ({
@@ -35,6 +36,8 @@ export const PlayerForm: React.VFC<PlayerFormProps> = ({ setIsModalOpen }) => {
 
     const { playerStore } = useStores()
 
+    const { mutate: createPlayer, error: createPlayerError } = useCreatePlayerMutation()
+
     const form = useForm<Player>({
         schema: yupResolver(PlayerFormSchema),
         initialValues: {} as Player,
@@ -42,15 +45,14 @@ export const PlayerForm: React.VFC<PlayerFormProps> = ({ setIsModalOpen }) => {
 
     return (
         <form
-            onSubmit={form.onSubmit(async (values: Player): Promise<void> => {
-                try {
-                    const rawPlayer = {} as Player
-                    const player = { ...rawPlayer, ...values }
-                    await playerStore.addPlayer(player)
+            onSubmit={form.onSubmit((values: CreatePlayerMutationVariables): Promise<void> => {
+                const rawPlayer = {} as Player
+                const player = { ...rawPlayer, ...values }
+                createPlayer({ variables: { data: player } })
 
-                    setIsModalOpen(false)
-                } catch (error) {
-                    console.error(error)
+                setIsModalOpen(false)
+                if (createPlayerError) {
+                    showSMNotification(`${createPlayerError}`, 'ERROR', false)
                 }
             })}
         >

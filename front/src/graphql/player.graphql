@@ -32,3 +32,37 @@ query Player($where: PlayerWhereUniqueInput!) {
     weight
   }
 }
+
+mutation Mutation($data: PlayerCreateInput!) {
+  createPlayer(data: $data) {
+    birthday
+    category
+    familySupport
+    fieldPosition
+    guardianEmail
+    guardianId
+    guardianIdType
+    guardianLastName
+    guardianName
+    guardianPhone
+    guardianType
+    height
+    hobbies
+    image
+    IMC
+    lastName
+    name
+    personalQualities
+    physicalCapabilities
+    physicalQualities
+    placeOfBirth
+    playerEmail
+    playerId
+    playerIdType
+    playerNumber
+    playerPhone
+    schoolId
+    sportHistory
+    weight
+  }
+}
