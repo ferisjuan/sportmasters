@@ -30,7 +30,6 @@ export const SMNavbar: React.VFC = () => {
     return (
         <Navbar fixed position={{ top: 70 }} width={{ base: 210 }}>
             <Navbar.Section grow>
-                <Title order={5}>Main Links</Title>
                 {NAV_ITEMS.map(({ text, to }) => (
                     <LinkBox key={to} onClick={() => setSelected(to)} selected={selected} text={text} to={to} />
                 ))}
