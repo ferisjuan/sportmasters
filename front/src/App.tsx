@@ -28,54 +28,54 @@ const PlayerPage = lazy(() => import('./pages/player/player'))
 const PlayersPage = lazy(() => import('./pages/players/players'))
 
 const App: React.FC = () => (
-    // <AuthContextProvider>
-    <StoreProvider store={rootStore}>
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<NotFoundPage />} />
-                <Route path={ROUTES.login} element={<AuthPage />} />
-                <Route
-                    path={ROUTES.dashboard}
-                    element={
-                        <Suspense fallback={<div>Loading...</div>}>
-                            <AuthenticatedRoute>
-                                <MainPage />
-                            </AuthenticatedRoute>
-                        </Suspense>
-                    }
-                >
-                    <Route index element={<Title>Welcome to the dashboard</Title>} />
-                    <Route path={ROUTES.dashboard_main} element={<Title>Main</Title>} />
+    <AuthContextProvider>
+        <StoreProvider store={rootStore}>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<NotFoundPage />} />
+                    <Route path={ROUTES.login} element={<AuthPage />} />
                     <Route
-                        path={ROUTES.players}
+                        path={ROUTES.dashboard}
                         element={
                             <Suspense fallback={<div>Loading...</div>}>
-                                <PlayersPage />
+                                <AuthenticatedRoute>
+                                    <MainPage />
+                                </AuthenticatedRoute>
+                            </Suspense>
+                        }
+                    >
+                        <Route index element={<Title>Welcome to the dashboard</Title>} />
+                        <Route path={ROUTES.dashboard_main} element={<Title>Main</Title>} />
+                        <Route
+                            path={ROUTES.players}
+                            element={
+                                <Suspense fallback={<div>Loading...</div>}>
+                                    <PlayersPage />
+                                </Suspense>
+                            }
+                        />
+                        <Route
+                            path={ROUTES.player}
+                            element={
+                                <Suspense fallback={<div>Loading...</div>}>
+                                    <PlayerPage />
+                                </Suspense>
+                            }
+                        />
+                        <Route path={ROUTES.statistics} element={<Title>Statistics</Title>} />
+                    </Route>
+                    <Route
+                        path={ROUTES.notFound}
+                        element={
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <NotFoundPage />
                             </Suspense>
                         }
                     />
-                    <Route
-                        path={ROUTES.player}
-                        element={
-                            <Suspense fallback={<div>Loading...</div>}>
-                                <PlayerPage />
-                            </Suspense>
-                        }
-                    />
-                    <Route path={ROUTES.statistics} element={<Title>Statistics</Title>} />
-                </Route>
-                <Route
-                    path={ROUTES.notFound}
-                    element={
-                        <Suspense fallback={<div>Loading...</div>}>
-                            <NotFoundPage />
-                        </Suspense>
-                    }
-                />
-            </Routes>
-        </BrowserRouter>
-    </StoreProvider>
-    // </AuthContextProvider>
+                </Routes>
+            </BrowserRouter>
+        </StoreProvider>
+    </AuthContextProvider>
 )
 
 // Custom theme is applied to all components in App

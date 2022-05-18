@@ -1,14 +1,12 @@
 // @vendors
-import { createContext, useEffect, useState } from 'react'
-import { ErrorFn } from '@firebase/auth'
+import { createContext, useState } from 'react'
 
 // @~/interfaces
-import { User } from '~/interfaces/user'
 import { IChildren } from '~/interfaces'
+import { User } from '../generated/graphql'
 
 export interface IAuthContext {
     user?: User
-    error?: ErrorFn
 }
 
 export const AuthContext = createContext<IAuthContext | null>(null)
