@@ -7,21 +7,15 @@ import { Box, Container, Grid, Pagination, ThemeIcon } from '@mantine/core'
 import { PlayerCard, PlayerForm, SMModal } from '~/components'
 
 // @generated
-import { Player, usePlayersCountQuery, usePlayersQuery } from '~/generated/graphql'
-
-const PLAYERS_BY_PAGE = 12
+import { Player, usePlayersQuery } from '~/generated/graphql'
+import { usePlayersPagination } from './hooks'
 
 const Players = (): JSX.Element => {
-    const [skip, setSkip] = useState(0)
-    const [take] = useState(PLAYERS_BY_PAGE)
+    const { pages, setSkip, skip, take } = usePlayersPagination()
 
     const [isModalOpen, setIsModalOpen] = useState(false)
 
     const { data: playersData } = usePlayersQuery({ skip, take })
-    const { data: playersCount } = usePlayersCountQuery()
-    const count = playersCount?.aggregatePlayer._count?.id
-
-    const pages = Math.ceil((count || 0) / PLAYERS_BY_PAGE)
 
     return (
         <Container fluid sx={{ height: '100%', position: 'relative' }}>
