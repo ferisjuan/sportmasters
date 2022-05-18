@@ -1,3 +1,5 @@
+import { Player } from '../../generated/graphql'
+
 export interface IPlayersStore {
-    getPlayers(): Promise<void>
+    players: Partial<Player>[]
 }

@@ -1,13 +1,16 @@
 // @vendors
 import { useState } from 'react'
 import { BsPlus } from 'react-icons/bs'
-import { Box, Container, Grid, Pagination, ThemeIcon } from '@mantine/core'
+import { Box, Container, Pagination, ThemeIcon } from '@mantine/core'
 
 // @components
-import { PlayerCard, PlayerForm, SMModal } from '~/components'
+import { PlayerForm, SMModal } from '~/components'
+import { PlayersGrid } from './PlayersGrid'
 
 // @generated
-import { Player, usePlayersQuery } from '~/generated/graphql'
+import { usePlayersQuery } from '~/generated/graphql'
+
+// @hooks
 import { usePlayersPagination } from './hooks'
 
 const Players = (): JSX.Element => {
@@ -24,11 +27,7 @@ const Players = (): JSX.Element => {
             </SMModal>
 
             <Box style={{ height: '80vh', width: '100%' }}>
-                <Grid>
-                    {playersData?.players?.map(player => (
-                        <PlayerCard key={player.id} player={player as Player} />
-                    ))}
-                </Grid>
+                {playersData && <PlayersGrid players={playersData.players} />}
 
                 <Pagination onChange={setSkip} page={skip || 1} position="center" pt="lg" total={pages} />
             </Box>
