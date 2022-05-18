@@ -98,7 +98,7 @@ const main = async () => {
 
     apolloServer.applyMiddleware({
         app, path,
-        // cors: corsOptions
+        cors: corsOptions
     })
 
     app.listen(process.env.PORT || 4000, () => {
