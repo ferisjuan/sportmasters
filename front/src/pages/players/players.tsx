@@ -4,8 +4,7 @@ import { BsPlus } from 'react-icons/bs'
 import { Box, Container, Pagination, ThemeIcon } from '@mantine/core'
 
 // @components
-import { PlayerForm, SMModal } from '~/components'
-import { PlayersGrid } from './PlayersGrid'
+import { PlayerForm, PlayersGrid, SMModal } from '~/components'
 
 // @generated
 import { usePlayersQuery } from '~/generated/graphql'
@@ -13,7 +12,7 @@ import { usePlayersQuery } from '~/generated/graphql'
 // @hooks
 import { usePlayersPagination } from './hooks'
 
-const Players = (): JSX.Element => {
+const Players: React.FC = () => {
     const { pages, setSkip, skip, take } = usePlayersPagination()
 
     const [isModalOpen, setIsModalOpen] = useState(false)

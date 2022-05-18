@@ -2601,6 +2601,13 @@ export type LogoutMutationVariables = Exact<{ [key: string]: never; }>;
 
 export type LogoutMutation = { __typename?: 'Mutation', logout: boolean };
 
+export type PlayerQueryVariables = Exact<{
+  where: PlayerWhereUniqueInput;
+}>;
+
+
+export type PlayerQuery = { __typename?: 'Query', player?: { __typename?: 'Player', id: string, birthday: any, category: Player_Category, familySupport: Array<Family_Support>, fieldPosition: Field_Position, guardianEmail: string, guardianId: string, guardianIdType: string, guardianLastName: string, guardianName: string, guardianPhone: string, guardianType: Guardian_Type, height: number, hobbies: Array<string>, image: string, IMC: number, lastName: string, name: string, personalQualities: Array<Personal_Qualities>, physicalCapabilities: Array<Physical_Capabilities>, physicalQualities: Array<Physical_Qualities>, placeOfBirth: string, playerEmail: string, playerId: string, playerIdType: string, playerNumber: string, playerPhone: string, schoolId: string, sportHistory: string, weight: number } | null };
+
 export type PlayersQueryVariables = Exact<{
   take?: InputMaybe<Scalars['Int']>;
   skip?: InputMaybe<Scalars['Int']>;
@@ -2690,6 +2697,54 @@ export const useLogoutMutation = <
     useMutation<LogoutMutation, TError, LogoutMutationVariables, TContext>(
       ['Logout'],
       (variables?: LogoutMutationVariables) => fetcher<LogoutMutation, LogoutMutationVariables>(LogoutDocument, variables)(),
+      options
+    );
+export const PlayerDocument = `
+    query Player($where: PlayerWhereUniqueInput!) {
+  player(where: $where) {
+    id
+    birthday
+    category
+    familySupport
+    fieldPosition
+    guardianEmail
+    guardianId
+    guardianIdType
+    guardianLastName
+    guardianName
+    guardianPhone
+    guardianType
+    height
+    hobbies
+    image
+    IMC
+    lastName
+    name
+    personalQualities
+    physicalCapabilities
+    physicalQualities
+    placeOfBirth
+    playerEmail
+    playerId
+    playerIdType
+    playerNumber
+    playerPhone
+    schoolId
+    sportHistory
+    weight
+  }
+}
+    `;
+export const usePlayerQuery = <
+      TData = PlayerQuery,
+      TError = unknown
+    >(
+      variables: PlayerQueryVariables,
+      options?: UseQueryOptions<PlayerQuery, TError, TData>
+    ) =>
+    useQuery<PlayerQuery, TError, TData>(
+      ['Player', variables],
+      fetcher<PlayerQuery, PlayerQueryVariables>(PlayerDocument, variables),
       options
     );
 export const PlayersDocument = `

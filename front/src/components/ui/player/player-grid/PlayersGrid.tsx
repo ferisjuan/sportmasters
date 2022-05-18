@@ -1,6 +1,11 @@
+// @vendors
 import { Grid } from '@mantine/core'
-import { PlayerCard } from '../../components'
-import { Player } from '../../generated/graphql'
+
+// @generated
+import { Player } from '~/generated/graphql'
+
+// @components
+import { PlayerCard } from '../player-profile'
 
 interface PlayersGridProps {
     players: Partial<Player>[]
