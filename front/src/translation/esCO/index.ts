@@ -3,4 +3,4 @@ import playerData from './playerData.json'
 import fieldPosition from './fieldPosition.json'
 import notifications from './notifications.json'
 
-export { playerDataErrors, playerData, fieldPosition, notifications }
+export { fieldPosition, notifications, playerData, playerDataErrors }

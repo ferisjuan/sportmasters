@@ -3,14 +3,20 @@ import { observer } from 'mobx-react-lite'
 import { Card, Container, Image, Text } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
 
-// @interfaces
-import { Player } from '~/generated/graphql'
+// @generated
+import { Field_Position } from '~/generated/graphql'
 
-interface IPlayerAvatar {
+interface IPlayerCardProps {
     player: Player
 }
 
-export const PlayerCard: React.FC<IPlayerAvatar> = observer(({ player }) => {
+interface Player {
+    image?: string
+    lastName: string
+    fieldPosition?: Field_Position
+}
+
+export const PlayerCard: React.FC<IPlayerCardProps> = observer(({ player }) => {
     const { t } = useTranslation()
 
     return (
@@ -22,7 +28,7 @@ export const PlayerCard: React.FC<IPlayerAvatar> = observer(({ player }) => {
         >
             <Card.Section>
                 <Container fluid sx={{ display: 'flex', justifyContent: 'center' }}>
-                    <Image alt="Player image" fit="contain" src={player?.image} width={120} />
+                    <Image alt="Player image" fit="contain" src={player?.image || ''} width={120} />
                 </Container>
             </Card.Section>
 

@@ -9,16 +9,12 @@ import { PlayerCard } from '../player-profile'
 import { ROUTES } from '~/constants'
 
 // @generated
-import { Player } from '~/generated/graphql'
+import { PlayersQuery } from '~/generated/graphql'
 
 // @hooks
 import { useStores } from '~/hooks'
 
-interface PlayersGridProps {
-    players: Player[]
-}
-
-export const PlayersGrid: React.FC<PlayersGridProps> = ({ players }) => {
+export const PlayersGrid: React.FC<PlayersQuery> = ({ players }) => {
     const { playerStore } = useStores()
 
     const navigate = useNavigate()

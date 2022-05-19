@@ -33,7 +33,7 @@ query Player($where: PlayerWhereUniqueInput!) {
   }
 }
 
-mutation Mutation($data: PlayerCreateInput!) {
+mutation CreatePlayer($data: PlayerCreateInput!) {
   createPlayer(data: $data) {
     birthday
     category

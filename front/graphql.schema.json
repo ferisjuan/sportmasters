@@ -699,32 +699,12 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "EnumFAMILY_SUPPORTNullableListFilter",
+        "name": "EnumFAMILY_SUPPORTNullableFilter",
         "description": null,
         "fields": null,
         "inputFields": [
           {
             "name": "equals",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "ENUM",
-                  "name": "FAMILY_SUPPORT",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "has",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -736,7 +716,7 @@
             "deprecationReason": null
           },
           {
-            "name": "hasEvery",
+            "name": "in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -756,32 +736,32 @@
             "deprecationReason": null
           },
           {
-            "name": "hasSome",
+            "name": "not",
             "description": null,
             "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "ENUM",
-                  "name": "FAMILY_SUPPORT",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "isEmpty",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
+              "kind": "INPUT_OBJECT",
+              "name": "NestedEnumFAMILY_SUPPORTNullableFilter",
               "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "notIn",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "FAMILY_SUPPORT",
+                  "ofType": null
+                }
+              }
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -794,17 +774,105 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "EnumFIELD_POSITIONFieldUpdateOperationsInput",
+        "name": "EnumFAMILY_SUPPORTNullableWithAggregatesFilter",
         "description": null,
         "fields": null,
         "inputFields": [
           {
-            "name": "set",
+            "name": "_count",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NestedIntNullableFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_max",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NestedEnumFAMILY_SUPPORTNullableFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_min",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NestedEnumFAMILY_SUPPORTNullableFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "equals",
             "description": null,
             "type": {
               "kind": "ENUM",
-              "name": "FIELD_POSITION",
+              "name": "FAMILY_SUPPORT",
               "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "FAMILY_SUPPORT",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "not",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NestedEnumFAMILY_SUPPORTNullableWithAggregatesFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "notIn",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "FAMILY_SUPPORT",
+                  "ofType": null
+                }
+              }
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -817,7 +885,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "EnumFIELD_POSITIONFilter",
+        "name": "EnumFIELD_POSITIONNullableFilter",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -858,7 +926,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "NestedEnumFIELD_POSITIONFilter",
+              "name": "NestedEnumFIELD_POSITIONNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -892,7 +960,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "EnumFIELD_POSITIONWithAggregatesFilter",
+        "name": "EnumFIELD_POSITIONNullableWithAggregatesFilter",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -901,7 +969,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "NestedIntFilter",
+              "name": "NestedIntNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -913,7 +981,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "NestedEnumFIELD_POSITIONFilter",
+              "name": "NestedEnumFIELD_POSITIONNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -925,7 +993,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "NestedEnumFIELD_POSITIONFilter",
+              "name": "NestedEnumFIELD_POSITIONNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -969,7 +1037,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "NestedEnumFIELD_POSITIONWithAggregatesFilter",
+              "name": "NestedEnumFIELD_POSITIONNullableWithAggregatesFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -1197,6 +1265,215 @@
                 "ofType": {
                   "kind": "ENUM",
                   "name": "GUARDIAN_TYPE",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "EnumNDI_TYPEFieldUpdateOperationsInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "set",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "NDI_TYPE",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "EnumNDI_TYPEFilter",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "equals",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "NDI_TYPE",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "NDI_TYPE",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "not",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NestedEnumNDI_TYPEFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "notIn",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "NDI_TYPE",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "EnumNDI_TYPEWithAggregatesFilter",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "_count",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NestedIntFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_max",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NestedEnumNDI_TYPEFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_min",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NestedEnumNDI_TYPEFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "equals",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "NDI_TYPE",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "NDI_TYPE",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "not",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NestedEnumNDI_TYPEWithAggregatesFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "notIn",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "NDI_TYPE",
                   "ofType": null
                 }
               }
@@ -1497,30 +1774,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "EnumPLAYER_CATEGORYFieldUpdateOperationsInput",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "set",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "PLAYER_CATEGORY",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "EnumPLAYER_CATEGORYFilter",
+        "name": "EnumPLAYER_CATEGORYNullableFilter",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -1561,7 +1815,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "NestedEnumPLAYER_CATEGORYFilter",
+              "name": "NestedEnumPLAYER_CATEGORYNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -1595,7 +1849,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "EnumPLAYER_CATEGORYWithAggregatesFilter",
+        "name": "EnumPLAYER_CATEGORYNullableWithAggregatesFilter",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -1604,7 +1858,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "NestedIntFilter",
+              "name": "NestedIntNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -1616,7 +1870,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "NestedEnumPLAYER_CATEGORYFilter",
+              "name": "NestedEnumPLAYER_CATEGORYNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -1628,7 +1882,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "NestedEnumPLAYER_CATEGORYFilter",
+              "name": "NestedEnumPLAYER_CATEGORYNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -1672,7 +1926,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "NestedEnumPLAYER_CATEGORYWithAggregatesFilter",
+              "name": "NestedEnumPLAYER_CATEGORYNullableWithAggregatesFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -3471,6 +3725,35 @@
         "possibleTypes": null
       },
       {
+        "kind": "ENUM",
+        "name": "NDI_TYPE",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "FOREIGN_CARD",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "NATIONAL_ID",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "PASSPORT",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
         "kind": "INPUT_OBJECT",
         "name": "NestedBoolFilter",
         "description": null,
@@ -3860,7 +4143,193 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "NestedEnumFIELD_POSITIONFilter",
+        "name": "NestedEnumFAMILY_SUPPORTNullableFilter",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "equals",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "FAMILY_SUPPORT",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "FAMILY_SUPPORT",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "not",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NestedEnumFAMILY_SUPPORTNullableFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "notIn",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "FAMILY_SUPPORT",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "NestedEnumFAMILY_SUPPORTNullableWithAggregatesFilter",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "_count",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NestedIntNullableFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_max",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NestedEnumFAMILY_SUPPORTNullableFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_min",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NestedEnumFAMILY_SUPPORTNullableFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "equals",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "FAMILY_SUPPORT",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "FAMILY_SUPPORT",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "not",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NestedEnumFAMILY_SUPPORTNullableWithAggregatesFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "notIn",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "FAMILY_SUPPORT",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "NestedEnumFIELD_POSITIONNullableFilter",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -3901,7 +4370,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "NestedEnumFIELD_POSITIONFilter",
+              "name": "NestedEnumFIELD_POSITIONNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -3935,7 +4404,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "NestedEnumFIELD_POSITIONWithAggregatesFilter",
+        "name": "NestedEnumFIELD_POSITIONNullableWithAggregatesFilter",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -3944,7 +4413,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "NestedIntFilter",
+              "name": "NestedIntNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -3956,7 +4425,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "NestedEnumFIELD_POSITIONFilter",
+              "name": "NestedEnumFIELD_POSITIONNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -3968,7 +4437,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "NestedEnumFIELD_POSITIONFilter",
+              "name": "NestedEnumFIELD_POSITIONNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -4012,7 +4481,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "NestedEnumFIELD_POSITIONWithAggregatesFilter",
+              "name": "NestedEnumFIELD_POSITIONNullableWithAggregatesFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -4232,7 +4701,193 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "NestedEnumPLAYER_CATEGORYFilter",
+        "name": "NestedEnumNDI_TYPEFilter",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "equals",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "NDI_TYPE",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "NDI_TYPE",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "not",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NestedEnumNDI_TYPEFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "notIn",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "NDI_TYPE",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "NestedEnumNDI_TYPEWithAggregatesFilter",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "_count",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NestedIntFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_max",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NestedEnumNDI_TYPEFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_min",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NestedEnumNDI_TYPEFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "equals",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "NDI_TYPE",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "NDI_TYPE",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "not",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NestedEnumNDI_TYPEWithAggregatesFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "notIn",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "NDI_TYPE",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "NestedEnumPLAYER_CATEGORYNullableFilter",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -4273,7 +4928,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "NestedEnumPLAYER_CATEGORYFilter",
+              "name": "NestedEnumPLAYER_CATEGORYNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -4307,7 +4962,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "NestedEnumPLAYER_CATEGORYWithAggregatesFilter",
+        "name": "NestedEnumPLAYER_CATEGORYNullableWithAggregatesFilter",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -4316,7 +4971,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "NestedIntFilter",
+              "name": "NestedIntNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -4328,7 +4983,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "NestedEnumPLAYER_CATEGORYFilter",
+              "name": "NestedEnumPLAYER_CATEGORYNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -4340,7 +4995,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "NestedEnumPLAYER_CATEGORYFilter",
+              "name": "NestedEnumPLAYER_CATEGORYNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -4384,7 +5039,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "NestedEnumPLAYER_CATEGORYWithAggregatesFilter",
+              "name": "NestedEnumPLAYER_CATEGORYNullableWithAggregatesFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -5678,6 +6333,75 @@
       },
       {
         "kind": "INPUT_OBJECT",
+        "name": "NullableEnumFAMILY_SUPPORTFieldUpdateOperationsInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "set",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "FAMILY_SUPPORT",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "NullableEnumFIELD_POSITIONFieldUpdateOperationsInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "set",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "FIELD_POSITION",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "NullableEnumPLAYER_CATEGORYFieldUpdateOperationsInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "set",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "PLAYER_CATEGORY",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
         "name": "NullableStringFieldUpdateOperationsInput",
         "description": null,
         "fields": null,
@@ -5935,13 +6659,9 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "ENUM",
-                "name": "PLAYER_CATEGORY",
-                "ofType": null
-              }
+              "kind": "ENUM",
+              "name": "PLAYER_CATEGORY",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -5951,21 +6671,9 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "ENUM",
-                    "name": "FAMILY_SUPPORT",
-                    "ofType": null
-                  }
-                }
-              }
+              "kind": "ENUM",
+              "name": "FAMILY_SUPPORT",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -5975,13 +6683,9 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "ENUM",
-                "name": "FIELD_POSITION",
-                "ofType": null
-              }
+              "kind": "ENUM",
+              "name": "FIELD_POSITION",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -6026,8 +6730,8 @@
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
+                "kind": "ENUM",
+                "name": "NDI_TYPE",
                 "ofType": null
               }
             },
@@ -6159,13 +6863,9 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -6279,13 +6979,9 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -6330,8 +7026,8 @@
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
+                "kind": "ENUM",
+                "name": "NDI_TYPE",
                 "ofType": null
               }
             },
@@ -6343,13 +7039,9 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -6391,13 +7083,9 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -7232,18 +7920,6 @@
             "deprecationReason": null
           },
           {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "SortOrder",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "image",
             "description": null,
             "type": {
@@ -7470,13 +8146,9 @@
             "name": "category",
             "description": null,
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "ENUM",
-                "name": "PLAYER_CATEGORY",
-                "ofType": null
-              }
+              "kind": "ENUM",
+              "name": "PLAYER_CATEGORY",
+              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -7486,8 +8158,8 @@
             "name": "familySupport",
             "description": null,
             "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "PlayerCreatefamilySupportInput",
+              "kind": "ENUM",
+              "name": "FAMILY_SUPPORT",
               "ofType": null
             },
             "defaultValue": null,
@@ -7498,13 +8170,9 @@
             "name": "fieldPosition",
             "description": null,
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "ENUM",
-                "name": "FIELD_POSITION",
-                "ofType": null
-              }
+              "kind": "ENUM",
+              "name": "FIELD_POSITION",
+              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -7549,8 +8217,8 @@
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
+                "kind": "ENUM",
+                "name": "NDI_TYPE",
                 "ofType": null
               }
             },
@@ -7651,28 +8319,12 @@
             "deprecationReason": null
           },
           {
-            "name": "id",
+            "name": "image",
             "description": null,
             "type": {
               "kind": "SCALAR",
               "name": "String",
               "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "image",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -7750,13 +8402,9 @@
             "name": "placeOfBirth",
             "description": null,
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -7801,8 +8449,8 @@
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
+                "kind": "ENUM",
+                "name": "NDI_TYPE",
                 "ofType": null
               }
             },
@@ -7814,13 +8462,9 @@
             "name": "playerNumber",
             "description": null,
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -7862,13 +8506,9 @@
             "name": "sportHistory",
             "description": null,
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -7937,13 +8577,9 @@
             "name": "category",
             "description": null,
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "ENUM",
-                "name": "PLAYER_CATEGORY",
-                "ofType": null
-              }
+              "kind": "ENUM",
+              "name": "PLAYER_CATEGORY",
+              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -7953,8 +8589,8 @@
             "name": "familySupport",
             "description": null,
             "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "PlayerCreatefamilySupportInput",
+              "kind": "ENUM",
+              "name": "FAMILY_SUPPORT",
               "ofType": null
             },
             "defaultValue": null,
@@ -7965,13 +8601,9 @@
             "name": "fieldPosition",
             "description": null,
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "ENUM",
-                "name": "FIELD_POSITION",
-                "ofType": null
-              }
+              "kind": "ENUM",
+              "name": "FIELD_POSITION",
+              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -8016,8 +8648,8 @@
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
+                "kind": "ENUM",
+                "name": "NDI_TYPE",
                 "ofType": null
               }
             },
@@ -8118,28 +8750,12 @@
             "deprecationReason": null
           },
           {
-            "name": "id",
+            "name": "image",
             "description": null,
             "type": {
               "kind": "SCALAR",
               "name": "String",
               "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "image",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -8217,13 +8833,9 @@
             "name": "placeOfBirth",
             "description": null,
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -8268,8 +8880,8 @@
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
+                "kind": "ENUM",
+                "name": "NDI_TYPE",
                 "ofType": null
               }
             },
@@ -8281,13 +8893,9 @@
             "name": "playerNumber",
             "description": null,
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -8329,13 +8937,9 @@
             "name": "sportHistory",
             "description": null,
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -8404,13 +9008,9 @@
             "name": "category",
             "description": null,
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "ENUM",
-                "name": "PLAYER_CATEGORY",
-                "ofType": null
-              }
+              "kind": "ENUM",
+              "name": "PLAYER_CATEGORY",
+              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -8420,8 +9020,8 @@
             "name": "familySupport",
             "description": null,
             "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "PlayerCreatefamilySupportInput",
+              "kind": "ENUM",
+              "name": "FAMILY_SUPPORT",
               "ofType": null
             },
             "defaultValue": null,
@@ -8432,13 +9032,9 @@
             "name": "fieldPosition",
             "description": null,
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "ENUM",
-                "name": "FIELD_POSITION",
-                "ofType": null
-              }
+              "kind": "ENUM",
+              "name": "FIELD_POSITION",
+              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -8483,8 +9079,8 @@
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
+                "kind": "ENUM",
+                "name": "NDI_TYPE",
                 "ofType": null
               }
             },
@@ -8585,28 +9181,12 @@
             "deprecationReason": null
           },
           {
-            "name": "id",
+            "name": "image",
             "description": null,
             "type": {
               "kind": "SCALAR",
               "name": "String",
               "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "image",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -8684,13 +9264,9 @@
             "name": "placeOfBirth",
             "description": null,
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -8735,8 +9311,8 @@
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
+                "kind": "ENUM",
+                "name": "NDI_TYPE",
                 "ofType": null
               }
             },
@@ -8748,13 +9324,9 @@
             "name": "playerNumber",
             "description": null,
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -8780,13 +9352,9 @@
             "name": "sportHistory",
             "description": null,
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -9028,13 +9596,9 @@
             "name": "category",
             "description": null,
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "ENUM",
-                "name": "PLAYER_CATEGORY",
-                "ofType": null
-              }
+              "kind": "ENUM",
+              "name": "PLAYER_CATEGORY",
+              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -9044,8 +9608,8 @@
             "name": "familySupport",
             "description": null,
             "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "PlayerCreatefamilySupportInput",
+              "kind": "ENUM",
+              "name": "FAMILY_SUPPORT",
               "ofType": null
             },
             "defaultValue": null,
@@ -9056,13 +9620,9 @@
             "name": "fieldPosition",
             "description": null,
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "ENUM",
-                "name": "FIELD_POSITION",
-                "ofType": null
-              }
+              "kind": "ENUM",
+              "name": "FIELD_POSITION",
+              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -9107,8 +9667,8 @@
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
+                "kind": "ENUM",
+                "name": "NDI_TYPE",
                 "ofType": null
               }
             },
@@ -9209,28 +9769,12 @@
             "deprecationReason": null
           },
           {
-            "name": "id",
+            "name": "image",
             "description": null,
             "type": {
               "kind": "SCALAR",
               "name": "String",
               "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "image",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -9308,13 +9852,9 @@
             "name": "placeOfBirth",
             "description": null,
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -9359,8 +9899,8 @@
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
+                "kind": "ENUM",
+                "name": "NDI_TYPE",
                 "ofType": null
               }
             },
@@ -9372,13 +9912,9 @@
             "name": "playerNumber",
             "description": null,
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -9404,13 +9940,9 @@
             "name": "sportHistory",
             "description": null,
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -9426,41 +9958,6 @@
                 "kind": "SCALAR",
                 "name": "Float",
                 "ofType": null
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "PlayerCreatefamilySupportInput",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "set",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "ENUM",
-                    "name": "FAMILY_SUPPORT",
-                    "ofType": null
-                  }
-                }
               }
             },
             "defaultValue": null,
@@ -9714,13 +10211,9 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "ENUM",
-                "name": "PLAYER_CATEGORY",
-                "ofType": null
-              }
+              "kind": "ENUM",
+              "name": "PLAYER_CATEGORY",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -9746,17 +10239,9 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "ENUM",
-                  "name": "FAMILY_SUPPORT",
-                  "ofType": null
-                }
-              }
+              "kind": "ENUM",
+              "name": "FAMILY_SUPPORT",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -9766,13 +10251,9 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "ENUM",
-                "name": "FIELD_POSITION",
-                "ofType": null
-              }
+              "kind": "ENUM",
+              "name": "FIELD_POSITION",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -9817,8 +10298,8 @@
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
+                "kind": "ENUM",
+                "name": "NDI_TYPE",
                 "ofType": null
               }
             },
@@ -9946,13 +10427,9 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -10054,13 +10531,9 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -10105,8 +10578,8 @@
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
+                "kind": "ENUM",
+                "name": "NDI_TYPE",
                 "ofType": null
               }
             },
@@ -10118,13 +10591,9 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -10166,13 +10635,9 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -10316,6 +10781,18 @@
             "deprecationReason": null
           },
           {
+            "name": "familySupport",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "ENUM",
+              "name": "FAMILY_SUPPORT",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "fieldPosition",
             "description": null,
             "args": [],
@@ -10356,8 +10833,8 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "kind": "ENUM",
+              "name": "NDI_TYPE",
               "ofType": null
             },
             "isDeprecated": false,
@@ -10512,8 +10989,8 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "kind": "ENUM",
+              "name": "NDI_TYPE",
               "ofType": null
             },
             "isDeprecated": false,
@@ -10640,6 +11117,18 @@
             "deprecationReason": null
           },
           {
+            "name": "familySupport",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "SortOrder",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "fieldPosition",
             "description": null,
             "type": {
@@ -10737,18 +11226,6 @@
           },
           {
             "name": "height",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "SortOrder",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -10962,6 +11439,18 @@
             "deprecationReason": null
           },
           {
+            "name": "familySupport",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "ENUM",
+              "name": "FAMILY_SUPPORT",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "fieldPosition",
             "description": null,
             "args": [],
@@ -11002,8 +11491,8 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "kind": "ENUM",
+              "name": "NDI_TYPE",
               "ofType": null
             },
             "isDeprecated": false,
@@ -11158,8 +11647,8 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "kind": "ENUM",
+              "name": "NDI_TYPE",
               "ofType": null
             },
             "isDeprecated": false,
@@ -11286,6 +11775,18 @@
             "deprecationReason": null
           },
           {
+            "name": "familySupport",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "SortOrder",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "fieldPosition",
             "description": null,
             "type": {
@@ -11383,18 +11884,6 @@
           },
           {
             "name": "height",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "SortOrder",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -11812,18 +12301,6 @@
             "deprecationReason": null
           },
           {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "SortOrder",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "image",
             "description": null,
             "type": {
@@ -12172,18 +12649,6 @@
           },
           {
             "name": "hobbies",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "SortOrder",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -12689,7 +13154,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "EnumPLAYER_CATEGORYFilter",
+              "name": "EnumPLAYER_CATEGORYNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -12701,7 +13166,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "EnumFAMILY_SUPPORTNullableListFilter",
+              "name": "EnumFAMILY_SUPPORTNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -12713,7 +13178,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "EnumFIELD_POSITIONFilter",
+              "name": "EnumFIELD_POSITIONNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -12749,7 +13214,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
+              "name": "EnumNDI_TYPEFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -12829,23 +13294,11 @@
             "deprecationReason": null
           },
           {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "image",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
+              "name": "StringNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -12917,7 +13370,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
+              "name": "StringNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -12953,7 +13406,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
+              "name": "EnumNDI_TYPEFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -12965,7 +13418,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
+              "name": "StringNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -13001,7 +13454,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
+              "name": "StringNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -13120,7 +13573,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "EnumPLAYER_CATEGORYWithAggregatesFilter",
+              "name": "EnumPLAYER_CATEGORYNullableWithAggregatesFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -13132,7 +13585,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "EnumFAMILY_SUPPORTNullableListFilter",
+              "name": "EnumFAMILY_SUPPORTNullableWithAggregatesFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -13144,7 +13597,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "EnumFIELD_POSITIONWithAggregatesFilter",
+              "name": "EnumFIELD_POSITIONNullableWithAggregatesFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -13180,7 +13633,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringWithAggregatesFilter",
+              "name": "EnumNDI_TYPEWithAggregatesFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -13260,23 +13713,11 @@
             "deprecationReason": null
           },
           {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringWithAggregatesFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "image",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringWithAggregatesFilter",
+              "name": "StringNullableWithAggregatesFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -13348,7 +13789,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringWithAggregatesFilter",
+              "name": "StringNullableWithAggregatesFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -13384,7 +13825,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringWithAggregatesFilter",
+              "name": "EnumNDI_TYPEWithAggregatesFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -13396,7 +13837,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringWithAggregatesFilter",
+              "name": "StringNullableWithAggregatesFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -13432,7 +13873,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringWithAggregatesFilter",
+              "name": "StringNullableWithAggregatesFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -13585,7 +14026,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "EnumPLAYER_CATEGORYFieldUpdateOperationsInput",
+              "name": "NullableEnumPLAYER_CATEGORYFieldUpdateOperationsInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -13597,7 +14038,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "PlayerUpdatefamilySupportInput",
+              "name": "NullableEnumFAMILY_SUPPORTFieldUpdateOperationsInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -13609,7 +14050,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "EnumFIELD_POSITIONFieldUpdateOperationsInput",
+              "name": "NullableEnumFIELD_POSITIONFieldUpdateOperationsInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -13645,7 +14086,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFieldUpdateOperationsInput",
+              "name": "EnumNDI_TYPEFieldUpdateOperationsInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -13725,23 +14166,11 @@
             "deprecationReason": null
           },
           {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFieldUpdateOperationsInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "image",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFieldUpdateOperationsInput",
+              "name": "NullableStringFieldUpdateOperationsInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -13813,7 +14242,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFieldUpdateOperationsInput",
+              "name": "NullableStringFieldUpdateOperationsInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -13849,7 +14278,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFieldUpdateOperationsInput",
+              "name": "EnumNDI_TYPEFieldUpdateOperationsInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -13861,7 +14290,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFieldUpdateOperationsInput",
+              "name": "NullableStringFieldUpdateOperationsInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -13897,7 +14326,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFieldUpdateOperationsInput",
+              "name": "NullableStringFieldUpdateOperationsInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -13956,7 +14385,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "EnumPLAYER_CATEGORYFieldUpdateOperationsInput",
+              "name": "NullableEnumPLAYER_CATEGORYFieldUpdateOperationsInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -13968,7 +14397,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "PlayerUpdatefamilySupportInput",
+              "name": "NullableEnumFAMILY_SUPPORTFieldUpdateOperationsInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -13980,7 +14409,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "EnumFIELD_POSITIONFieldUpdateOperationsInput",
+              "name": "NullableEnumFIELD_POSITIONFieldUpdateOperationsInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -14016,7 +14445,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFieldUpdateOperationsInput",
+              "name": "EnumNDI_TYPEFieldUpdateOperationsInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -14096,23 +14525,11 @@
             "deprecationReason": null
           },
           {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFieldUpdateOperationsInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "image",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFieldUpdateOperationsInput",
+              "name": "NullableStringFieldUpdateOperationsInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -14184,7 +14601,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFieldUpdateOperationsInput",
+              "name": "NullableStringFieldUpdateOperationsInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -14220,7 +14637,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFieldUpdateOperationsInput",
+              "name": "EnumNDI_TYPEFieldUpdateOperationsInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -14232,7 +14649,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFieldUpdateOperationsInput",
+              "name": "NullableStringFieldUpdateOperationsInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -14256,7 +14673,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFieldUpdateOperationsInput",
+              "name": "NullableStringFieldUpdateOperationsInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -14624,7 +15041,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "EnumPLAYER_CATEGORYFieldUpdateOperationsInput",
+              "name": "NullableEnumPLAYER_CATEGORYFieldUpdateOperationsInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -14636,7 +15053,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "PlayerUpdatefamilySupportInput",
+              "name": "NullableEnumFAMILY_SUPPORTFieldUpdateOperationsInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -14648,7 +15065,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "EnumFIELD_POSITIONFieldUpdateOperationsInput",
+              "name": "NullableEnumFIELD_POSITIONFieldUpdateOperationsInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -14684,7 +15101,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFieldUpdateOperationsInput",
+              "name": "EnumNDI_TYPEFieldUpdateOperationsInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -14764,23 +15181,11 @@
             "deprecationReason": null
           },
           {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFieldUpdateOperationsInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "image",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFieldUpdateOperationsInput",
+              "name": "NullableStringFieldUpdateOperationsInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -14852,7 +15257,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFieldUpdateOperationsInput",
+              "name": "NullableStringFieldUpdateOperationsInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -14888,7 +15293,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFieldUpdateOperationsInput",
+              "name": "EnumNDI_TYPEFieldUpdateOperationsInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -14900,7 +15305,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFieldUpdateOperationsInput",
+              "name": "NullableStringFieldUpdateOperationsInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -14924,7 +15329,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFieldUpdateOperationsInput",
+              "name": "NullableStringFieldUpdateOperationsInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -14938,57 +15343,6 @@
               "kind": "INPUT_OBJECT",
               "name": "FloatFieldUpdateOperationsInput",
               "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "PlayerUpdatefamilySupportInput",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "push",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "ENUM",
-                  "name": "FAMILY_SUPPORT",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "set",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "ENUM",
-                  "name": "FAMILY_SUPPORT",
-                  "ofType": null
-                }
-              }
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -15357,7 +15711,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "EnumPLAYER_CATEGORYFilter",
+              "name": "EnumPLAYER_CATEGORYNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -15369,7 +15723,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "EnumFAMILY_SUPPORTNullableListFilter",
+              "name": "EnumFAMILY_SUPPORTNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -15381,7 +15735,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "EnumFIELD_POSITIONFilter",
+              "name": "EnumFIELD_POSITIONNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -15417,7 +15771,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
+              "name": "EnumNDI_TYPEFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -15497,23 +15851,11 @@
             "deprecationReason": null
           },
           {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "image",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
+              "name": "StringNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -15585,7 +15927,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
+              "name": "StringNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -15621,7 +15963,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
+              "name": "EnumNDI_TYPEFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -15633,7 +15975,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
+              "name": "StringNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -15681,7 +16023,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
+              "name": "StringNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -15712,7 +16054,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "id",
+            "name": "playerEmail",
             "description": null,
             "type": {
               "kind": "SCALAR",

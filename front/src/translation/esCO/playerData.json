@@ -7,14 +7,24 @@
     "formTitleGuardianData": "Datos del acudiente",
     "formTitleStudentData": "Datos del estudiante",
     "guardian": "Acudiente",
-    "guardianPlaceholder": "Selecciona un acudiente",
+    "guardianLabel": "Selecciona un acudiente",
+    "guardianPlaceholder": "Selecciona uno",
+    "guardianOptions": [
+        { "label": "Padre", "value": "FATHER" },
+        { "label": "Madre", "value": "MOTHER" },
+        { "label": "Abuelo", "value": "GRANDFATHER" },
+        { "label": "Madre", "value": "GRANDMOTHER" },
+        { "label": "Ninguno", "value": "NONE" }
+    ],
     "height": "Altura",
     "heightUnit": "(cm)",
-    "idSelect": {
-        "dni": "Cedula de ciudadania",
-        "passport": "Pasaporte",
-        "placeholder": "Tipo de documento"
-    },
+    "idSelect": [
+        { "label":"Pasaporte", "value": "PASSPORT" },
+        { "label":"Carnet de extranjeria", "value": "FOREIGN_CARD" },
+        { "label":"Cédula de identidad", "value": "NATIONAL_ID" }
+    ],
+    "idSelectLabel": "Tipo de documento",
+    "idSelectPlaceholder": "Selecciona uno",
     "lastName": "Apellido (s)",
     "name": "Nombre (s)",
     "phone": "Teléfono",

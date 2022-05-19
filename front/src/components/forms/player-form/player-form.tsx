@@ -1,67 +1,63 @@
 // @vendors
-
-import { Button, Group, Select, Text, TextInput } from '@mantine/core'
-import { useForm, yupResolver } from '@mantine/form'
-import { DatePicker } from '@mantine/dates'
+import { useCallback } from 'react'
 import { BsSave } from 'react-icons/bs'
+import { Button, Group, Select, Text, TextInput } from '@mantine/core'
+import { DatePicker } from '@mantine/dates'
 import { FaTimes } from 'react-icons/fa'
-
-// @hooks
-import { useGuardianOptions, useStores } from '~/hooks'
+import { useForm, yupResolver } from '@mantine/form'
+import { useTranslation } from 'react-i18next'
 
 // @interfaces
-import { CreatePlayerMutationVariables, Player, useCreatePlayerMutation } from '~/generated/graphql'
+import { PlayerCreateInput, useCreatePlayerMutation } from '~/generated/graphql'
 
 //@schemas
 import { PlayerFormSchema } from './schema'
 
 //@utils
-// import { getNsTranslation } from '~/i18n'
-import { useTranslation } from 'react-i18next'
-import { showSMNotification } from '../../../utils'
+import { showSMNotification } from '~/utils'
 
 interface PlayerFormProps {
     setIsModalOpen: (isOpen: boolean) => void
 }
 
 export const PlayerForm: React.FC<PlayerFormProps> = ({ setIsModalOpen }) => {
-    const { guardianOptions } = useGuardianOptions()
-
-    const guardianOptionsMap = guardianOptions.map(option => ({
-        value: option.value,
-        label: option.label,
-    }))
-
     const { t } = useTranslation('playerData')
-
-    const { playerStore } = useStores()
 
     const { mutate: createPlayer, error: createPlayerError } = useCreatePlayerMutation()
 
-    const form = useForm<Player>({
+    const form = useForm<PlayerCreateInput>({
         schema: yupResolver(PlayerFormSchema),
-        initialValues: {} as Player,
+        initialValues: {} as PlayerCreateInput,
     })
 
-    return (
-        <form
-            onSubmit={form.onSubmit((values: CreatePlayerMutationVariables): Promise<void> => {
-                const rawPlayer = {} as Player
-                const player = { ...rawPlayer, ...values }
-                createPlayer({ variables: { data: player } })
+    const onSubmit = useCallback(
+        form.onSubmit((values): void => {
+            const data = {
+                ...values,
+                school: { connect: { id: 'cl284dtqt0000du6r7nbs9jcs' } },
+            }
 
-                setIsModalOpen(false)
-                if (createPlayerError) {
-                    showSMNotification(`${createPlayerError}`, 'ERROR', false)
-                }
-            })}
-        >
+            createPlayer({ data })
+
+            setIsModalOpen(false)
+
+            if (createPlayerError) {
+                showSMNotification(`${createPlayerError}`, 'ERROR', false)
+            }
+        }),
+        [],
+    )
+
+    return (
+        <form onSubmit={onSubmit}>
             <Text mb={30} size="lg" weight={700}>
                 {t('formTitle')}
             </Text>
+
             <Text size="md" weight={700}>
                 {t('formTitleStudentData')}
             </Text>
+
             <Group align="start" mb={16} grow>
                 <TextInput label={t('name')} name="name" required {...form.getInputProps('name')} />
                 <TextInput name="lastName" label={t('lastName')} required {...form.getInputProps('lastName')} />
@@ -69,14 +65,11 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({ setIsModalOpen }) => {
 
             <Group align="start" mb={16} grow>
                 <Select
-                    data={[
-                        { label: t('idSelect.dni'), value: 'dni' },
-                        { label: t('idSelect.passport'), value: 'passport' },
-                    ]}
+                    data={t('idSelect', { returnObjects: true })}
                     id="playerIdType"
-                    label={t('idSelect.placeholder')}
+                    label={t('idSelectLabel')}
                     name="playerIdType"
-                    placeholder={t('idSelect.placeholder')}
+                    placeholder={t('idSelectPlaceholder')}
                     required
                     sx={{ flex: 1 }}
                     {...form.getInputProps('playerIdType')}
@@ -89,11 +82,13 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({ setIsModalOpen }) => {
                     {...form.getInputProps('playerId')}
                 />
             </Group>
+
             <Group align="start" mb={16} grow>
                 <TextInput required label={t('email')} name="playerEmail" {...form.getInputProps('playerEmail')} />
 
                 <TextInput required label={t('phone')} name="playerPhone" {...form.getInputProps('playerPhone')} />
             </Group>
+
             <Group grow>
                 <DatePicker
                     locale="es"
@@ -103,6 +98,7 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({ setIsModalOpen }) => {
                     {...form.getInputProps('placeOfBirth')}
                     description={t('dateDescription')}
                 />
+
                 <Group position="right" grow>
                     <TextInput
                         sx={() => ({
@@ -110,26 +106,29 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({ setIsModalOpen }) => {
                         })}
                         description={t('weightUnit')}
                         required
-                        label={t('height')}
+                        label={t('weight')}
                         {...form.getInputProps('weight')}
                     />
+
                     <TextInput
                         required
-                        label={t('weight')}
-                        description={t('weightUnit')}
+                        label={t('height')}
+                        description={t('heightUnit')}
                         {...form.getInputProps('height')}
                     />
                 </Group>
             </Group>
             <hr />
+
             <Text size="md" weight={700}>
                 {t('formTitleGuardianData')}
             </Text>
+
             <Group align="start" mb={16}>
                 <Select
-                    data={guardianOptionsMap}
+                    data={t('guardianOptions', { returnObjects: true })}
                     id="guardianType"
-                    label={t('guardianPlaceholder')}
+                    label={t('guardianLabel')}
                     name="guardianType"
                     placeholder={t('guardianPlaceholder')}
                     required
@@ -137,6 +136,7 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({ setIsModalOpen }) => {
                     {...form.getInputProps('guardianType')}
                 />
             </Group>
+
             <Group align="start" mb={16} grow>
                 <TextInput label={t('name')} name="guardianName" required {...form.getInputProps('guardianName')} />
 
@@ -149,14 +149,11 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({ setIsModalOpen }) => {
             </Group>
             <Group align="start" mb={16} grow>
                 <Select
-                    data={[
-                        { label: t('idSelect.dni'), value: 'dni' },
-                        { label: t('idSelect.passport'), value: 'passport' },
-                    ]}
+                    data={t('idSelect', { returnObjects: true })}
                     id="guardianIdType"
-                    label={t('idSelect.placeholder')}
+                    label={t('idSelectLabel')}
                     name="guardianIdType"
-                    placeholder={t('idSelect.placeholder')}
+                    placeholder={t('idSelectPlaceholder')}
                     required
                     {...form.getInputProps('guardianIdType')}
                     sx={{ flex: 1 }}
@@ -174,10 +171,12 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({ setIsModalOpen }) => {
 
                 <TextInput label={t('phone')} name="guardianPhone" required {...form.getInputProps('guardianPhone')} />
             </Group>
+
             <Group mt={30} position="right">
                 <Button leftIcon={<FaTimes />} onClick={() => setIsModalOpen(false)} variant="outline">
                     {t('cancel')}
                 </Button>
+
                 <Button disabled={false} leftIcon={<BsSave />} type="submit">
                     {t('save')}
                 </Button>

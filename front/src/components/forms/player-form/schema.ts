@@ -3,8 +3,10 @@ import * as Yup from 'yup'
 import { getNsTranslation } from '~/i18n'
 
 const t = getNsTranslation('playerDataErrors')
+const tc = getNsTranslation('playerCategory')
 
 export const PlayerFormSchema = Yup.object().shape({
+    birthday: Yup.date().required(t('birthdayRequired')),
     guardianEmail: Yup.string().email(t('email')).required(),
     guardianId: Yup.string().required('required'),
     guardianIdType: Yup.string().required('required'),

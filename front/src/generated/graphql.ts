@@ -114,32 +114,37 @@ export type DateTimeWithAggregatesFilter = {
   notIn?: InputMaybe<Array<Scalars['DateTime']>>;
 };
 
-export type EnumFamily_SupportNullableListFilter = {
-  equals?: InputMaybe<Array<Family_Support>>;
-  has?: InputMaybe<Family_Support>;
-  hasEvery?: InputMaybe<Array<Family_Support>>;
-  hasSome?: InputMaybe<Array<Family_Support>>;
-  isEmpty?: InputMaybe<Scalars['Boolean']>;
+export type EnumFamily_SupportNullableFilter = {
+  equals?: InputMaybe<Family_Support>;
+  in?: InputMaybe<Array<Family_Support>>;
+  not?: InputMaybe<NestedEnumFamily_SupportNullableFilter>;
+  notIn?: InputMaybe<Array<Family_Support>>;
 };
 
-export type EnumField_PositionFieldUpdateOperationsInput = {
-  set?: InputMaybe<Field_Position>;
+export type EnumFamily_SupportNullableWithAggregatesFilter = {
+  _count?: InputMaybe<NestedIntNullableFilter>;
+  _max?: InputMaybe<NestedEnumFamily_SupportNullableFilter>;
+  _min?: InputMaybe<NestedEnumFamily_SupportNullableFilter>;
+  equals?: InputMaybe<Family_Support>;
+  in?: InputMaybe<Array<Family_Support>>;
+  not?: InputMaybe<NestedEnumFamily_SupportNullableWithAggregatesFilter>;
+  notIn?: InputMaybe<Array<Family_Support>>;
 };
 
-export type EnumField_PositionFilter = {
+export type EnumField_PositionNullableFilter = {
   equals?: InputMaybe<Field_Position>;
   in?: InputMaybe<Array<Field_Position>>;
-  not?: InputMaybe<NestedEnumField_PositionFilter>;
+  not?: InputMaybe<NestedEnumField_PositionNullableFilter>;
   notIn?: InputMaybe<Array<Field_Position>>;
 };
 
-export type EnumField_PositionWithAggregatesFilter = {
-  _count?: InputMaybe<NestedIntFilter>;
-  _max?: InputMaybe<NestedEnumField_PositionFilter>;
-  _min?: InputMaybe<NestedEnumField_PositionFilter>;
+export type EnumField_PositionNullableWithAggregatesFilter = {
+  _count?: InputMaybe<NestedIntNullableFilter>;
+  _max?: InputMaybe<NestedEnumField_PositionNullableFilter>;
+  _min?: InputMaybe<NestedEnumField_PositionNullableFilter>;
   equals?: InputMaybe<Field_Position>;
   in?: InputMaybe<Array<Field_Position>>;
-  not?: InputMaybe<NestedEnumField_PositionWithAggregatesFilter>;
+  not?: InputMaybe<NestedEnumField_PositionNullableWithAggregatesFilter>;
   notIn?: InputMaybe<Array<Field_Position>>;
 };
 
@@ -162,6 +167,27 @@ export type EnumGuardian_TypeWithAggregatesFilter = {
   in?: InputMaybe<Array<Guardian_Type>>;
   not?: InputMaybe<NestedEnumGuardian_TypeWithAggregatesFilter>;
   notIn?: InputMaybe<Array<Guardian_Type>>;
+};
+
+export type EnumNdi_TypeFieldUpdateOperationsInput = {
+  set?: InputMaybe<Ndi_Type>;
+};
+
+export type EnumNdi_TypeFilter = {
+  equals?: InputMaybe<Ndi_Type>;
+  in?: InputMaybe<Array<Ndi_Type>>;
+  not?: InputMaybe<NestedEnumNdi_TypeFilter>;
+  notIn?: InputMaybe<Array<Ndi_Type>>;
+};
+
+export type EnumNdi_TypeWithAggregatesFilter = {
+  _count?: InputMaybe<NestedIntFilter>;
+  _max?: InputMaybe<NestedEnumNdi_TypeFilter>;
+  _min?: InputMaybe<NestedEnumNdi_TypeFilter>;
+  equals?: InputMaybe<Ndi_Type>;
+  in?: InputMaybe<Array<Ndi_Type>>;
+  not?: InputMaybe<NestedEnumNdi_TypeWithAggregatesFilter>;
+  notIn?: InputMaybe<Array<Ndi_Type>>;
 };
 
 export type EnumPersonal_QualitiesNullableListFilter = {
@@ -188,24 +214,20 @@ export type EnumPhysical_QualitiesNullableListFilter = {
   isEmpty?: InputMaybe<Scalars['Boolean']>;
 };
 
-export type EnumPlayer_CategoryFieldUpdateOperationsInput = {
-  set?: InputMaybe<Player_Category>;
-};
-
-export type EnumPlayer_CategoryFilter = {
+export type EnumPlayer_CategoryNullableFilter = {
   equals?: InputMaybe<Player_Category>;
   in?: InputMaybe<Array<Player_Category>>;
-  not?: InputMaybe<NestedEnumPlayer_CategoryFilter>;
+  not?: InputMaybe<NestedEnumPlayer_CategoryNullableFilter>;
   notIn?: InputMaybe<Array<Player_Category>>;
 };
 
-export type EnumPlayer_CategoryWithAggregatesFilter = {
-  _count?: InputMaybe<NestedIntFilter>;
-  _max?: InputMaybe<NestedEnumPlayer_CategoryFilter>;
-  _min?: InputMaybe<NestedEnumPlayer_CategoryFilter>;
+export type EnumPlayer_CategoryNullableWithAggregatesFilter = {
+  _count?: InputMaybe<NestedIntNullableFilter>;
+  _max?: InputMaybe<NestedEnumPlayer_CategoryNullableFilter>;
+  _min?: InputMaybe<NestedEnumPlayer_CategoryNullableFilter>;
   equals?: InputMaybe<Player_Category>;
   in?: InputMaybe<Array<Player_Category>>;
-  not?: InputMaybe<NestedEnumPlayer_CategoryWithAggregatesFilter>;
+  not?: InputMaybe<NestedEnumPlayer_CategoryNullableWithAggregatesFilter>;
   notIn?: InputMaybe<Array<Player_Category>>;
 };
 
@@ -462,6 +484,12 @@ export type MutationUpsertUserArgs = {
   where: UserWhereUniqueInput;
 };
 
+export enum Ndi_Type {
+  ForeignCard = 'FOREIGN_CARD',
+  NationalId = 'NATIONAL_ID',
+  Passport = 'PASSPORT'
+}
+
 export type NestedBoolFilter = {
   equals?: InputMaybe<Scalars['Boolean']>;
   not?: InputMaybe<NestedBoolFilter>;
@@ -500,20 +528,37 @@ export type NestedDateTimeWithAggregatesFilter = {
   notIn?: InputMaybe<Array<Scalars['DateTime']>>;
 };
 
-export type NestedEnumField_PositionFilter = {
+export type NestedEnumFamily_SupportNullableFilter = {
+  equals?: InputMaybe<Family_Support>;
+  in?: InputMaybe<Array<Family_Support>>;
+  not?: InputMaybe<NestedEnumFamily_SupportNullableFilter>;
+  notIn?: InputMaybe<Array<Family_Support>>;
+};
+
+export type NestedEnumFamily_SupportNullableWithAggregatesFilter = {
+  _count?: InputMaybe<NestedIntNullableFilter>;
+  _max?: InputMaybe<NestedEnumFamily_SupportNullableFilter>;
+  _min?: InputMaybe<NestedEnumFamily_SupportNullableFilter>;
+  equals?: InputMaybe<Family_Support>;
+  in?: InputMaybe<Array<Family_Support>>;
+  not?: InputMaybe<NestedEnumFamily_SupportNullableWithAggregatesFilter>;
+  notIn?: InputMaybe<Array<Family_Support>>;
+};
+
+export type NestedEnumField_PositionNullableFilter = {
   equals?: InputMaybe<Field_Position>;
   in?: InputMaybe<Array<Field_Position>>;
-  not?: InputMaybe<NestedEnumField_PositionFilter>;
+  not?: InputMaybe<NestedEnumField_PositionNullableFilter>;
   notIn?: InputMaybe<Array<Field_Position>>;
 };
 
-export type NestedEnumField_PositionWithAggregatesFilter = {
-  _count?: InputMaybe<NestedIntFilter>;
-  _max?: InputMaybe<NestedEnumField_PositionFilter>;
-  _min?: InputMaybe<NestedEnumField_PositionFilter>;
+export type NestedEnumField_PositionNullableWithAggregatesFilter = {
+  _count?: InputMaybe<NestedIntNullableFilter>;
+  _max?: InputMaybe<NestedEnumField_PositionNullableFilter>;
+  _min?: InputMaybe<NestedEnumField_PositionNullableFilter>;
   equals?: InputMaybe<Field_Position>;
   in?: InputMaybe<Array<Field_Position>>;
-  not?: InputMaybe<NestedEnumField_PositionWithAggregatesFilter>;
+  not?: InputMaybe<NestedEnumField_PositionNullableWithAggregatesFilter>;
   notIn?: InputMaybe<Array<Field_Position>>;
 };
 
@@ -534,20 +579,37 @@ export type NestedEnumGuardian_TypeWithAggregatesFilter = {
   notIn?: InputMaybe<Array<Guardian_Type>>;
 };
 
-export type NestedEnumPlayer_CategoryFilter = {
+export type NestedEnumNdi_TypeFilter = {
+  equals?: InputMaybe<Ndi_Type>;
+  in?: InputMaybe<Array<Ndi_Type>>;
+  not?: InputMaybe<NestedEnumNdi_TypeFilter>;
+  notIn?: InputMaybe<Array<Ndi_Type>>;
+};
+
+export type NestedEnumNdi_TypeWithAggregatesFilter = {
+  _count?: InputMaybe<NestedIntFilter>;
+  _max?: InputMaybe<NestedEnumNdi_TypeFilter>;
+  _min?: InputMaybe<NestedEnumNdi_TypeFilter>;
+  equals?: InputMaybe<Ndi_Type>;
+  in?: InputMaybe<Array<Ndi_Type>>;
+  not?: InputMaybe<NestedEnumNdi_TypeWithAggregatesFilter>;
+  notIn?: InputMaybe<Array<Ndi_Type>>;
+};
+
+export type NestedEnumPlayer_CategoryNullableFilter = {
   equals?: InputMaybe<Player_Category>;
   in?: InputMaybe<Array<Player_Category>>;
-  not?: InputMaybe<NestedEnumPlayer_CategoryFilter>;
+  not?: InputMaybe<NestedEnumPlayer_CategoryNullableFilter>;
   notIn?: InputMaybe<Array<Player_Category>>;
 };
 
-export type NestedEnumPlayer_CategoryWithAggregatesFilter = {
-  _count?: InputMaybe<NestedIntFilter>;
-  _max?: InputMaybe<NestedEnumPlayer_CategoryFilter>;
-  _min?: InputMaybe<NestedEnumPlayer_CategoryFilter>;
+export type NestedEnumPlayer_CategoryNullableWithAggregatesFilter = {
+  _count?: InputMaybe<NestedIntNullableFilter>;
+  _max?: InputMaybe<NestedEnumPlayer_CategoryNullableFilter>;
+  _min?: InputMaybe<NestedEnumPlayer_CategoryNullableFilter>;
   equals?: InputMaybe<Player_Category>;
   in?: InputMaybe<Array<Player_Category>>;
-  not?: InputMaybe<NestedEnumPlayer_CategoryWithAggregatesFilter>;
+  not?: InputMaybe<NestedEnumPlayer_CategoryNullableWithAggregatesFilter>;
   notIn?: InputMaybe<Array<Player_Category>>;
 };
 
@@ -662,6 +724,18 @@ export type NestedStringWithAggregatesFilter = {
   startsWith?: InputMaybe<Scalars['String']>;
 };
 
+export type NullableEnumFamily_SupportFieldUpdateOperationsInput = {
+  set?: InputMaybe<Family_Support>;
+};
+
+export type NullableEnumField_PositionFieldUpdateOperationsInput = {
+  set?: InputMaybe<Field_Position>;
+};
+
+export type NullableEnumPlayer_CategoryFieldUpdateOperationsInput = {
+  set?: InputMaybe<Player_Category>;
+};
+
 export type NullableStringFieldUpdateOperationsInput = {
   set?: InputMaybe<Scalars['String']>;
 };
@@ -707,12 +781,12 @@ export type Player = {
   __typename?: 'Player';
   IMC: Scalars['Float'];
   birthday: Scalars['DateTime'];
-  category: Player_Category;
-  familySupport: Array<Family_Support>;
-  fieldPosition: Field_Position;
+  category?: Maybe<Player_Category>;
+  familySupport?: Maybe<Family_Support>;
+  fieldPosition?: Maybe<Field_Position>;
   guardianEmail: Scalars['String'];
   guardianId: Scalars['String'];
-  guardianIdType: Scalars['String'];
+  guardianIdType: Ndi_Type;
   guardianLastName: Scalars['String'];
   guardianName: Scalars['String'];
   guardianPhone: Scalars['String'];
@@ -720,20 +794,20 @@ export type Player = {
   height: Scalars['Float'];
   hobbies: Array<Scalars['String']>;
   id: Scalars['String'];
-  image: Scalars['String'];
+  image?: Maybe<Scalars['String']>;
   lastName: Scalars['String'];
   name: Scalars['String'];
   personalQualities: Array<Personal_Qualities>;
   physicalCapabilities: Array<Physical_Capabilities>;
   physicalQualities: Array<Physical_Qualities>;
-  placeOfBirth: Scalars['String'];
+  placeOfBirth?: Maybe<Scalars['String']>;
   playerEmail: Scalars['String'];
   playerId: Scalars['String'];
-  playerIdType: Scalars['String'];
-  playerNumber: Scalars['String'];
+  playerIdType: Ndi_Type;
+  playerNumber?: Maybe<Scalars['String']>;
   playerPhone: Scalars['String'];
   schoolId: Scalars['String'];
-  sportHistory: Scalars['String'];
+  sportHistory?: Maybe<Scalars['String']>;
   weight: Scalars['Float'];
 };
 
@@ -802,7 +876,6 @@ export type PlayerCountOrderByAggregateInput = {
   guardianType?: InputMaybe<SortOrder>;
   height?: InputMaybe<SortOrder>;
   hobbies?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
   image?: InputMaybe<SortOrder>;
   lastName?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
@@ -823,98 +896,95 @@ export type PlayerCountOrderByAggregateInput = {
 export type PlayerCreateInput = {
   IMC: Scalars['Float'];
   birthday: Scalars['DateTime'];
-  category: Player_Category;
-  familySupport?: InputMaybe<PlayerCreatefamilySupportInput>;
-  fieldPosition: Field_Position;
+  category?: InputMaybe<Player_Category>;
+  familySupport?: InputMaybe<Family_Support>;
+  fieldPosition?: InputMaybe<Field_Position>;
   guardianEmail: Scalars['String'];
   guardianId: Scalars['String'];
-  guardianIdType: Scalars['String'];
+  guardianIdType: Ndi_Type;
   guardianLastName: Scalars['String'];
   guardianName: Scalars['String'];
   guardianPhone: Scalars['String'];
   guardianType: Guardian_Type;
   height: Scalars['Float'];
   hobbies?: InputMaybe<PlayerCreatehobbiesInput>;
-  id?: InputMaybe<Scalars['String']>;
-  image: Scalars['String'];
+  image?: InputMaybe<Scalars['String']>;
   lastName: Scalars['String'];
   name: Scalars['String'];
   personalQualities?: InputMaybe<PlayerCreatepersonalQualitiesInput>;
   physicalCapabilities?: InputMaybe<PlayerCreatephysicalCapabilitiesInput>;
   physicalQualities?: InputMaybe<PlayerCreatephysicalQualitiesInput>;
-  placeOfBirth: Scalars['String'];
+  placeOfBirth?: InputMaybe<Scalars['String']>;
   playerEmail: Scalars['String'];
   playerId: Scalars['String'];
-  playerIdType: Scalars['String'];
-  playerNumber: Scalars['String'];
+  playerIdType: Ndi_Type;
+  playerNumber?: InputMaybe<Scalars['String']>;
   playerPhone: Scalars['String'];
   school: SchoolCreateNestedOneWithoutPlayersInput;
-  sportHistory: Scalars['String'];
+  sportHistory?: InputMaybe<Scalars['String']>;
   weight: Scalars['Float'];
 };
 
 export type PlayerCreateManyInput = {
   IMC: Scalars['Float'];
   birthday: Scalars['DateTime'];
-  category: Player_Category;
-  familySupport?: InputMaybe<PlayerCreatefamilySupportInput>;
-  fieldPosition: Field_Position;
+  category?: InputMaybe<Player_Category>;
+  familySupport?: InputMaybe<Family_Support>;
+  fieldPosition?: InputMaybe<Field_Position>;
   guardianEmail: Scalars['String'];
   guardianId: Scalars['String'];
-  guardianIdType: Scalars['String'];
+  guardianIdType: Ndi_Type;
   guardianLastName: Scalars['String'];
   guardianName: Scalars['String'];
   guardianPhone: Scalars['String'];
   guardianType: Guardian_Type;
   height: Scalars['Float'];
   hobbies?: InputMaybe<PlayerCreatehobbiesInput>;
-  id?: InputMaybe<Scalars['String']>;
-  image: Scalars['String'];
+  image?: InputMaybe<Scalars['String']>;
   lastName: Scalars['String'];
   name: Scalars['String'];
   personalQualities?: InputMaybe<PlayerCreatepersonalQualitiesInput>;
   physicalCapabilities?: InputMaybe<PlayerCreatephysicalCapabilitiesInput>;
   physicalQualities?: InputMaybe<PlayerCreatephysicalQualitiesInput>;
-  placeOfBirth: Scalars['String'];
+  placeOfBirth?: InputMaybe<Scalars['String']>;
   playerEmail: Scalars['String'];
   playerId: Scalars['String'];
-  playerIdType: Scalars['String'];
-  playerNumber: Scalars['String'];
+  playerIdType: Ndi_Type;
+  playerNumber?: InputMaybe<Scalars['String']>;
   playerPhone: Scalars['String'];
   schoolId: Scalars['String'];
-  sportHistory: Scalars['String'];
+  sportHistory?: InputMaybe<Scalars['String']>;
   weight: Scalars['Float'];
 };
 
 export type PlayerCreateManySchoolInput = {
   IMC: Scalars['Float'];
   birthday: Scalars['DateTime'];
-  category: Player_Category;
-  familySupport?: InputMaybe<PlayerCreatefamilySupportInput>;
-  fieldPosition: Field_Position;
+  category?: InputMaybe<Player_Category>;
+  familySupport?: InputMaybe<Family_Support>;
+  fieldPosition?: InputMaybe<Field_Position>;
   guardianEmail: Scalars['String'];
   guardianId: Scalars['String'];
-  guardianIdType: Scalars['String'];
+  guardianIdType: Ndi_Type;
   guardianLastName: Scalars['String'];
   guardianName: Scalars['String'];
   guardianPhone: Scalars['String'];
   guardianType: Guardian_Type;
   height: Scalars['Float'];
   hobbies?: InputMaybe<PlayerCreatehobbiesInput>;
-  id?: InputMaybe<Scalars['String']>;
-  image: Scalars['String'];
+  image?: InputMaybe<Scalars['String']>;
   lastName: Scalars['String'];
   name: Scalars['String'];
   personalQualities?: InputMaybe<PlayerCreatepersonalQualitiesInput>;
   physicalCapabilities?: InputMaybe<PlayerCreatephysicalCapabilitiesInput>;
   physicalQualities?: InputMaybe<PlayerCreatephysicalQualitiesInput>;
-  placeOfBirth: Scalars['String'];
+  placeOfBirth?: InputMaybe<Scalars['String']>;
   playerEmail: Scalars['String'];
   playerId: Scalars['String'];
-  playerIdType: Scalars['String'];
-  playerNumber: Scalars['String'];
+  playerIdType: Ndi_Type;
+  playerNumber?: InputMaybe<Scalars['String']>;
   playerPhone: Scalars['String'];
-  sportHistory: Scalars['String'];
+  sportHistory?: InputMaybe<Scalars['String']>;
   weight: Scalars['Float'];
 };
 
@@ -938,37 +1008,32 @@ export type PlayerCreateOrConnectWithoutSchoolInput = {
 export type PlayerCreateWithoutSchoolInput = {
   IMC: Scalars['Float'];
   birthday: Scalars['DateTime'];
-  category: Player_Category;
-  familySupport?: InputMaybe<PlayerCreatefamilySupportInput>;
-  fieldPosition: Field_Position;
+  category?: InputMaybe<Player_Category>;
+  familySupport?: InputMaybe<Family_Support>;
+  fieldPosition?: InputMaybe<Field_Position>;
   guardianEmail: Scalars['String'];
   guardianId: Scalars['String'];
-  guardianIdType: Scalars['String'];
+  guardianIdType: Ndi_Type;
   guardianLastName: Scalars['String'];
   guardianName: Scalars['String'];
   guardianPhone: Scalars['String'];
   guardianType: Guardian_Type;
   height: Scalars['Float'];
   hobbies?: InputMaybe<PlayerCreatehobbiesInput>;
-  id?: InputMaybe<Scalars['String']>;
-  image: Scalars['String'];
+  image?: InputMaybe<Scalars['String']>;
   lastName: Scalars['String'];
   name: Scalars['String'];
   personalQualities?: InputMaybe<PlayerCreatepersonalQualitiesInput>;
   physicalCapabilities?: InputMaybe<PlayerCreatephysicalCapabilitiesInput>;
   physicalQualities?: InputMaybe<PlayerCreatephysicalQualitiesInput>;
-  placeOfBirth: Scalars['String'];
+  placeOfBirth?: InputMaybe<Scalars['String']>;
   playerEmail: Scalars['String'];
   playerId: Scalars['String'];
-  playerIdType: Scalars['String'];
-  playerNumber: Scalars['String'];
+  playerIdType: Ndi_Type;
+  playerNumber?: InputMaybe<Scalars['String']>;
   playerPhone: Scalars['String'];
-  sportHistory: Scalars['String'];
+  sportHistory?: InputMaybe<Scalars['String']>;
   weight: Scalars['Float'];
-};
-
-export type PlayerCreatefamilySupportInput = {
-  set: Array<Family_Support>;
 };
 
 export type PlayerCreatehobbiesInput = {
@@ -996,13 +1061,13 @@ export type PlayerGroupBy = {
   _min?: Maybe<PlayerMinAggregate>;
   _sum?: Maybe<PlayerSumAggregate>;
   birthday: Scalars['DateTime'];
-  category: Player_Category;
+  category?: Maybe<Player_Category>;
   createdAt: Scalars['DateTime'];
-  familySupport?: Maybe<Array<Family_Support>>;
-  fieldPosition: Field_Position;
+  familySupport?: Maybe<Family_Support>;
+  fieldPosition?: Maybe<Field_Position>;
   guardianEmail: Scalars['String'];
   guardianId: Scalars['String'];
-  guardianIdType: Scalars['String'];
+  guardianIdType: Ndi_Type;
   guardianLastName: Scalars['String'];
   guardianName: Scalars['String'];
   guardianPhone: Scalars['String'];
@@ -1010,20 +1075,20 @@ export type PlayerGroupBy = {
   height: Scalars['Float'];
   hobbies?: Maybe<Array<Scalars['String']>>;
   id: Scalars['String'];
-  image: Scalars['String'];
+  image?: Maybe<Scalars['String']>;
   lastName: Scalars['String'];
   name: Scalars['String'];
   personalQualities?: Maybe<Array<Personal_Qualities>>;
   physicalCapabilities?: Maybe<Array<Physical_Capabilities>>;
   physicalQualities?: Maybe<Array<Physical_Qualities>>;
-  placeOfBirth: Scalars['String'];
+  placeOfBirth?: Maybe<Scalars['String']>;
   playerEmail: Scalars['String'];
   playerId: Scalars['String'];
-  playerIdType: Scalars['String'];
-  playerNumber: Scalars['String'];
+  playerIdType: Ndi_Type;
+  playerNumber?: Maybe<Scalars['String']>;
   playerPhone: Scalars['String'];
   schoolId: Scalars['String'];
-  sportHistory: Scalars['String'];
+  sportHistory?: Maybe<Scalars['String']>;
   updatedAt: Scalars['DateTime'];
   weight: Scalars['Float'];
 };
@@ -1040,10 +1105,11 @@ export type PlayerMaxAggregate = {
   birthday?: Maybe<Scalars['DateTime']>;
   category?: Maybe<Player_Category>;
   createdAt?: Maybe<Scalars['DateTime']>;
+  familySupport?: Maybe<Family_Support>;
   fieldPosition?: Maybe<Field_Position>;
   guardianEmail?: Maybe<Scalars['String']>;
   guardianId?: Maybe<Scalars['String']>;
-  guardianIdType?: Maybe<Scalars['String']>;
+  guardianIdType?: Maybe<Ndi_Type>;
   guardianLastName?: Maybe<Scalars['String']>;
   guardianName?: Maybe<Scalars['String']>;
   guardianPhone?: Maybe<Scalars['String']>;
@@ -1056,7 +1122,7 @@ export type PlayerMaxAggregate = {
   placeOfBirth?: Maybe<Scalars['String']>;
   playerEmail?: Maybe<Scalars['String']>;
   playerId?: Maybe<Scalars['String']>;
-  playerIdType?: Maybe<Scalars['String']>;
+  playerIdType?: Maybe<Ndi_Type>;
   playerNumber?: Maybe<Scalars['String']>;
   playerPhone?: Maybe<Scalars['String']>;
   schoolId?: Maybe<Scalars['String']>;
@@ -1069,6 +1135,7 @@ export type PlayerMaxOrderByAggregateInput = {
   IMC?: InputMaybe<SortOrder>;
   birthday?: InputMaybe<SortOrder>;
   category?: InputMaybe<SortOrder>;
+  familySupport?: InputMaybe<SortOrder>;
   fieldPosition?: InputMaybe<SortOrder>;
   guardianEmail?: InputMaybe<SortOrder>;
   guardianId?: InputMaybe<SortOrder>;
@@ -1078,7 +1145,6 @@ export type PlayerMaxOrderByAggregateInput = {
   guardianPhone?: InputMaybe<SortOrder>;
   guardianType?: InputMaybe<SortOrder>;
   height?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
   image?: InputMaybe<SortOrder>;
   lastName?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
@@ -1099,10 +1165,11 @@ export type PlayerMinAggregate = {
   birthday?: Maybe<Scalars['DateTime']>;
   category?: Maybe<Player_Category>;
   createdAt?: Maybe<Scalars['DateTime']>;
+  familySupport?: Maybe<Family_Support>;
   fieldPosition?: Maybe<Field_Position>;
   guardianEmail?: Maybe<Scalars['String']>;
   guardianId?: Maybe<Scalars['String']>;
-  guardianIdType?: Maybe<Scalars['String']>;
+  guardianIdType?: Maybe<Ndi_Type>;
   guardianLastName?: Maybe<Scalars['String']>;
   guardianName?: Maybe<Scalars['String']>;
   guardianPhone?: Maybe<Scalars['String']>;
@@ -1115,7 +1182,7 @@ export type PlayerMinAggregate = {
   placeOfBirth?: Maybe<Scalars['String']>;
   playerEmail?: Maybe<Scalars['String']>;
   playerId?: Maybe<Scalars['String']>;
-  playerIdType?: Maybe<Scalars['String']>;
+  playerIdType?: Maybe<Ndi_Type>;
   playerNumber?: Maybe<Scalars['String']>;
   playerPhone?: Maybe<Scalars['String']>;
   schoolId?: Maybe<Scalars['String']>;
@@ -1128,6 +1195,7 @@ export type PlayerMinOrderByAggregateInput = {
   IMC?: InputMaybe<SortOrder>;
   birthday?: InputMaybe<SortOrder>;
   category?: InputMaybe<SortOrder>;
+  familySupport?: InputMaybe<SortOrder>;
   fieldPosition?: InputMaybe<SortOrder>;
   guardianEmail?: InputMaybe<SortOrder>;
   guardianId?: InputMaybe<SortOrder>;
@@ -1137,7 +1205,6 @@ export type PlayerMinOrderByAggregateInput = {
   guardianPhone?: InputMaybe<SortOrder>;
   guardianType?: InputMaybe<SortOrder>;
   height?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
   image?: InputMaybe<SortOrder>;
   lastName?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
@@ -1176,7 +1243,6 @@ export type PlayerOrderByWithAggregationInput = {
   guardianType?: InputMaybe<SortOrder>;
   height?: InputMaybe<SortOrder>;
   hobbies?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
   image?: InputMaybe<SortOrder>;
   lastName?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
@@ -1209,7 +1275,6 @@ export type PlayerOrderByWithRelationInput = {
   guardianType?: InputMaybe<SortOrder>;
   height?: InputMaybe<SortOrder>;
   hobbies?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
   image?: InputMaybe<SortOrder>;
   lastName?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
@@ -1269,33 +1334,32 @@ export type PlayerScalarWhereInput = {
   NOT?: InputMaybe<Array<PlayerScalarWhereInput>>;
   OR?: InputMaybe<Array<PlayerScalarWhereInput>>;
   birthday?: InputMaybe<DateTimeFilter>;
-  category?: InputMaybe<EnumPlayer_CategoryFilter>;
-  familySupport?: InputMaybe<EnumFamily_SupportNullableListFilter>;
-  fieldPosition?: InputMaybe<EnumField_PositionFilter>;
+  category?: InputMaybe<EnumPlayer_CategoryNullableFilter>;
+  familySupport?: InputMaybe<EnumFamily_SupportNullableFilter>;
+  fieldPosition?: InputMaybe<EnumField_PositionNullableFilter>;
   guardianEmail?: InputMaybe<StringFilter>;
   guardianId?: InputMaybe<StringFilter>;
-  guardianIdType?: InputMaybe<StringFilter>;
+  guardianIdType?: InputMaybe<EnumNdi_TypeFilter>;
   guardianLastName?: InputMaybe<StringFilter>;
   guardianName?: InputMaybe<StringFilter>;
   guardianPhone?: InputMaybe<StringFilter>;
   guardianType?: InputMaybe<EnumGuardian_TypeFilter>;
   height?: InputMaybe<FloatFilter>;
   hobbies?: InputMaybe<StringNullableListFilter>;
-  id?: InputMaybe<StringFilter>;
-  image?: InputMaybe<StringFilter>;
+  image?: InputMaybe<StringNullableFilter>;
   lastName?: InputMaybe<StringFilter>;
   name?: InputMaybe<StringFilter>;
   personalQualities?: InputMaybe<EnumPersonal_QualitiesNullableListFilter>;
   physicalCapabilities?: InputMaybe<EnumPhysical_CapabilitiesNullableListFilter>;
   physicalQualities?: InputMaybe<EnumPhysical_QualitiesNullableListFilter>;
-  placeOfBirth?: InputMaybe<StringFilter>;
+  placeOfBirth?: InputMaybe<StringNullableFilter>;
   playerEmail?: InputMaybe<StringFilter>;
   playerId?: InputMaybe<StringFilter>;
-  playerIdType?: InputMaybe<StringFilter>;
-  playerNumber?: InputMaybe<StringFilter>;
+  playerIdType?: InputMaybe<EnumNdi_TypeFilter>;
+  playerNumber?: InputMaybe<StringNullableFilter>;
   playerPhone?: InputMaybe<StringFilter>;
   schoolId?: InputMaybe<StringFilter>;
-  sportHistory?: InputMaybe<StringFilter>;
+  sportHistory?: InputMaybe<StringNullableFilter>;
   weight?: InputMaybe<FloatFilter>;
 };
 
@@ -1305,33 +1369,32 @@ export type PlayerScalarWhereWithAggregatesInput = {
   NOT?: InputMaybe<Array<PlayerScalarWhereWithAggregatesInput>>;
   OR?: InputMaybe<Array<PlayerScalarWhereWithAggregatesInput>>;
   birthday?: InputMaybe<DateTimeWithAggregatesFilter>;
-  category?: InputMaybe<EnumPlayer_CategoryWithAggregatesFilter>;
-  familySupport?: InputMaybe<EnumFamily_SupportNullableListFilter>;
-  fieldPosition?: InputMaybe<EnumField_PositionWithAggregatesFilter>;
+  category?: InputMaybe<EnumPlayer_CategoryNullableWithAggregatesFilter>;
+  familySupport?: InputMaybe<EnumFamily_SupportNullableWithAggregatesFilter>;
+  fieldPosition?: InputMaybe<EnumField_PositionNullableWithAggregatesFilter>;
   guardianEmail?: InputMaybe<StringWithAggregatesFilter>;
   guardianId?: InputMaybe<StringWithAggregatesFilter>;
-  guardianIdType?: InputMaybe<StringWithAggregatesFilter>;
+  guardianIdType?: InputMaybe<EnumNdi_TypeWithAggregatesFilter>;
   guardianLastName?: InputMaybe<StringWithAggregatesFilter>;
   guardianName?: InputMaybe<StringWithAggregatesFilter>;
   guardianPhone?: InputMaybe<StringWithAggregatesFilter>;
   guardianType?: InputMaybe<EnumGuardian_TypeWithAggregatesFilter>;
   height?: InputMaybe<FloatWithAggregatesFilter>;
   hobbies?: InputMaybe<StringNullableListFilter>;
-  id?: InputMaybe<StringWithAggregatesFilter>;
-  image?: InputMaybe<StringWithAggregatesFilter>;
+  image?: InputMaybe<StringNullableWithAggregatesFilter>;
   lastName?: InputMaybe<StringWithAggregatesFilter>;
   name?: InputMaybe<StringWithAggregatesFilter>;
   personalQualities?: InputMaybe<EnumPersonal_QualitiesNullableListFilter>;
   physicalCapabilities?: InputMaybe<EnumPhysical_CapabilitiesNullableListFilter>;
   physicalQualities?: InputMaybe<EnumPhysical_QualitiesNullableListFilter>;
-  placeOfBirth?: InputMaybe<StringWithAggregatesFilter>;
+  placeOfBirth?: InputMaybe<StringNullableWithAggregatesFilter>;
   playerEmail?: InputMaybe<StringWithAggregatesFilter>;
   playerId?: InputMaybe<StringWithAggregatesFilter>;
-  playerIdType?: InputMaybe<StringWithAggregatesFilter>;
-  playerNumber?: InputMaybe<StringWithAggregatesFilter>;
+  playerIdType?: InputMaybe<EnumNdi_TypeWithAggregatesFilter>;
+  playerNumber?: InputMaybe<StringNullableWithAggregatesFilter>;
   playerPhone?: InputMaybe<StringWithAggregatesFilter>;
   schoolId?: InputMaybe<StringWithAggregatesFilter>;
-  sportHistory?: InputMaybe<StringWithAggregatesFilter>;
+  sportHistory?: InputMaybe<StringNullableWithAggregatesFilter>;
   weight?: InputMaybe<FloatWithAggregatesFilter>;
 };
 
@@ -1351,65 +1414,63 @@ export type PlayerSumOrderByAggregateInput = {
 export type PlayerUpdateInput = {
   IMC?: InputMaybe<FloatFieldUpdateOperationsInput>;
   birthday?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  category?: InputMaybe<EnumPlayer_CategoryFieldUpdateOperationsInput>;
-  familySupport?: InputMaybe<PlayerUpdatefamilySupportInput>;
-  fieldPosition?: InputMaybe<EnumField_PositionFieldUpdateOperationsInput>;
+  category?: InputMaybe<NullableEnumPlayer_CategoryFieldUpdateOperationsInput>;
+  familySupport?: InputMaybe<NullableEnumFamily_SupportFieldUpdateOperationsInput>;
+  fieldPosition?: InputMaybe<NullableEnumField_PositionFieldUpdateOperationsInput>;
   guardianEmail?: InputMaybe<StringFieldUpdateOperationsInput>;
   guardianId?: InputMaybe<StringFieldUpdateOperationsInput>;
-  guardianIdType?: InputMaybe<StringFieldUpdateOperationsInput>;
+  guardianIdType?: InputMaybe<EnumNdi_TypeFieldUpdateOperationsInput>;
   guardianLastName?: InputMaybe<StringFieldUpdateOperationsInput>;
   guardianName?: InputMaybe<StringFieldUpdateOperationsInput>;
   guardianPhone?: InputMaybe<StringFieldUpdateOperationsInput>;
   guardianType?: InputMaybe<EnumGuardian_TypeFieldUpdateOperationsInput>;
   height?: InputMaybe<FloatFieldUpdateOperationsInput>;
   hobbies?: InputMaybe<PlayerUpdatehobbiesInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  image?: InputMaybe<StringFieldUpdateOperationsInput>;
+  image?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   lastName?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   personalQualities?: InputMaybe<PlayerUpdatepersonalQualitiesInput>;
   physicalCapabilities?: InputMaybe<PlayerUpdatephysicalCapabilitiesInput>;
   physicalQualities?: InputMaybe<PlayerUpdatephysicalQualitiesInput>;
-  placeOfBirth?: InputMaybe<StringFieldUpdateOperationsInput>;
+  placeOfBirth?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   playerEmail?: InputMaybe<StringFieldUpdateOperationsInput>;
   playerId?: InputMaybe<StringFieldUpdateOperationsInput>;
-  playerIdType?: InputMaybe<StringFieldUpdateOperationsInput>;
-  playerNumber?: InputMaybe<StringFieldUpdateOperationsInput>;
+  playerIdType?: InputMaybe<EnumNdi_TypeFieldUpdateOperationsInput>;
+  playerNumber?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   playerPhone?: InputMaybe<StringFieldUpdateOperationsInput>;
   school?: InputMaybe<SchoolUpdateOneRequiredWithoutPlayersInput>;
-  sportHistory?: InputMaybe<StringFieldUpdateOperationsInput>;
+  sportHistory?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   weight?: InputMaybe<FloatFieldUpdateOperationsInput>;
 };
 
 export type PlayerUpdateManyMutationInput = {
   IMC?: InputMaybe<FloatFieldUpdateOperationsInput>;
   birthday?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  category?: InputMaybe<EnumPlayer_CategoryFieldUpdateOperationsInput>;
-  familySupport?: InputMaybe<PlayerUpdatefamilySupportInput>;
-  fieldPosition?: InputMaybe<EnumField_PositionFieldUpdateOperationsInput>;
+  category?: InputMaybe<NullableEnumPlayer_CategoryFieldUpdateOperationsInput>;
+  familySupport?: InputMaybe<NullableEnumFamily_SupportFieldUpdateOperationsInput>;
+  fieldPosition?: InputMaybe<NullableEnumField_PositionFieldUpdateOperationsInput>;
   guardianEmail?: InputMaybe<StringFieldUpdateOperationsInput>;
   guardianId?: InputMaybe<StringFieldUpdateOperationsInput>;
-  guardianIdType?: InputMaybe<StringFieldUpdateOperationsInput>;
+  guardianIdType?: InputMaybe<EnumNdi_TypeFieldUpdateOperationsInput>;
   guardianLastName?: InputMaybe<StringFieldUpdateOperationsInput>;
   guardianName?: InputMaybe<StringFieldUpdateOperationsInput>;
   guardianPhone?: InputMaybe<StringFieldUpdateOperationsInput>;
   guardianType?: InputMaybe<EnumGuardian_TypeFieldUpdateOperationsInput>;
   height?: InputMaybe<FloatFieldUpdateOperationsInput>;
   hobbies?: InputMaybe<PlayerUpdatehobbiesInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  image?: InputMaybe<StringFieldUpdateOperationsInput>;
+  image?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   lastName?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   personalQualities?: InputMaybe<PlayerUpdatepersonalQualitiesInput>;
   physicalCapabilities?: InputMaybe<PlayerUpdatephysicalCapabilitiesInput>;
   physicalQualities?: InputMaybe<PlayerUpdatephysicalQualitiesInput>;
-  placeOfBirth?: InputMaybe<StringFieldUpdateOperationsInput>;
+  placeOfBirth?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   playerEmail?: InputMaybe<StringFieldUpdateOperationsInput>;
   playerId?: InputMaybe<StringFieldUpdateOperationsInput>;
-  playerIdType?: InputMaybe<StringFieldUpdateOperationsInput>;
-  playerNumber?: InputMaybe<StringFieldUpdateOperationsInput>;
+  playerIdType?: InputMaybe<EnumNdi_TypeFieldUpdateOperationsInput>;
+  playerNumber?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   playerPhone?: InputMaybe<StringFieldUpdateOperationsInput>;
-  sportHistory?: InputMaybe<StringFieldUpdateOperationsInput>;
+  sportHistory?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   weight?: InputMaybe<FloatFieldUpdateOperationsInput>;
 };
 
@@ -1440,38 +1501,32 @@ export type PlayerUpdateWithWhereUniqueWithoutSchoolInput = {
 export type PlayerUpdateWithoutSchoolInput = {
   IMC?: InputMaybe<FloatFieldUpdateOperationsInput>;
   birthday?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  category?: InputMaybe<EnumPlayer_CategoryFieldUpdateOperationsInput>;
-  familySupport?: InputMaybe<PlayerUpdatefamilySupportInput>;
-  fieldPosition?: InputMaybe<EnumField_PositionFieldUpdateOperationsInput>;
+  category?: InputMaybe<NullableEnumPlayer_CategoryFieldUpdateOperationsInput>;
+  familySupport?: InputMaybe<NullableEnumFamily_SupportFieldUpdateOperationsInput>;
+  fieldPosition?: InputMaybe<NullableEnumField_PositionFieldUpdateOperationsInput>;
   guardianEmail?: InputMaybe<StringFieldUpdateOperationsInput>;
   guardianId?: InputMaybe<StringFieldUpdateOperationsInput>;
-  guardianIdType?: InputMaybe<StringFieldUpdateOperationsInput>;
+  guardianIdType?: InputMaybe<EnumNdi_TypeFieldUpdateOperationsInput>;
   guardianLastName?: InputMaybe<StringFieldUpdateOperationsInput>;
   guardianName?: InputMaybe<StringFieldUpdateOperationsInput>;
   guardianPhone?: InputMaybe<StringFieldUpdateOperationsInput>;
   guardianType?: InputMaybe<EnumGuardian_TypeFieldUpdateOperationsInput>;
   height?: InputMaybe<FloatFieldUpdateOperationsInput>;
   hobbies?: InputMaybe<PlayerUpdatehobbiesInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  image?: InputMaybe<StringFieldUpdateOperationsInput>;
+  image?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   lastName?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   personalQualities?: InputMaybe<PlayerUpdatepersonalQualitiesInput>;
   physicalCapabilities?: InputMaybe<PlayerUpdatephysicalCapabilitiesInput>;
   physicalQualities?: InputMaybe<PlayerUpdatephysicalQualitiesInput>;
-  placeOfBirth?: InputMaybe<StringFieldUpdateOperationsInput>;
+  placeOfBirth?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   playerEmail?: InputMaybe<StringFieldUpdateOperationsInput>;
   playerId?: InputMaybe<StringFieldUpdateOperationsInput>;
-  playerIdType?: InputMaybe<StringFieldUpdateOperationsInput>;
-  playerNumber?: InputMaybe<StringFieldUpdateOperationsInput>;
+  playerIdType?: InputMaybe<EnumNdi_TypeFieldUpdateOperationsInput>;
+  playerNumber?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   playerPhone?: InputMaybe<StringFieldUpdateOperationsInput>;
-  sportHistory?: InputMaybe<StringFieldUpdateOperationsInput>;
+  sportHistory?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   weight?: InputMaybe<FloatFieldUpdateOperationsInput>;
-};
-
-export type PlayerUpdatefamilySupportInput = {
-  push?: InputMaybe<Array<Family_Support>>;
-  set?: InputMaybe<Array<Family_Support>>;
 };
 
 export type PlayerUpdatehobbiesInput = {
@@ -1506,39 +1561,38 @@ export type PlayerWhereInput = {
   NOT?: InputMaybe<Array<PlayerWhereInput>>;
   OR?: InputMaybe<Array<PlayerWhereInput>>;
   birthday?: InputMaybe<DateTimeFilter>;
-  category?: InputMaybe<EnumPlayer_CategoryFilter>;
-  familySupport?: InputMaybe<EnumFamily_SupportNullableListFilter>;
-  fieldPosition?: InputMaybe<EnumField_PositionFilter>;
+  category?: InputMaybe<EnumPlayer_CategoryNullableFilter>;
+  familySupport?: InputMaybe<EnumFamily_SupportNullableFilter>;
+  fieldPosition?: InputMaybe<EnumField_PositionNullableFilter>;
   guardianEmail?: InputMaybe<StringFilter>;
   guardianId?: InputMaybe<StringFilter>;
-  guardianIdType?: InputMaybe<StringFilter>;
+  guardianIdType?: InputMaybe<EnumNdi_TypeFilter>;
   guardianLastName?: InputMaybe<StringFilter>;
   guardianName?: InputMaybe<StringFilter>;
   guardianPhone?: InputMaybe<StringFilter>;
   guardianType?: InputMaybe<EnumGuardian_TypeFilter>;
   height?: InputMaybe<FloatFilter>;
   hobbies?: InputMaybe<StringNullableListFilter>;
-  id?: InputMaybe<StringFilter>;
-  image?: InputMaybe<StringFilter>;
+  image?: InputMaybe<StringNullableFilter>;
   lastName?: InputMaybe<StringFilter>;
   name?: InputMaybe<StringFilter>;
   personalQualities?: InputMaybe<EnumPersonal_QualitiesNullableListFilter>;
   physicalCapabilities?: InputMaybe<EnumPhysical_CapabilitiesNullableListFilter>;
   physicalQualities?: InputMaybe<EnumPhysical_QualitiesNullableListFilter>;
-  placeOfBirth?: InputMaybe<StringFilter>;
+  placeOfBirth?: InputMaybe<StringNullableFilter>;
   playerEmail?: InputMaybe<StringFilter>;
   playerId?: InputMaybe<StringFilter>;
-  playerIdType?: InputMaybe<StringFilter>;
-  playerNumber?: InputMaybe<StringFilter>;
+  playerIdType?: InputMaybe<EnumNdi_TypeFilter>;
+  playerNumber?: InputMaybe<StringNullableFilter>;
   playerPhone?: InputMaybe<StringFilter>;
   school?: InputMaybe<SchoolRelationFilter>;
   schoolId?: InputMaybe<StringFilter>;
-  sportHistory?: InputMaybe<StringFilter>;
+  sportHistory?: InputMaybe<StringNullableFilter>;
   weight?: InputMaybe<FloatFilter>;
 };
 
 export type PlayerWhereUniqueInput = {
-  id?: InputMaybe<Scalars['String']>;
+  playerEmail?: InputMaybe<Scalars['String']>;
 };
 
 export type Query = {
@@ -2606,14 +2660,14 @@ export type PlayerQueryVariables = Exact<{
 }>;
 
 
-export type PlayerQuery = { __typename?: 'Query', player?: { __typename?: 'Player', id: string, birthday: any, category: Player_Category, familySupport: Array<Family_Support>, fieldPosition: Field_Position, guardianEmail: string, guardianId: string, guardianIdType: string, guardianLastName: string, guardianName: string, guardianPhone: string, guardianType: Guardian_Type, height: number, hobbies: Array<string>, image: string, IMC: number, lastName: string, name: string, personalQualities: Array<Personal_Qualities>, physicalCapabilities: Array<Physical_Capabilities>, physicalQualities: Array<Physical_Qualities>, placeOfBirth: string, playerEmail: string, playerId: string, playerIdType: string, playerNumber: string, playerPhone: string, schoolId: string, sportHistory: string, weight: number } | null };
+export type PlayerQuery = { __typename?: 'Query', player?: { __typename?: 'Player', id: string, birthday: any, category?: Player_Category | null, familySupport?: Family_Support | null, fieldPosition?: Field_Position | null, guardianEmail: string, guardianId: string, guardianIdType: Ndi_Type, guardianLastName: string, guardianName: string, guardianPhone: string, guardianType: Guardian_Type, height: number, hobbies: Array<string>, image?: string | null, IMC: number, lastName: string, name: string, personalQualities: Array<Personal_Qualities>, physicalCapabilities: Array<Physical_Capabilities>, physicalQualities: Array<Physical_Qualities>, placeOfBirth?: string | null, playerEmail: string, playerId: string, playerIdType: Ndi_Type, playerNumber?: string | null, playerPhone: string, schoolId: string, sportHistory?: string | null, weight: number } | null };
 
-export type MutationMutationVariables = Exact<{
+export type CreatePlayerMutationVariables = Exact<{
   data: PlayerCreateInput;
 }>;
 
 
-export type MutationMutation = { __typename?: 'Mutation', createPlayer: { __typename?: 'Player', birthday: any, category: Player_Category, familySupport: Array<Family_Support>, fieldPosition: Field_Position, guardianEmail: string, guardianId: string, guardianIdType: string, guardianLastName: string, guardianName: string, guardianPhone: string, guardianType: Guardian_Type, height: number, hobbies: Array<string>, image: string, IMC: number, lastName: string, name: string, personalQualities: Array<Personal_Qualities>, physicalCapabilities: Array<Physical_Capabilities>, physicalQualities: Array<Physical_Qualities>, placeOfBirth: string, playerEmail: string, playerId: string, playerIdType: string, playerNumber: string, playerPhone: string, schoolId: string, sportHistory: string, weight: number } };
+export type CreatePlayerMutation = { __typename?: 'Mutation', createPlayer: { __typename?: 'Player', birthday: any, category?: Player_Category | null, familySupport?: Family_Support | null, fieldPosition?: Field_Position | null, guardianEmail: string, guardianId: string, guardianIdType: Ndi_Type, guardianLastName: string, guardianName: string, guardianPhone: string, guardianType: Guardian_Type, height: number, hobbies: Array<string>, image?: string | null, IMC: number, lastName: string, name: string, personalQualities: Array<Personal_Qualities>, physicalCapabilities: Array<Physical_Capabilities>, physicalQualities: Array<Physical_Qualities>, placeOfBirth?: string | null, playerEmail: string, playerId: string, playerIdType: Ndi_Type, playerNumber?: string | null, playerPhone: string, schoolId: string, sportHistory?: string | null, weight: number } };
 
 export type PlayersQueryVariables = Exact<{
   take?: InputMaybe<Scalars['Int']>;
@@ -2754,8 +2808,8 @@ export const usePlayerQuery = <
       fetcher<PlayerQuery, PlayerQueryVariables>(PlayerDocument, variables),
       options
     );
-export const MutationDocument = `
-    mutation Mutation($data: PlayerCreateInput!) {
+export const CreatePlayerDocument = `
+    mutation CreatePlayer($data: PlayerCreateInput!) {
   createPlayer(data: $data) {
     birthday
     category
@@ -2789,13 +2843,13 @@ export const MutationDocument = `
   }
 }
     `;
-export const useMutationMutation = <
+export const useCreatePlayerMutation = <
       TError = unknown,
       TContext = unknown
-    >(options?: UseMutationOptions<MutationMutation, TError, MutationMutationVariables, TContext>) =>
-    useMutation<MutationMutation, TError, MutationMutationVariables, TContext>(
-      ['Mutation'],
-      (variables?: MutationMutationVariables) => fetcher<MutationMutation, MutationMutationVariables>(MutationDocument, variables)(),
+    >(options?: UseMutationOptions<CreatePlayerMutation, TError, CreatePlayerMutationVariables, TContext>) =>
+    useMutation<CreatePlayerMutation, TError, CreatePlayerMutationVariables, TContext>(
+      ['CreatePlayer'],
+      (variables?: CreatePlayerMutationVariables) => fetcher<CreatePlayerMutation, CreatePlayerMutationVariables>(CreatePlayerDocument, variables)(),
       options
     );
 export const PlayersDocument = `
