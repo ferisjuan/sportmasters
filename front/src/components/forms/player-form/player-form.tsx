@@ -1,5 +1,4 @@
 // @vendors
-import { useCallback } from 'react'
 import { BsSave } from 'react-icons/bs'
 import { Button, Group, Select, Text, TextInput } from '@mantine/core'
 import { DatePicker } from '@mantine/dates'
@@ -21,7 +20,7 @@ interface PlayerFormProps {
 }
 
 export const PlayerForm: React.FC<PlayerFormProps> = ({ setIsModalOpen }) => {
-    const { t } = useTranslation('playerData')
+    const { t } = useTranslation('addPlayerForm')
 
     const { mutate: createPlayer, error: createPlayerError } = useCreatePlayerMutation()
 
@@ -30,23 +29,20 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({ setIsModalOpen }) => {
         initialValues: {} as PlayerCreateInput,
     })
 
-    const onSubmit = useCallback(
-        form.onSubmit((values): void => {
-            const data = {
-                ...values,
-                school: { connect: { id: 'cl284dtqt0000du6r7nbs9jcs' } },
-            }
+    const onSubmit = form.onSubmit((values): void => {
+        const data = {
+            ...values,
+            school: { connect: { id: 'cl284dtqt0000du6r7nbs9jcs' } },
+        }
 
-            createPlayer({ data })
+        createPlayer({ data })
 
-            setIsModalOpen(false)
+        setIsModalOpen(false)
 
-            if (createPlayerError) {
-                showSMNotification(`${createPlayerError}`, 'ERROR', false)
-            }
-        }),
-        [],
-    )
+        if (createPlayerError) {
+            showSMNotification(`${createPlayerError}`, 'ERROR', false)
+        }
+    })
 
     return (
         <form onSubmit={onSubmit}>
@@ -55,12 +51,13 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({ setIsModalOpen }) => {
             </Text>
 
             <Text size="md" weight={700}>
-                {t('formTitleStudentData')}
+                {t('formTitleStudentData')}eee
             </Text>
 
             <Group align="start" mb={16} grow>
-                <TextInput label={t('name')} name="name" required {...form.getInputProps('name')} />
-                <TextInput name="lastName" label={t('lastName')} required {...form.getInputProps('lastName')} />
+                <TextInput label={t('name')} name="name" {...form.getInputProps('name')} />
+
+                <TextInput name="lastName" label={t('lastName')} {...form.getInputProps('lastName')} />
             </Group>
 
             <Group align="start" mb={16} grow>
@@ -70,23 +67,17 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({ setIsModalOpen }) => {
                     label={t('idSelectLabel')}
                     name="playerIdType"
                     placeholder={t('idSelectPlaceholder')}
-                    required
                     sx={{ flex: 1 }}
                     {...form.getInputProps('playerIdType')}
                 />
 
-                <TextInput
-                    label={t('playerIdPlaceholder')}
-                    name="playerId"
-                    required
-                    {...form.getInputProps('playerId')}
-                />
+                <TextInput label={t('playerIdPlaceholder')} name="playerId" {...form.getInputProps('playerId')} />
             </Group>
 
             <Group align="start" mb={16} grow>
-                <TextInput required label={t('email')} name="playerEmail" {...form.getInputProps('playerEmail')} />
+                <TextInput label={t('email')} name="playerEmail" {...form.getInputProps('playerEmail')} />
 
-                <TextInput required label={t('phone')} name="playerPhone" {...form.getInputProps('playerPhone')} />
+                <TextInput label={t('phone')} name="playerPhone" {...form.getInputProps('playerPhone')} />
             </Group>
 
             <Group grow>
@@ -94,8 +85,7 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({ setIsModalOpen }) => {
                     locale="es"
                     placeholder={t('birthday')}
                     label={t('birthday')}
-                    required
-                    {...form.getInputProps('placeOfBirth')}
+                    {...form.getInputProps('birthday')}
                     description={t('dateDescription')}
                 />
 
@@ -105,17 +95,11 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({ setIsModalOpen }) => {
                             width: '50px',
                         })}
                         description={t('weightUnit')}
-                        required
                         label={t('weight')}
                         {...form.getInputProps('weight')}
                     />
 
-                    <TextInput
-                        required
-                        label={t('height')}
-                        description={t('heightUnit')}
-                        {...form.getInputProps('height')}
-                    />
+                    <TextInput label={t('height')} description={t('heightUnit')} {...form.getInputProps('height')} />
                 </Group>
             </Group>
             <hr />
@@ -131,21 +115,15 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({ setIsModalOpen }) => {
                     label={t('guardianLabel')}
                     name="guardianType"
                     placeholder={t('guardianPlaceholder')}
-                    required
                     sx={{ flex: 1 }}
                     {...form.getInputProps('guardianType')}
                 />
             </Group>
 
             <Group align="start" mb={16} grow>
-                <TextInput label={t('name')} name="guardianName" required {...form.getInputProps('guardianName')} />
+                <TextInput label={t('name')} name="guardianName" {...form.getInputProps('guardianName')} />
 
-                <TextInput
-                    label={t('lastName')}
-                    name="guardianLastName"
-                    required
-                    {...form.getInputProps('guardianLastName')}
-                />
+                <TextInput label={t('lastName')} name="guardianLastName" {...form.getInputProps('guardianLastName')} />
             </Group>
             <Group align="start" mb={16} grow>
                 <Select
@@ -154,22 +132,16 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({ setIsModalOpen }) => {
                     label={t('idSelectLabel')}
                     name="guardianIdType"
                     placeholder={t('idSelectPlaceholder')}
-                    required
                     {...form.getInputProps('guardianIdType')}
                     sx={{ flex: 1 }}
                 />
 
-                <TextInput
-                    label={t('guardianIdPlaceholder')}
-                    name="guardianId"
-                    required
-                    {...form.getInputProps('guardianId')}
-                />
+                <TextInput label={t('guardianIdPlaceholder')} name="guardianId" {...form.getInputProps('guardianId')} />
             </Group>
             <Group align="start" grow>
-                <TextInput label={t('email')} name="guardianEmail" required {...form.getInputProps('guardianEmail')} />
+                <TextInput label={t('email')} name="guardianEmail" {...form.getInputProps('guardianEmail')} />
 
-                <TextInput label={t('phone')} name="guardianPhone" required {...form.getInputProps('guardianPhone')} />
+                <TextInput label={t('phone')} name="guardianPhone" {...form.getInputProps('guardianPhone')} />
             </Group>
 
             <Group mt={30} position="right">

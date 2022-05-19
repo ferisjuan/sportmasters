@@ -19,9 +19,9 @@
     "height": "Altura",
     "heightUnit": "(cm)",
     "idSelect": [
-        { "label":"Pasaporte", "value": "PASSPORT" },
         { "label":"Carnet de extranjeria", "value": "FOREIGN_CARD" },
-        { "label":"Cédula de identidad", "value": "NATIONAL_ID" }
+        { "label":"Cédula de ciudadania", "value": "NATIONAL_ID" },
+        { "label":"Pasaporte", "value": "PASSPORT" }
     ],
     "idSelectLabel": "Tipo de documento",
     "idSelectPlaceholder": "Selecciona uno",

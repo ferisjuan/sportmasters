@@ -1549,7 +1549,7 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@mantine/core@^4.2.2 ":
+"@mantine/core@^4.2.5":
   version "4.2.5"
   resolved "https://registry.yarnpkg.com/@mantine/core/-/core-4.2.5.tgz#cc139992b3980043fce17db50e09e25dab261fe0"
   integrity sha512-A/mixxpmCsA9acYVrCAurHrj/ikyLGksPqFILPJJpjC4uUDm85HHqVUa209VVLAKlvr26tX6CzDVqUeSe6s3Zg==
@@ -1560,22 +1560,22 @@
     react-popper "^2.2.5"
     react-textarea-autosize "^8.3.2"
 
-"@mantine/dates@^4.2.2 ":
+"@mantine/dates@^4.2.5 ":
   version "4.2.5"
   resolved "https://registry.yarnpkg.com/@mantine/dates/-/dates-4.2.5.tgz#7074046117fb44890947159a0d47da1ac8d2ae46"
   integrity sha512-qWgkTzNKP0OrNfvTHhBC+pF1rzZ8sfw6aRf1ZJMTADCNf3ol6yLlG9xl+Do9ekq1sOxllKngWnMGiYt2gNxBmQ==
 
-"@mantine/form@^4.2.2 ":
+"@mantine/form@^4.2.5 ":
   version "4.2.5"
   resolved "https://registry.yarnpkg.com/@mantine/form/-/form-4.2.5.tgz#dc34cc2d066368b41b435002068d85f225ba4fff"
   integrity sha512-BqYy/orl7ha3pVnMhWVGDK6v5O9IqBQK76Eb15FRc3KvlcX+PaaQwvwHQW1mN2Tk362WPqe3LJwAATOgy3xAog==
 
-"@mantine/hooks@^4.2.2 ":
+"@mantine/hooks@^4.2.5 ":
   version "4.2.5"
   resolved "https://registry.yarnpkg.com/@mantine/hooks/-/hooks-4.2.5.tgz#b1c964e6f59b5d86fb579a43daea158a7ec9d6aa"
   integrity sha512-CEpdUXPAC28rXosgo/Wxvs3ch9qC+QYfqh4AFkOH0+EKdlXkD1xRN8vv6pd5AHJtRZvGf7CZDuGKSjWgssvgeA==
 
-"@mantine/notifications@^4.2.2 ":
+"@mantine/notifications@^4.2.5":
   version "4.2.5"
   resolved "https://registry.yarnpkg.com/@mantine/notifications/-/notifications-4.2.5.tgz#f4b9ec33e78f3a01e3d0850b4c347c88a15b0bc9"
   integrity sha512-Qb+Zs66N5u+nlO6cKWoQI+0b8Tp+0AzugtXGaTrhRq5kpjOdH6XwSDkSXpkLPHBUYGwlweuTkMrc2Md1FNORqg==

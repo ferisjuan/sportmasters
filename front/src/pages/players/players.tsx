@@ -15,7 +15,7 @@ import { usePlayersPagination } from './hooks'
 const Players: React.FC = () => {
     const { pages, setSkip, skip, take } = usePlayersPagination()
 
-    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [isModalOpen, setIsModalOpen] = useState(true)
 
     const { data: playersData } = usePlayersQuery({ skip, take })
 
