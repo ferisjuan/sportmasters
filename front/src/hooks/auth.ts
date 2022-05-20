@@ -14,11 +14,16 @@ interface IUseAuthState extends IAuthContext {
 export const useAuthState = (): IUseAuthState => {
     const auth = useContext(AuthContext)
 
+    function cleanSession(): Record<string, unknown> {
+        localStorage.removeItem('email')
+
+        return { ...auth, isAuthenticated: false }
+    }
     const email = localStorage.getItem('email')
-    if (!email) return { ...auth, isAuthenticated: false }
+    if (!email) cleanSession()
 
     const { error } = useUserQuery({ where: { email } })
-    if (error) return { ...auth, isAuthenticated: false }
+    if (error) cleanSession()
 
     return { ...auth, isAuthenticated: true }
 }
