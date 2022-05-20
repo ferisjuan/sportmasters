@@ -67,18 +67,20 @@ const main = async () => {
 
     app.use(
         session({
-            store: new RedisStore({
-                client: redis,
-            }),
-            name: process.env.SESSION_COOKIE_NAME,
-            secret: process.env.SESSION_SECRET!,
-            resave: false,
-            saveUninitialized: false,
             cookie: {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production',
+                sameSite: false,
                 maxAge: parseInt(process.env.SESSION_MAX_AGE, 10),
             },
+            name: process.env.SESSION_COOKIE_NAME,
+            resave: false,
+            saveUninitialized: false,
+            secret: process.env.SESSION_SECRET,
+            store: new RedisStore({
+                client: redis,
+            }),
+            unset: 'destroy',
         })
     )
 
@@ -93,6 +95,7 @@ const main = async () => {
 
     const corsOptions = {
         credentials: true,
+        methods: ['POST', 'OPTIONS'],
         origin: process.env.CORS_ORIGIN || '*',
     }
 

@@ -3,7 +3,7 @@
     "private": true,
     "version": "0.0.0",
     "scripts": {
-        "predev": "yarn graphql-codegen",
+        "predev": "yarn graphql:codegen",
         "dev": "vite",
         "prebuild": "yarn graphql:codegen",
         "build": "tsc && vite build",
