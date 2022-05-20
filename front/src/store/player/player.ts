@@ -14,7 +14,7 @@ export class PlayerStore implements IPlayerProfileStore {
     public player
 
     private _id = ''
-    private _email = ''
+    private _playerEmail = ''
 
     readonly rootStore
 
@@ -26,12 +26,12 @@ export class PlayerStore implements IPlayerProfileStore {
         this._id = id
     }
 
-    public get email(): string {
-        return this._email
+    public get playerEmail(): string {
+        return this._playerEmail
     }
 
-    public set email(email: string) {
-        this._email = email
+    public set playerEmail(email: string) {
+        this._playerEmail = email
     }
 
     constructor(rootStore: RootStore) {

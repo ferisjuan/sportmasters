@@ -3,20 +3,20 @@
         "allowJs": false,
         "allowSyntheticDefaultImports": true,
         "baseUrl": ".",
-        "esModuleInterop": true,
         "declaration": true,
+        "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
         "jsx": "react-jsx",
         "lib": ["DOM", "DOM.Iterable", "ESNext"],
         "module": "ESNext",
         "moduleResolution": "Node",
-        "paths": {
-            "~/*": ["src/*"]
-        },
         "noEmit": true,
         "noFallthroughCasesInSwitch": true,
         "noUnusedLocals": true,
         "outDir": "build",
+        "paths": {
+            "~/*": ["src/*"]
+        },
         "resolveJsonModule": true,
         "skipLibCheck": true,
         "sourceMap": true,

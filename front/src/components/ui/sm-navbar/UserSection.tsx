@@ -1,11 +1,15 @@
 // @vendor
 import { useCallback } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { Avatar, Box, Container, Title, Text } from '@mantine/core'
 import { MantineTheme } from '@mantine/styles'
+import { observer } from 'mobx-react-lite'
+import { useNavigate } from 'react-router-dom'
 
 // @constants
 import { ROUTES } from '~/constants'
+
+// @hooks
+import { useStores } from '~/hooks/store'
 
 // @generated
 import { useLogoutMutation, useUserQuery } from '~/generated/graphql'
@@ -13,10 +17,13 @@ import { useLogoutMutation, useUserQuery } from '~/generated/graphql'
 // @utils
 import { getInitials, showSMNotification } from '~/utils'
 
-export const UserSection: React.FC = () => {
+export const UserSection: React.FC = observer(() => {
+    const { userStore } = useStores()
+
     const email = localStorage.getItem('email')
     const { data } = useUserQuery({ where: { email } })
     const user = data?.user
+    userStore.user = user
 
     const navigate = useNavigate()
 
@@ -60,4 +67,4 @@ export const UserSection: React.FC = () => {
             </Container>
         </Box>
     )
-}
+})

@@ -31,7 +31,7 @@ export const PlayersGrid: React.FC = observer(() => {
     const handleClick = (email: string | undefined): void => {
         if (!email) return
 
-        playerStore.email = email
+        playerStore.playerEmail = email
 
         navigate(`../${ROUTES.player}`, { replace: true })
     }
