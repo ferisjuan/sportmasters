@@ -3,7 +3,9 @@
     "private": true,
     "version": "0.0.0",
     "scripts": {
+        "predev": "yarn graphql-codegen",
         "dev": "vite",
+        "prebuild": "yarn graphql:codegen",
         "build": "tsc && vite build",
         "prepreview": "yarn run build",
         "preview": "vite preview",
@@ -15,7 +17,7 @@
         "old.prepare": "husky install",
         "preci": "rm -fr node_modules",
         "ci": "yarn install --frozen-lockfile",
-        "graphql:codegen": "graphql-codegen --config codegen.yml"
+        "graphql:codegen": "graphql-codegen --config codegen.js -r dotenv/config"
     },
     "dependencies": {
         "@commitlint/config-conventional": "^15.0.0",
@@ -28,6 +30,7 @@
         "@types/react-dom": "^18.0.4",
         "@types/uuid": "^8.3.3",
         "dayjs": "^1.11.1",
+        "dotenv": "^16.0.1",
         "eslint-plugin-prettier": "^4.0.0",
         "graphql": "^16.3.0",
         "graphql-request": "^4.2.0",

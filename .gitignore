@@ -181,3 +181,4 @@ out
 
 # generated files
 */src/generated/*
+front/graphql.schema.json
