@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 module.exports = {
     overwrite: true,
-    schema: process.env.GGL_ENDPOINT,
+    schema: process.env.SCHEMA_ENDPOINT,
     documents: 'src/**/*.graphql',
     generates: {
         'src/generated/graphql.ts': {
