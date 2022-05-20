@@ -8,6 +8,7 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 
 // @components
 import { AuthenticatedRoute } from '~/components'
+import Login from './pages/auth/Login'
 
 // @constants
 import { ROUTES } from '~/constants/routes'
@@ -22,7 +23,6 @@ import { queryClient } from './queries'
 import { rootStore } from '~/store'
 
 const NotFoundPage = lazy(() => import('./pages/not-found/notFound'))
-const AuthPage = lazy(() => import('./pages/auth/auth'))
 const MainPage = lazy(() => import('./pages/main'))
 const PlayerPage = lazy(() => import('./pages/player/player'))
 const PlayersPage = lazy(() => import('./pages/players/players'))
@@ -32,8 +32,7 @@ const App: React.FC = () => (
         <StoreProvider store={rootStore}>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<NotFoundPage />} />
-                    <Route path={ROUTES.login} element={<AuthPage />} />
+                    <Route path={ROUTES.login} element={<Login />} />
                     <Route
                         path={ROUTES.dashboard}
                         element={

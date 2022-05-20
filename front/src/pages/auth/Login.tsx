@@ -1,10 +1,12 @@
 // @vendors
 import { FormEvent, useCallback, useEffect, useState } from 'react'
-import { AiFillEye, AiFillEyeInvisible, AiTwotoneLock } from 'react-icons/ai'
-import { TextInput, Button, PasswordInput, Container, Loader } from '@mantine/core'
+import { TextInput, Button, Container, Loader, Text } from '@mantine/core'
 import { useForm } from '@mantine/hooks'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+
+// @components
+import { SMPasswordInput } from '~/components/components'
 
 // @constants
 import { ROUTES } from '~/constants'
@@ -15,8 +17,8 @@ import { useForgotPasswordMutation, useSigninMutation } from '~/generated/graphq
 // @utils
 import { showSMNotification } from '~/utils'
 
-const Auth = (): JSX.Element => {
-    const { t } = useTranslation('notifications')
+const Login = (): JSX.Element => {
+    const { t } = useTranslation('login')
 
     const navigate = useNavigate()
 
@@ -53,7 +55,7 @@ const Auth = (): JSX.Element => {
 
                 navigate(`../${ROUTES.dashboard}`, { replace: true })
             } catch (error) {
-                showSMNotification(t('auth.wrongCredentials'), 'ERROR', false)
+                showSMNotification(t('wrongCredentials'), 'ERROR', false)
             }
         },
         [form.values.email, form.values.password, t],
@@ -61,13 +63,9 @@ const Auth = (): JSX.Element => {
 
     const handleForgotPassword = useCallback(
         async (email: string): Promise<void> => {
-            try {
-                reqPasswordChange.mutate({ email })
+            reqPasswordChange.mutate({ email })
 
-                showSMNotification(t('auth.resetPassword'), 'INFO', false)
-            } catch (error) {
-                showSMNotification(t('auth.wrongEmail'), 'ERROR', false)
-            }
+            showSMNotification(t('resetPassword'), 'INFO', false)
         },
         [form.values.email, t],
     )
@@ -83,40 +81,30 @@ const Auth = (): JSX.Element => {
                 >
                     <TextInput
                         required
-                        label="Email"
-                        placeholder="your@email.com"
-                        error={form.errors.email && 'Please specify valid email'}
+                        label={t('emailLabel')}
+                        placeholder={t('emailPlaceholder')}
+                        error={form.errors.email && t('emailError')}
                         value={form.values.email}
                         onChange={event => form.setFieldValue('email', event.currentTarget.value)}
                     />
 
-                    <PasswordInput
-                        autoComplete="current-password"
-                        label="Password"
-                        placeholder="Password"
+                    <SMPasswordInput
                         value={form.values.password}
-                        onChange={event => form.setFieldValue('password', event.currentTarget.value)}
-                        visibilityToggleIcon={({ reveal, size }) =>
-                            reveal ? <AiFillEyeInvisible size={size} /> : <AiFillEye />
-                        }
-                        icon={<AiTwotoneLock />}
+                        setFieldValue={v => form.setFieldValue('password', v)}
+                        t={t}
                     />
 
                     <Button disabled={isDissabled} sx={{ marginTop: '20px' }} type="submit">
-                        Login
+                        {t('loginButton')}
                     </Button>
 
-                    <Button
-                        disabled={!form.values.email}
-                        sx={{ marginTop: '20px' }}
-                        onClick={() => handleForgotPassword(form.values.email)}
-                    >
-                        Olvidé mi password
-                    </Button>
+                    <Text size="xs" sx={{ cursor: 'pointer' }} onClick={() => handleForgotPassword(form.values.email)}>
+                        {t('forgotPassword')}
+                    </Text>
                 </form>
             )}
         </Container>
     )
 }
 
-export default Auth
+export default Login

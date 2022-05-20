@@ -1,8 +1,3 @@
 {
-    "loadingPlayers": "Cargando jugadores",
-    "auth": {
-        "resetPassword": "Revisa tu correo para resetear tu contraseña",
-        "wrongCredentials": "Usuario o contraseña incorrectos",
-        "wrongEmail": "El correo no existe"
-    }
+    "loadingPlayers": "Cargando jugadores"
 }

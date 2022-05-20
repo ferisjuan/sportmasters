@@ -1,0 +1,11 @@
+{
+    "emailLabel": "Email",
+    "emailPlaceholder": "Escribe tu email",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "loginButton": "Iniciar sesión",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Escribe tu password",
+    "resetPassword": "Escribe tu correo para resetear tu contraseña",
+    "wrongCredentials": "Usuario o contraseña incorrectos",
+    "wrongEmail": "El email parece incorrecto"
+}
