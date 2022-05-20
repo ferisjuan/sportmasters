@@ -13,16 +13,25 @@ import { RootStore } from '../store'
 export class PlayerStore implements IPlayerProfileStore {
     public player
 
-    private _playerId = ''
+    private _id = ''
+    private _email = ''
 
     readonly rootStore
 
-    public set playerId(id: string) {
-        this._playerId = id
+    public get id(): string {
+        return this._id
     }
 
-    public get playerId(): string {
-        return this._playerId
+    public set id(id: string) {
+        this._id = id
+    }
+
+    public get email(): string {
+        return this._email
+    }
+
+    public set email(email: string) {
+        this._email = email
     }
 
     constructor(rootStore: RootStore) {

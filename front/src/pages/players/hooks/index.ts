@@ -1,1 +1,1 @@
-export * from './usePlayersPagination'
+export * from './usePlayers'

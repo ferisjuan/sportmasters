@@ -12,7 +12,7 @@ const Player: React.FC = observer(() => {
     const { playerStore } = useStores()
 
     const { data: playerData } = usePlayerQuery({
-        where: { id: playerStore.playerId },
+        where: { id: playerStore.id },
     })
 
     const player = playerData?.player

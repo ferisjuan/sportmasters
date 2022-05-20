@@ -6,6 +6,9 @@ import { FaTimes } from 'react-icons/fa'
 import { useForm, yupResolver } from '@mantine/form'
 import { useTranslation } from 'react-i18next'
 
+// @hooks
+import { useStores } from '~/hooks'
+
 // @interfaces
 import { PlayerCreateInput, useCreatePlayerMutation } from '~/generated/graphql'
 
@@ -15,12 +18,10 @@ import { PlayerFormSchema } from './schema'
 //@utils
 import { showSMNotification } from '~/utils'
 
-interface PlayerFormProps {
-    setIsModalOpen: (isOpen: boolean) => void
-}
-
-export const PlayerForm: React.FC<PlayerFormProps> = ({ setIsModalOpen }) => {
+export const PlayerForm: React.FC = () => {
     const { t } = useTranslation('addPlayerForm')
+
+    const { playersStore } = useStores()
 
     const { mutate: createPlayer, error: createPlayerError } = useCreatePlayerMutation()
 
@@ -28,6 +29,10 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({ setIsModalOpen }) => {
         schema: yupResolver(PlayerFormSchema),
         initialValues: {} as PlayerCreateInput,
     })
+
+    const handleModalClose = (): void => {
+        playersStore.isAddPlayerModalOpen = false
+    }
 
     const onSubmit = form.onSubmit((values): void => {
         const data = {
@@ -37,7 +42,7 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({ setIsModalOpen }) => {
 
         createPlayer({ data })
 
-        setIsModalOpen(false)
+        handleModalClose()
 
         if (createPlayerError) {
             showSMNotification(`${createPlayerError}`, 'ERROR', false)
@@ -51,7 +56,7 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({ setIsModalOpen }) => {
             </Text>
 
             <Text size="md" weight={700}>
-                {t('formTitleStudentData')}eee
+                {t('formTitleStudentData')}
             </Text>
 
             <Group align="start" mb={16} grow>
@@ -145,7 +150,7 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({ setIsModalOpen }) => {
             </Group>
 
             <Group mt={30} position="right">
-                <Button leftIcon={<FaTimes />} onClick={() => setIsModalOpen(false)} variant="outline">
+                <Button leftIcon={<FaTimes />} onClick={handleModalClose} variant="outline">
                     {t('cancel')}
                 </Button>
 

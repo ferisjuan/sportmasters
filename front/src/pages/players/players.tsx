@@ -1,46 +1,45 @@
 // @vendors
-import { useState } from 'react'
 import { BsPlus } from 'react-icons/bs'
 import { Box, Container, Pagination, ThemeIcon } from '@mantine/core'
+import { observer } from 'mobx-react-lite'
 
 // @components
 import { PlayerForm, PlayersGrid, SMModal } from '~/components'
 
-// @generated
-import { usePlayersQuery } from '~/generated/graphql'
-
 // @hooks
-import { usePlayersPagination } from './hooks'
+import { usePlayers } from './hooks'
 
-const Players: React.FC = () => {
-    const { pages, setSkip, skip, take } = usePlayersPagination()
-
-    const [isModalOpen, setIsModalOpen] = useState(true)
-
-    const { data: playersData } = usePlayersQuery({ skip, take })
+const Players: React.FC = observer(() => {
+    const { handleOnAddPlayer, handleOnPaginationChange, pages, skip } = usePlayers()
 
     return (
         <Container fluid sx={{ height: '100%', position: 'relative' }}>
-            <SMModal isOpen={isModalOpen} setIsOpen={setIsModalOpen}>
-                <PlayerForm setIsModalOpen={setIsModalOpen} />
+            <SMModal>
+                <PlayerForm />
             </SMModal>
 
             <Box style={{ height: '80vh', width: '100%' }}>
-                {playersData && <PlayersGrid players={playersData.players} />}
+                <PlayersGrid />
 
-                <Pagination onChange={setSkip} page={skip || 1} position="center" pt="lg" total={pages} />
+                <Pagination
+                    onChange={handleOnPaginationChange}
+                    page={skip || 1}
+                    position="center"
+                    pt="lg"
+                    total={pages}
+                />
             </Box>
 
             <ThemeIcon
                 radius="md"
                 size="xl"
-                onClick={() => setIsModalOpen(true)}
+                onClick={handleOnAddPlayer}
                 sx={{ bottom: 0, cursor: 'pointer', position: 'absolute', right: 0 }}
             >
                 <BsPlus size={100} />
             </ThemeIcon>
         </Container>
     )
-}
+})
 
 export default Players

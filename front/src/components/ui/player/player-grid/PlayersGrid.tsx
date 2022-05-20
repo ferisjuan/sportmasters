@@ -9,31 +9,42 @@ import { PlayerCard } from '../player-profile'
 import { ROUTES } from '~/constants'
 
 // @generated
-import { PlayersQuery } from '~/generated/graphql'
+import { usePlayersQuery } from '~/generated/graphql'
 
 // @hooks
 import { useStores } from '~/hooks'
+import { observer } from 'mobx-react-lite'
 
-export const PlayersGrid: React.FC<PlayersQuery> = ({ players }) => {
-    const { playerStore } = useStores()
+export const PlayersGrid: React.FC = observer(() => {
+    const {
+        playerStore,
+        playersStore: { paginationSkip, paginationTake },
+    } = useStores()
+
+    const { data: playersData } = usePlayersQuery({
+        skip: paginationSkip,
+        take: paginationTake,
+    })
 
     const navigate = useNavigate()
 
-    const handleClick = (id: string | undefined): void => {
-        if (!id) return
+    const handleClick = (email: string | undefined): void => {
+        if (!email) return
 
-        playerStore.playerId = id
+        playerStore.email = email
 
         navigate(`../${ROUTES.player}`, { replace: true })
     }
 
+    if (!playersData) return null
+
     return (
         <Grid>
-            {players?.map(player => (
-                <Grid.Col key={player.id} onClick={() => handleClick(player.id)} span={4}>
+            {playersData.players?.map(player => (
+                <Grid.Col key={player.id} onClick={() => handleClick(player.playerEmail)} span={4}>
                     <PlayerCard player={player} />
                 </Grid.Col>
             ))}
         </Grid>
     )
-}
+})

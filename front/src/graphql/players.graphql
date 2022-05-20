@@ -3,6 +3,7 @@ query Players($take: Int, $skip: Int) {
         id
         lastName
         name
+        playerEmail
     }
 }
 

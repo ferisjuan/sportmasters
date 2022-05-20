@@ -4,19 +4,13 @@ import { Card, Container, Image, Text } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
 
 // @generated
-import { Field_Position } from '~/generated/graphql'
+import { Player } from '~/generated/graphql'
 
-interface IPlayerCardProps {
-    player: Player
+interface PlayerCardProps {
+    player: Partial<Player>
 }
 
-interface Player {
-    image?: string
-    lastName: string
-    fieldPosition?: Field_Position
-}
-
-export const PlayerCard: React.FC<IPlayerCardProps> = observer(({ player }) => {
+export const PlayerCard: React.FC<PlayerCardProps> = observer(({ player }) => {
     const { t } = useTranslation()
 
     return (

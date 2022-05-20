@@ -1815,7 +1815,6 @@ export type SchoolCountOrderByAggregateInput = {
   address?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   email?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   password?: InputMaybe<SortOrder>;
   phone?: InputMaybe<SortOrder>;
@@ -1826,7 +1825,6 @@ export type SchoolCreateInput = {
   address: Scalars['String'];
   createdAt?: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
   name: Scalars['String'];
   password: Scalars['String'];
   phone: Scalars['String'];
@@ -1839,7 +1837,6 @@ export type SchoolCreateManyInput = {
   address: Scalars['String'];
   createdAt?: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
   name: Scalars['String'];
   password: Scalars['String'];
   phone: Scalars['String'];
@@ -1872,7 +1869,6 @@ export type SchoolCreateWithoutPlayersInput = {
   address: Scalars['String'];
   createdAt?: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
   name: Scalars['String'];
   password: Scalars['String'];
   phone: Scalars['String'];
@@ -1884,7 +1880,6 @@ export type SchoolCreateWithoutUsersInput = {
   address: Scalars['String'];
   createdAt?: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
   name: Scalars['String'];
   password: Scalars['String'];
   phone: Scalars['String'];
@@ -1925,7 +1920,6 @@ export type SchoolMaxOrderByAggregateInput = {
   address?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   email?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   password?: InputMaybe<SortOrder>;
   phone?: InputMaybe<SortOrder>;
@@ -1949,7 +1943,6 @@ export type SchoolMinOrderByAggregateInput = {
   address?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   email?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   password?: InputMaybe<SortOrder>;
   phone?: InputMaybe<SortOrder>;
@@ -1963,7 +1956,6 @@ export type SchoolOrderByWithAggregationInput = {
   address?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   email?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   password?: InputMaybe<SortOrder>;
   phone?: InputMaybe<SortOrder>;
@@ -1974,7 +1966,6 @@ export type SchoolOrderByWithRelationInput = {
   address?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   email?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   password?: InputMaybe<SortOrder>;
   phone?: InputMaybe<SortOrder>;
@@ -2007,7 +1998,6 @@ export type SchoolScalarWhereWithAggregatesInput = {
   address?: InputMaybe<StringWithAggregatesFilter>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   email?: InputMaybe<StringWithAggregatesFilter>;
-  id?: InputMaybe<StringWithAggregatesFilter>;
   name?: InputMaybe<StringWithAggregatesFilter>;
   password?: InputMaybe<StringWithAggregatesFilter>;
   phone?: InputMaybe<StringWithAggregatesFilter>;
@@ -2018,7 +2008,6 @@ export type SchoolUpdateInput = {
   address?: InputMaybe<StringFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   password?: InputMaybe<StringFieldUpdateOperationsInput>;
   phone?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -2031,7 +2020,6 @@ export type SchoolUpdateManyMutationInput = {
   address?: InputMaybe<StringFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   password?: InputMaybe<StringFieldUpdateOperationsInput>;
   phone?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -2058,7 +2046,6 @@ export type SchoolUpdateWithoutPlayersInput = {
   address?: InputMaybe<StringFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   password?: InputMaybe<StringFieldUpdateOperationsInput>;
   phone?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -2070,7 +2057,6 @@ export type SchoolUpdateWithoutUsersInput = {
   address?: InputMaybe<StringFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   password?: InputMaybe<StringFieldUpdateOperationsInput>;
   phone?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -2095,7 +2081,6 @@ export type SchoolWhereInput = {
   address?: InputMaybe<StringFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
   email?: InputMaybe<StringFilter>;
-  id?: InputMaybe<StringFilter>;
   name?: InputMaybe<StringFilter>;
   password?: InputMaybe<StringFilter>;
   phone?: InputMaybe<StringFilter>;
@@ -2106,7 +2091,6 @@ export type SchoolWhereInput = {
 
 export type SchoolWhereUniqueInput = {
   email?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
 };
 
 export type SignupInput = {
@@ -2212,7 +2196,6 @@ export enum Tier {
 export type User = {
   __typename?: 'User';
   address?: Maybe<Scalars['String']>;
-  confirmed: Scalars['Boolean'];
   email: Scalars['String'];
   firstName: Scalars['String'];
   id: Scalars['String'];
@@ -2245,10 +2228,10 @@ export type UserCountOrderByAggregateInput = {
   acceptsPrivacyPolicy?: InputMaybe<SortOrder>;
   acceptsTermsOfService?: InputMaybe<SortOrder>;
   address?: InputMaybe<SortOrder>;
+  confirmed?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   email?: InputMaybe<SortOrder>;
   firstName?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
   lastName?: InputMaybe<SortOrder>;
   password?: InputMaybe<SortOrder>;
   phone?: InputMaybe<SortOrder>;
@@ -2266,7 +2249,6 @@ export type UserCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
   firstName: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
   lastName: Scalars['String'];
   password: Scalars['String'];
   phone?: InputMaybe<Scalars['String']>;
@@ -2282,7 +2264,6 @@ export type UserCreateManyInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
   firstName: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
   lastName: Scalars['String'];
   password: Scalars['String'];
   phone?: InputMaybe<Scalars['String']>;
@@ -2299,7 +2280,6 @@ export type UserCreateManySchoolInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
   firstName: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
   lastName: Scalars['String'];
   password: Scalars['String'];
   phone?: InputMaybe<Scalars['String']>;
@@ -2332,7 +2312,6 @@ export type UserCreateWithoutSchoolInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
   firstName: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
   lastName: Scalars['String'];
   password: Scalars['String'];
   phone?: InputMaybe<Scalars['String']>;
@@ -2392,10 +2371,10 @@ export type UserMaxOrderByAggregateInput = {
   acceptsPrivacyPolicy?: InputMaybe<SortOrder>;
   acceptsTermsOfService?: InputMaybe<SortOrder>;
   address?: InputMaybe<SortOrder>;
+  confirmed?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   email?: InputMaybe<SortOrder>;
   firstName?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
   lastName?: InputMaybe<SortOrder>;
   password?: InputMaybe<SortOrder>;
   phone?: InputMaybe<SortOrder>;
@@ -2424,10 +2403,10 @@ export type UserMinOrderByAggregateInput = {
   acceptsPrivacyPolicy?: InputMaybe<SortOrder>;
   acceptsTermsOfService?: InputMaybe<SortOrder>;
   address?: InputMaybe<SortOrder>;
+  confirmed?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   email?: InputMaybe<SortOrder>;
   firstName?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
   lastName?: InputMaybe<SortOrder>;
   password?: InputMaybe<SortOrder>;
   phone?: InputMaybe<SortOrder>;
@@ -2446,10 +2425,10 @@ export type UserOrderByWithAggregationInput = {
   acceptsPrivacyPolicy?: InputMaybe<SortOrder>;
   acceptsTermsOfService?: InputMaybe<SortOrder>;
   address?: InputMaybe<SortOrder>;
+  confirmed?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   email?: InputMaybe<SortOrder>;
   firstName?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
   lastName?: InputMaybe<SortOrder>;
   password?: InputMaybe<SortOrder>;
   phone?: InputMaybe<SortOrder>;
@@ -2463,10 +2442,10 @@ export type UserOrderByWithRelationInput = {
   acceptsPrivacyPolicy?: InputMaybe<SortOrder>;
   acceptsTermsOfService?: InputMaybe<SortOrder>;
   address?: InputMaybe<SortOrder>;
+  confirmed?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   email?: InputMaybe<SortOrder>;
   firstName?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
   lastName?: InputMaybe<SortOrder>;
   password?: InputMaybe<SortOrder>;
   phone?: InputMaybe<SortOrder>;
@@ -2499,10 +2478,10 @@ export type UserScalarWhereInput = {
   acceptsPrivacyPolicy?: InputMaybe<BoolFilter>;
   acceptsTermsOfService?: InputMaybe<BoolFilter>;
   address?: InputMaybe<StringNullableFilter>;
+  confirmed?: InputMaybe<BoolFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
   email?: InputMaybe<StringFilter>;
   firstName?: InputMaybe<StringFilter>;
-  id?: InputMaybe<StringFilter>;
   lastName?: InputMaybe<StringFilter>;
   password?: InputMaybe<StringFilter>;
   phone?: InputMaybe<StringNullableFilter>;
@@ -2518,10 +2497,10 @@ export type UserScalarWhereWithAggregatesInput = {
   acceptsPrivacyPolicy?: InputMaybe<BoolWithAggregatesFilter>;
   acceptsTermsOfService?: InputMaybe<BoolWithAggregatesFilter>;
   address?: InputMaybe<StringNullableWithAggregatesFilter>;
+  confirmed?: InputMaybe<BoolWithAggregatesFilter>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   email?: InputMaybe<StringWithAggregatesFilter>;
   firstName?: InputMaybe<StringWithAggregatesFilter>;
-  id?: InputMaybe<StringWithAggregatesFilter>;
   lastName?: InputMaybe<StringWithAggregatesFilter>;
   password?: InputMaybe<StringWithAggregatesFilter>;
   phone?: InputMaybe<StringNullableWithAggregatesFilter>;
@@ -2535,10 +2514,10 @@ export type UserUpdateInput = {
   acceptsPrivacyPolicy?: InputMaybe<BoolFieldUpdateOperationsInput>;
   acceptsTermsOfService?: InputMaybe<BoolFieldUpdateOperationsInput>;
   address?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  confirmed?: InputMaybe<BoolFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   firstName?: InputMaybe<StringFieldUpdateOperationsInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
   lastName?: InputMaybe<StringFieldUpdateOperationsInput>;
   password?: InputMaybe<StringFieldUpdateOperationsInput>;
   phone?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
@@ -2550,10 +2529,10 @@ export type UserUpdateManyMutationInput = {
   acceptsPrivacyPolicy?: InputMaybe<BoolFieldUpdateOperationsInput>;
   acceptsTermsOfService?: InputMaybe<BoolFieldUpdateOperationsInput>;
   address?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  confirmed?: InputMaybe<BoolFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   firstName?: InputMaybe<StringFieldUpdateOperationsInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
   lastName?: InputMaybe<StringFieldUpdateOperationsInput>;
   password?: InputMaybe<StringFieldUpdateOperationsInput>;
   phone?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
@@ -2589,10 +2568,10 @@ export type UserUpdateWithoutSchoolInput = {
   acceptsPrivacyPolicy?: InputMaybe<BoolFieldUpdateOperationsInput>;
   acceptsTermsOfService?: InputMaybe<BoolFieldUpdateOperationsInput>;
   address?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  confirmed?: InputMaybe<BoolFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   firstName?: InputMaybe<StringFieldUpdateOperationsInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
   lastName?: InputMaybe<StringFieldUpdateOperationsInput>;
   password?: InputMaybe<StringFieldUpdateOperationsInput>;
   phone?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
@@ -2619,10 +2598,10 @@ export type UserWhereInput = {
   acceptsPrivacyPolicy?: InputMaybe<BoolFilter>;
   acceptsTermsOfService?: InputMaybe<BoolFilter>;
   address?: InputMaybe<StringNullableFilter>;
+  confirmed?: InputMaybe<BoolFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
   email?: InputMaybe<StringFilter>;
   firstName?: InputMaybe<StringFilter>;
-  id?: InputMaybe<StringFilter>;
   lastName?: InputMaybe<StringFilter>;
   password?: InputMaybe<StringFilter>;
   phone?: InputMaybe<StringNullableFilter>;
@@ -2633,7 +2612,6 @@ export type UserWhereInput = {
 
 export type UserWhereUniqueInput = {
   email?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
 };
 
 export type ChangePasswordMutationVariables = Exact<{
@@ -2641,7 +2619,7 @@ export type ChangePasswordMutationVariables = Exact<{
 }>;
 
 
-export type ChangePasswordMutation = { __typename?: 'Mutation', changePassword?: { __typename?: 'User', id: string, email: string, roles: Array<Roles>, confirmed: boolean } | null };
+export type ChangePasswordMutation = { __typename?: 'Mutation', changePassword?: { __typename?: 'User', id: string, email: string, roles: Array<Roles> } | null };
 
 export type ForgotPasswordMutationVariables = Exact<{
   email: Scalars['String'];
@@ -2675,7 +2653,7 @@ export type PlayersQueryVariables = Exact<{
 }>;
 
 
-export type PlayersQuery = { __typename?: 'Query', players: Array<{ __typename?: 'Player', id: string, lastName: string, name: string }> };
+export type PlayersQuery = { __typename?: 'Query', players: Array<{ __typename?: 'Player', id: string, lastName: string, name: string, playerEmail: string }> };
 
 export type PlayersCountQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -2719,7 +2697,6 @@ export const ChangePasswordDocument = `
     id
     email
     roles
-    confirmed
   }
 }
     `;
@@ -2858,6 +2835,7 @@ export const PlayersDocument = `
     id
     lastName
     name
+    playerEmail
   }
 }
     `;
