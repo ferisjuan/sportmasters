@@ -7,6 +7,6 @@ query User($where: UserWhereUniqueInput!) {
     firstName
     roles
     phone
-    schoolId
+    schoolEmail
   }
 }

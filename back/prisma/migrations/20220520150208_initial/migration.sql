@@ -76,9 +76,7 @@ CREATE TABLE "School" (
     "phone" TEXT NOT NULL,
     "tier" "TIER" NOT NULL DEFAULT E'BASIC',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-
-    CONSTRAINT "School_pkey" PRIMARY KEY ("id","email")
+    "updatedAt" TIMESTAMP(3) NOT NULL
 );
 
 -- CreateTable
@@ -94,7 +92,6 @@ CREATE TABLE "User" (
     "roles" "ROLES"[],
     "password" TEXT NOT NULL,
     "phone" TEXT DEFAULT E'',
-    "schoolId" TEXT NOT NULL,
     "schoolEmail" TEXT NOT NULL DEFAULT E'',
     "confirmed" BOOLEAN NOT NULL DEFAULT false,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -118,4 +115,4 @@ CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 ALTER TABLE "Player" ADD CONSTRAINT "Player_schoolId_fkey" FOREIGN KEY ("schoolId") REFERENCES "School"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "User" ADD CONSTRAINT "User_schoolId_schoolEmail_fkey" FOREIGN KEY ("schoolId", "schoolEmail") REFERENCES "School"("id", "email") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "User" ADD CONSTRAINT "User_schoolEmail_fkey" FOREIGN KEY ("schoolEmail") REFERENCES "School"("email") ON DELETE RESTRICT ON UPDATE CASCADE;

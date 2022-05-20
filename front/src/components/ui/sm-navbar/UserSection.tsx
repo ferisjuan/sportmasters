@@ -1,5 +1,5 @@
 // @vendor
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 import { Avatar, Box, Container, Title, Text } from '@mantine/core'
 import { MantineTheme } from '@mantine/styles'
 import { observer } from 'mobx-react-lite'
@@ -21,9 +21,17 @@ export const UserSection: React.FC = observer(() => {
     const { userStore } = useStores()
 
     const email = localStorage.getItem('email')
+
     const { data } = useUserQuery({ where: { email } })
+
     const user = data?.user
-    userStore.user = user
+
+    useEffect(() => {
+        userStore.id = user?.id || ''
+        userStore.email = user?.email || ''
+        userStore.roles = user?.roles || []
+        userStore.schoolEmail = user?.schoolEmail || ''
+    }, [user])
 
     const navigate = useNavigate()
 

@@ -1,13 +1,7 @@
 // @stores
-import { IPlayerProfileStore, PlayerStore } from './player'
-import { IPlayersStore, PlayersStore } from './players'
-import { IUserStore, UserStore } from './user'
-
-export interface IRootStore {
-    player: IPlayerProfileStore
-    players: IPlayersStore
-    user: IUserStore
-}
+import { PlayerStore } from './player'
+import { PlayersStore } from './players'
+import { UserStore } from './user'
 
 export class RootStore {
     playerStore

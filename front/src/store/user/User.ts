@@ -2,24 +2,49 @@
 import { makeAutoObservable } from 'mobx'
 
 // @generated
-import { UserQuery } from '~/generated/graphql'
-
-// @interface
-import { IUserStore } from './User.interface'
+import { Roles } from '~/generated/graphql'
 
 // @store
 import { RootStore } from '../store'
 
-export class UserStore implements IUserStore {
-    public user = {} as UserQuery['user']
+export class UserStore {
+    private _id = ''
+    private _email = ''
+    private _roles: Roles[] = [Roles.None]
+    private _schoolEmail = ''
 
     readonly rootStore
 
-    public setEmail(email: string | null): void {
-        if (!this.user?.email) return
-        if (!email) return
+    public get id(): string {
+        return this._id
+    }
 
-        this.user.email = email
+    public set id(id: string) {
+        this._id = id
+    }
+
+    public get email(): string {
+        return this._email
+    }
+
+    public set email(email: string) {
+        this._email = email
+    }
+
+    public get roles(): Roles[] {
+        return this._roles
+    }
+
+    public set roles(roles: Roles[]) {
+        this._roles = roles
+    }
+
+    public set schoolEmail(schoolId: string) {
+        this._schoolEmail = schoolId
+    }
+
+    public get schoolEmail(): string {
+        return this._schoolEmail
     }
 
     constructor(rootStore: RootStore) {

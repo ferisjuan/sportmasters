@@ -12,7 +12,7 @@ import { NAV_ITEMS, ROUTES } from '~/constants'
 // @components
 import { UserSection } from './UserSection'
 
-export const SMNavbar: React.VFC = () => {
+export const SMNavbar: React.FC = () => {
     const [selected, setSelected] = useState(ROUTES.dashboard)
     const location = useLocation()
 

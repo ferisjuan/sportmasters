@@ -160,8 +160,6 @@ model School {
   createdAt DateTime @default(now())
   /// @TypeGraphQL.omit(output: true, output: true)
   updatedAt DateTime @updatedAt
-
-  @@id([id, email])
 }
 
 model User {
@@ -181,8 +179,7 @@ model User {
   /// @TypeGraphQL.omit(output: true)
   password              String
   phone                 String?  @default("")
-  School                School   @relation(fields: [schoolId, schoolEmail], references: [id, email])
-  schoolId              String
+  School                School   @relation(fields: [ schoolEmail], references: [email])
   schoolEmail           String   @default("")
   /// @TypeGraphQL.omit(input: false, output: true)
   confirmed             Boolean  @default(false)

@@ -37,10 +37,18 @@ export const PlayerForm: React.FC = () => {
     const onSubmit = form.onSubmit((values): void => {
         const data = {
             ...values,
-            school: { connect: { id: 'cl284dtqt0000du6r7nbs9jcs' } },
+            school: { connect: { email: playersStore.rootStore.userStore.schoolEmail } },
         }
 
-        createPlayer({ data })
+        createPlayer({
+            data: {
+                ...data,
+                IMC: values.weight / Math.pow(values.height, 2),
+                height: +values.height,
+                weight: +values.weight,
+                school: { connect: { email: playersStore.rootStore.userStore.schoolEmail } },
+            },
+        })
 
         handleModalClose()
 

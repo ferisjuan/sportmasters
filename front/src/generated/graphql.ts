@@ -2100,7 +2100,6 @@ export type SignupInput = {
   firstName: Scalars['String'];
   lastName: Scalars['String'];
   password: Scalars['String'];
-  schoolId: Scalars['String'];
 };
 
 export enum SortOrder {
@@ -2202,7 +2201,7 @@ export type User = {
   lastName: Scalars['String'];
   phone?: Maybe<Scalars['String']>;
   roles: Array<Roles>;
-  schoolId: Scalars['String'];
+  schoolEmail: Scalars['String'];
 };
 
 export type UserCountAggregate = {
@@ -2220,7 +2219,7 @@ export type UserCountAggregate = {
   password: Scalars['Int'];
   phone: Scalars['Int'];
   roles: Scalars['Int'];
-  schoolId: Scalars['Int'];
+  schoolEmail: Scalars['Int'];
   updatedAt: Scalars['Int'];
 };
 
@@ -2236,12 +2235,12 @@ export type UserCountOrderByAggregateInput = {
   password?: InputMaybe<SortOrder>;
   phone?: InputMaybe<SortOrder>;
   roles?: InputMaybe<SortOrder>;
-  schoolId?: InputMaybe<SortOrder>;
+  schoolEmail?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
 
 export type UserCreateInput = {
-  School: SchoolCreateNestedOneWithoutUsersInput;
+  School?: InputMaybe<SchoolCreateNestedOneWithoutUsersInput>;
   acceptsPrivacyPolicy?: InputMaybe<Scalars['Boolean']>;
   acceptsTermsOfService?: InputMaybe<Scalars['Boolean']>;
   address?: InputMaybe<Scalars['String']>;
@@ -2268,7 +2267,7 @@ export type UserCreateManyInput = {
   password: Scalars['String'];
   phone?: InputMaybe<Scalars['String']>;
   roles?: InputMaybe<UserCreaterolesInput>;
-  schoolId: Scalars['String'];
+  schoolEmail?: InputMaybe<Scalars['String']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
@@ -2340,7 +2339,7 @@ export type UserGroupBy = {
   password: Scalars['String'];
   phone?: Maybe<Scalars['String']>;
   roles?: Maybe<Array<Roles>>;
-  schoolId: Scalars['String'];
+  schoolEmail: Scalars['String'];
   updatedAt: Scalars['DateTime'];
 };
 
@@ -2363,7 +2362,7 @@ export type UserMaxAggregate = {
   lastName?: Maybe<Scalars['String']>;
   password?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
-  schoolId?: Maybe<Scalars['String']>;
+  schoolEmail?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -2378,7 +2377,7 @@ export type UserMaxOrderByAggregateInput = {
   lastName?: InputMaybe<SortOrder>;
   password?: InputMaybe<SortOrder>;
   phone?: InputMaybe<SortOrder>;
-  schoolId?: InputMaybe<SortOrder>;
+  schoolEmail?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
 
@@ -2395,7 +2394,7 @@ export type UserMinAggregate = {
   lastName?: Maybe<Scalars['String']>;
   password?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
-  schoolId?: Maybe<Scalars['String']>;
+  schoolEmail?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -2410,7 +2409,7 @@ export type UserMinOrderByAggregateInput = {
   lastName?: InputMaybe<SortOrder>;
   password?: InputMaybe<SortOrder>;
   phone?: InputMaybe<SortOrder>;
-  schoolId?: InputMaybe<SortOrder>;
+  schoolEmail?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
 
@@ -2433,7 +2432,7 @@ export type UserOrderByWithAggregationInput = {
   password?: InputMaybe<SortOrder>;
   phone?: InputMaybe<SortOrder>;
   roles?: InputMaybe<SortOrder>;
-  schoolId?: InputMaybe<SortOrder>;
+  schoolEmail?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
 
@@ -2450,7 +2449,7 @@ export type UserOrderByWithRelationInput = {
   password?: InputMaybe<SortOrder>;
   phone?: InputMaybe<SortOrder>;
   roles?: InputMaybe<SortOrder>;
-  schoolId?: InputMaybe<SortOrder>;
+  schoolEmail?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
 
@@ -2467,7 +2466,7 @@ export enum UserScalarFieldEnum {
   Password = 'password',
   Phone = 'phone',
   Roles = 'roles',
-  SchoolId = 'schoolId',
+  SchoolEmail = 'schoolEmail',
   UpdatedAt = 'updatedAt'
 }
 
@@ -2486,7 +2485,7 @@ export type UserScalarWhereInput = {
   password?: InputMaybe<StringFilter>;
   phone?: InputMaybe<StringNullableFilter>;
   roles?: InputMaybe<EnumRolesNullableListFilter>;
-  schoolId?: InputMaybe<StringFilter>;
+  schoolEmail?: InputMaybe<StringFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
 };
 
@@ -2505,7 +2504,7 @@ export type UserScalarWhereWithAggregatesInput = {
   password?: InputMaybe<StringWithAggregatesFilter>;
   phone?: InputMaybe<StringNullableWithAggregatesFilter>;
   roles?: InputMaybe<EnumRolesNullableListFilter>;
-  schoolId?: InputMaybe<StringWithAggregatesFilter>;
+  schoolEmail?: InputMaybe<StringWithAggregatesFilter>;
   updatedAt?: InputMaybe<DateTimeWithAggregatesFilter>;
 };
 
@@ -2606,7 +2605,7 @@ export type UserWhereInput = {
   password?: InputMaybe<StringFilter>;
   phone?: InputMaybe<StringNullableFilter>;
   roles?: InputMaybe<EnumRolesNullableListFilter>;
-  schoolId?: InputMaybe<StringFilter>;
+  schoolEmail?: InputMaybe<StringFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
 };
 
@@ -2688,7 +2687,7 @@ export type UserQueryVariables = Exact<{
 }>;
 
 
-export type UserQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, address?: string | null, email: string, lastName: string, firstName: string, roles: Array<Roles>, phone?: string | null, schoolId: string } | null };
+export type UserQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, address?: string | null, email: string, lastName: string, firstName: string, roles: Array<Roles>, phone?: string | null, schoolEmail: string } | null };
 
 
 export const ChangePasswordDocument = `
@@ -2954,7 +2953,7 @@ export const UserDocument = `
     firstName
     roles
     phone
-    schoolId
+    schoolEmail
   }
 }
     `;

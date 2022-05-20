@@ -12,11 +12,12 @@ import './i18n'
 import './index.css'
 
 mobxConfig({
-    enforceActions: 'always',
     computedRequiresReaction: true,
-    reactionRequiresObservable: true,
+    disableErrorBoundaries: true,
+    enforceActions: 'always',
     observableRequiresReaction: true,
-    disableErrorBoundaries: false,
+    reactionRequiresObservable: true,
+    useProxies: 'always',
 })
 
 const container = document.getElementById('root')
