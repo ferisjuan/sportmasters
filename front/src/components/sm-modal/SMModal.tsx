@@ -1,15 +1,24 @@
+// @vendors
 import { Modal } from '@mantine/core'
+import { observer } from 'mobx-react-lite'
 
-export interface ModalProps {
+// @hooks
+import { useStores } from '~/hooks'
+
+interface SMModalProps {
     children: React.ReactNode
-    isOpen: boolean
-    setIsOpen: (isOpen: boolean) => void
 }
 
-export const SMModal: React.VFC<ModalProps> = ({ children, isOpen, setIsOpen }) => {
+export const SMModal: React.FC<SMModalProps> = observer(({ children }) => {
+    const { playersStore } = useStores()
+
+    const handleOnClose = (): void => {
+        playersStore.isAddPlayerModalOpen = false
+    }
+
     return (
-        <Modal opened={isOpen} onClose={() => setIsOpen(false)}>
+        <Modal opened={playersStore.isAddPlayerModalOpen} onClose={handleOnClose}>
             {children}
         </Modal>
     )
-}
+})

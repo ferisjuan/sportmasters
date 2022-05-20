@@ -1,14 +1,9 @@
 // @vendors
 import { createRoot } from 'react-dom/client'
-import { browserLocalPersistence, getAuth, setPersistence } from '@firebase/auth'
-import { initializeApp, FirebaseOptions } from '@firebase/app'
-import { configure } from 'mobx'
+import { configure as mobxConfig } from 'mobx'
 
 // @components
 import App from './App'
-
-// @constants
-import { FIREBASE_CONFIG } from './constants/firebase'
 
 // @i18n
 import './i18n'
@@ -16,18 +11,14 @@ import './i18n'
 // @styles
 import './index.css'
 
-configure({
-    enforceActions: 'always',
+mobxConfig({
     computedRequiresReaction: true,
-    reactionRequiresObservable: true,
+    disableErrorBoundaries: true,
+    enforceActions: 'always',
     observableRequiresReaction: true,
-    disableErrorBoundaries: false,
+    reactionRequiresObservable: true,
+    useProxies: 'always',
 })
-
-initializeApp(FIREBASE_CONFIG as FirebaseOptions)
-const auth = getAuth()
-
-setPersistence(auth, browserLocalPersistence)
 
 const container = document.getElementById('root')
 const root = createRoot(container as HTMLElement)

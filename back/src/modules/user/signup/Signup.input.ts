@@ -4,7 +4,6 @@ import { Field, InputType } from 'type-graphql';
 
 // @decorators
 import { IsEmailAlreadyExists } from './IsEmailAlreadyExists';
-import { IsSchoolExists } from './IsSchoolExists';
 
 // @shared
 import { PasswordInput } from '../../shared';
@@ -31,6 +30,6 @@ export class SignupInput extends PasswordInput {
     lastName: string
 
     @Field()
-    @IsSchoolExists({ message: 'School does not exist' })
-    schoolId: string
+    @IsEmail()
+    schoolEmail: string
 }

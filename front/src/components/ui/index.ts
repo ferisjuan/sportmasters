@@ -1,5 +1,5 @@
 export * from './link-box'
-export * from './player-profile'
+export * from './player'
 export * from './sm-header'
 export * from './sm-navbar'
 export * from './sm-navbar'

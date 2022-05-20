@@ -179,5 +179,6 @@ out
 
 # End of https://www.toptal.com/developers/gitignore/api/jetbrains,macos,node
 
-# backend generated files
-back/src/generated
+# generated files
+*/src/generated/*
+front/graphql.schema.json

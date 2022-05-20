@@ -1,6 +1,6 @@
-import playerDataErrors from './playerDataErrors.json'
-import playerData from './playerData.json'
+import addPlayerForm from './addPlayerForm.json'
+import addPlayerFormErrors from './addPlayerFormErrors.json'
 import fieldPosition from './fieldPosition.json'
 import notifications from './notifications.json'
 
-export { playerDataErrors, playerData, fieldPosition, notifications }
+export { addPlayerForm, addPlayerFormErrors, fieldPosition, notifications }

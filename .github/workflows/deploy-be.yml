@@ -1,10 +1,8 @@
 name: Backend CI
 
 on:
-  push:
-    branches: [ master ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, develop ]
 
   workflow_dispatch:
 
@@ -24,15 +22,6 @@ jobs:
       run: npm ci
     - name: build the app
       run: npm run build
-      env:
-        NODE_ENV: production
-        CORS_ORIGIN: ${{secrets.CORS_ORIGIN}}
-        DATABASE_URL: ${{secrets.DATABASE_URL}}
-        FRONT_URL: ${{secrets.FRONT_URL}}
-        JWT_SECRET: ${{secrets.JWT_SECRET}}
-        PORT: ${{secrets.PORT}}
-        REDIS_URL: ${{secrets.REDIS_URL}}
-        SESSION_SECRET: ${{secrets.SESSION_SECRET}}
     - uses: akhileshns/heroku-deploy@v3.4.6
       with:
         heroku_api_key: ${{secrets.HEROKU_API_KEY}}

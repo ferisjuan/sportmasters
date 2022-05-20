@@ -24,7 +24,7 @@ export class SignupResolver {
         firstName,
         lastName,
         password,
-        schoolId
+        schoolEmail,
     }: SignupInput,
         @Ctx() ctx: Context): Promise<Partial<User> | null> {
         try {
@@ -38,7 +38,7 @@ export class SignupResolver {
                     firstName,
                     lastName,
                     password: hashedPassword,
-                    schoolId
+                    schoolEmail,
                 }
             })
 

@@ -1,0 +1,9 @@
+query getSchoolById($where: SchoolWhereUniqueInput!) {
+    school(where: $where) {
+        id
+        address
+        email
+        name
+        phone
+    }
+}

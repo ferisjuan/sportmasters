@@ -5,7 +5,8 @@ import { initReactI18next } from 'react-i18next'
 // @translations
 import { esCO } from './translation/index'
 
-export const getNsTranslation = (ns: string) => (key: string) => i18n.t(key, { ns, returnObjects: true })
+export const getNsTranslation = (ns: string) => (key: string, returnObjects?: boolean) =>
+    i18n.t(key, { ns, returnObjects })
 
 const resources = {
     esCO,

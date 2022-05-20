@@ -16,16 +16,10 @@ export default defineConfig((({command, mode}) => ({
   },
   optimizeDeps: {
     include: [
-      '@firebase/auth',
-      '@firebase/app',
-      '@firebase/firestore',
       '@mantine/core',
       '@mantine/hooks',
       '@mantine/notifications',
       '@mantine/styles',
-      'firebase/app',
-      'firebase/auth',
-      'firebase/firestore',
       'react-icons/ai',
       'react-icons/bs',
       'react-icons/fc',

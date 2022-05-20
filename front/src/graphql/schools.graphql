@@ -1,0 +1,19 @@
+query getSchools($take: Int, $skip: Int) {
+  schools(take: $take, skip: $skip) {
+    id
+    address
+    email
+    name
+    phone
+    _count {
+      users
+      players
+    }
+    players {
+      id
+    }
+    users {
+      id
+    }
+  }
+}

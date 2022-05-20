@@ -1,0 +1,36 @@
+{
+    "birthday": "Fecha de nacimiento",
+    "cancel": "Cancelar",
+    "dateDescription": "dd/mm/yy",
+    "email": "Correo electrónico",
+    "formTitle": "Crea un nuevo jugador",
+    "formTitleGuardianData": "Datos del acudiente",
+    "formTitleStudentData": "Datos del estudiante",
+    "guardian": "Acudiente",
+    "guardianLabel": "Selecciona un acudiente",
+    "guardianPlaceholder": "Selecciona uno",
+    "guardianOptions": [
+        { "label": "Padre", "value": "FATHER" },
+        { "label": "Madre", "value": "MOTHER" },
+        { "label": "Abuelo", "value": "GRANDFATHER" },
+        { "label": "Madre", "value": "GRANDMOTHER" },
+        { "label": "Ninguno", "value": "NONE" }
+    ],
+    "height": "Altura",
+    "heightUnit": "(cm)",
+    "idSelect": [
+        { "label":"Carnet de extranjeria", "value": "FOREIGN_CARD" },
+        { "label":"Cédula de ciudadania", "value": "NATIONAL_ID" },
+        { "label":"Pasaporte", "value": "PASSPORT" }
+    ],
+    "idSelectLabel": "Tipo de documento",
+    "idSelectPlaceholder": "Selecciona uno",
+    "lastName": "Apellido (s)",
+    "name": "Nombre (s)",
+    "phone": "Teléfono",
+    "playerIdPlaceholder": "ID del estudiante",
+    "guardianIdPlaceholder": "ID del acudiente",
+    "save": "Guardar",
+    "weight": "Peso",
+    "weightUnit": "(kg)"
+}

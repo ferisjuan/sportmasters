@@ -1,13 +1,12 @@
 // @vendors
-import { useState } from 'react'
-import { ReactQueryDevtools } from 'react-query/devtools'
+import { lazy, Suspense, useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { ColorScheme, ColorSchemeProvider, MantineProvider, Title } from '@mantine/core'
 import { NotificationsProvider } from '@mantine/notifications'
 import { QueryClientProvider } from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
 
 // @components
-import { Auth, Main, NotFound, Player, Players } from '~/pages'
 import { AuthenticatedRoute } from '~/components'
 
 // @constants
@@ -22,28 +21,57 @@ import { queryClient } from './queries'
 // @store
 import { rootStore } from '~/store'
 
-const App: React.VFC = () => (
+const NotFoundPage = lazy(() => import('./pages/not-found/notFound'))
+const AuthPage = lazy(() => import('./pages/auth/auth'))
+const MainPage = lazy(() => import('./pages/main'))
+const PlayerPage = lazy(() => import('./pages/player/player'))
+const PlayersPage = lazy(() => import('./pages/players/players'))
+
+const App: React.FC = () => (
     <AuthContextProvider>
         <StoreProvider store={rootStore}>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<NotFound />} />
-                    <Route path={ROUTES.login} element={<Auth />} />
+                    <Route path="/" element={<NotFoundPage />} />
+                    <Route path={ROUTES.login} element={<AuthPage />} />
                     <Route
                         path={ROUTES.dashboard}
                         element={
-                            <AuthenticatedRoute>
-                                <Main />
-                            </AuthenticatedRoute>
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <AuthenticatedRoute>
+                                    <MainPage />
+                                </AuthenticatedRoute>
+                            </Suspense>
                         }
                     >
                         <Route index element={<Title>Welcome to the dashboard</Title>} />
                         <Route path={ROUTES.dashboard_main} element={<Title>Main</Title>} />
-                        <Route path={ROUTES.players} element={<Players />} />
-                        <Route path={ROUTES.player} element={<Player />} />
+                        <Route
+                            path={ROUTES.players}
+                            element={
+                                <Suspense fallback={<div>Loading...</div>}>
+                                    <PlayersPage />
+                                </Suspense>
+                            }
+                        />
+                        <Route
+                            path={ROUTES.player}
+                            element={
+                                <Suspense fallback={<div>Loading...</div>}>
+                                    <PlayerPage />
+                                </Suspense>
+                            }
+                        />
                         <Route path={ROUTES.statistics} element={<Title>Statistics</Title>} />
                     </Route>
-                    <Route path={ROUTES.notFound} element={<NotFound />} />
+                    <Route
+                        path={ROUTES.notFound}
+                        element={
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <NotFoundPage />
+                            </Suspense>
+                        }
+                    />
                 </Routes>
             </BrowserRouter>
         </StoreProvider>
@@ -63,6 +91,7 @@ function WithProvider(): JSX.Element {
                 <NotificationsProvider>
                     <QueryClientProvider client={queryClient}>
                         <ReactQueryDevtools initialIsOpen={false} />
+
                         <App />
                     </QueryClientProvider>
                 </NotificationsProvider>

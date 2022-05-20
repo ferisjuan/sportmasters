@@ -1,5 +1,5 @@
 generator client {
-  provider  = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 generator typegraphql {
@@ -11,6 +11,12 @@ datasource db {
   provider          = "postgresql"
   url               = env("DATABASE_URL")
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+enum NDI_TYPE {
+  PASSPORT
+  FOREIGN_CARD
+  NATIONAL_ID
 }
 
 enum FAMILY_SUPPORT {
@@ -99,36 +105,37 @@ enum TIER {
 }
 
 model Player {
+  /// @TypeGraphQL.omit(input: true)
   id                   String                  @id @default(cuid())
   birthday             DateTime
-  category             PLAYER_CATEGORY
-  familySupport        FAMILY_SUPPORT[]
-  fieldPosition        FIELD_POSITION
+  category             PLAYER_CATEGORY?
+  familySupport        FAMILY_SUPPORT?
+  fieldPosition        FIELD_POSITION?
   guardianEmail        String
   guardianId           String
-  guardianIdType       String
+  guardianIdType       NDI_TYPE
   guardianLastName     String
   guardianName         String
   guardianPhone        String
   guardianType         GUARDIAN_TYPE
   height               Float
   hobbies              String[]
-  image                String
+  image                String?
   IMC                  Float
   lastName             String
   name                 String
   personalQualities    PERSONAL_QUALITIES[]
   physicalCapabilities PHYSICAL_CAPABILITIES[]
   physicalQualities    PHYSICAL_QUALITIES[]
-  placeOfBirth         String
-  playerEmail          String
+  placeOfBirth         String?
+  playerEmail          String                  @unique
   playerId             String
-  playerIdType         String
-  playerNumber         String
+  playerIdType         NDI_TYPE
+  playerNumber         String?
   playerPhone          String
   school               School                  @relation(fields: [schoolId], references: [id])
   schoolId             String
-  sportHistory         String
+  sportHistory         String?
   weight               Float
   /// @TypeGraphQL.omit(input: true, output: true)
   createdAt            DateTime                @default(now())
@@ -137,7 +144,8 @@ model Player {
 }
 
 model School {
-  id        String   @id @default(cuid())
+  /// @TypeGraphQL.omit(input: true)
+  id        String   @unique @default(cuid())
   address   String
   email     String   @unique
   name      String
@@ -155,6 +163,7 @@ model School {
 }
 
 model User {
+  /// @TypeGraphQL.omit(input: true)
   id                    String   @id @default(cuid())
   /// @TypeGraphQL.omit(output: true)
   acceptsPrivacyPolicy  Boolean  @default(false)
@@ -170,9 +179,9 @@ model User {
   /// @TypeGraphQL.omit(output: true)
   password              String
   phone                 String?  @default("")
-  School                School   @relation(fields: [schoolId], references: [id])
-  schoolId              String
-  /// @TypeGraphQL.omit(input: ["update", "where", "orderBy"])
+  School                School   @relation(fields: [ schoolEmail], references: [email])
+  schoolEmail           String   @default("")
+  /// @TypeGraphQL.omit(input: false, output: true)
   confirmed             Boolean  @default(false)
   /// @TypeGraphQL.omit(output: true)
   updatedAt             DateTime @updatedAt

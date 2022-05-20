@@ -3,19 +3,16 @@ import "reflect-metadata"
 import "dotenv/config"
 import { ApolloServer } from "apollo-server-express"
 import { buildSchema } from 'type-graphql'
-import cors from 'cors'
-import Express from 'express'
+import { expressjwt as jwt } from 'express-jwt'
 import connectRedis from 'connect-redis'
+import Express from 'express'
 import session from 'express-session'
 
 // @context
 import { prisma } from './context'
 
-// @constants
-import { AUTH_COOKIE_NAME } from './constants'
-
 // @generated
-import { resolvers } from './generated/typegraphql-prisma.ts'
+import { PlayerCrudResolver, SchoolCrudResolver, SchoolRelationsResolver, UserCrudResolver } from './generated/typegraphql-prisma.ts'
 
 // @logger
 import { logger } from './logger'
@@ -34,12 +31,16 @@ const main = async () => {
 
     const schema = await buildSchema({
         resolvers: [
-            ...resolvers,
             ChangePasswordResolver,
             ConfirmUserResolver,
             ForgotPassword,
             LogoutResolver,
-            SigninResolver, SignupResolver
+            PlayerCrudResolver,
+            SchoolCrudResolver,
+            SchoolRelationsResolver,
+            SigninResolver,
+            SignupResolver,
+            UserCrudResolver,
         ],
     })
 
@@ -58,40 +59,52 @@ const main = async () => {
         schema,
     })
 
-    const app = Express()
-    const RedisStore = connectRedis(session)
+    await apolloServer.start()
 
-    app.use(cors({
-        credentials: true,
-        origin: process.env.CORS_ORIGIN || '*',
-    }))
+    const app = Express()
+    const path = '/graphql'
+    const RedisStore = connectRedis(session)
 
     app.use(
         session({
             store: new RedisStore({
                 client: redis,
             }),
-            name: AUTH_COOKIE_NAME,
+            name: process.env.SESSION_COOKIE_NAME,
             secret: process.env.SESSION_SECRET!,
             resave: false,
             saveUninitialized: false,
             cookie: {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production',
-                maxAge: 1000 * 60 * 60 * 24, // 1 day
+                maxAge: parseInt(process.env.SESSION_MAX_AGE, 10),
             },
         })
     )
 
-    await apolloServer.start()
+    app.use(
+        path,
+        jwt({
+            algorithms: ['HS256'],
+            secret: process.env.JWT_SECRET,
+            credentialsRequired: false,
+        }),
+    );
 
-    apolloServer.applyMiddleware({ app, path: '/graphql' })
+    const corsOptions = {
+        credentials: true,
+        origin: process.env.CORS_ORIGIN || '*',
+    }
+
+    apolloServer.applyMiddleware({
+        app, path,
+        cors: corsOptions
+    })
 
     app.listen(process.env.PORT || 4000, () => {
         logger.info(`🚀 Server ready at http//:localhost${process.env.PORT || 4000
             }/graphql`)
     })
 }
-
 
 main()

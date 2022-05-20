@@ -1,0 +1,25 @@
+{
+    "date": "Fecha inválida",
+    "guardianEmail": "Correo electrónico inválido",
+    "guardianEmailIsRequired": "El correo electrónico es obligatorio",
+    "guardianIdType": "Tipo de identificación inválido",
+    "guardianLastNameIsRequired": "El apellido es obligatorio",
+    "guardianNameIsRequired": "El nombre es obligatorio",
+    "guardianPhoneIsRequired": "El teléfono es obligatorio",
+    "guardianTypeIsRequired": "El acudiente es obligatorio",
+    "heightIsRequired": "La altura es obligatoria",
+    "lastNameIsRequired": "El apellido es obligatorio",
+    "nameIsRequired": "El nombre es obligatorio",
+    "playerBirthdayIsRequired": "La fecha de nacimiento es obligatoria",
+    "playerEmailIsRequired": "El correo electrónico es obligatorio",
+    "playerIdIsRequired": "El número de identificación es obligatorio",
+    "playerIdTypeIsRequired": "El tipo de identificación es obligatorio",
+    "max": "Máximo 10 caracteres",
+    "number": "Este campo debe ser un número",
+    "phoneErrors": {
+        "phoneRequired": "Teléfono Requerido",
+        "phoneInvalidLenght": "Este campo debe tener 10 dígitos",
+        "phoneInvalidNumber": "Este campo debe ser un número"
+    },
+    "required": "Este campo es obligatorio"
+}

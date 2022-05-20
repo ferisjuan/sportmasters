@@ -1,19 +1,17 @@
 // @stores
-import { IPlayerProfileStore, PlayerStore } from './player'
-import { IPlayersStore, PlayersStore } from './players'
-
-export interface IRootStore {
-    player: IPlayerProfileStore
-    players: IPlayersStore
-}
+import { PlayerStore } from './player'
+import { PlayersStore } from './players'
+import { UserStore } from './user'
 
 export class RootStore {
     playerStore
     playersStore
+    userStore
 
     constructor() {
         this.playerStore = new PlayerStore(this)
         this.playersStore = new PlayersStore(this)
+        this.userStore = new UserStore(this)
     }
 }
 

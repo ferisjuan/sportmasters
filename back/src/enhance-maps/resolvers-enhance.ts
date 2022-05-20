@@ -12,7 +12,17 @@ export const appliedResolversEnhanceMap = () => applyResolversEnhanceMap({
         _all: [UseMiddleware(isAuth)]
     },
     School: {
-        _all: [UseMiddleware(isAuth)]
+        aggregateSchool: [UseMiddleware(isAuth)],
+        createManySchool: [UseMiddleware(isAuth)],
+        deleteManySchool: [UseMiddleware(isAuth)],
+        deleteSchool: [UseMiddleware(isAuth)],
+        findFirstSchool: [UseMiddleware(isAuth)],
+        groupBySchool: [UseMiddleware(isAuth)],
+        school: [UseMiddleware(isAuth)],
+        schools: [UseMiddleware(isAuth)],
+        updateManySchool: [UseMiddleware(isAuth)],
+        updateSchool: [UseMiddleware(isAuth)],
+        upsertSchool: [UseMiddleware(isAuth)],
     },
     User: {
         _all: [UseMiddleware(isAuth)]

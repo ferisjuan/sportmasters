@@ -6,15 +6,24 @@ import { PlayerProfile, PlayerCard, PlayerGeneralStats, SoccerField } from '~/co
 
 // @hooks
 import { useStores } from '~/hooks'
+import { usePlayerQuery } from '../../generated/graphql'
 
-export const Player: React.VFC = observer(() => {
+const Player: React.FC = observer(() => {
     const { playerStore } = useStores()
+
+    const { data: playerData } = usePlayerQuery({
+        where: { playerEmail: playerStore.playerEmail },
+    })
+
+    const player = playerData?.player
 
     return (
         <PlayerProfile>
-            <PlayerCard player={playerStore.player} />
+            {player && <PlayerCard player={player} />}
             <PlayerGeneralStats />
             <SoccerField />
         </PlayerProfile>
     )
 })
+
+export default Player
