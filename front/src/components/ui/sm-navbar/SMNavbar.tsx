@@ -1,7 +1,7 @@
 // @vendor
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { Navbar, Title } from '@mantine/core'
+import { Navbar } from '@mantine/core'
 
 // @components
 import { LinkBox } from '../link-box'
