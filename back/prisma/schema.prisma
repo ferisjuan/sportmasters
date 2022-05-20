@@ -145,7 +145,7 @@ model Player {
 
 model School {
   /// @TypeGraphQL.omit(input: true)
-  id        String   @id @default(cuid())
+  id        String   @unique @default(cuid())
   address   String
   email     String   @unique
   name      String
@@ -160,6 +160,8 @@ model School {
   createdAt DateTime @default(now())
   /// @TypeGraphQL.omit(output: true, output: true)
   updatedAt DateTime @updatedAt
+
+  @@id([id, email])
 }
 
 model User {
@@ -179,8 +181,9 @@ model User {
   /// @TypeGraphQL.omit(output: true)
   password              String
   phone                 String?  @default("")
-  School                School   @relation(fields: [schoolId], references: [id])
+  School                School   @relation(fields: [schoolId, schoolEmail], references: [id, email])
   schoolId              String
+  schoolEmail           String   @default("")
   /// @TypeGraphQL.omit(input: false, output: true)
   confirmed             Boolean  @default(false)
   /// @TypeGraphQL.omit(output: true)
