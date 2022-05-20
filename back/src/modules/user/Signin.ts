@@ -2,6 +2,7 @@
 import "reflect-metadata"
 import { Arg, Ctx, Mutation, Resolver } from 'type-graphql'
 import { compare } from 'bcryptjs'
+import { expressjwt as jwt } from 'express-jwt'
 
 // @context
 import { Context } from '../../context';

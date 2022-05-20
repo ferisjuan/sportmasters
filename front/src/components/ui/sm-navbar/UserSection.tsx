@@ -2,7 +2,6 @@
 import { useCallback, useEffect } from 'react'
 import { Avatar, Box, Container, Title, Text } from '@mantine/core'
 import { MantineTheme } from '@mantine/styles'
-import { observer } from 'mobx-react-lite'
 import { useNavigate } from 'react-router-dom'
 
 // @constants
@@ -17,7 +16,7 @@ import { useLogoutMutation, useUserQuery } from '~/generated/graphql'
 // @utils
 import { getInitials, showSMNotification } from '~/utils'
 
-export const UserSection: React.FC = observer(() => {
+export const UserSection: React.FC = () => {
     const { userStore } = useStores()
 
     const email = localStorage.getItem('email')
@@ -27,6 +26,8 @@ export const UserSection: React.FC = observer(() => {
     const user = data?.user
 
     useEffect(() => {
+        if (!user) return
+
         userStore.id = user?.id || ''
         userStore.email = user?.email || ''
         userStore.roles = user?.roles || []
@@ -69,10 +70,12 @@ export const UserSection: React.FC = observer(() => {
             <Avatar alt="avatar" radius="xl">
                 {user?.firstName && getInitials(user?.firstName[0], user?.firstName[1])}
             </Avatar>
+
             <Container m={0}>
                 <Title order={5}>{`${user?.firstName} ${user?.lastName}`}</Title>
+
                 <Text size="xs">{user?.email}</Text>
             </Container>
         </Box>
     )
-})
+}

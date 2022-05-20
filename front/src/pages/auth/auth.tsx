@@ -91,6 +91,7 @@ const Auth = (): JSX.Element => {
                     />
 
                     <PasswordInput
+                        autoComplete="current-password"
                         label="Password"
                         placeholder="Password"
                         value={form.values.password}

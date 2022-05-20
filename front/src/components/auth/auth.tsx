@@ -15,7 +15,7 @@ export const AuthenticatedRoute = ({ children }: IChildren): JSX.Element => {
 
     const location = useLocation()
 
-    if (!isAuthenticated) return <Navigate to={ROUTES.login} state={{ from: location }} />
+    if (!isAuthenticated) return <Navigate to={`../${ROUTES.login}`} state={{ from: location }} />
 
     return children
 }
