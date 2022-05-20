@@ -11,9 +11,12 @@ module.exports = {
                     credentials: 'include',
                     endpoint: process.env.GGL_ENDPOINT,
                     fetchParams: {
-                        'Allow-Control-Allow-Origin': process.env.GGL_CLIENT,
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json',
+                        headers: {
+                            'Allow-Control-Allow-Origin': process.env.GGL_CLIENT,
+                            'access-control-allow-credentials': 'true',
+                            Accept: 'application/json',
+                            'Content-Type': 'application/json',
+                        },
                     },
                 },
             },
