@@ -26,8 +26,8 @@ export const PlayerForm: React.FC = () => {
     const { mutate: createPlayer, error: createPlayerError } = useCreatePlayerMutation()
 
     const form = useForm<PlayerCreateInput>({
-        schema: yupResolver(PlayerFormSchema),
         initialValues: {} as PlayerCreateInput,
+        schema: yupResolver(PlayerFormSchema),
     })
 
     const handleModalClose = (): void => {

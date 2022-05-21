@@ -70,7 +70,7 @@ const main = async () => {
             cookie: {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production',
-                sameSite: false,
+                sameSite: 'lax',
                 maxAge: parseInt(process.env.SESSION_MAX_AGE, 10),
             },
             name: process.env.SESSION_COOKIE_NAME,

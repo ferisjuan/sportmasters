@@ -1,12 +1,14 @@
 // @vendors
 import { createContext, useState } from 'react'
 
-// @~/interfaces
+// @interfaces
 import { IChildren } from '~/interfaces'
-import { User } from '../generated/graphql'
+
+// @generated
+import { User } from '~/generated/graphql'
 
 export interface IAuthContext {
-    user?: User
+    user?: Partial<User>
 }
 
 export const AuthContext = createContext<IAuthContext | null>(null)

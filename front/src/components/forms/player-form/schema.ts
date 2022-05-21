@@ -11,7 +11,10 @@ export const PlayerFormSchema = Yup.object().shape({
     guardianIdType: Yup.string().required('required'),
     guardianLastName: Yup.string().min(3, 'min').max(10, 'max').required('required'),
     guardianName: Yup.string().min(3, 'min').max(10, 'max').required('required'),
-    guardianPhone: Yup.string().length(10, '').required('required'),
+    guardianPhone: Yup.number()
+        .typeError(t('phoneErrors.phoneInvalidNumber'))
+        .test('len', t('phoneErrors.phoneInvalidLenght'), val => val?.toString().length === 10)
+        .required(t('phoneErrors.phoneRequired')),
     guardianType: Yup.string().required('required'),
     height: Yup.number().typeError('number').required('required'),
     lastName: Yup.string().min(2, 'min').max(10, 'max').required('required'),
@@ -21,7 +24,7 @@ export const PlayerFormSchema = Yup.object().shape({
     playerIdType: Yup.string().required('required'),
     playerPhone: Yup.number()
         .typeError(t('phoneErrors.phoneInvalidNumber'))
-        .min(10, t('phoneErrors.phoneInvalidLenght'))
+        .test('len', t('phoneErrors.phoneInvalidLenght'), val => val?.toString().length === 10)
         .required(t('phoneErrors.phoneRequired')),
     weight: Yup.number().typeError('number').required('required'),
 })

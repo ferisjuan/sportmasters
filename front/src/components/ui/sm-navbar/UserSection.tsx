@@ -1,5 +1,5 @@
 // @vendor
-import { useCallback, useEffect } from 'react'
+import { useEffect } from 'react'
 import { Avatar, Box, Container, Title, Text } from '@mantine/core'
 import { MantineTheme } from '@mantine/styles'
 import { useNavigate } from 'react-router-dom'
@@ -36,22 +36,20 @@ export const UserSection: React.FC = () => {
 
     const navigate = useNavigate()
 
-    const { error, mutate } = useLogoutMutation()
+    const { mutate: logout } = useLogoutMutation({
+        onSuccess: () => {
+            navigate(`../${ROUTES.login}`, { replace: true })
 
-    const handleOnClick = useCallback(() => {
-        mutate({})
-        localStorage.removeItem('email')
-
-        navigate(`../${ROUTES.login}`, { replace: true })
-
-        if (error) {
-            showSMNotification(error as string, 'ERROR', false)
-        }
-    }, [])
+            localStorage.removeItem('email')
+        },
+        onError: error => {
+            showSMNotification(`${error}`, 'ERROR', false)
+        },
+    })
 
     return (
         <Box
-            onClick={handleOnClick}
+            onClick={() => logout({})}
             sx={(theme: MantineTheme) => ({
                 alignItems: 'center',
                 backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],

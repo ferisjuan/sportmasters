@@ -1,4 +1,8 @@
 {
     "prettier.configPath": ".prettierrc.json",
-    "prettier.prettierPath": "/Users/juan/.nvm/versions/node/v16.13.2/bin/prettier"
+    "prettier.prettierPath": "/Users/juan/.nvm/versions/node/v16.13.2/bin/prettier",
+    "i18n-ally.localesPaths": [
+        "front/locales",
+        "front/src/locales"
+    ]
 }

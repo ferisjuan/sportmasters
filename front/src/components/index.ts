@@ -1,4 +1,3 @@
 export * from './auth'
-export { PlayerForm } from './forms'
-export { SMModal } from './sm-modal'
+export * from './forms'
 export * from './ui'

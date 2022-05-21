@@ -1,12 +1,13 @@
 // @vendors
 import { FormEvent, useCallback, useEffect, useState } from 'react'
-import { TextInput, Button, Container, Loader, Text } from '@mantine/core'
+import { AiFillEye, AiFillEyeInvisible, AiTwotoneLock } from 'react-icons/ai'
+import { TextInput, Button, Loader, Text, PasswordInput } from '@mantine/core'
 import { useForm } from '@mantine/hooks'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 // @components
-import { SMPasswordInput } from '~/components/components'
+import { SMContainer } from '~/components'
 
 // @constants
 import { ROUTES } from '~/constants'
@@ -25,9 +26,6 @@ const Login = (): JSX.Element => {
     const [isDissabled, setIsDissabled] = useState(true)
     const [isLoginLoading, setIsLoginLoading] = useState(false)
 
-    const signin = useSigninMutation()
-    const reqPasswordChange = useForgotPasswordMutation()
-
     const form = useForm({
         initialValues: {
             email: '',
@@ -38,47 +36,54 @@ const Login = (): JSX.Element => {
         },
     })
 
+    const { mutate: signin } = useSigninMutation({
+        onSuccess: () => {
+            navigate(`../${ROUTES.dashboard}`, { replace: true })
+
+            setIsLoginLoading(true)
+
+            localStorage.setItem('email', form.values.email)
+        },
+        onError: () => {
+            showSMNotification(t('wrongCredentials'), 'ERROR', false)
+        },
+    })
+
+    const { mutate: reqPasswordChange } = useForgotPasswordMutation({
+        onSuccess: () => {
+            showSMNotification(t('resetPassword'), 'INFO', false)
+        },
+        onError: () => {
+            showSMNotification(t('wrongEmail'), 'ERROR', false)
+        },
+    })
+
     useEffect(() => {
         setIsDissabled(!form.errors.email && form.values.password.length === 0)
     }, [form.errors.email, form.values.password])
 
     const handleFormSubmit = useCallback(
-        async (event: FormEvent<HTMLFormElement>): Promise<void> => {
+        (event: FormEvent<HTMLFormElement>): void => {
             event.preventDefault()
 
-            try {
-                signin.mutate(form.values)
-
-                setIsLoginLoading(true)
-
-                localStorage.setItem('email', form.values.email)
-
-                navigate(`../${ROUTES.dashboard}`, { replace: true })
-            } catch (error) {
-                showSMNotification(t('wrongCredentials'), 'ERROR', false)
-            }
+            signin(form.values)
         },
-        [form.values.email, form.values.password, t],
+        [form.values.email, form.values.password],
     )
 
     const handleForgotPassword = useCallback(
-        async (email: string): Promise<void> => {
-            reqPasswordChange.mutate({ email })
-
-            showSMNotification(t('resetPassword'), 'INFO', false)
+        (email: string): void => {
+            reqPasswordChange({ email })
         },
-        [form.values.email, t],
+        [form.values.email],
     )
 
     return (
-        <Container size="xs" sx={{ display: 'flex', justifyContent: 'center', height: '100vh', alignItems: 'center' }}>
+        <SMContainer>
             {isLoginLoading ? (
                 <Loader color="indigo" variant="bars" />
             ) : (
-                <form
-                    onSubmit={event => handleFormSubmit(event)}
-                    style={{ display: 'flex', gap: '10px', flexDirection: 'column' }}
-                >
+                <form onSubmit={handleFormSubmit} style={{ display: 'flex', gap: '10px', flexDirection: 'column' }}>
                     <TextInput
                         required
                         label={t('emailLabel')}
@@ -88,10 +93,14 @@ const Login = (): JSX.Element => {
                         onChange={event => form.setFieldValue('email', event.currentTarget.value)}
                     />
 
-                    <SMPasswordInput
-                        value={form.values.password}
-                        setFieldValue={v => form.setFieldValue('password', v)}
-                        t={t}
+                    <PasswordInput
+                        label={t('passwordLabel')}
+                        placeholder={t('passwordPlaceholder')}
+                        visibilityToggleIcon={({ reveal, size }) =>
+                            reveal ? <AiFillEyeInvisible size={size} /> : <AiFillEye />
+                        }
+                        icon={<AiTwotoneLock />}
+                        {...form.getInputProps('password')}
                     />
 
                     <Button disabled={isDissabled} sx={{ marginTop: '20px' }} type="submit">
@@ -103,7 +112,7 @@ const Login = (): JSX.Element => {
                     </Text>
                 </form>
             )}
-        </Container>
+        </SMContainer>
     )
 }
 
