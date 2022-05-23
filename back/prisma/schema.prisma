@@ -181,8 +181,8 @@ model User {
   phone                 String?  @default("")
   School                School   @relation(fields: [ schoolEmail], references: [email])
   schoolEmail           String   @default("")
-  /// @TypeGraphQL.omit(input: false, output: true)
+  /// @TypeGraphQL.omit(input: true, output: true)
   confirmed             Boolean  @default(false)
-  /// @TypeGraphQL.omit(output: true)
+  /// @TypeGraphQL.omit(output: true, input: true)
   updatedAt             DateTime @updatedAt
 }
