@@ -55,7 +55,7 @@ export const UserSection: React.FC = observer(() => {
             </Avatar>
 
             <Container m={0}>
-                <Title order={5}>{`${userStore?.firstName} ${userStore?.lastName}`}</Title>
+                <Title order={5}>{userStore.getInitials()}</Title>
 
                 <Text size="xs">{userStore?.email}</Text>
             </Container>

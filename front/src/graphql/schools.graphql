@@ -18,7 +18,7 @@ query getSchools($take: Int, $skip: Int) {
   }
 }
 
-query Schools {
+query GetNoAuthSchools {
   schools {
     email
     name

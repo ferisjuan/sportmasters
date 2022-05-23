@@ -20,3 +20,4 @@ generated/
 # generated files
 back/src/generated/
 front/src/generated/
+*/node_modules/

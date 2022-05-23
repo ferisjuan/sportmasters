@@ -2,10 +2,10 @@
 import { makeAutoObservable } from 'mobx'
 
 // @interface
-import { Player } from '~/generated/graphql'
 import { IPlayerProfileStore } from './interface'
 
-// @services
+// @generated
+import { Player } from '~/generated/graphql'
 
 // @store
 import { RootStore } from '../store'

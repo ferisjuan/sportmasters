@@ -23,9 +23,8 @@ import { queryClient } from './queries'
 import { rootStore } from '~/store'
 
 const ChangePasswordPage = lazy(() => import('./pages/auth/ChangePassword'))
-const CoachSingupPage = lazy(() => import('./pages/auth/CoachSignup'))
-const NotFoundPage = lazy(() => import('./pages/not-found/notFound'))
 const MainPage = lazy(() => import('./pages/main'))
+const NotFoundPage = lazy(() => import('./pages/not-found/notFound'))
 const PlayerPage = lazy(() => import('./pages/player/player'))
 const PlayersPage = lazy(() => import('./pages/players/players'))
 
@@ -35,6 +34,7 @@ const App: React.FC = () => (
             <BrowserRouter>
                 <Routes>
                     <Route path={ROUTES.login} element={<Login />} />
+
                     <Route
                         path={ROUTES.changePassword}
                         element={
@@ -43,14 +43,7 @@ const App: React.FC = () => (
                             </Suspense>
                         }
                     />
-                    <Route
-                        path={ROUTES.coachSignup}
-                        element={
-                            <Suspense fallback={<div>Loading...</div>}>
-                                <CoachSingupPage />
-                            </Suspense>
-                        }
-                    />
+
                     <Route
                         path={ROUTES.dashboard}
                         element={
@@ -62,7 +55,9 @@ const App: React.FC = () => (
                         }
                     >
                         <Route index element={<Title>Welcome to the dashboard</Title>} />
+
                         <Route path={ROUTES.dashboard_main} element={<Title>Main</Title>} />
+
                         <Route
                             path={ROUTES.players}
                             element={
@@ -71,6 +66,7 @@ const App: React.FC = () => (
                                 </Suspense>
                             }
                         />
+
                         <Route
                             path={ROUTES.player}
                             element={
@@ -79,6 +75,7 @@ const App: React.FC = () => (
                                 </Suspense>
                             }
                         />
+
                         <Route path={ROUTES.statistics} element={<Title>Statistics</Title>} />
                     </Route>
                     <Route

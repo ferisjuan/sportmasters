@@ -65,6 +65,10 @@ export class UserStore {
         return this._schoolEmail
     }
 
+    public getInitials(): string {
+        return `${this.firstName[0]}${this.lastName[0]}`
+    }
+
     constructor(rootStore: RootStore) {
         this.rootStore = rootStore
 

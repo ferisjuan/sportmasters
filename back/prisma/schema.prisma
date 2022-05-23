@@ -170,7 +170,7 @@ model User {
   /// @TypeGraphQL.omit(output: true)
   acceptsTermsOfService Boolean  @default(false)
   address               String?  @default("")
-  /// @TypeGraphQL.omit(output: true)
+  /// @TypeGraphQL.omit(output: true, input: true)
   createdAt             DateTime @default(now())
   email                 String   @unique
   lastName              String
