@@ -65,6 +65,7 @@ export const ChangePasswordForm: React.FC = () => {
         <SMContainer>
             <form onSubmit={handleFormSubmit}>
                 <PasswordInput
+                    required
                     label={t('passwordLabel')}
                     placeholder={t('passwordPlaceholder')}
                     visibilityToggleIcon={({ reveal, size }) =>
@@ -75,6 +76,7 @@ export const ChangePasswordForm: React.FC = () => {
                 />
 
                 <PasswordInput
+                    required
                     label={t('passwordConfirmLabel')}
                     placeholder={t('passwordConfirmPlaceholder')}
                     visibilityToggleIcon={({ reveal, size }) =>

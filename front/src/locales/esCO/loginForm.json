@@ -7,6 +7,13 @@
     "passwordPlaceholder": "Escribe tu password",
     "resetPassword": "Revisa tu correo para resetear tu contraseña",
     "wrongCredentials": "Usuario o contraseña incorrectos",
-    "wrongEmail": "El email parece incorrecto",
-    "emailRequired": "El email es requerido"
+    "errors": {
+        "email": {
+            "required": "El email es requerido",
+            "invalid": "El email parece incorrecto"
+        },
+        "password": {
+            "required": "La contraseña es requerida"
+        }
+    }
 }
