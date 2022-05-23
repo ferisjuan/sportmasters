@@ -53,9 +53,6 @@ const Login = (): JSX.Element => {
         onSuccess: () => {
             showSMNotification(t('resetPassword'), 'INFO', false)
         },
-        onError: () => {
-            showSMNotification(t('wrongEmail'), 'ERROR', false)
-        },
     })
 
     useEffect(() => {
