@@ -11,8 +11,9 @@ export const SMContainer: React.FC<SMContainerProps> = ({ children, isLoading })
             alignItems: 'center',
             display: 'flex',
             flexWrap: 'wrap',
-            maxHeight: '80%',
+            height: '100%',
             justifyContent: 'center',
+            width: '100%',
         }}
     >
         {isLoading ? <Loader color="indigo" variant="bars" /> : <>{children}</>}

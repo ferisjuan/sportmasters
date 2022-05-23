@@ -11,9 +11,8 @@ const Main = (): JSX.Element => (
         navbar={<SMNavbar />}
         styles={theme => ({
             main: {
+                position: 'relative',
                 backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : 'transparent',
-                scrollBehavior: 'smooth',
-                overflow: 'hidden',
             },
         })}
         fixed

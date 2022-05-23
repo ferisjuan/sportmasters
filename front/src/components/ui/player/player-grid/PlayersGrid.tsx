@@ -39,7 +39,7 @@ export const PlayersGrid: React.FC = observer(() => {
     if (!playersData) return null
 
     return (
-        <ScrollArea style={{ height: '90%' }}>
+        <ScrollArea>
             {playersData.players?.map(player => (
                 <Box key={player.id} onClick={() => handleClick(player.playerEmail)}>
                     <PlayerCard player={player} />

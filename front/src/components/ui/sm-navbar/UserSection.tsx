@@ -14,7 +14,7 @@ import { useStores } from '~/hooks/store'
 import { useLogoutMutation } from '~/generated/graphql'
 
 // @utils
-import { getInitials, showSMNotification } from '~/utils'
+import { showSMNotification } from '~/utils'
 
 export const UserSection: React.FC = observer(() => {
     const { userStore } = useStores()
@@ -37,26 +37,23 @@ export const UserSection: React.FC = observer(() => {
             onClick={() => logout({})}
             sx={(theme: MantineTheme) => ({
                 alignItems: 'center',
-                backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+                color: 'white',
+                backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[9],
                 borderRadius: theme.radius.sm,
                 display: 'flex',
                 justifyContent: 'flex-start',
-                margin: 0,
-                padding: theme.spacing.xs,
-
-                '&:hover': {
-                    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1],
-                },
+                marginBlockEnd: '10px',
+                padding: '0.5rem',
             })}
         >
-            <Avatar alt="avatar" radius="xl">
-                {userStore?.firstName && getInitials(userStore?.firstName[0], userStore?.firstName[1])}
+            <Avatar alt="avatar" radius="sm">
+                {userStore.getInitials()}
             </Avatar>
 
             <Container m={0}>
-                <Title order={5}>{userStore.getInitials()}</Title>
+                <Title order={5}>{userStore.lastName}</Title>
 
-                <Text size="xs">{userStore?.email}</Text>
+                <Text size="xs">{userStore?.firstName}</Text>
             </Container>
         </Box>
     )
