@@ -1,65 +1,16 @@
 // @vendors
-import { useNavigate, useParams } from 'react-router-dom'
 import { AiFillEye, AiFillEyeInvisible, AiTwotoneLock } from 'react-icons/ai'
 import { Button, PasswordInput } from '@mantine/core'
-import { yupResolver, useForm } from '@mantine/form'
 import { useTranslation } from 'react-i18next'
 
 // @components
 import { SMContainer } from '~/components'
-
-// @constants
-import { ROUTES } from '~/constants'
-
-// @generated
-import { useChangePasswordMutation } from '~/generated/graphql'
-
-// @schema
-import { ChangePasswordFormSchema } from './ChangePasswordForm.schema'
-
-// @utils
-import { showSMNotification } from '~/utils'
+import { useChangePasswordForm } from './useChangePasswordForm'
 
 export const ChangePasswordForm: React.FC = () => {
     const { t } = useTranslation('changePasswordForm')
 
-    const { token } = useParams()
-
-    const navigate = useNavigate()
-
-    const { mutate: changePassword } = useChangePasswordMutation({
-        onSuccess: () => {
-            showSMNotification(t('success.passwordChanged'), 'INFO', false)
-
-            navigate(`../${ROUTES.login}`, { replace: true })
-        },
-        onError: error => {
-            showSMNotification(`${error}`, 'ERROR', false)
-        },
-    })
-
-    const form = useForm({
-        initialValues: {
-            password: '',
-            passwordConfirm: '',
-        },
-        schema: yupResolver(ChangePasswordFormSchema),
-    })
-
-    const handleFormSubmit = (e: { preventDefault: () => void }): void => {
-        e.preventDefault()
-
-        const { hasErrors } = form.validate()
-
-        if (hasErrors) return
-
-        changePassword({
-            data: {
-                password: form.values.password,
-                token: token || '',
-            },
-        })
-    }
+    const { getInputProps, handleFormSubmit } = useChangePasswordForm()
 
     return (
         <SMContainer>
@@ -72,7 +23,7 @@ export const ChangePasswordForm: React.FC = () => {
                         reveal ? <AiFillEyeInvisible size={size} /> : <AiFillEye />
                     }
                     icon={<AiTwotoneLock />}
-                    {...form.getInputProps('password')}
+                    {...getInputProps('password')}
                 />
 
                 <PasswordInput
@@ -83,7 +34,7 @@ export const ChangePasswordForm: React.FC = () => {
                         reveal ? <AiFillEyeInvisible size={size} /> : <AiFillEye />
                     }
                     icon={<AiTwotoneLock />}
-                    {...form.getInputProps('passwordConfirm')}
+                    {...getInputProps('passwordConfirm')}
                 />
 
                 <Button sx={{ marginTop: '20px' }} type="submit">
