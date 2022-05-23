@@ -7,5 +7,6 @@
     "passwordPlaceholder": "Escribe tu password",
     "resetPassword": "Revisa tu correo para resetear tu contraseña",
     "wrongCredentials": "Usuario o contraseña incorrectos",
-    "wrongEmail": "El email parece incorrecto"
+    "wrongEmail": "El email parece incorrecto",
+    "emailRequired": "El email es requerido"
 }

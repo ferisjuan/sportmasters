@@ -68,12 +68,15 @@ const Login = (): JSX.Element => {
         [form.values.email, form.values.password],
     )
 
-    const handleForgotPassword = useCallback(
-        (email: string): void => {
-            reqPasswordChange({ email })
-        },
-        [form.values.email],
-    )
+    const handleForgotPassword = (email: string): void => {
+        if (!form.values.email) {
+            showSMNotification(t('emailRequired'), 'ERROR', false)
+
+            return
+        }
+
+        reqPasswordChange({ email })
+    }
 
     return (
         <SMContainer>
