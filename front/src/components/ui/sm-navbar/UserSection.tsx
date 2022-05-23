@@ -21,7 +21,16 @@ export const UserSection: React.FC = observer(() => {
 
     const navigate = useNavigate()
 
-    const { mutate: logout } = useLogoutMutation()
+    const { mutate: logout } = useLogoutMutation({
+        onSuccess: () => {
+            navigate(`../${ROUTES.login}`, { replace: true })
+
+            localStorage.removeItem('email')
+        },
+        onError: error => {
+            showSMNotification(`${error}`, 'ERROR', false)
+        },
+    })
 
     return (
         <Box
