@@ -24,6 +24,7 @@ export const ChangePasswordForm: React.FC = () => {
     const { t } = useTranslation('changePasswordForm')
 
     const { token } = useParams()
+
     const navigate = useNavigate()
 
     const { mutate: changePassword } = useChangePasswordMutation({
