@@ -1,5 +1,4 @@
 // @vendors
-import { useCallback } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { AiFillEye, AiFillEyeInvisible, AiTwotoneLock } from 'react-icons/ai'
 import { Button, PasswordInput } from '@mantine/core'
@@ -29,6 +28,8 @@ export const ChangePasswordForm: React.FC = () => {
 
     const { mutate: changePassword } = useChangePasswordMutation({
         onSuccess: () => {
+            showSMNotification(t('success.passwordChanged'), 'INFO', false)
+
             navigate(`../${ROUTES.login}`, { replace: true })
         },
         onError: error => {
