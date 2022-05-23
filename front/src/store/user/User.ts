@@ -10,6 +10,8 @@ import { RootStore } from '../store'
 export class UserStore {
     private _id = ''
     private _email = ''
+    private _firstName = ''
+    private _lastName = ''
     private _roles: Roles[] = [Roles.None]
     private _schoolEmail = ''
 
@@ -29,6 +31,22 @@ export class UserStore {
 
     public set email(email: string) {
         this._email = email
+    }
+
+    public get firstName(): string {
+        return this._firstName
+    }
+
+    public set firstName(firstName: string) {
+        this._firstName = firstName
+    }
+
+    public get lastName(): string {
+        return this._lastName
+    }
+
+    public set lastName(lastName: string) {
+        this._lastName = lastName
     }
 
     public get roles(): Roles[] {

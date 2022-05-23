@@ -1,7 +1,7 @@
 // @vendor
-import { useEffect } from 'react'
 import { Avatar, Box, Container, Title, Text } from '@mantine/core'
 import { MantineTheme } from '@mantine/styles'
+import { observer } from 'mobx-react-lite'
 import { useNavigate } from 'react-router-dom'
 
 // @constants
@@ -11,41 +11,17 @@ import { ROUTES } from '~/constants'
 import { useStores } from '~/hooks/store'
 
 // @generated
-import { useLogoutMutation, useUserQuery } from '~/generated/graphql'
+import { useLogoutMutation } from '~/generated/graphql'
 
 // @utils
 import { getInitials, showSMNotification } from '~/utils'
 
-export const UserSection: React.FC = () => {
+export const UserSection: React.FC = observer(() => {
     const { userStore } = useStores()
-
-    const email = localStorage.getItem('email')
-
-    const { data } = useUserQuery({ where: { email } })
-
-    const user = data?.user
-
-    useEffect(() => {
-        if (!user) return
-
-        userStore.id = user?.id || ''
-        userStore.email = user?.email || ''
-        userStore.roles = user?.roles || []
-        userStore.schoolEmail = user?.schoolEmail || ''
-    }, [user])
 
     const navigate = useNavigate()
 
-    const { mutate: logout } = useLogoutMutation({
-        onSuccess: () => {
-            navigate(`../${ROUTES.login}`, { replace: true })
-
-            localStorage.removeItem('email')
-        },
-        onError: error => {
-            showSMNotification(`${error}`, 'ERROR', false)
-        },
-    })
+    const { mutate: logout } = useLogoutMutation()
 
     return (
         <Box
@@ -66,14 +42,14 @@ export const UserSection: React.FC = () => {
             })}
         >
             <Avatar alt="avatar" radius="xl">
-                {user?.firstName && getInitials(user?.firstName[0], user?.firstName[1])}
+                {userStore?.firstName && getInitials(userStore?.firstName[0], userStore?.firstName[1])}
             </Avatar>
 
             <Container m={0}>
-                <Title order={5}>{`${user?.firstName} ${user?.lastName}`}</Title>
+                <Title order={5}>{`${userStore?.firstName} ${userStore?.lastName}`}</Title>
 
-                <Text size="xs">{user?.email}</Text>
+                <Text size="xs">{userStore?.email}</Text>
             </Container>
         </Box>
     )
-}
+})

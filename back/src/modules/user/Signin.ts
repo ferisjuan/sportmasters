@@ -34,7 +34,7 @@ export class SigninResolver {
 
             ctx.req.session.userId = user.id
         } catch (error) {
-            return error
+            throw new Error("Wrong credentials")
         }
     }
 }
