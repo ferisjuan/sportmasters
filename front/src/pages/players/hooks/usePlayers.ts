@@ -7,6 +7,7 @@ import { useStores } from '~/hooks'
 interface UsePlayers {
     handleOnAddPlayer: () => void
     handleOnPaginationChange: (page: number) => void
+    isPlayersLoading: boolean
     pages: number
     setSkip: (skip: number) => void
     skip: number
@@ -21,7 +22,7 @@ export const usePlayers = (): UsePlayers => {
         playersStore.paginationSkip = skip
     }
 
-    const { data: playersCount } = usePlayersCountQuery()
+    const { data: playersCount, isLoading: isPlayersLoading, isFetching: isPlayersFetching } = usePlayersCountQuery()
 
     const count = playersCount?.aggregatePlayer._count?.id
 
@@ -38,6 +39,7 @@ export const usePlayers = (): UsePlayers => {
     return {
         handleOnAddPlayer,
         handleOnPaginationChange,
+        isPlayersLoading: isPlayersLoading || isPlayersFetching,
         pages,
         setSkip,
         skip: playersStore.paginationSkip,

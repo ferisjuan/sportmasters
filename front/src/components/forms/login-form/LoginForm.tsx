@@ -21,38 +21,34 @@ export const LoginForm = (): JSX.Element => {
     const { getInputProps, isLoginLoading, handleFormSubmit, handleForgotPassword } = useLoginForm()
 
     return (
-        <SMContainer>
-            {isLoginLoading ? (
-                <Loader color="indigo" variant="bars" />
-            ) : (
-                <form onSubmit={handleFormSubmit} style={{ display: 'flex', gap: '10px', flexDirection: 'column' }}>
-                    <TextInput
-                        required
-                        label={t('emailLabel')}
-                        placeholder={t('emailPlaceholder')}
-                        {...getInputProps('email')}
-                    />
+        <SMContainer isLoading={isLoginLoading}>
+            <form onSubmit={handleFormSubmit} style={{ display: 'flex', gap: '10px', flexDirection: 'column' }}>
+                <TextInput
+                    required
+                    label={t('emailLabel')}
+                    placeholder={t('emailPlaceholder')}
+                    {...getInputProps('email')}
+                />
 
-                    <PasswordInput
-                        required
-                        label={t('passwordLabel')}
-                        placeholder={t('passwordPlaceholder')}
-                        visibilityToggleIcon={({ reveal, size }) =>
-                            reveal ? <AiFillEyeInvisible size={size} /> : <AiFillEye />
-                        }
-                        icon={<AiTwotoneLock />}
-                        {...getInputProps('password')}
-                    />
+                <PasswordInput
+                    required
+                    label={t('passwordLabel')}
+                    placeholder={t('passwordPlaceholder')}
+                    visibilityToggleIcon={({ reveal, size }) =>
+                        reveal ? <AiFillEyeInvisible size={size} /> : <AiFillEye />
+                    }
+                    icon={<AiTwotoneLock />}
+                    {...getInputProps('password')}
+                />
 
-                    <Button sx={{ marginTop: '20px' }} type="submit">
-                        {t('loginButton')}
-                    </Button>
+                <Button sx={{ marginTop: '20px' }} type="submit">
+                    {t('loginButton')}
+                </Button>
 
-                    <Text onClick={handleForgotPassword} size="xs" sx={{ cursor: 'pointer' }}>
-                        {t('forgotPassword')}
-                    </Text>
-                </form>
-            )}
+                <Text onClick={handleForgotPassword} size="xs" sx={{ cursor: 'pointer' }}>
+                    {t('forgotPassword')}
+                </Text>
+            </form>
         </SMContainer>
     )
 }

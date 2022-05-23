@@ -21,6 +21,7 @@ import { showSMNotification } from '~/utils'
 interface UseChangePasswordForm {
     getInputProps: (field: 'password' | 'passwordConfirm') => void
     handleFormSubmit: (e: SyntheticEvent) => void
+    isChangePasswordLoading: boolean
 }
 
 export const useChangePasswordForm = (): UseChangePasswordForm => {
@@ -29,7 +30,7 @@ export const useChangePasswordForm = (): UseChangePasswordForm => {
 
     const navigate = useNavigate()
 
-    const { mutate: changePassword } = useChangePasswordMutation({
+    const { mutate: changePassword, isLoading: isChangePasswordLoading } = useChangePasswordMutation({
         onSuccess: () => {
             showSMNotification(t('success.passwordChanged'), 'INFO', false)
 
@@ -66,5 +67,6 @@ export const useChangePasswordForm = (): UseChangePasswordForm => {
     return {
         getInputProps: form.getInputProps,
         handleFormSubmit,
+        isChangePasswordLoading,
     }
 }

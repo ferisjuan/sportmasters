@@ -39,7 +39,6 @@ export const UserSection: React.FC = observer(() => {
                 alignItems: 'center',
                 backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
                 borderRadius: theme.radius.sm,
-                cursor: 'pointer',
                 display: 'flex',
                 justifyContent: 'flex-start',
                 margin: 0,

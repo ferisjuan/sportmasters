@@ -28,8 +28,13 @@ export const SMNavbar: React.FC = () => {
     }, [location.pathname])
 
     return (
-        <Navbar fixed position={{ top: 70 }} width={{ base: 210 }}>
-            <Navbar.Section grow>
+        <Navbar
+            position={{ top: 70 }}
+            width={{ base: 132 }}
+            px={4}
+            sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
+        >
+            <Navbar.Section>
                 {NAV_ITEMS.map(({ text, to }) => (
                     <LinkBox key={to} onClick={() => setSelected(to)} selected={selected} text={text} to={to} />
                 ))}

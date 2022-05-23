@@ -10,10 +10,10 @@ import { useChangePasswordForm } from './useChangePasswordForm'
 export const ChangePasswordForm: React.FC = () => {
     const { t } = useTranslation('changePasswordForm')
 
-    const { getInputProps, handleFormSubmit } = useChangePasswordForm()
+    const { getInputProps, handleFormSubmit, isChangePasswordLoading } = useChangePasswordForm()
 
     return (
-        <SMContainer>
+        <SMContainer isLoading={isChangePasswordLoading}>
             <form onSubmit={handleFormSubmit}>
                 <PasswordInput
                     required
