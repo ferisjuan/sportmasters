@@ -23,6 +23,7 @@ import { queryClient } from './queries'
 import { rootStore } from '~/store'
 
 const ChangePasswordPage = lazy(() => import('./pages/auth/ChangePassword'))
+const CoachSingupPage = lazy(() => import('./pages/auth/CoachSignup'))
 const NotFoundPage = lazy(() => import('./pages/not-found/notFound'))
 const MainPage = lazy(() => import('./pages/main'))
 const PlayerPage = lazy(() => import('./pages/player/player'))
@@ -34,7 +35,22 @@ const App: React.FC = () => (
             <BrowserRouter>
                 <Routes>
                     <Route path={ROUTES.login} element={<Login />} />
-                    <Route path={ROUTES.changePassword} element={<ChangePasswordPage />} />
+                    <Route
+                        path={ROUTES.changePassword}
+                        element={
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <ChangePasswordPage />
+                            </Suspense>
+                        }
+                    />
+                    <Route
+                        path={ROUTES.coachSignup}
+                        element={
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <CoachSingupPage />
+                            </Suspense>
+                        }
+                    />
                     <Route
                         path={ROUTES.dashboard}
                         element={

@@ -1,6 +1,7 @@
 export enum ROUTES {
     home = '/',
     changePassword = 'user/change-password/:token',
+    coachSignup = 'auth/coach-signup',
     dashboard = 'dashboard',
     dashboard_main = 'dashboard_main',
     login = 'auth/login',

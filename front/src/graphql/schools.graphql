@@ -17,3 +17,10 @@ query getSchools($take: Int, $skip: Int) {
     }
   }
 }
+
+query Schools {
+  schools {
+    email
+    name
+  }
+}
