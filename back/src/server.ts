@@ -11,8 +11,11 @@ import session from 'express-session'
 // @context
 import { prisma } from './context'
 
+// @enhance maps
+import { modelsEnhanceMap, resolversEnhanceMap } from './enhance-maps'
+
 // @generated
-import { PlayerCrudResolver, SchoolCrudResolver, SchoolRelationsResolver, UserCrudResolver } from './generated/typegraphql-prisma.ts'
+import { applyModelsEnhanceMap, applyResolversEnhanceMap, PlayerCrudResolver, SchoolCrudResolver, SchoolRelationsResolver, UserCrudResolver } from './generated/typegraphql-prisma.ts'
 
 // @logger
 import { logger } from './logger'
@@ -23,11 +26,10 @@ import { ChangePasswordResolver, ConfirmUserResolver, ForgotPassword, LogoutReso
 // @redis
 import { redis } from './redis'
 
-// @utils
-import { appliedResolversEnhanceMap } from './enhance-maps'
 
 const main = async () => {
-    appliedResolversEnhanceMap()
+    applyModelsEnhanceMap(modelsEnhanceMap)
+    applyResolversEnhanceMap(resolversEnhanceMap)
 
     const schema = await buildSchema({
         resolvers: [
@@ -70,7 +72,7 @@ const main = async () => {
             cookie: {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production',
-                sameSite: false,
+                sameSite: 'lax',
                 maxAge: parseInt(process.env.SESSION_MAX_AGE, 10),
             },
             name: process.env.SESSION_COOKIE_NAME,

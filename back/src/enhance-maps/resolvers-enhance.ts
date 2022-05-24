@@ -1,30 +1,32 @@
 // @vendors
 import { UseMiddleware } from 'type-graphql'
 
+// @generated
+import { ModelConfig, ModelsEnhanceMap, ResolversEnhanceMap } from '../generated/typegraphql-prisma.ts'
+
 // @middlewares
 import { isAuth } from '../middleware'
 
-// @generated
-import { applyResolversEnhanceMap } from '../generated/typegraphql-prisma.ts'
+const schoolConfig: ModelConfig<"School"> = {
+    fields: {
+        address: [UseMiddleware(isAuth)],
+        id: [UseMiddleware(isAuth)],
+        phone: [UseMiddleware(isAuth)],
+        players: [UseMiddleware(isAuth)],
+        tier: [UseMiddleware(isAuth)],
+        users: [UseMiddleware(isAuth)],
+    }
+}
 
-export const appliedResolversEnhanceMap = () => applyResolversEnhanceMap({
+export const modelsEnhanceMap: ModelsEnhanceMap = {
+    School: schoolConfig,
+}
+
+export const resolversEnhanceMap: ResolversEnhanceMap = {
     Player: {
         _all: [UseMiddleware(isAuth)]
-    },
-    School: {
-        aggregateSchool: [UseMiddleware(isAuth)],
-        createManySchool: [UseMiddleware(isAuth)],
-        deleteManySchool: [UseMiddleware(isAuth)],
-        deleteSchool: [UseMiddleware(isAuth)],
-        findFirstSchool: [UseMiddleware(isAuth)],
-        groupBySchool: [UseMiddleware(isAuth)],
-        school: [UseMiddleware(isAuth)],
-        schools: [UseMiddleware(isAuth)],
-        updateManySchool: [UseMiddleware(isAuth)],
-        updateSchool: [UseMiddleware(isAuth)],
-        upsertSchool: [UseMiddleware(isAuth)],
     },
     User: {
         _all: [UseMiddleware(isAuth)]
     }
-})
+}

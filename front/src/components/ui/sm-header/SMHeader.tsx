@@ -7,7 +7,7 @@ export const SMHeader: React.VFC = () => {
     const dark = colorScheme === 'dark'
 
     return (
-        <Header fixed height={70}>
+        <Header height={70}>
             <Group align="center" position="apart" ml={10}>
                 <Group>
                     <ThemeIcon>

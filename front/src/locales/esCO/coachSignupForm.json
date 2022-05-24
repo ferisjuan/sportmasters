@@ -1,0 +1,23 @@
+{
+    "formTitle": "Crear entranador",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "addCoach": "Añadir entrenador",
+    "errors": {
+        "firstName": {
+            "required": "El nombre es obligatorio"
+        },
+        "lastName": {
+            "required": "El apellido es obligatorio"
+        },
+        "email": {
+            "required": "El correo electrónico es obligatorio"
+        },
+        "password": {
+            "min": "La contraseña debe tener al menos de 6 caracteres",
+            "required": "La contraseña es obligatoria"
+        }
+    }
+}

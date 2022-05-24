@@ -1,0 +1,19 @@
+{
+    "emailLabel": "Email",
+    "emailPlaceholder": "Escribe tu email",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "loginButton": "Iniciar sesión",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Escribe tu password",
+    "resetPassword": "Revisa tu correo para resetear tu contraseña",
+    "wrongCredentials": "Usuario o contraseña incorrectos",
+    "errors": {
+        "email": {
+            "required": "El email es requerido",
+            "invalid": "El email parece incorrecto"
+        },
+        "password": {
+            "required": "La contraseña es requerida"
+        }
+    }
+}

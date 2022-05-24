@@ -8,7 +8,7 @@ import { ROUTES } from '~/constants'
 import { IChildren } from '~/interfaces'
 
 // @hooks
-import { useAuthState } from '~/hooks'
+import { useAuthState } from './auth.hook'
 
 export const AuthenticatedRoute = ({ children }: IChildren): JSX.Element => {
     const { isAuthenticated } = useAuthState()

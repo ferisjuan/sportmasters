@@ -10,3 +10,9 @@ query User($where: UserWhereUniqueInput!) {
     schoolEmail
   }
 }
+
+mutation CreateCoachUser($data: UserCreateInput!) {
+  createUser(data: $data) {
+    id
+  }
+}
