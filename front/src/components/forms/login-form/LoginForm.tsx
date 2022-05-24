@@ -1,16 +1,10 @@
 // @vendors
 import { AiFillEye, AiFillEyeInvisible, AiTwotoneLock } from 'react-icons/ai'
-import { TextInput, Button, Loader, Text, PasswordInput } from '@mantine/core'
+import { TextInput, Button, Text, PasswordInput } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
 
 // @components
 import { SMContainer } from '~/components'
-
-// @constants
-
-// @generated
-
-// @schema
 
 // @utils
 import { useLoginForm } from './useLoginForm'
