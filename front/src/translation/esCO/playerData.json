@@ -1,0 +1,45 @@
+{
+    "personalData": {
+        "firstName": "Nombres",
+        "lastName": "Apellidos",
+        "birthDay": "Fecha de nacimiento",
+        "idPlayer": "Identificacion",
+        "age": "Edad",
+        "layer": "Estrato",
+        "clothingSize": "Talla de ropa",
+        "shoeSize": "Talla de zapatos",
+        "sex": "Sexo",
+        "address": "Direccion de residencia",
+        "hobbies": "Hobbies",
+        "payment": "Al dia con los pagos",
+        "firstParent": "Acudiente 1",
+        "phoneFirstParent": "Telefono Acudiente 1",
+        "emailFirstParent": "Email Acudiente 1",
+        "secondParent": "Acudiente 2",
+        "phoneSecondParent": "Telefono Acudiente 2",
+        "emailSecondParent": "Email Acudiente 2"
+    },
+
+    "medicalData": {
+        "eps": "EPS",
+        "bloodType": "Grupo Sanguineo +RH",
+        "height": "Estatura(CM)",
+        "weight": "Peso(KG)",
+        "bmi": "IMC",
+        "idPlayer": "Identificacion",
+        "injuries": "Lesiones",
+        "surgeries": "Cirugias",
+        "diseasesSuffered": "Endermedades Padecidas",
+        "allergies": "Alergias",
+        "comments": "Observaciones"
+    },
+    "sportsData": {
+        "category": "Categoria",
+        "dominantProfile": "Perfil Dominante",
+        "playingPosition": "Posicion de juego",
+        "dateOfEntry": "Fecha de ingreso al club",
+        "previousTeams": "Clubes anteriores",
+        "jerseyNumber": "Numero de camiseta",
+        "comments": "Observaciones deportivas"
+    }
+}
