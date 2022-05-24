@@ -26,15 +26,15 @@ export const PlayerForm: React.FC = () => {
     const { mutate: createPlayer, error: createPlayerError } = useCreatePlayerMutation()
 
     const form = useForm<PlayerCreateInput>({
-        schema: yupResolver(PlayerFormSchema),
         initialValues: {} as PlayerCreateInput,
+        schema: yupResolver(PlayerFormSchema),
     })
 
     const handleModalClose = (): void => {
         playersStore.isAddPlayerModalOpen = false
     }
 
-    const onSubmit = form.onSubmit((values): void => {
+    const handleOnSubmit = form.onSubmit((values): void => {
         const data = {
             ...values,
             school: { connect: { email: playersStore.rootStore.userStore.schoolEmail } },
@@ -58,7 +58,7 @@ export const PlayerForm: React.FC = () => {
     })
 
     return (
-        <form onSubmit={onSubmit}>
+        <form onSubmit={handleOnSubmit}>
             <Text mb={30} size="lg" weight={700}>
                 {t('formTitle')}
             </Text>

@@ -21,7 +21,7 @@ export class ForgotPassword {
         @Ctx() ctx: Context
     ) {
         try {
-            const user = await ctx.prisma.user.findUnique({ where: { email } });
+            const user = await ctx.prisma.user.findUnique({ where: { email } })
 
             if (!user) return true
 

@@ -22,11 +22,9 @@ export class SigninResolver {
         try {
             const user = await ctx.prisma.user.findUnique({ where: { email } });
 
-            if (!user) return null
-
             const valid = await compare(password, user.password);
 
-            if (!valid) return null
+            if (!valid) throw new Error("Wrong credentials")
 
             if (!user.confirmed) {
                 await sendMail(user.email, await createConfirmationUrl(user.id))
@@ -36,7 +34,7 @@ export class SigninResolver {
 
             ctx.req.session.userId = user.id
         } catch (error) {
-            return error
+            throw new Error("Wrong credentials")
         }
     }
 }

@@ -1,5 +1,6 @@
 // @vendors
-import { Grid } from '@mantine/core'
+import { Box, ScrollArea } from '@mantine/core'
+import { observer } from 'mobx-react-lite'
 import { useNavigate } from 'react-router-dom'
 
 // @components
@@ -13,7 +14,6 @@ import { usePlayersQuery } from '~/generated/graphql'
 
 // @hooks
 import { useStores } from '~/hooks'
-import { observer } from 'mobx-react-lite'
 
 export const PlayersGrid: React.FC = observer(() => {
     const {
@@ -39,12 +39,12 @@ export const PlayersGrid: React.FC = observer(() => {
     if (!playersData) return null
 
     return (
-        <Grid>
+        <ScrollArea>
             {playersData.players?.map(player => (
-                <Grid.Col key={player.id} onClick={() => handleClick(player.playerEmail)} span={4}>
+                <Box key={player.id} onClick={() => handleClick(player.playerEmail)}>
                     <PlayerCard player={player} />
-                </Grid.Col>
+                </Box>
             ))}
-        </Grid>
+        </ScrollArea>
     )
 })

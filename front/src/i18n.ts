@@ -3,7 +3,7 @@ import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 
 // @translations
-import { esCO } from './translation/index'
+import { esCO } from './locales/index'
 
 export const getNsTranslation = (ns: string) => (key: string, returnObjects?: boolean) =>
     i18n.t(key, { ns, returnObjects })
