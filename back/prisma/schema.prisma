@@ -13,20 +13,14 @@ datasource db {
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
-enum NDI_TYPE {
-  PASSPORT
-  FOREIGN_CARD
-  NATIONAL_ID
-}
-
 enum FAMILY_SUPPORT {
   NONE
-  BOTH_GRANDFATHERS
-  BOTH_PARENTS
+  AUNT
   FATHER
   GRANDFATHER
   GRANDMOTHER
   MOTHER
+  UNCLE
 }
 
 enum FIELD_POSITION {
@@ -50,6 +44,20 @@ enum GUARDIAN_TYPE {
   GRANDFATHER
   GRANDMOTHER
   MOTHER
+}
+
+enum HANDEDNESS {
+  AMBIDEXTROUS
+  LEFT
+  RIGHT
+}
+
+enum NDI_TYPE {
+  PASSPORT
+  FOREIGN_CARD
+  NATIONAL_ID
+  CIVIL_REGISTRATION
+  IDENTITY_CARD
 }
 
 enum PERSONAL_QUALITIES {
@@ -97,6 +105,21 @@ enum ROLES {
   PLAYER
 }
 
+enum SPORTS {
+  BASEBALL
+  BASKETBALL
+  BOXING
+  KARATE
+  PINGPONG
+  RUNNING
+  SKATING
+  SOCCER
+  SWIMMING
+  TAEKWONDO
+  TENNIS
+  VOLLEYBALL
+}
+
 enum TIER {
   BASIC
   INTERMEDIATE
@@ -106,41 +129,136 @@ enum TIER {
 
 model Player {
   /// @TypeGraphQL.omit(input: true)
+  id                 String            @id @default(cuid())
+  image              String?
+  lastName           String
+  name               String
+  playerData         PlayerData       @relation(fields: [playerDataId], references: [id])
+  playerDataId       String
+  playerEmail        String            @unique
+  playerGuardian     PlayerGuardian?   @relation(fields: [playerGuardianId], references: [id])
+  playerGuardianId   String?
+  PlayerInjuries     PlayerInjuries?   @relation(fields: [playerInjuriesId], references: [id])
+  playerInjuriesId   String?
+  playerMedical      PlayerMedical?    @relation(fields: [playerMedicalId], references: [id])
+  playerMedicalId    String?
+  playerPsychology   PlayerPsychology? @relation(fields: [playerPsychologyId], references: [id])
+  playerPsychologyId String?
+  PlayerSportData    PlayerSportData?  @relation(fields: [playerSportDataId], references: [id])
+  playerSportDataId  String?
+  playerSurgeries    PlayerSurgeries?  @relation(fields: [playerSurgeryId], references: [id])
+  playerSurgeryId    String?
+  school             School            @relation(fields: [schoolId], references: [id])
+  schoolId           String
+  /// @TypeGraphQL.omit(input: true, output: true)
+  createdAt          DateTime          @default(now())
+  /// @TypeGraphQL.omit(input: true, output: true)
+  updatedAt          DateTime          @updatedAt
+}
+
+model PlayerData {
+  /// @TypeGraphQL.omit(input: true)
+  id                      String   @id @default(cuid())
+  birthday                DateTime?
+  placeOfBirth            String?
+  playerIdNumber          String   @unique
+  playerIdExpeditionPlace String?
+  playerIdType            NDI_TYPE
+  playerPhone             String?
+  players                 Player[]
+  /// @TypeGraphQL.omit(input: true, output: true)
+  createdAt               DateTime @default(now())
+  /// @TypeGraphQL.omit(input: true, output: true)
+  updatedAt               DateTime @updatedAt
+}
+
+model PlayerPsychology {
   id                   String                  @id @default(cuid())
-  birthday             DateTime
-  category             PLAYER_CATEGORY?
-  familySupport        FAMILY_SUPPORT?
-  fieldPosition        FIELD_POSITION?
-  guardianEmail        String
-  guardianId           String
-  guardianIdType       NDI_TYPE
-  guardianLastName     String
-  guardianName         String
-  guardianPhone        String
-  guardianType         GUARDIAN_TYPE
-  height               Float
   hobbies              String[]
-  image                String?
-  IMC                  Float
-  lastName             String
-  name                 String
-  personalQualities    PERSONAL_QUALITIES[]
   physicalCapabilities PHYSICAL_CAPABILITIES[]
   physicalQualities    PHYSICAL_QUALITIES[]
-  placeOfBirth         String?
-  playerEmail          String                  @unique
-  playerId             String
-  playerIdType         NDI_TYPE
-  playerNumber         String?
-  playerPhone          String
-  school               School                  @relation(fields: [schoolId], references: [id])
-  schoolId             String
-  sportHistory         String?
-  weight               Float
+  personalQualities    PERSONAL_QUALITIES[]
+  players              Player[]
   /// @TypeGraphQL.omit(input: true, output: true)
   createdAt            DateTime                @default(now())
   /// @TypeGraphQL.omit(input: true, output: true)
   updatedAt            DateTime                @updatedAt
+}
+
+model PlayerGuardian {
+  id                        String          @id @default(cuid())
+  familySupport             FAMILY_SUPPORT?
+  guardianEmail             String
+  guardianId                String
+  guardianIdType            NDI_TYPE
+  guardianIdExpeditionPlace String
+  guardianLastName          String
+  guardianName              String
+  guardianPhone             String
+  guardianType              GUARDIAN_TYPE
+  Player                    Player[]
+  /// @TypeGraphQL.omit(input: true, output: true)
+  createdAt                 DateTime        @default(now())
+  /// @TypeGraphQL.omit(input: true, output: true)
+  updatedAt                 DateTime        @updatedAt
+}
+
+model PlayerInjuries {
+  id             String   @id @default(cuid())
+  name           String
+  observations   String
+  occurrenceDate DateTime
+  players        Player[]
+  /// @TypeGraphQL.omit(input: true, output: true)
+  createdAt      DateTime @default(now())
+  /// @TypeGraphQL.omit(input: true, output: true)
+  updatedAt      DateTime @updatedAt
+}
+
+model PlayerSportData {
+  id             String           @id @default(cuid())
+  admissionDate  DateTime
+  category       PLAYER_CATEGORY?
+  fieldPosition  FIELD_POSITION?
+  handedness     HANDEDNESS
+  players        Player[]
+  previousSchool String?
+  observations   String?
+  shirtNumber    String?
+  sport          SPORTS[]
+  /// @TypeGraphQL.omit(input: true, output: true)
+  createdAt      DateTime         @default(now())
+  /// @TypeGraphQL.omit(input: true, output: true)
+  updatedAt      DateTime         @updatedAt
+}
+
+model PlayerMedical {
+  id             String   @id @default(cuid())
+  alergies       String[]
+  bloodType      String
+  diseases       String[]
+  healthProvider String
+  height         String
+  IMC            String
+  players        Player[]
+  observations   String?
+  weight         String
+  /// @TypeGraphQL.omit(input: true, output: true)
+  createdAt      DateTime @default(now())
+  /// @TypeGraphQL.omit(input: true, output: true)
+  updatedAt      DateTime @updatedAt
+}
+
+model PlayerSurgeries {
+  id            String   @id @default(cuid())
+  observations  String?
+  name          String
+  performedDate DateTime
+  players       Player[]
+  /// @TypeGraphQL.omit(input: true, output: true)
+  createdAt     DateTime @default(now())
+  /// @TypeGraphQL.omit(input: true, output: true)
+  updatedAt     DateTime @updatedAt
 }
 
 model School {
@@ -179,7 +297,7 @@ model User {
   /// @TypeGraphQL.omit(output: true)
   password              String
   phone                 String?  @default("")
-  School                School   @relation(fields: [ schoolEmail], references: [email])
+  School                School   @relation(fields: [schoolEmail], references: [email])
   schoolEmail           String   @default("")
   /// @TypeGraphQL.omit(input: true, output: true)
   confirmed             Boolean  @default(false)

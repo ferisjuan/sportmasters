@@ -71,7 +71,7 @@ const main = async () => {
         session({
             cookie: {
                 httpOnly: true,
-                secure: process.env.NODE_ENV === 'production',
+                secure: process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging',
                 sameSite: 'lax',
                 maxAge: parseInt(process.env.SESSION_MAX_AGE, 10),
             },
