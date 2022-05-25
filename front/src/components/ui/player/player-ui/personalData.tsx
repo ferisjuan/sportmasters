@@ -1,25 +1,24 @@
 import { Grid, Text } from '@mantine/core'
+import { observer } from 'mobx-react-lite'
 import { useTranslation } from 'react-i18next'
 
-import { Player } from '~/generated/graphql'
+import { useStores } from '~/hooks'
 
-interface IPlayerAvatar {
-    player: Player
-}
+export const PersonalData: React.FC = observer(() => {
+    const { playerStore } = useStores()
 
-export const PersonalData: React.FC<IPlayerAvatar> = ({ player }) => {
     const { t } = useTranslation('playerData')
 
     return (
         <Grid>
             <Grid.Col span={6}>
                 <Text weight="bold">{t('firstName')}</Text>
-                <Text>{player.name}</Text>
+                <Text>Nombre</Text>
             </Grid.Col>
 
             <Grid.Col span={6}>
                 <Text weight="bold">{t('lastName')}</Text>
-                <Text>{player.lastName}</Text>
+                <Text>Apellidos</Text>
             </Grid.Col>
 
             <Grid.Col span={6}>
@@ -107,4 +106,4 @@ export const PersonalData: React.FC<IPlayerAvatar> = ({ player }) => {
             </Grid>
         </Grid>
     )
-}
+})

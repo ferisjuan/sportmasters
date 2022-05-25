@@ -1,20 +1,14 @@
 import { Grid, Text } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
 
-import { Player } from '~/generated/graphql'
-
-interface IPlayerAvatar {
-    player: Player
-}
-
-export const SportData: React.FC<IPlayerAvatar> = ({ player }) => {
+export const SportData: React.FC = () => {
     const { t } = useTranslation('sportData')
 
     return (
         <Grid grow gutter="xl" style={{ padding: '10px', paddingTop: '30px' }}>
             <Grid.Col span={6}>
                 <Text weight="bold">{t('category')}</Text>
-                <Text>{player.hobbies}</Text>
+                <Text></Text>
             </Grid.Col>
 
             <Grid.Col span={6}>

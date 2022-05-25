@@ -18,7 +18,9 @@ const Player: React.FC = observer(() => {
 
     const player = playerData?.player
 
-    return <PlayerProfile>{player && <PlayerCardUi player={player} />}</PlayerProfile>
+    if (!player) return null
+
+    return <PlayerProfile>{player && <PlayerCardUi />}</PlayerProfile>
 })
 
 export default Player

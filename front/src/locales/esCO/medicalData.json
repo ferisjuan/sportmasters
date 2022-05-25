@@ -1,13 +1,13 @@
 {
-    "eps": "EPS",
+    "allergies": "Alergias",
     "bloodType": "Grupo Sanguineo +RH",
-    "height": "Estatura(CM)",
-    "weight": "Peso(KG)",
     "bmi": "IMC",
+    "comments": "Observaciones",
+    "diseasesSuffered": "Endermedades Padecidas",
+    "eps": "EPS",
+    "height": "Estatura(cm)",
     "idPlayer": "Identificacion",
     "injuries": "Lesiones",
     "surgeries": "Cirugias",
-    "diseasesSuffered": "Endermedades Padecidas",
-    "allergies": "Alergias",
-    "comments": "Observaciones"
+    "weight": "Peso(Kg)"
 }

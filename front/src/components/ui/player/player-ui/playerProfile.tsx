@@ -1,15 +1,20 @@
 import { Avatar, Card, Container, Group, Tabs, Text } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
 
-import { Player } from '~/generated/graphql'
+import { usePlayerQuery } from '~/generated/graphql'
+import { useStores } from '~/hooks'
 import { MedicalData, PersonalData, SportData } from './index'
 
-interface IPlayerAvatar {
-    player: Player
-}
-
-export const PlayerCardUi: React.FC<IPlayerAvatar> = ({ player }) => {
+export const PlayerCardUi: React.FC = () => {
     const { t } = useTranslation('fieldPosition')
+
+    const { playerStore } = useStores()
+
+    const { data: playerData } = usePlayerQuery({
+        where: { playerEmail: playerStore.playerEmail },
+    })
+
+    const player = playerData?.player
 
     return (
         <Container fluid sx={{ backgroundColor: 'white' }}>
@@ -35,7 +40,7 @@ export const PlayerCardUi: React.FC<IPlayerAvatar> = ({ player }) => {
 
                         <Group direction="column" spacing={1} align="center" style={{ marginTop: '50px' }}>
                             <Text component="h1" style={{ margin: '0px' }}>
-                                {player.name}
+                                {player?.name}
                             </Text>
                             <Text>{t(`${player?.fieldPosition}`)}</Text>
                         </Group>
@@ -52,7 +57,7 @@ export const PlayerCardUi: React.FC<IPlayerAvatar> = ({ player }) => {
                                 Hobbies
                             </Text>
                             <Text size="sm" align="center">
-                                Montar a caballo, Pasear con su familia, Ver Paw Patrol.{' '}
+                                Montar a caballo, Pasear con su familia, Ver Paw Patrol.
                             </Text>
                         </Group>
                     </Card>
@@ -67,13 +72,13 @@ export const PlayerCardUi: React.FC<IPlayerAvatar> = ({ player }) => {
                     >
                         <Tabs grow style={{ width: '100%' }}>
                             <Tabs.Tab label="Datos Personales">
-                                <PersonalData player={player} />
+                                <PersonalData />
                             </Tabs.Tab>
                             <Tabs.Tab label="Datos Medicos">
-                                <MedicalData player={player} />
+                                <MedicalData />
                             </Tabs.Tab>
                             <Tabs.Tab label="Datos Deportivos">
-                                <SportData player={player} />
+                                <SportData />
                             </Tabs.Tab>
                         </Tabs>
                     </Card>

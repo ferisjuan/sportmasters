@@ -1,9 +1,9 @@
 {
     "category": "Categoria",
-    "dominantProfile": "Perfil Dominante",
-    "playingPosition": "Posicion de juego",
+    "comments": "Observaciones deportivas",
     "dateOfEntry": "Fecha de ingreso al club",
-    "previousTeams": "Clubes anteriores",
+    "dominantProfile": "Perfil Dominante",
     "jerseyNumber": "Numero de camiseta",
-    "comments": "Observaciones deportivas"
+    "playingPosition": "Posicion de juego",
+    "previousTeams": "Clubes anteriores"
 }
