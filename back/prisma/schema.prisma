@@ -129,47 +129,57 @@ enum TIER {
 
 model Player {
   /// @TypeGraphQL.omit(input: true)
-  id                 String            @id @default(cuid())
+  id                 String             @id @default(cuid())
+  coachId            String?
   image              String?
   lastName           String
   name               String
-  playerData         PlayerData       @relation(fields: [playerDataId], references: [id])
+  playerAttendances  PlayerAttendance[]
+  playerData         PlayerData         @relation(fields: [playerDataId], references: [id])
   playerDataId       String
-  playerEmail        String            @unique
-  playerGuardian     PlayerGuardian?   @relation(fields: [playerGuardianId], references: [id])
+  playerEmail        String             @unique
+  playerGuardian     PlayerGuardian?    @relation(fields: [playerGuardianId], references: [id])
   playerGuardianId   String?
-  PlayerInjuries     PlayerInjuries?   @relation(fields: [playerInjuriesId], references: [id])
+  PlayerInjuries     PlayerInjuries?    @relation(fields: [playerInjuriesId], references: [id])
   playerInjuriesId   String?
-  playerMedical      PlayerMedical?    @relation(fields: [playerMedicalId], references: [id])
+  playerMedical      PlayerMedical?     @relation(fields: [playerMedicalId], references: [id])
   playerMedicalId    String?
-  playerPsychology   PlayerPsychology? @relation(fields: [playerPsychologyId], references: [id])
+  playerPsychology   PlayerPsychology?  @relation(fields: [playerPsychologyId], references: [id])
   playerPsychologyId String?
-  PlayerSportData    PlayerSportData?  @relation(fields: [playerSportDataId], references: [id])
+  PlayerSportData    PlayerSportData?   @relation(fields: [playerSportDataId], references: [id])
   playerSportDataId  String?
-  playerSurgeries    PlayerSurgeries?  @relation(fields: [playerSurgeryId], references: [id])
+  playerSurgeries    PlayerSurgeries?   @relation(fields: [playerSurgeryId], references: [id])
   playerSurgeryId    String?
-  school             School            @relation(fields: [schoolId], references: [id])
+  school             School             @relation(fields: [schoolId], references: [id])
   schoolId           String
   /// @TypeGraphQL.omit(input: true, output: true)
-  createdAt          DateTime          @default(now())
+  createdAt          DateTime           @default(now())
   /// @TypeGraphQL.omit(input: true, output: true)
-  updatedAt          DateTime          @updatedAt
+  updatedAt          DateTime           @updatedAt
+}
+
+model PlayerAttendance {
+  id             String   @id @default(cuid())
+  attendanceDate DateTime
+  player         Player   @relation(fields: [playerId], references: [id])
+  playerId       String
+  sport          SPORTS
 }
 
 model PlayerData {
   /// @TypeGraphQL.omit(input: true)
-  id                      String   @id @default(cuid())
+  id                      String    @id @default(cuid())
   birthday                DateTime?
   placeOfBirth            String?
-  playerIdNumber          String   @unique
+  playerIdNumber          String    @unique
   playerIdExpeditionPlace String?
   playerIdType            NDI_TYPE
   playerPhone             String?
   players                 Player[]
   /// @TypeGraphQL.omit(input: true, output: true)
-  createdAt               DateTime @default(now())
+  createdAt               DateTime  @default(now())
   /// @TypeGraphQL.omit(input: true, output: true)
-  updatedAt               DateTime @updatedAt
+  updatedAt               DateTime  @updatedAt
 }
 
 model PlayerPsychology {
