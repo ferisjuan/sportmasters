@@ -43,9 +43,15 @@ export const PlayerForm: React.FC = () => {
         createPlayer({
             data: {
                 ...data,
-                IMC: values.weight / Math.pow(values.height, 2),
-                height: +values.height,
-                weight: +values.weight,
+                playerMedical: {
+                    create: {
+                        IMC: `${values.playerMedical?.create?.weight}`,
+                        height: `${values.playerMedical?.create?.height}`,
+                        weight: `${values.playerMedical?.create?.weight}`,
+                        bloodType: `${values.playerMedical?.create?.bloodType}`,
+                        healthProvider: `${values.playerMedical?.create?.healthProvider}`,
+                    },
+                },
                 school: { connect: { email: playersStore.rootStore.userStore.schoolEmail } },
             },
         })
@@ -81,16 +87,16 @@ export const PlayerForm: React.FC = () => {
                     name="playerIdType"
                     placeholder={t('idSelectPlaceholder')}
                     sx={{ flex: 1 }}
-                    {...form.getInputProps('playerIdType')}
+                    {...form.getInputProps('playerData')}
                 />
 
-                <TextInput label={t('playerIdPlaceholder')} name="playerId" {...form.getInputProps('playerId')} />
+                <TextInput label={t('playerIdPlaceholder')} name="playerId" {...form.getInputProps('playerData')} />
             </Group>
 
             <Group align="start" mb={16} grow>
                 <TextInput label={t('email')} name="playerEmail" {...form.getInputProps('playerEmail')} />
 
-                <TextInput label={t('phone')} name="playerPhone" {...form.getInputProps('playerPhone')} />
+                <TextInput label={t('phone')} name="playerPhone" {...form.getInputProps('playerGuardian')} />
             </Group>
 
             <Group grow>
@@ -98,7 +104,7 @@ export const PlayerForm: React.FC = () => {
                     locale="es"
                     placeholder={t('birthday')}
                     label={t('birthday')}
-                    {...form.getInputProps('birthday')}
+                    {...form.getInputProps('playerData')}
                     description={t('dateDescription')}
                 />
 
@@ -109,10 +115,14 @@ export const PlayerForm: React.FC = () => {
                         })}
                         description={t('weightUnit')}
                         label={t('weight')}
-                        {...form.getInputProps('weight')}
+                        {...form.getInputProps('playerMedical')}
                     />
 
-                    <TextInput label={t('height')} description={t('heightUnit')} {...form.getInputProps('height')} />
+                    <TextInput
+                        label={t('height')}
+                        description={t('heightUnit')}
+                        {...form.getInputProps('playerMedical')}
+                    />
                 </Group>
             </Group>
             <hr />
@@ -129,14 +139,14 @@ export const PlayerForm: React.FC = () => {
                     name="guardianType"
                     placeholder={t('guardianPlaceholder')}
                     sx={{ flex: 1 }}
-                    {...form.getInputProps('guardianType')}
+                    {...form.getInputProps('playerGuardian')}
                 />
             </Group>
 
             <Group align="start" mb={16} grow>
-                <TextInput label={t('name')} name="guardianName" {...form.getInputProps('guardianName')} />
+                <TextInput label={t('name')} name="guardianName" {...form.getInputProps('playerGuardian')} />
 
-                <TextInput label={t('lastName')} name="guardianLastName" {...form.getInputProps('guardianLastName')} />
+                <TextInput label={t('lastName')} name="guardianLastName" {...form.getInputProps('playerGuardian')} />
             </Group>
             <Group align="start" mb={16} grow>
                 <Select
@@ -145,16 +155,20 @@ export const PlayerForm: React.FC = () => {
                     label={t('idSelectLabel')}
                     name="guardianIdType"
                     placeholder={t('idSelectPlaceholder')}
-                    {...form.getInputProps('guardianIdType')}
+                    {...form.getInputProps('playerGuardian')}
                     sx={{ flex: 1 }}
                 />
 
-                <TextInput label={t('guardianIdPlaceholder')} name="guardianId" {...form.getInputProps('guardianId')} />
+                <TextInput
+                    label={t('guardianIdPlaceholder')}
+                    name="guardianId"
+                    {...form.getInputProps('playerGuardian')}
+                />
             </Group>
             <Group align="start" grow>
-                <TextInput label={t('email')} name="guardianEmail" {...form.getInputProps('guardianEmail')} />
+                <TextInput label={t('email')} name="guardianEmail" {...form.getInputProps('playerGuardian')} />
 
-                <TextInput label={t('phone')} name="guardianPhone" {...form.getInputProps('guardianPhone')} />
+                <TextInput label={t('phone')} name="guardianPhone" {...form.getInputProps('playerGuardian')} />
             </Group>
 
             <Group mt={30} position="right">

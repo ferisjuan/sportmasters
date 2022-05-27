@@ -1,0 +1,43 @@
+query Player($where: PlayerWhereUniqueInput!) {
+    player(where: $where) {
+        lastName
+        name
+        image
+    }
+}
+
+query PlayerData($where: PlayerWhereUniqueInput!) {
+    player(where: $where) {
+        playerData {
+            playerIdNumber
+            playerIdType
+            playerIdExpeditionPlace
+            playerPhone
+            birthday
+            placeOfBirth
+            id
+        }
+        image
+        lastName
+        name
+        playerGuardian {
+            guardianName
+            guardianPhone
+            guardianEmail
+        }
+    }
+}
+
+query PlayerCardSection($where: PlayerWhereUniqueInput!) {
+    player(where: $where) {
+        image
+        name
+        playerPsychology {
+            hobbies
+            personalQualities
+        }
+        PlayerSportData {
+            fieldPosition
+        }
+    }
+}

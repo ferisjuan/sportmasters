@@ -18,11 +18,11 @@ export const PlayerStats: React.VFC = observer(() => {
 
     return (
         <Col span={4}>
-            <Card sx={(theme) => ({ backgroundColor: theme.colors.violet[9] })}>
+            <Card sx={theme => ({ backgroundColor: theme.colors.violet[9] })}>
                 <Card.Section>
                     <StatsLead
-                        title={getAge(playerProfile.birthday.seconds)}
-                        subTitle={formatDate(playerProfile.birthday.seconds)}
+                        title={getAge(playerProfile.playerData.birthday)}
+                        subTitle={formatDate(playerProfile.playerData.birthday)}
                     />
                 </Card.Section>
             </Card>

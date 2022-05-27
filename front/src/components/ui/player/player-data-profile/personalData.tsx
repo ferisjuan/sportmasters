@@ -1,35 +1,29 @@
 import { Grid, Text } from '@mantine/core'
 import { observer } from 'mobx-react-lite'
 import { useTranslation } from 'react-i18next'
+import { usePlayerDataQuery } from '~/generated/graphql'
 
 import { useStores } from '~/hooks'
+import { Age } from '~/utils'
+import { PlayerGrid } from './playerGrid'
 
 export const PersonalData: React.FC = observer(() => {
     const { playerStore } = useStores()
 
-    const { t } = useTranslation('playerData')
+    const { t } = useTranslation('fieldPosition')
+
+    const { data: playerData } = usePlayerDataQuery({
+        where: { playerEmail: playerStore.playerEmail },
+    })
+
+    const player = playerData?.player
 
     return (
         <Grid>
-            <Grid.Col span={6}>
-                <Text weight="bold">{t('firstName')}</Text>
-                <Text>Nombre</Text>
-            </Grid.Col>
-
-            <Grid.Col span={6}>
-                <Text weight="bold">{t('lastName')}</Text>
-                <Text>Apellidos</Text>
-            </Grid.Col>
-
-            <Grid.Col span={6}>
-                <Text weight="bold">{t('birthDay')}</Text>
-                <Text>{'31/10/2019'}</Text>
-            </Grid.Col>
-
-            <Grid.Col span={6}>
-                <Text weight="bold">{t('idPlayer')}</Text>
-                <Text>850908-121355</Text>
-            </Grid.Col>
+            <PlayerGrid span={6} weight="bold" name={t('firstName')} text={player?.name} />
+            <PlayerGrid span={6} weight="bold" name={t('lastName')} text="Apellido" />
+            <PlayerGrid span={6} weight="bold" name={t('birthDay')} text={`${Age(player?.playerData.birthday)}`} />
+            <PlayerGrid span={6} weight="bold" name={t('idPlayer')} text={player?.playerData.playerIdNumber} />
 
             <Grid.Col span={4}>
                 <Text weight="bold">{t('age')}</Text>

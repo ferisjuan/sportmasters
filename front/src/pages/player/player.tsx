@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite'
 
 // @components
 import { PlayerProfile } from '~/components'
-import { PlayerCardUi } from '~/components/ui/player/player-ui'
+import { PlayerDataProfile } from '~/components/ui/player/player-data-profile'
 
 // @hooks
 import { useStores } from '~/hooks'
@@ -20,7 +20,7 @@ const Player: React.FC = observer(() => {
 
     if (!player) return null
 
-    return <PlayerProfile>{player && <PlayerCardUi />}</PlayerProfile>
+    return <PlayerProfile>{player && <PlayerDataProfile />}</PlayerProfile>
 })
 
 export default Player
