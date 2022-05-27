@@ -8,9 +8,12 @@ export const CardSectionProfile: React.FC = () => {
 
     const { playerStore } = useStores()
 
+
     const { data: playerData } = usePlayerCardSectionQuery({
         where: { playerEmail: playerStore.playerEmail },
     })
+
+    
 
     const player = playerData?.player
 
@@ -27,32 +30,41 @@ export const CardSectionProfile: React.FC = () => {
             }}
         >
             <Card.Section component="a">
-                <Avatar radius="xl" src={player?.image} alt="avatar" />
+                <Avatar radius="xl" src={playerStore.player.image} alt="avatar" />
             </Card.Section>
 
             <Group direction="column" spacing={1} align="center" style={{ marginTop: '50px' }}>
+
                 <Text component="h1" style={{ margin: '0px' }}>
-                    {player?.name}
+                    {playerStore.player.name}
                 </Text>
+
                 <Text>{t(`${player?.PlayerSportData?.fieldPosition}`)}</Text>
+                
             </Group>
 
             <Group direction="column" spacing={1} align="center" style={{ marginTop: '20px' }}>
+
                 <Text component="p" weight="bold">
                     Biografia
                 </Text>
+
                 <Text size="sm" align="center">
                     {player?.playerPsychology?.personalQualities}
                 </Text>
+
             </Group>
 
             <Group direction="column" spacing={1} align="center" style={{ marginTop: '20px' }}>
+
                 <Text component="p" weight="bold">
                     Hobbies
                 </Text>
+
                 <Text size="sm" align="center">
                     {player?.playerPsychology?.hobbies}
                 </Text>
+
             </Group>
         </Card>
     )

@@ -4,8 +4,6 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { yupResolver, useForm } from '@mantine/form'
 import { useTranslation } from 'react-i18next'
 
-// @components
-
 // @constants
 import { ROUTES } from '~/constants'
 

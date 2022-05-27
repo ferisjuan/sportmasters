@@ -1,4 +1,4 @@
-export * from './playerProfile'
+export * from './PlayerProfile'
 export * from './MedicalDataProfile'
 export * from './PersonalDataProfile'
 export * from './SportDataProfile'

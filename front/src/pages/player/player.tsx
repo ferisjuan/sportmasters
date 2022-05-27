@@ -2,8 +2,7 @@
 import { observer } from 'mobx-react-lite'
 
 // @components
-import { PlayerProfile } from '~/components'
-import { PlayerDataProfile } from '~/components/ui/player/player-data-profile'
+import { PlayerProfile, PlayerDataProfile } from '~/components'
 
 // @hooks
 import { useStores } from '~/hooks'

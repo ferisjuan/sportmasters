@@ -45,11 +45,11 @@ export const PlayerForm: React.FC = () => {
                 ...data,
                 playerMedical: {
                     create: {
-                        IMC: `${values.playerMedical?.create?.weight}`,
-                        height: `${values.playerMedical?.create?.height}`,
-                        weight: `${values.playerMedical?.create?.weight}`,
-                        bloodType: `${values.playerMedical?.create?.bloodType}`,
-                        healthProvider: `${values.playerMedical?.create?.healthProvider}`,
+                        IMC: values.playerMedical?.create?.weight || '',
+                        height: values.playerMedical?.create?.height || '',
+                        weight: values.playerMedical?.create?.weight || '',
+                        bloodType: values.playerMedical?.create?.bloodType || '',
+                        healthProvider: values.playerMedical?.create?.healthProvider || '',
                     },
                 },
                 school: { connect: { email: playersStore.rootStore.userStore.schoolEmail } },

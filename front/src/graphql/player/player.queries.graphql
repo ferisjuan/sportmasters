@@ -17,9 +17,6 @@ query PlayerData($where: PlayerWhereUniqueInput!) {
             placeOfBirth
             id
         }
-        image
-        lastName
-        name
         playerGuardian {
             guardianName
             guardianPhone
@@ -30,8 +27,6 @@ query PlayerData($where: PlayerWhereUniqueInput!) {
 
 query PlayerCardSection($where: PlayerWhereUniqueInput!) {
     player(where: $where) {
-        image
-        name
         playerPsychology {
             hobbies
             personalQualities
