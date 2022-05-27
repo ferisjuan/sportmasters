@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { usePlayerCardSectionQuery } from '~/generated/graphql'
 import { useStores } from '~/hooks'
 
-export const CardSection: React.FC = () => {
+export const CardSectionProfile: React.FC = () => {
     const { t } = useTranslation('fieldPosition')
 
     const { playerStore } = useStores()
@@ -36,6 +36,7 @@ export const CardSection: React.FC = () => {
                 </Text>
                 <Text>{t(`${player?.PlayerSportData?.fieldPosition}`)}</Text>
             </Group>
+
             <Group direction="column" spacing={1} align="center" style={{ marginTop: '20px' }}>
                 <Text component="p" weight="bold">
                     Biografia
@@ -44,6 +45,7 @@ export const CardSection: React.FC = () => {
                     {player?.playerPsychology?.personalQualities}
                 </Text>
             </Group>
+
             <Group direction="column" spacing={1} align="center" style={{ marginTop: '20px' }}>
                 <Text component="p" weight="bold">
                     Hobbies

@@ -4,13 +4,12 @@ interface GridProps {
     span?: number
     text?: string | null
     title?: string
-    weight?: string
 }
 
-export const PlayerGrid: React.FC<GridProps> = ({ span, text, weight, title }) => {
+export const PlayerGridCol: React.FC<GridProps> = ({ span, text, title }) => {
     return (
         <Grid.Col span={span}>
-            <Text weight={weight}>{title}</Text>
+            <Text weight="bold">{title}</Text>
             <Text>{text}</Text>
         </Grid.Col>
     )

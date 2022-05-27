@@ -75,7 +75,7 @@ export const useLoginForm = (): UseLoginForm => {
     }
 
     return {
-        getInputProps: form.getInputProps,
+        getInputProps: (field: 'email' | 'password') => form.getInputProps(field),
         isLoginLoading: isLoginLoading || isPasswordChangeLoading,
         handleFormSubmit,
         handleForgotPassword,

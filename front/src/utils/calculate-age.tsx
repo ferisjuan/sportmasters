@@ -1,6 +1,6 @@
-export const Age = (fecha: string): number => {
+export const Age = (date: string): number => {
     const today = new Date()
-    const birthday = new Date(fecha)
+    const birthday = new Date(date)
     let age = today.getFullYear() - birthday.getFullYear()
     const month = today.getMonth() - birthday.getMonth()
 

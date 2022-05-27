@@ -100,7 +100,7 @@ const main = async () => {
 
     const corsOptions = {
         credentials: true,
-        methods: ['P`OST', 'OPTIONS'],
+        methods: ['POST', 'OPTIONS'],
         origin: process.env.CORS_ORIGIN || '*',
     }
 

@@ -1,5 +1,5 @@
 export * from './format-date'
 export * from './get-age'
-export * from './calculateAge'
+export * from './calculate-age'
 
 export { showSMNotification } from './notifications'

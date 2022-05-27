@@ -27,8 +27,8 @@ export const LinkBox: React.VFC<ILinkBoxProps> = ({ onClick, selected, text, to 
                 backgroundColor: isSelected
                     ? theme.colors.indigo[5]
                     : theme.colorScheme === 'dark'
-                    ? theme.colors.gray[9]
-                    : theme.colors.gray[1],
+                        ? theme.colors.gray[9]
+                        : theme.colors.gray[1],
                 borderRadius: theme.radius.lg,
                 color: isSelected ? 'white' : theme.colorScheme === 'dark' ? 'white' : 'black',
                 cursor: 'pointer',
@@ -46,8 +46,8 @@ export const LinkBox: React.VFC<ILinkBoxProps> = ({ onClick, selected, text, to 
                     backgroundColor: isSelected
                         ? theme.colors.indigo[7]
                         : theme.colorScheme === 'dark'
-                        ? theme.colors.gray[8]
-                        : theme.colors.gray[2],
+                            ? theme.colors.gray[8]
+                            : theme.colors.gray[2],
                 },
             })}
         >
