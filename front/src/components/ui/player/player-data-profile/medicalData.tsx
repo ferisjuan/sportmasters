@@ -1,69 +1,49 @@
-import { Grid, Text } from '@mantine/core'
+import { Grid } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
+import { usePlayerMedicalDataQuery } from '~/generated/graphql'
+import { useStores } from '~/hooks'
+import { PlayerGrid } from './playerGrid'
 
 export const MedicalData: React.FC = () => {
+    const { playerStore } = useStores()
+
     const { t } = useTranslation('medicalData')
+
+    const { data: playerData } = usePlayerMedicalDataQuery({
+        where: { playerEmail: playerStore.playerEmail },
+    })
+
+    const player = playerData?.player
 
     return (
         <Grid style={{ padding: '10px', paddingTop: '30px' }}>
             <Grid grow style={{ width: '100%', padding: '8px' }}>
-                <Grid.Col span={6}>
-                    <Text weight="bold">{t('eps')}</Text>
-                    <Text>name</Text>
-                </Grid.Col>
+                <PlayerGrid
+                    span={6}
+                    weight="bold"
+                    title={t('healthProvider')}
+                    text={player?.playerMedical?.healthProvider}
+                />
 
-                <Grid.Col span={6}>
-                    <Text weight="bold">{t('bloodType')}</Text>
-                    <Text>lastName</Text>
-                </Grid.Col>
+                <PlayerGrid span={6} weight="bold" title={t('bloodType')} text={player?.playerMedical?.bloodType} />
             </Grid>
 
             <Grid grow style={{ width: '50%', padding: '8px' }}>
-                <Grid.Col span={2}>
-                    <Text weight="bold">{t('height')}</Text>
-                    <Text>150</Text>
-                </Grid.Col>
-
-                <Grid.Col span={3}>
-                    <Text weight="bold">{t('weight')}</Text>
-                    <Text>50</Text>
-                </Grid.Col>
-
-                <Grid.Col span={2}>
-                    <Text weight="bold">{t('bmi')}</Text>
-                    <Text>86</Text>
-                </Grid.Col>
+                <PlayerGrid span={2} weight="bold" title={t('height')} text={player?.playerMedical?.height} />
+                <PlayerGrid span={3} weight="bold" title={t('weight')} text={player?.playerMedical?.weight} />
+                <PlayerGrid span={3} weight="bold" title={t('bmi')} text={player?.playerMedical?.IMC} />
             </Grid>
 
-            <Grid.Col span={6} style={{ width: '50%' }}>
-                <Text weight="bold">{t('idPlayer')}</Text>
-                <Text>2</Text>
-            </Grid.Col>
-
-            <Grid.Col span={6}>
-                <Text weight="bold">{t('injuries')}</Text>
-                <Text>Pollito</Text>
-            </Grid.Col>
-
-            <Grid.Col span={6}>
-                <Text weight="bold"> {t('surgeries')}</Text>
-                <Text>7</Text>
-            </Grid.Col>
-
-            <Grid.Col span={6}>
-                <Text weight="bold">{t('diseasesSuffered')}</Text>
-                <Text>7</Text>
-            </Grid.Col>
-
-            <Grid.Col span={4}>
-                <Text weight="bold">{t('allergies')}</Text>
-                <Text>Carrera 26 # 18-31</Text>
-            </Grid.Col>
-
-            <Grid.Col>
-                <Text weight="bold">{t('comments')}</Text>
-                <Text>Videojuegos Musica</Text>
-            </Grid.Col>
+            <PlayerGrid span={6} weight="bold" title={t('injuries')} text={player?.PlayerInjuries?.name} />
+            <PlayerGrid span={6} weight="bold" title={t('surgeries')} text={player?.playerSurgeries?.name} />
+            <PlayerGrid
+                span={6}
+                weight="bold"
+                title={t('diseasesSuffered')}
+                text={player?.playerMedical?.diseases[0]}
+            />
+            <PlayerGrid span={4} weight="bold" title={t('allergies')} text={player?.playerMedical?.alergies[0]} />
+            <PlayerGrid weight="bold" title={t('comments')} text={`${player?.playerMedical?.observations}`} />
         </Grid>
     )
 }

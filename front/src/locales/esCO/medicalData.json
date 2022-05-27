@@ -4,7 +4,7 @@
     "bmi": "IMC",
     "comments": "Observaciones",
     "diseasesSuffered": "Endermedades Padecidas",
-    "eps": "EPS",
+    "healthProvider": "EPS",
     "height": "Estatura(cm)",
     "idPlayer": "Identificacion",
     "injuries": "Lesiones",

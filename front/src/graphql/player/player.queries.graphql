@@ -41,3 +41,43 @@ query PlayerCardSection($where: PlayerWhereUniqueInput!) {
         }
     }
 }
+
+query PlayerMedicalData($where: PlayerWhereUniqueInput!) {
+    player(where: $where) {
+        playerMedical {
+            alergies
+            bloodType
+            diseases
+            healthProvider
+            height
+            IMC
+            observations
+            weight
+        }
+        PlayerInjuries {
+            name
+            observations
+            occurrenceDate
+        }
+        playerSurgeries {
+            name
+            observations
+            performedDate
+        }
+    }
+}
+
+query PlayerSportData($where: PlayerWhereUniqueInput!) {
+    player(where: $where) {
+        PlayerSportData {
+            category
+            admissionDate
+            observations
+            previousSchool
+            sport
+            shirtNumber
+            fieldPosition
+            handedness
+        }
+    }
+}
