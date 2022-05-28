@@ -1,6 +1,6 @@
 import { Card, Container, Group, Tabs } from '@mantine/core'
 
-import { CardSectionProfile } from './CardSectionProfile'
+import { Profile } from './CardSectionProfile'
 import { MedicalDataProfile, PersonalDataProfile, SportData } from './index'
 
 export const PlayerDataProfile: React.FC = () => {
@@ -8,7 +8,7 @@ export const PlayerDataProfile: React.FC = () => {
         <Container fluid sx={{ backgroundColor: 'white' }}>
             <div>
                 <Group>
-                    <CardSectionProfile />
+                    <Profile />
                     <Card shadow="sm" sx={{ width: '618px', height: '85vh', display: 'flex', paddingTop: '80px' }}>
                         <Tabs grow style={{ width: '100%' }}>
                             <Tabs.Tab label="Datos Personales">

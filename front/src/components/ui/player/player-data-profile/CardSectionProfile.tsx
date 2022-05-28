@@ -3,17 +3,14 @@ import { useTranslation } from 'react-i18next'
 import { usePlayerCardSectionQuery } from '~/generated/graphql'
 import { useStores } from '~/hooks'
 
-export const CardSectionProfile: React.FC = () => {
+export const Profile: React.FC = () => {
     const { t } = useTranslation('fieldPosition')
 
     const { playerStore } = useStores()
 
-
     const { data: playerData } = usePlayerCardSectionQuery({
         where: { playerEmail: playerStore.playerEmail },
     })
-
-    
 
     const player = playerData?.player
 

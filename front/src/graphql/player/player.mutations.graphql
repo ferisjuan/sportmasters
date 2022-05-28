@@ -1,32 +1,11 @@
 mutation CreatePlayer($data: PlayerCreateInput!) {
     createPlayer(data: $data) {
-        lastName
-        name
-        playerDataId
-        playerEmail
-        schoolId
-        playerSurgeryId
-        playerSportDataId
-        playerPsychologyId
-        playerMedicalId
-        playerInjuriesId
-        playerGuardianId
+        id
     }
 }
 
 mutation UpdatePlayer($data: PlayerUpdateInput!, $where: PlayerWhereUniqueInput!) {
-    updatePlayer(data: $data, where: $where) {
-        image
-        lastName
-        name
-        playerDataId
-        playerEmail
-        playerGuardianId
-        playerInjuriesId
-        playerMedicalId
-        playerPsychologyId
-        playerSportDataId
-        playerSurgeryId
-        schoolId
-    }
+  updatePlayer(data: $data, where: $where) {
+    id
+  }
 }
