@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { usePlayerCardSectionQuery } from '~/generated/graphql'
 import { useStores } from '~/hooks'
 
-export const Profile: React.FC = () => {
+export const ProfileData: React.FC = () => {
     const { t } = useTranslation('fieldPosition')
 
     const { playerStore } = useStores()
