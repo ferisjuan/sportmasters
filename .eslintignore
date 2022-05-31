@@ -21,3 +21,6 @@ generated/
 back/src/generated/
 front/src/generated/
 */node_modules/
+
+# prisma
+back/prisma/

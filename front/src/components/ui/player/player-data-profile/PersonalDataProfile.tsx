@@ -20,7 +20,6 @@ export const PersonalDataProfile: React.FC = observer(() => {
 
     return (
         <Grid>
-
             <PlayerGridCol span={6} title={t('firstName')} text={playerStore?.player.name} />
 
             <PlayerGridCol span={6} title={t('lastName')} text={playerStore?.player.lastName} />
@@ -44,25 +43,20 @@ export const PersonalDataProfile: React.FC = observer(() => {
             <PlayerGridCol span={4} title={t('payment')} text="Si" />
 
             <Grid gutter="xs" grow style={{ paddingTop: 30, width: '50%', padding: '8px' }}>
-
                 <PlayerGridCol span={8} title={t('firstParent')} text={player?.playerGuardian?.guardianName} />
 
                 <PlayerGridCol span={5} title={t('phoneFirstParent')} text={player?.playerGuardian?.guardianPhone} />
 
                 <PlayerGridCol span={5} title={t('emailFirstParent')} text={player?.playerGuardian?.guardianEmail} />
-
             </Grid>
 
             <Grid gutter="xs" grow style={{ paddingTop: 30, width: '50%', padding: '2px' }}>
-            
                 <PlayerGridCol span={8} title={t('firstParent')} text={player?.playerGuardian?.guardianName} />
-            
-                <PlayerGridCol span={5} title={t('phoneFirstParent')} text={player?.playerGuardian?.guardianPhone} />
-            
-                <PlayerGridCol span={5} title={t('emailFirstParent')} text={player?.playerGuardian?.guardianEmail} />
-            
-            </Grid>
 
+                <PlayerGridCol span={5} title={t('phoneFirstParent')} text={player?.playerGuardian?.guardianPhone} />
+
+                <PlayerGridCol span={5} title={t('emailFirstParent')} text={player?.playerGuardian?.guardianEmail} />
+            </Grid>
         </Grid>
     )
 })

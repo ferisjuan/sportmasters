@@ -1,8 +1,9 @@
 // @vendors
 import { SyntheticEvent } from 'react'
+import { GetInputPropsPayload } from '@mantine/form/lib/types'
 import { useNavigate, useParams } from 'react-router-dom'
-import { yupResolver, useForm } from '@mantine/form'
 import { useTranslation } from 'react-i18next'
+import { yupResolver, useForm } from '@mantine/form'
 
 // @constants
 import { ROUTES } from '~/constants'
@@ -17,7 +18,7 @@ import { ChangePasswordFormSchema } from './ChangePasswordForm.schema'
 import { showSMNotification } from '~/utils'
 
 interface UseChangePasswordForm {
-    getInputProps: (field: 'password' | 'passwordConfirm') => void
+    getInputProps: (key: 'password' | 'passwordConfirm') => GetInputPropsPayload
     handleFormSubmit: (e: SyntheticEvent) => void
     isChangePasswordLoading: boolean
 }

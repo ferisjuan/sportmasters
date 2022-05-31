@@ -31,17 +31,14 @@ export const Profile: React.FC = () => {
             </Card.Section>
 
             <Group direction="column" spacing={1} align="center" style={{ marginTop: '50px' }}>
-
                 <Text component="h1" style={{ margin: '0px' }}>
                     {playerStore.player.name}
                 </Text>
 
                 <Text>{t(`${player?.PlayerSportData?.fieldPosition}`)}</Text>
-                
             </Group>
 
             <Group direction="column" spacing={1} align="center" style={{ marginTop: '20px' }}>
-
                 <Text component="p" weight="bold">
                     Biografia
                 </Text>
@@ -49,11 +46,9 @@ export const Profile: React.FC = () => {
                 <Text size="sm" align="center">
                     {player?.playerPsychology?.personalQualities}
                 </Text>
-
             </Group>
 
             <Group direction="column" spacing={1} align="center" style={{ marginTop: '20px' }}>
-
                 <Text component="p" weight="bold">
                     Hobbies
                 </Text>
@@ -61,7 +56,6 @@ export const Profile: React.FC = () => {
                 <Text size="sm" align="center">
                     {player?.playerPsychology?.hobbies}
                 </Text>
-
             </Group>
         </Card>
     )
