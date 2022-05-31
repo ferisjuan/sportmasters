@@ -1,6 +1,6 @@
-export * from './CardSectionProfile'
 export * from './MedicalDataProfile'
 export * from './PersonalDataProfile'
+export * from './PlayerDataProfile'
 export * from './PlayerGridCol'
 export * from './PlayerProfile'
 export * from './SportDataProfile'

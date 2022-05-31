@@ -1,8 +1,8 @@
 import { Grid } from '@mantine/core'
-import { useTranslation } from 'react-i18next'
+import { PlayerGridCol } from './PlayerGridCol'
 import { usePlayerMedicalDataQuery } from '~/generated/graphql'
 import { useStores } from '~/hooks'
-import { PlayerGridCol } from './PlayerGridCol'
+import { useTranslation } from 'react-i18next'
 
 export const MedicalDataProfile: React.FC = () => {
     const { playerStore } = useStores()
