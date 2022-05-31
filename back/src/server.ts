@@ -1,7 +1,7 @@
 // @vendors
-import "reflect-metadata"
-import "dotenv/config"
-import { ApolloServer } from "apollo-server-express"
+import 'reflect-metadata'
+import 'dotenv/config'
+import { ApolloServer } from 'apollo-server-express'
 import { buildSchema } from 'type-graphql'
 import { expressjwt as jwt } from 'express-jwt'
 import connectRedis from 'connect-redis'
@@ -15,17 +15,23 @@ import { prisma } from './context'
 import { modelsEnhanceMap, resolversEnhanceMap } from './enhance-maps'
 
 // @generated
-import { applyModelsEnhanceMap, applyResolversEnhanceMap, PlayerCrudResolver, SchoolCrudResolver, SchoolRelationsResolver, UserCrudResolver } from './generated/typegraphql-prisma.ts'
+import { applyModelsEnhanceMap, applyResolversEnhanceMap, resolvers } from './generated/typegraphql-prisma.ts'
 
 // @logger
 import { logger } from './logger'
 
 // @schema
-import { ChangePasswordResolver, ConfirmUserResolver, ForgotPassword, LogoutResolver, SigninResolver, SignupResolver } from './modules'
+import {
+    ChangePasswordResolver,
+    ConfirmUserResolver,
+    ForgotPassword,
+    LogoutResolver,
+    SigninResolver,
+    SignupResolver,
+} from './modules'
 
 // @redis
 import { redis } from './redis'
-
 
 const main = async () => {
     applyModelsEnhanceMap(modelsEnhanceMap)
@@ -33,16 +39,13 @@ const main = async () => {
 
     const schema = await buildSchema({
         resolvers: [
+            ...resolvers,
             ChangePasswordResolver,
             ConfirmUserResolver,
             ForgotPassword,
             LogoutResolver,
-            PlayerCrudResolver,
-            SchoolCrudResolver,
-            SchoolRelationsResolver,
             SigninResolver,
             SignupResolver,
-            UserCrudResolver,
         ],
     })
 
@@ -50,10 +53,10 @@ const main = async () => {
         context: ({ req, res }) => ({
             prisma,
             req,
-            res
+            res,
         }),
         logger: logger.child({ module: 'apollo' }),
-        formatError: (error) => {
+        formatError: error => {
             logger.error(error)
 
             return error
@@ -83,7 +86,7 @@ const main = async () => {
                 client: redis,
             }),
             unset: 'destroy',
-        })
+        }),
     )
 
     app.use(
@@ -93,7 +96,7 @@ const main = async () => {
             secret: process.env.JWT_SECRET,
             credentialsRequired: false,
         }),
-    );
+    )
 
     const corsOptions = {
         credentials: true,
@@ -102,13 +105,13 @@ const main = async () => {
     }
 
     apolloServer.applyMiddleware({
-        app, path,
-        cors: corsOptions
+        app,
+        path,
+        cors: corsOptions,
     })
 
     app.listen(process.env.PORT || 4000, () => {
-        logger.info(`🚀 Server ready at http//:localhost${process.env.PORT || 4000
-            }/graphql`)
+        logger.info(`🚀 Server ready at http//:localhost${process.env.PORT || 4000}/graphql`)
     })
 }
 

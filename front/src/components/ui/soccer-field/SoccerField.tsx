@@ -5,11 +5,13 @@ import { useTranslation } from 'react-i18next'
 // @hooks
 import { useStores } from '~/hooks'
 
-export const SoccerField: React.VFC = () => {
+export const SoccerField: React.FC = () => {
     const { t } = useTranslation('fieldPosition')
     const {
         playerStore: {
-            player: { fieldPosition },
+            player: {
+                playerData: { birthday },
+            },
         },
     } = useStores()
 
@@ -85,7 +87,7 @@ export const SoccerField: React.VFC = () => {
                 </Container>
                 <Container>
                     <Text align="center" sx={{ color: 'white' }}>
-                        {t(`${fieldPosition}`)}
+                        {t(`${birthday}`)}
                     </Text>
                 </Container>
             </Container>

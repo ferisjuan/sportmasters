@@ -1,0 +1,20 @@
+{
+    "address": "Direccion de residencia",
+    "age": "Edad",
+    "birthDay": "Fecha de nacimiento",
+    "clothingSize": "Talla de ropa",
+    "emailFirstParent": "Email Acudiente 1",
+    "emailSecondParent": "Email Acudiente 2",
+    "firstName": "Nombres",
+    "firstParent": "Acudiente 1",
+    "hobbies": "Hobbies",
+    "idPlayer": "Identificacion",
+    "lastName": "Apellidos",
+    "layer": "Estrato",
+    "payment": "Al dia con los pagos",
+    "phoneFirstParent": "Telefono Acudiente 1",
+    "phoneSecondParent": "Telefono Acudiente 2",
+    "secondParent": "Acudiente 2",
+    "sex": "Sexo",
+    "shoeSize": "Talla de zapatos"
+}

@@ -1,0 +1,78 @@
+query Player($where: PlayerWhereUniqueInput!) {
+    player(where: $where) {
+        lastName
+        name
+        image
+    }
+}
+
+query PlayerData($where: PlayerWhereUniqueInput!) {
+    player(where: $where) {
+        playerData {
+            playerIdNumber
+            playerIdType
+            playerIdExpeditionPlace
+            playerPhone
+            birthday
+            placeOfBirth
+            id
+        }
+        playerGuardian {
+            guardianName
+            guardianPhone
+            guardianEmail
+        }
+    }
+}
+
+query PlayerCardSection($where: PlayerWhereUniqueInput!) {
+    player(where: $where) {
+        playerPsychology {
+            hobbies
+            personalQualities
+        }
+        PlayerSportData {
+            fieldPosition
+        }
+    }
+}
+
+query PlayerMedicalData($where: PlayerWhereUniqueInput!) {
+    player(where: $where) {
+        playerMedical {
+            alergies
+            bloodType
+            diseases
+            healthProvider
+            height
+            IMC
+            observations
+            weight
+        }
+        PlayerInjuries {
+            name
+            observations
+            occurrenceDate
+        }
+        playerSurgeries {
+            name
+            observations
+            performedDate
+        }
+    }
+}
+
+query PlayerSportData($where: PlayerWhereUniqueInput!) {
+    player(where: $where) {
+        PlayerSportData {
+            category
+            admissionDate
+            observations
+            previousSchool
+            sport
+            shirtNumber
+            fieldPosition
+            handedness
+        }
+    }
+}

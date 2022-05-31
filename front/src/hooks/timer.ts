@@ -9,7 +9,7 @@ export function useTimer(timeInms: number, interval: number): IUseTimer {
 
     const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
-    const decreaseTime = useCallback((): void => setTime((prev) => prev - interval), [interval])
+    const decreaseTime = useCallback((): void => setTime(prev => prev - interval), [interval])
 
     useEffect(() => {
         intervalRef.current = setInterval(decreaseTime, interval)

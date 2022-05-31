@@ -1,5 +1,6 @@
 // @vendors
 import { SyntheticEvent } from 'react'
+import { GetInputPropsPayload } from '@mantine/form/lib/types'
 import { useForm, yupResolver } from '@mantine/form'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
@@ -19,7 +20,7 @@ import { LoginFormSchema } from './LoginForm.schema'
 import { showSMNotification } from '~/utils'
 
 interface UseLoginForm {
-    getInputProps: (field: 'email' | 'password') => void
+    getInputProps: (key: 'email' | 'password') => GetInputPropsPayload
     isLoginLoading: boolean
     handleFormSubmit: (e: SyntheticEvent) => void
     handleForgotPassword: () => void
