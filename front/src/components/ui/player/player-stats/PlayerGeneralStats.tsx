@@ -33,10 +33,10 @@ export const PlayerGeneralStats: React.VFC = observer(() => {
                         }}
                     >
                         <StatsLead
-                            title={getAge(playerProfile?.birthday?.seconds)}
-                            subTitle={formatDate(playerProfile?.birthday?.seconds)}
+                            title={getAge(playerProfile?.playerData?.birthday)}
+                            subTitle={formatDate(playerProfile?.playerData?.birthday)}
                         />
-                        <StatsLead title={t('weight')} subTitle={`${playerProfile?.weight}`} />
+                        <StatsLead title={t('weight')} subTitle={`${playerProfile?.playerMedical?.weight}`} />
                         <StatsLead title={'stat titl'} subTitle={'stat sub title'} />
                         <StatsLead title={'stat titl'} subTitle={'stat sub title'} />
                         <StatsLead title={'stat titl'} subTitle={'stat sub title'} />
@@ -52,12 +52,12 @@ export const PlayerGeneralStats: React.VFC = observer(() => {
                     }}
                 >
                     <StatsLead
-                        title={getAge(playerProfile?.birthday?.seconds)}
-                        subTitle={formatDate(playerProfile?.birthday?.seconds)}
+                        title={getAge(playerProfile?.playerData?.birthday)}
+                        subTitle={formatDate(playerProfile?.playerData?.birthday)}
                     />
                     <StatsLead
-                        title={getAge(playerProfile?.birthday?.seconds)}
-                        subTitle={formatDate(playerProfile?.birthday?.seconds)}
+                        title={getAge(playerProfile?.playerData?.birthday)}
+                        subTitle={formatDate(playerProfile?.playerData?.birthday)}
                     />
                 </Container>
             </Card>

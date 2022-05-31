@@ -1,0 +1,11 @@
+mutation CreatePlayer($data: PlayerCreateInput!) {
+    createPlayer(data: $data) {
+        id
+    }
+}
+
+mutation UpdatePlayer($data: PlayerUpdateInput!, $where: PlayerWhereUniqueInput!) {
+  updatePlayer(data: $data, where: $where) {
+    id
+  }
+}

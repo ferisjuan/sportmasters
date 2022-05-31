@@ -1,5 +1,5 @@
 declare namespace notification {
-    type Type ={
+    type Type = {
         id: string
         title: string
         color: string

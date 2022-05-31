@@ -2,7 +2,7 @@
 import { observer } from 'mobx-react-lite'
 
 // @components
-import { PlayerProfile, PlayerCard, PlayerGeneralStats, SoccerField } from '~/components'
+import { PlayerProfile, PlayerDataProfile } from '~/components'
 
 // @hooks
 import { useStores } from '~/hooks'
@@ -17,13 +17,9 @@ const Player: React.FC = observer(() => {
 
     const player = playerData?.player
 
-    return (
-        <PlayerProfile>
-            {player && <PlayerCard player={player} />}
-            <PlayerGeneralStats />
-            <SoccerField />
-        </PlayerProfile>
-    )
+    if (!player) return null
+
+    return <PlayerProfile>{player && <PlayerDataProfile />}</PlayerProfile>
 })
 
 export default Player
