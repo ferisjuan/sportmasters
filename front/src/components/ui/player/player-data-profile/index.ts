@@ -1,6 +1,1 @@
-export * from './MedicalDataProfile'
-export * from './PersonalDataProfile'
 export * from './PlayerDataProfile'
-export * from './PlayerGridCol'
-export * from './ProfileData'
-export * from './SportDataProfile'

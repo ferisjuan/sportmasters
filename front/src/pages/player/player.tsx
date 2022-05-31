@@ -2,11 +2,13 @@
 import { observer } from 'mobx-react-lite'
 
 // @components
-import { PlayerProfile, PlayerDataProfile } from '~/components'
+import { PlayerDataProfile, PlayerProfile } from '~/components'
 
 // @hooks
 import { useStores } from '~/hooks'
-import { usePlayerQuery } from '../../generated/graphql'
+
+// @generated
+import { usePlayerQuery } from '~/generated/graphql'
 
 const Player: React.FC = observer(() => {
     const { playerStore } = useStores()

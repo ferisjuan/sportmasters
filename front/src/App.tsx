@@ -104,7 +104,7 @@ function WithProvider(): JSX.Element {
             <MantineProvider theme={{ colorScheme: colorScheme as ColorScheme }}>
                 <NotificationsProvider>
                     <QueryClientProvider client={queryClient}>
-                        <ReactQueryDevtools initialIsOpen={false} />
+                        <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
 
                         <App />
                     </QueryClientProvider>
