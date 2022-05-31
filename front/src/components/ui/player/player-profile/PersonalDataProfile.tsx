@@ -18,11 +18,13 @@ export const PersonalDataProfile: React.FC = observer(() => {
 
     const player = playerData?.player
 
+    if (!player) return null
+
     return (
         <Grid>
-            <PlayerGridCol span={6} title={t('firstName')} text={playerStore?.player.name} />
+            <PlayerGridCol span={6} title={t('firstName')} text={player.name} />
 
-            <PlayerGridCol span={6} title={t('lastName')} text={playerStore?.player.lastName} />
+            <PlayerGridCol span={6} title={t('lastName')} text={player.lastName} />
 
             <PlayerGridCol span={6} title={t('birthDay')} text={player?.playerData.birthday} />
 

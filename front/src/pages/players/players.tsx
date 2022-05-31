@@ -1,13 +1,13 @@
 // @vendors
 import { BsPlus } from 'react-icons/bs'
 import { Box, Loader, Pagination, ThemeIcon } from '@mantine/core'
-import { observer } from 'mobx-react-lite'
 
 // @components
 import { PlayerForm, PlayersGrid, SMModal } from '~/components'
 
 // @hooks
 import { usePlayers } from './hooks'
+import { observer } from 'mobx-react-lite'
 
 const Players: React.FC = observer(() => {
     const { handleOnAddPlayer, handleOnPaginationChange, isPlayersLoading, pages, skip } = usePlayers()

@@ -1,13 +1,42 @@
-import { Grid } from '@mantine/core'
+// @vendors
+import { Card, Group, Tabs } from '@mantine/core'
 
-export interface PlayerProfileProps {
-    children?: React.ReactNode
-}
+// @components
+import { MedicalDataProfile } from './MedicalDataProfile'
+import { PersonalDataProfile } from './PersonalDataProfile'
+import { PlayerAttendance } from './PlayerAttendance'
+import { ProfileData } from './ProfileData'
+import { SMContainer } from '../../common'
+import { SportData } from './SportDataProfile'
 
-export const PlayerProfile: React.FC<PlayerProfileProps> = ({ children }) => {
+export const PlayerProfile: React.FC = () => {
     return (
-        <Grid grow gutter="sm" sx={{ background: 'gray' }}>
-            {children}
-        </Grid>
+        <SMContainer>
+            <div>
+                <Group>
+                    <ProfileData />
+
+                    <Card shadow="sm" sx={{ width: '618px', height: '85vh', display: 'flex', paddingTop: '80px' }}>
+                        <Tabs grow style={{ width: '100%' }}>
+                            <Tabs.Tab label="Datos Personales">
+                                <PersonalDataProfile />
+                            </Tabs.Tab>
+
+                            <Tabs.Tab label="Datos Medicos">
+                                <MedicalDataProfile />
+                            </Tabs.Tab>
+
+                            <Tabs.Tab label="Datos Deportivos">
+                                <SportData />
+                            </Tabs.Tab>
+
+                            <Tabs.Tab label="Asistencia">
+                                <PlayerAttendance />
+                            </Tabs.Tab>
+                        </Tabs>
+                    </Card>
+                </Group>
+            </div>
+        </SMContainer>
     )
 }

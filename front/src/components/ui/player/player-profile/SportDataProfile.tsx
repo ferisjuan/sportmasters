@@ -1,10 +1,11 @@
 import { Grid } from '@mantine/core'
+import { observer } from 'mobx-react-lite'
 import { useTranslation } from 'react-i18next'
 import { usePlayerSportDataQuery } from '~/generated/graphql'
 import { useStores } from '~/hooks'
 import { PlayerGridCol } from './PlayerGridCol'
 
-export const SportData: React.FC = () => {
+export const SportData: React.FC = observer(() => {
     const { t } = useTranslation('sportData')
 
     const { playerStore } = useStores()
@@ -32,4 +33,4 @@ export const SportData: React.FC = () => {
             <PlayerGridCol span={6} title={t('comments')} text={player?.PlayerSportData?.observations} />
         </Grid>
     )
-}
+})

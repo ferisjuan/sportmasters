@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite'
 import { useNavigate } from 'react-router-dom'
 
 // @components
-import { PlayerCard } from '../player-profile'
+import { PlayerCard } from '../player-card'
 
 // @constants
 import { ROUTES } from '~/constants'
