@@ -38,7 +38,7 @@ const App: React.FC = () => (
                     <Route
                         path={ROUTES.changePassword}
                         element={
-                            <Suspense fallback={<div>Loading...</div>}>
+                            <Suspense fallback={<SMContainer isLoading />}>
                                 <ChangePasswordPage />
                             </Suspense>
                         }
@@ -59,9 +59,18 @@ const App: React.FC = () => (
                         <Route path={ROUTES.dashboard_main} element={<Title>Main</Title>} />
 
                         <Route
+                            path={ROUTES.attendance}
+                            element={
+                                <Suspense fallback={<SMContainer isLoading />}>
+                                    <h1>Attendance</h1>
+                                </Suspense>
+                            }
+                        />
+
+                        <Route
                             path={ROUTES.players}
                             element={
-                                <Suspense fallback={<div>Loading...</div>}>
+                                <Suspense fallback={<SMContainer isLoading />}>
                                     <PlayersPage />
                                 </Suspense>
                             }
@@ -70,7 +79,7 @@ const App: React.FC = () => (
                         <Route
                             path={ROUTES.player}
                             element={
-                                <Suspense fallback={<div>Loading...</div>}>
+                                <Suspense fallback={<SMContainer isLoading />}>
                                     <PlayerPage />
                                 </Suspense>
                             }
@@ -81,7 +90,7 @@ const App: React.FC = () => (
                     <Route
                         path={ROUTES.notFound}
                         element={
-                            <Suspense fallback={<div>Loading...</div>}>
+                            <Suspense fallback={<SMContainer isLoading />}>
                                 <NotFoundPage />
                             </Suspense>
                         }
