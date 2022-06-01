@@ -133,7 +133,7 @@ model Player {
   image              String?
   lastName           String
   name               String
-  playerData         PlayerData       @relation(fields: [playerDataId], references: [id])
+  playerData         PlayerData        @relation(fields: [playerDataId], references: [id])
   playerDataId       String
   playerEmail        String            @unique
   playerGuardian     PlayerGuardian?   @relation(fields: [playerGuardianId], references: [id])
@@ -144,7 +144,7 @@ model Player {
   playerMedicalId    String?
   playerPsychology   PlayerPsychology? @relation(fields: [playerPsychologyId], references: [id])
   playerPsychologyId String?
-  PlayerSportData    PlayerSportData?  @relation(fields: [playerSportDataId], references: [id])
+  playerSportData    PlayerSportData?  @relation(fields: [playerSportDataId], references: [id])
   playerSportDataId  String?
   playerSurgeries    PlayerSurgeries?  @relation(fields: [playerSurgeryId], references: [id])
   playerSurgeryId    String?
@@ -158,18 +158,18 @@ model Player {
 
 model PlayerData {
   /// @TypeGraphQL.omit(input: true)
-  id                      String   @id @default(cuid())
+  id                      String    @id @default(cuid())
   birthday                DateTime?
   placeOfBirth            String?
-  playerIdNumber          String   @unique
+  playerIdNumber          String    @unique
   playerIdExpeditionPlace String?
   playerIdType            NDI_TYPE
   playerPhone             String?
   players                 Player[]
   /// @TypeGraphQL.omit(input: true, output: true)
-  createdAt               DateTime @default(now())
+  createdAt               DateTime  @default(now())
   /// @TypeGraphQL.omit(input: true, output: true)
-  updatedAt               DateTime @updatedAt
+  updatedAt               DateTime  @updatedAt
 }
 
 model PlayerPsychology {
@@ -297,7 +297,7 @@ model User {
   /// @TypeGraphQL.omit(output: true)
   password              String
   phone                 String?  @default("")
-  School                School   @relation(fields: [schoolEmail], references: [email])
+  school                School   @relation(fields: [schoolEmail], references: [email])
   schoolEmail           String   @default("")
   /// @TypeGraphQL.omit(input: true, output: true)
   confirmed             Boolean  @default(false)
