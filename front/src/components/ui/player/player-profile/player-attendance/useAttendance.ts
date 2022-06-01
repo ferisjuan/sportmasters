@@ -10,7 +10,7 @@ import { getDateMedWeekDay } from '~/utils'
 interface UseAttendance {
     isLoading: boolean
     headers: string[]
-    tData: Record<string, string>[]
+    tData: Record<string, string>[] | undefined
     handleAddPlayerMissattendance: () => void
 }
 
