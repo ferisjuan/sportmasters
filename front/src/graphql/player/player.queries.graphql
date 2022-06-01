@@ -31,7 +31,7 @@ query PlayerCardSection($where: PlayerWhereUniqueInput!) {
             hobbies
             personalQualities
         }
-        PlayerSportData {
+        playerSportData {
             fieldPosition
         }
     }
@@ -64,7 +64,7 @@ query PlayerMedicalData($where: PlayerWhereUniqueInput!) {
 
 query PlayerSportData($where: PlayerWhereUniqueInput!) {
     player(where: $where) {
-        PlayerSportData {
+        playerSportData {
             category
             admissionDate
             observations

@@ -1,18 +1,21 @@
 query User($where: UserWhereUniqueInput!) {
-  user(where: $where) {
-    id
-    address
-    email
-    lastName
-    firstName
-    roles
-    phone
-    schoolEmail
-  }
+    user(where: $where) {
+        id
+        address
+        email
+        lastName
+        firstName
+        roles
+        phone
+        school {
+            id
+            email
+        }
+    }
 }
 
 mutation CreateCoachUser($data: UserCreateInput!) {
-  createUser(data: $data) {
-    id
-  }
+    createUser(data: $data) {
+        id
+    }
 }

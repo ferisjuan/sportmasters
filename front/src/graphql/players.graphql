@@ -7,10 +7,24 @@ query Players($take: Int, $skip: Int) {
     }
 }
 
-query PlayersCount {
-  aggregatePlayer {
-    _count {
-      id
+query PlayersGrid($where: PlayerWhereInput) {
+    players(where: $where) {
+        id
+        playerEmail
+        playerSportData {
+            fieldPosition
+            admissionDate
+            handedness
+            id
+            sport
+        }
     }
-  }
+}
+
+query PlayersCount {
+    aggregatePlayer {
+        _count {
+            id
+        }
+    }
 }
