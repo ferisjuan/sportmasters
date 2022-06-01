@@ -1,0 +1,7 @@
+query PlayerAttendances($where: PlayerAttendanceWhereInput) {
+    playerAttendances(where: $where) {
+        attendanceDate
+        reason
+        sport
+    }
+}
