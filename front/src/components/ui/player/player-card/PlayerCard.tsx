@@ -33,7 +33,7 @@ export const PlayerCard: React.FC<PlayerCardProps> = observer(({ player }) => {
             </Container>
 
             <Text align="center" size="md" weight={300}>
-                {t(`${player?.PlayerSportData?.fieldPosition}`) || 'Position not found'}
+                {t(`${player?.playerSportData?.fieldPosition}`) || 'Position not found'}
             </Text>
         </Card>
     )

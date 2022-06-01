@@ -1,6 +1,10 @@
 import { Avatar, Card, Group, Text } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
+
+// @generated
 import { usePlayerCardSectionQuery } from '~/generated/graphql'
+
+// @hooks
 import { useStores } from '~/hooks'
 
 export const ProfileData: React.FC = () => {
@@ -35,7 +39,7 @@ export const ProfileData: React.FC = () => {
                     {playerStore.player.name}
                 </Text>
 
-                <Text>{t(`${player?.PlayerSportData?.fieldPosition}`)}</Text>
+                <Text>{t(`${player?.playerSportData?.fieldPosition}`)}</Text>
             </Group>
 
             <Group direction="column" spacing={1} align="center" style={{ marginTop: '20px' }}>

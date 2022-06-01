@@ -16,6 +16,8 @@ export const PersonalDataProfile: React.FC = observer(() => {
         where: { playerEmail: playerStore.playerEmail },
     })
 
+    playerStore.player.id = playerData?.player?.id || ''
+
     const player = playerData?.player
 
     if (!player) return null
