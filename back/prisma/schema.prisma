@@ -97,6 +97,15 @@ enum PLAYER_CATEGORY {
   EIGHTH
 }
 
+enum REASON {
+  MEDICAL
+  INJURY
+  LEAVE
+  LATE
+  SANCTION
+  NOT_PLAYING
+}
+
 enum ROLES {
   NONE
   ADMIN
@@ -140,13 +149,13 @@ model Player {
   playerEmail        String             @unique
   playerGuardian     PlayerGuardian?    @relation(fields: [playerGuardianId], references: [id])
   playerGuardianId   String?
-  PlayerInjuries     PlayerInjuries?    @relation(fields: [playerInjuriesId], references: [id])
+  playerInjuries     PlayerInjuries?    @relation(fields: [playerInjuriesId], references: [id])
   playerInjuriesId   String?
   playerMedical      PlayerMedical?     @relation(fields: [playerMedicalId], references: [id])
   playerMedicalId    String?
   playerPsychology   PlayerPsychology?  @relation(fields: [playerPsychologyId], references: [id])
   playerPsychologyId String?
-  PlayerSportData    PlayerSportData?   @relation(fields: [playerSportDataId], references: [id])
+  playerSportData    PlayerSportData?   @relation(fields: [playerSportDataId], references: [id])
   playerSportDataId  String?
   playerSurgeries    PlayerSurgeries?   @relation(fields: [playerSurgeryId], references: [id])
   playerSurgeryId    String?
@@ -163,6 +172,7 @@ model PlayerAttendance {
   attendanceDate DateTime
   player         Player   @relation(fields: [playerId], references: [id])
   playerId       String
+  reason         REASON   @default(NOT_PLAYING)
   sport          SPORTS
 }
 
@@ -206,7 +216,7 @@ model PlayerGuardian {
   guardianName              String
   guardianPhone             String
   guardianType              GUARDIAN_TYPE
-  Player                    Player[]
+  player                    Player[]
   /// @TypeGraphQL.omit(input: true, output: true)
   createdAt                 DateTime        @default(now())
   /// @TypeGraphQL.omit(input: true, output: true)
