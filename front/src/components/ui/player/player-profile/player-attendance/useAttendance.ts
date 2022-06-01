@@ -15,7 +15,7 @@ interface UseAttendance {
 }
 
 export const useAttendance = (): UseAttendance => {
-    const { playerStore } = useStores()
+    const { playerStore, userStore } = useStores()
 
     const {
         data: playerAttendaces,
@@ -51,6 +51,11 @@ export const useAttendance = (): UseAttendance => {
                 player: {
                     connect: {
                         playerEmail: playerStore.playerEmail,
+                    },
+                },
+                School: {
+                    connect: {
+                        email: userStore.schoolEmail,
                     },
                 },
                 missAttendanceDate: now,

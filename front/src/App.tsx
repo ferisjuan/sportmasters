@@ -25,7 +25,7 @@ import { rootStore } from '~/store'
 const ChangePasswordPage = lazy(() => import('./pages/auth/ChangePassword'))
 const MainPage = lazy(() => import('./pages/main'))
 const NotFoundPage = lazy(() => import('./pages/not-found/notFound'))
-const PlayersAttendance = lazy(() => import('./pages/players-attendance/PlayersAttendance'))
+const PlayersAttendance = lazy(() => import('./pages/attendance/PlayersAttendance'))
 const PlayerPage = lazy(() => import('./pages/player/player'))
 const PlayersPage = lazy(() => import('./pages/players/players'))
 

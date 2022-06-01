@@ -1,10 +1,9 @@
 // @vendors
-import { Button } from '@mantine/core'
 import { observer } from 'mobx-react-lite'
+import { MdPersonAddDisabled } from 'react-icons/md'
 
 // @components
 import { SMContainer } from '~/components'
-import { SMRow } from '~/components/ui/common/SMRow'
 import { SMTable } from '~/components/ui/common/SMTable'
 
 // @hooks
@@ -13,15 +12,11 @@ import { useAttendance } from './useAttendance'
 export const Attendance: React.FC = observer(() => {
     const { handleAddPlayerMissattendance, headers, isLoading, tData } = useAttendance()
 
+    const actions = [{ cb: handleAddPlayerMissattendance, Icon: MdPersonAddDisabled }]
+
     return (
         <SMContainer isLoading={isLoading}>
-            <SMRow justify="flex-end">
-                <Button onClick={handleAddPlayerMissattendance} sx={{ justifySelf: 'flex-end' }}>
-                    Add missing
-                </Button>
-            </SMRow>
-
-            <SMTable data={tData} headers={headers} />
+            <SMTable data={tData} headers={headers} actions={actions} />
         </SMContainer>
     )
 })

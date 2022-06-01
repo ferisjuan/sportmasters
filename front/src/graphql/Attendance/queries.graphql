@@ -10,6 +10,7 @@ query PlayerAttendancesBySchoolAndCategoriy($where: PlayerAttendanceWhereInput) 
     playerAttendances(where: $where) {
         missAttendanceDate
         playerId
+        reason
         sport
         player {
             name
