@@ -168,12 +168,14 @@ model Player {
 }
 
 model PlayerAttendance {
-  id             String   @id @default(cuid())
+  id                 String   @id @default(cuid())
   missAttendanceDate DateTime
-  player         Player   @relation(fields: [playerId], references: [id])
-  playerId       String
-  reason         REASON   @default(NOT_PLAYING)
-  sport          SPORTS
+  player             Player   @relation(fields: [playerId], references: [id])
+  playerId           String
+  reason             REASON   @default(NOT_PLAYING)
+  sport              SPORTS
+  School             School?  @relation(fields: [schoolId], references: [id])
+  schoolId           String?
 }
 
 model PlayerData {
@@ -283,21 +285,22 @@ model PlayerSurgeries {
 
 model School {
   /// @TypeGraphQL.omit(input: true)
-  id        String   @unique @default(cuid())
-  address   String
-  email     String   @unique
-  name      String
+  id         String             @unique @default(cuid())
+  attendance PlayerAttendance[]
+  address    String
+  email      String             @unique
+  name       String
   /// @TypeGraphQL.omit(output: true)
-  password  String
-  phone     String
-  players   Player[]
+  password   String
+  phone      String
+  players    Player[]
   /// @TypeGraphQL.omit(input: true, output: true)
-  tier      TIER     @default(BASIC)
-  users     User[]
+  tier       TIER               @default(BASIC)
+  users      User[]
   /// @TypeGraphQL.omit(output: true, output: true)
-  createdAt DateTime @default(now())
+  createdAt  DateTime           @default(now())
   /// @TypeGraphQL.omit(output: true, output: true)
-  updatedAt DateTime @updatedAt
+  updatedAt  DateTime           @updatedAt
 }
 
 model User {
