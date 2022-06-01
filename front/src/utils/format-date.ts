@@ -10,5 +10,5 @@ export const formatDate = (seconds: number): string => {
 export const getDateMedWeekDay = (date: string): string => {
     const dt = DateTime.fromISO(date)
 
-    return dt.toLocaleString()
+    return dt.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)
 }
