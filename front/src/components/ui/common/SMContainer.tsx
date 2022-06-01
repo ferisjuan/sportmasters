@@ -1,7 +1,7 @@
 import { Container, Loader } from '@mantine/core'
 
 interface SMContainerProps {
-    children: React.ReactNode
+    children?: React.ReactNode
     isLoading?: boolean
 }
 
@@ -10,6 +10,7 @@ export const SMContainer: React.FC<SMContainerProps> = ({ children, isLoading })
         sx={{
             alignItems: 'center',
             display: 'flex',
+            flex: 1,
             flexWrap: 'wrap',
             height: '100%',
             justifyContent: 'center',

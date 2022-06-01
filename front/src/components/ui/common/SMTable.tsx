@@ -1,5 +1,6 @@
+// @vendors
 import { Table } from '@mantine/core'
-import { useUuid } from '@mantine/hooks'
+import uuid from 'react-uuid'
 
 interface SMTableProps {
     data?: Record<string, string>[]
@@ -18,9 +19,9 @@ export const SMTable: React.FC<SMTableProps> = ({ data, headers }) => (
         </thead>
         <tbody>
             {data?.map(d => (
-                <tr key={useUuid()}>
+                <tr key={uuid()}>
                     {Object.values(d).map(value => (
-                        <td key={useUuid()}>{value}</td>
+                        <td key={uuid()}>{value}</td>
                     ))}
                 </tr>
             ))}

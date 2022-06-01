@@ -7,7 +7,7 @@ import { QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 
 // @components
-import { AuthenticatedRoute } from '~/components'
+import { AuthenticatedRoute, SMContainer } from '~/components'
 import Login from './pages/auth/Login'
 
 // @constants
@@ -47,11 +47,11 @@ const App: React.FC = () => (
                     <Route
                         path={ROUTES.dashboard}
                         element={
-                            <AuthenticatedRoute>
-                                <Suspense fallback={<div>Loading...</div>}>
+                            <Suspense fallback={<SMContainer isLoading />}>
+                                <AuthenticatedRoute>
                                     <MainPage />
-                                </Suspense>
-                            </AuthenticatedRoute>
+                                </AuthenticatedRoute>
+                            </Suspense>
                         }
                     >
                         <Route index element={<Title>Welcome to the dashboard</Title>} />
