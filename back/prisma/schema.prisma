@@ -169,7 +169,7 @@ model Player {
 
 model PlayerAttendance {
   id             String   @id @default(cuid())
-  attendanceDate DateTime
+  missAttendanceDate DateTime
   player         Player   @relation(fields: [playerId], references: [id])
   playerId       String
   reason         REASON   @default(NOT_PLAYING)

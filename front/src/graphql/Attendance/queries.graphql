@@ -1,6 +1,6 @@
 query PlayerAttendances($where: PlayerAttendanceWhereInput) {
     playerAttendances(where: $where) {
-        attendanceDate
+        missAttendanceDate
         reason
         sport
     }

@@ -5,7 +5,7 @@ import { Reason, Sports, useCreatePlayerAttendanceMutation, usePlayerAttendances
 import { useStores } from '~/hooks'
 
 // @utils
-import { parseAttendanceData } from '~/utils/attendance'
+import { getDateMedWeekDay } from '~/utils'
 
 interface UseAttendance {
     isLoading: boolean
@@ -26,7 +26,7 @@ export const useAttendance = (): UseAttendance => {
             player: {
                 is: {
                     playerEmail: {
-                        equals: playerStore.playerEmail,
+                        equals: playerStore.player.playerEmail,
                     },
                 },
             },
@@ -35,7 +35,11 @@ export const useAttendance = (): UseAttendance => {
 
     const headers = ['attendanceDate', 'reason', 'sport']
 
-    const tData = playerAttendaces?.playerAttendances ? parseAttendanceData(playerAttendaces?.playerAttendances) : []
+    const tData = playerAttendaces?.playerAttendances.map(miss => ({
+        attendanceDate: getDateMedWeekDay(miss?.missAttendanceDate || ''),
+        reason: miss?.reason || '',
+        sport: miss?.sport || '',
+    }))
 
     const { mutate: addPlayerMissattendance } = useCreatePlayerAttendanceMutation()
 
@@ -49,7 +53,7 @@ export const useAttendance = (): UseAttendance => {
                         playerEmail: playerStore.playerEmail,
                     },
                 },
-                attendanceDate: now,
+                missAttendanceDate: now,
                 sport: Sports.Baseball,
                 reason: Reason.Medical,
             },
