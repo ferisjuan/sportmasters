@@ -285,7 +285,7 @@ model PlayerSurgeries {
 
 model School {
   /// @TypeGraphQL.omit(input: true)
-  id         String             @unique @default(cuid())
+  id         String             @id @unique @default(cuid())
   attendance PlayerAttendance[]
   address    String
   email      String             @unique
@@ -311,8 +311,6 @@ model User {
   /// @TypeGraphQL.omit(output: true)
   acceptsTermsOfService Boolean  @default(false)
   address               String?  @default("")
-  /// @TypeGraphQL.omit(output: true, input: true)
-  createdAt             DateTime @default(now())
   email                 String   @unique
   lastName              String
   firstName             String
@@ -320,10 +318,12 @@ model User {
   /// @TypeGraphQL.omit(output: true)
   password              String
   phone                 String?  @default("")
-  School                School   @relation(fields: [schoolEmail], references: [email])
-  schoolEmail           String   @default("")
+  school                School   @relation(fields: [schoolId], references: [id])
+  schoolId              String   @default("")
   /// @TypeGraphQL.omit(input: true, output: true)
   confirmed             Boolean  @default(false)
+  /// @TypeGraphQL.omit(output: true, input: true)
+  createdAt             DateTime @default(now())
   /// @TypeGraphQL.omit(output: true, input: true)
   updatedAt             DateTime @updatedAt
 }

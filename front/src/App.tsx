@@ -25,6 +25,7 @@ import { rootStore } from '~/store'
 const ChangePasswordPage = lazy(() => import('./pages/auth/ChangePassword'))
 const MainPage = lazy(() => import('./pages/main'))
 const NotFoundPage = lazy(() => import('./pages/not-found/notFound'))
+const PlayersAttendance = lazy(() => import('./pages/players-attendance/PlayersAttendance'))
 const PlayerPage = lazy(() => import('./pages/player/player'))
 const PlayersPage = lazy(() => import('./pages/players/players'))
 
@@ -62,7 +63,7 @@ const App: React.FC = () => (
                             path={ROUTES.attendance}
                             element={
                                 <Suspense fallback={<SMContainer isLoading />}>
-                                    <h1>Attendance</h1>
+                                    <PlayersAttendance />
                                 </Suspense>
                             }
                         />

@@ -5,3 +5,16 @@ query PlayerAttendances($where: PlayerAttendanceWhereInput) {
         sport
     }
 }
+
+query PlayerAttendancesBySchoolAndCategoriy($where: PlayerAttendanceWhereInput) {
+    playerAttendances(where: $where) {
+        missAttendanceDate
+        playerId
+        sport
+        player {
+            name
+            lastName
+            playerEmail
+        }
+    }
+}

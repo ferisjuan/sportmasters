@@ -26,6 +26,9 @@ CREATE TYPE "PHYSICAL_QUALITIES" AS ENUM ('NONE', 'AGILITY', 'DIRBLING', 'JUMPIN
 CREATE TYPE "PLAYER_CATEGORY" AS ENUM ('NONE', 'FIRST', 'SECOND', 'THIRD', 'FOURTH', 'FIFTH', 'SIXTH', 'SEVENTH', 'EIGHTH');
 
 -- CreateEnum
+CREATE TYPE "REASON" AS ENUM ('MEDICAL', 'INJURY', 'LEAVE', 'LATE', 'SANCTION', 'NOT_PLAYING');
+
+-- CreateEnum
 CREATE TYPE "ROLES" AS ENUM ('NONE', 'ADMIN', 'COACH', 'GUARDIAN', 'PLAYER');
 
 -- CreateEnum
@@ -37,6 +40,7 @@ CREATE TYPE "TIER" AS ENUM ('BASIC', 'INTERMEDIATE', 'ADVANCED', 'EXPERT');
 -- CreateTable
 CREATE TABLE "Player" (
     "id" TEXT NOT NULL,
+    "coachId" TEXT,
     "image" TEXT,
     "lastName" TEXT NOT NULL,
     "name" TEXT NOT NULL,
@@ -53,6 +57,18 @@ CREATE TABLE "Player" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Player_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "PlayerAttendance" (
+    "id" TEXT NOT NULL,
+    "missAttendanceDate" TIMESTAMP(3) NOT NULL,
+    "playerId" TEXT NOT NULL,
+    "reason" "REASON" NOT NULL DEFAULT E'NOT_PLAYING',
+    "sport" "SPORTS" NOT NULL,
+    "schoolId" TEXT,
+
+    CONSTRAINT "PlayerAttendance_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -169,7 +185,9 @@ CREATE TABLE "School" (
     "phone" TEXT NOT NULL,
     "tier" "TIER" NOT NULL DEFAULT E'BASIC',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "School_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -178,15 +196,15 @@ CREATE TABLE "User" (
     "acceptsPrivacyPolicy" BOOLEAN NOT NULL DEFAULT false,
     "acceptsTermsOfService" BOOLEAN NOT NULL DEFAULT false,
     "address" TEXT DEFAULT E'',
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "email" TEXT NOT NULL,
     "lastName" TEXT NOT NULL,
     "firstName" TEXT NOT NULL,
     "roles" "ROLES"[],
     "password" TEXT NOT NULL,
     "phone" TEXT DEFAULT E'',
-    "schoolEmail" TEXT NOT NULL DEFAULT E'',
+    "schoolId" TEXT NOT NULL DEFAULT E'',
     "confirmed" BOOLEAN NOT NULL DEFAULT false,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
@@ -232,4 +250,10 @@ ALTER TABLE "Player" ADD CONSTRAINT "Player_playerSurgeryId_fkey" FOREIGN KEY ("
 ALTER TABLE "Player" ADD CONSTRAINT "Player_schoolId_fkey" FOREIGN KEY ("schoolId") REFERENCES "School"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "User" ADD CONSTRAINT "User_schoolEmail_fkey" FOREIGN KEY ("schoolEmail") REFERENCES "School"("email") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "PlayerAttendance" ADD CONSTRAINT "PlayerAttendance_playerId_fkey" FOREIGN KEY ("playerId") REFERENCES "Player"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "PlayerAttendance" ADD CONSTRAINT "PlayerAttendance_schoolId_fkey" FOREIGN KEY ("schoolId") REFERENCES "School"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "User" ADD CONSTRAINT "User_schoolId_fkey" FOREIGN KEY ("schoolId") REFERENCES "School"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

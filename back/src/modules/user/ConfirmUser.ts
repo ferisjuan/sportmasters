@@ -2,6 +2,9 @@
 import "reflect-metadata"
 import { Arg, Ctx, Mutation, Resolver } from 'type-graphql'
 
+// @constants
+import { CONFIRM_USER_PREFIX } from '../../constants';
+
 // @context
 import { Context } from '../../context';
 
@@ -16,7 +19,7 @@ export class ConfirmUserResolver {
         @Ctx() ctx: Context
     ): Promise<boolean> {
         try {
-            const userId = await redis.get(token)
+            const userId = await redis.get(`${CONFIRM_USER_PREFIX}${token}`)
 
             if (!userId) return false
 

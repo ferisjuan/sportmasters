@@ -38,7 +38,11 @@ export class SignupResolver {
                     firstName,
                     lastName,
                     password: hashedPassword,
-                    schoolEmail,
+                    school: {
+                        connect: {
+                            email: schoolEmail,
+                        }
+                    },
                 }
             })
 

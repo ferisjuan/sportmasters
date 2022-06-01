@@ -8,11 +8,10 @@ interface SMContainerProps {
 export const SMContainer: React.FC<SMContainerProps> = ({ children, isLoading }) => (
     <Container
         sx={{
-            alignItems: 'center',
+            alignItems: 'flex-start',
             display: 'flex',
             flex: 1,
             flexWrap: 'wrap',
-            height: '100%',
             justifyContent: 'center',
             width: '100%',
         }}
