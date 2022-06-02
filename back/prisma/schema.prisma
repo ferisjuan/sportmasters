@@ -97,7 +97,7 @@ enum PLAYER_CATEGORY {
   EIGHTH
 }
 
-enum REASON {
+enum MISSED_REASON {
   MEDICAL
   INJURY
   LEAVE
@@ -168,13 +168,13 @@ model Player {
 }
 
 model PlayerAttendance {
-  id                 String   @id @default(cuid())
+  id                 String        @id @default(cuid())
   missAttendanceDate DateTime
-  player             Player   @relation(fields: [playerId], references: [id])
+  player             Player        @relation(fields: [playerId], references: [id])
   playerId           String
-  reason             REASON   @default(NOT_PLAYING)
+  reason             MISSED_REASON @default(NOT_PLAYING)
   sport              SPORTS
-  School             School?  @relation(fields: [schoolId], references: [id])
+  School             School?       @relation(fields: [schoolId], references: [id])
   schoolId           String?
 }
 
