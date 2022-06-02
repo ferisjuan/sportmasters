@@ -1,17 +1,23 @@
 // @vendors
 import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { Group, NativeSelect, Select } from '@mantine/core'
+// import { useTranslation } from 'react-i18next'
+import { Group, NativeSelect } from '@mantine/core'
 
 // @constants
 import { CATEGORYFILTERS, FIELDPOSITIONS, MONTHLYSTATUS } from '~/constants'
 
-export const SelectFilters: React.FC = () => {
-    const { t } = useTranslation('fieldPosition')
+// @hooks
+import { usePlayerFilters } from '../player/player-grid/hooks/usePlayers'
 
-    const category = FIELDPOSITIONS.map(value => t(value))
+export const SelectFilters: React.FC = () => {
+    // const { t } = useTranslation('fieldPosition')
+    const { handleFilters } = usePlayerFilters()
+
+    // const category = FIELDPOSITIONS.map(value => t(value))
 
     const [value, setValue] = useState({ category: '', fieldPosition: '', status: '' })
+
+    handleFilters(value.fieldPosition)
 
     return (
         <Group grow>
@@ -27,14 +33,12 @@ export const SelectFilters: React.FC = () => {
                 style={{ marginTop: '1rem', marginBottom: '1rem' }}
             />
 
-            <Select
+            <NativeSelect
                 value={value.fieldPosition}
                 onChange={e => {
-                    setValue({ ...value, fieldPosition: e || '' })
+                    setValue({ ...value, fieldPosition: e.target.value })
                 }}
-                searchable
-                nothingFound="No se encontraron resultados"
-                data={category}
+                data={FIELDPOSITIONS}
                 placeholder="Elige una opción"
                 label="Posicion"
                 variant="filled"
