@@ -8,6 +8,12 @@ query Player($where: PlayerWhereUniqueInput!) {
 
 query PlayerData($where: PlayerWhereUniqueInput!) {
     player(where: $where) {
+        id
+        image
+        lastName
+        playerEmail
+        name
+        schoolId
         playerData {
             playerIdNumber
             playerIdType
@@ -49,7 +55,7 @@ query PlayerMedicalData($where: PlayerWhereUniqueInput!) {
             observations
             weight
         }
-        PlayerInjuries {
+        playerInjuries {
             name
             observations
             occurrenceDate
