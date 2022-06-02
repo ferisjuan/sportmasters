@@ -1,32 +1,38 @@
 // @generated
-import {
-    Reason,
-    Sports,
-    useCreatePlayerAttendanceMutation,
-    usePlayerAttendancesBySchoolAndCategoriyQuery,
-} from '~/generated/graphql'
+import { Missed_Reason, Sports, useCreatePlayerAttendanceMutation, useGetPlayersQuery } from '~/generated/graphql'
 
 // @hooks
 import { useStores } from '~/hooks'
 
-// @utils
-import { getDateMedWeekDay } from '~/utils'
+interface AddPlayerMissattendance {
+    email: string
+    sport: string
+    reason: string
+}
+
+interface PlayerData {
+    names: string
+    playerEmail: string
+    sport?: Sports[]
+    shirtNumber?: string | number | null
+    missedAttendances?: number
+}
 
 interface UseAttendance {
     isLoading: boolean
     headers: string[]
-    tData: Record<string, string>[] | undefined
-    handleAddPlayerMissattendance: (e: any) => void
+    playerData: PlayerData[] | undefined
+    handleAddPlayerMissattendance: (e: AddPlayerMissattendance) => void
 }
 
 export const useAttendance = (): UseAttendance => {
     const { userStore } = useStores()
 
     const {
-        data: playerAttendaces,
+        data: players,
         isFetching,
         isLoading,
-    } = usePlayerAttendancesBySchoolAndCategoriyQuery({
+    } = useGetPlayersQuery({
         where: {
             schoolId: {
                 equals: userStore.schoolId,
@@ -34,21 +40,24 @@ export const useAttendance = (): UseAttendance => {
         },
     })
 
-    const headers = ['name', 'lastName', 'email', 'sport', 'reason', 'Date', 'Actions']
+    const headers = ['Nombres', 'Email', 'Deportes', 'Camiseta', 'Faltas', 'Acciones']
 
-    const tData = playerAttendaces?.playerAttendances.map(attendance => ({
-        name: attendance.player.name,
-        lastName: attendance.player.lastName,
-        email: attendance.player.playerEmail,
-        sport: attendance?.sport || '',
-        reason: attendance?.reason || '',
-        attendanceDate: getDateMedWeekDay(attendance?.missAttendanceDate || ''),
+    const playerData: PlayerData[] | undefined = players?.players.map(player => ({
+        names: `${player.name} ${player.lastName}`,
+        playerEmail: player.playerEmail,
+        sport: player.playerSportData?.sport,
+        shirtNumber: player.playerSportData?.shirtNumber,
+        missedAttendances: player._count?.playerAttendances,
     }))
 
     const { mutate: addPlayerMissattendance } = useCreatePlayerAttendanceMutation()
 
-    const handleAddPlayerMissattendance = (e): void => {
-        console.log('🚀🚀🚀 ~ file: useAttendance.ts ~ line 66 ~ handleAddPlayerMissattendance ~ e', e)
+    const handleAddPlayerMissattendance = ({ email, reason, sport }: AddPlayerMissattendance): void => {
+        console.log('🚀🚀🚀 ~ file: useAttendance.ts ~ line 64 ~ handleAddPlayerMissattendance ~ e', {
+            email,
+            reason,
+            sport,
+        })
         return
 
         const now = new Date()
@@ -56,12 +65,12 @@ export const useAttendance = (): UseAttendance => {
             data: {
                 player: {
                     connect: {
-                        playerEmail: playerEmail,
+                        playerEmail: email,
                     },
                 },
                 missAttendanceDate: now,
-                sport: sport,
-                reason: reason,
+                sport: sport as Sports,
+                reason: reason as Missed_Reason,
             },
         })
     }
@@ -69,7 +78,7 @@ export const useAttendance = (): UseAttendance => {
     return {
         isLoading: isLoading || isFetching,
         headers,
-        tData,
+        playerData,
         handleAddPlayerMissattendance,
     }
 }

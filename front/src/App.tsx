@@ -2,6 +2,7 @@
 import { lazy, Suspense, useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { ColorScheme, ColorSchemeProvider, MantineProvider, Title } from '@mantine/core'
+import { ModalsProvider } from '@mantine/modals'
 import { NotificationsProvider } from '@mantine/notifications'
 import { QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
@@ -112,13 +113,15 @@ function WithProvider(): JSX.Element {
     return (
         <ColorSchemeProvider colorScheme={colorScheme as ColorScheme} toggleColorScheme={toggleColorScheme}>
             <MantineProvider theme={{ colorScheme: colorScheme as ColorScheme }}>
-                <NotificationsProvider>
-                    <QueryClientProvider client={queryClient}>
-                        <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+                <ModalsProvider>
+                    <NotificationsProvider>
+                        <QueryClientProvider client={queryClient}>
+                            <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
 
-                        <App />
-                    </QueryClientProvider>
-                </NotificationsProvider>
+                            <App />
+                        </QueryClientProvider>
+                    </NotificationsProvider>
+                </ModalsProvider>
             </MantineProvider>
         </ColorSchemeProvider>
     )

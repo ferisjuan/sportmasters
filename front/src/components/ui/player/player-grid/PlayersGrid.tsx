@@ -24,6 +24,9 @@ export const PlayersGrid: React.FC = observer(() => {
     const { data: playersData } = usePlayersQuery({
         skip: paginationSkip,
         take: paginationTake,
+        where: {
+            schoolId: { equals: playerStore.rootStore.userStore.schoolId },
+        },
     })
 
     const navigate = useNavigate()

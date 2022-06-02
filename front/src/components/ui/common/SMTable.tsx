@@ -1,17 +1,19 @@
 // @vendors
 import { ActionIcon, Table } from '@mantine/core'
 import type { IconType } from 'react-icons'
-import { FcSettings } from 'react-icons/fc'
 import uuid from 'react-uuid'
 
 interface Action {
-    cb: ((e: unknown) => void) | undefined
+    cb: ((e: never) => void) | undefined
     Icon: IconType
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Data = Record<string, any>
+
 interface SMTableProps {
     actions?: Action[]
-    data?: Record<string, string>[]
+    data?: Data[] | undefined
     headers: string[]
 }
 
@@ -38,7 +40,7 @@ export const SMTable: React.FC<SMTableProps> = ({ actions, data, headers }) => (
                                 key={uuid()}
                                 onClick={() => {
                                     if (!cb) return
-                                    cb(d)
+                                    cb(d as never)
                                 }}
                             >
                                 <Icon size={24} />

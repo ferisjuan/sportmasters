@@ -1,5 +1,10 @@
 // @generated
-import { Reason, Sports, useCreatePlayerAttendanceMutation, usePlayerAttendancesQuery } from '~/generated/graphql'
+import {
+    Missed_Reason,
+    Sports,
+    useCreatePlayerAttendanceMutation,
+    usePlayerAttendancesQuery,
+} from '~/generated/graphql'
 
 // @hooks
 import { useStores } from '~/hooks'
@@ -23,12 +28,11 @@ export const useAttendance = (): UseAttendance => {
         isLoading,
     } = usePlayerAttendancesQuery({
         where: {
-            player: {
-                is: {
-                    playerEmail: {
-                        equals: playerStore.player.playerEmail,
-                    },
-                },
+            schoolId: {
+                equals: userStore.schoolId,
+            },
+            playerId: {
+                equals: playerStore.player.id,
             },
         },
     })
@@ -60,7 +64,7 @@ export const useAttendance = (): UseAttendance => {
                 },
                 missAttendanceDate: now,
                 sport: Sports.Baseball,
-                reason: Reason.Medical,
+                reason: Missed_Reason.Medical,
             },
         })
     }
