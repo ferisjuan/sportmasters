@@ -11,12 +11,15 @@ query PlayersGrid($where: PlayerWhereInput) {
     players(where: $where) {
         id
         playerEmail
+        lastName
+        name
         playerSportData {
             fieldPosition
             admissionDate
             handedness
             id
             sport
+            category
         }
     }
 }

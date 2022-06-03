@@ -1,15 +1,30 @@
-export const CATEGORYFILTERS = ['Pollito', 'sub20', 'sub10', 'sub5']
+export const CATEGORYFILTERS = [
+    'ALL',
+    'NONE',
+    'FIRST',
+    'SECOND',
+    'THIRD',
+    'FOURTH',
+    'FIFTH',
+    'SIXTH',
+    'SEVENTH',
+    'EIGHTH',
+]
 
 export const FIELDPOSITIONS = [
-    'GOAL_KEEPER',
+    'ALL',
+    'NONE',
+    'ATTACKING_MIDFIELDER',
     'CENTER_BACK',
-    'LEFT_BACK',
+    'CENTER_FORWARD',
     'CENTER_MIDDLEFIELDER',
     'DEFENSIVE_MIDFIELDER',
+    'GOAL_KEEPER',
+    'LEFT_FULLBACK',
+    'LEFT_MIDDLEFIELDER',
+    'RIGHT_FULLBACK',
     'RIGHT_MIDDLEFIELDER',
-    'CENTER_FORWARD',
-    'SECOND_STRIKER',
-    'EXTREME',
+    'SWEEPER',
 ]
 
 export const MONTHLYSTATUS = ['Al dia', 'Deudor', 'Pendiente']

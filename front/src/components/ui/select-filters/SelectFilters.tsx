@@ -1,5 +1,5 @@
 // @vendors
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 // import { useTranslation } from 'react-i18next'
 import { Group, NativeSelect } from '@mantine/core'
 
@@ -11,20 +11,18 @@ import { usePlayerFilters } from '../player/player-grid/hooks/usePlayers'
 
 export const SelectFilters: React.FC = () => {
     // const { t } = useTranslation('fieldPosition')
-    const { handleFilters } = usePlayerFilters()
-
     // const category = FIELDPOSITIONS.map(value => t(value))
 
-    const [value, setValue] = useState({ category: '', fieldPosition: '', status: '' })
-
-    handleFilters(value.fieldPosition)
+    const [category, setCategory] = useState('')
+    const [fieldPosition, setFieldPosition] = useState('')
+    const [status, setStatus] = useState('')
 
     return (
         <Group grow>
             <NativeSelect
-                value={value.category}
+                value={category}
                 onChange={e => {
-                    setValue({ ...value, category: e.target.value })
+                    setCategory(e.target.value)
                 }}
                 data={CATEGORYFILTERS}
                 placeholder="Elige una opción"
@@ -34,9 +32,9 @@ export const SelectFilters: React.FC = () => {
             />
 
             <NativeSelect
-                value={value.fieldPosition}
+                value={fieldPosition}
                 onChange={e => {
-                    setValue({ ...value, fieldPosition: e.target.value })
+                    setFieldPosition(e.target.value)
                 }}
                 data={FIELDPOSITIONS}
                 placeholder="Elige una opción"
@@ -46,9 +44,9 @@ export const SelectFilters: React.FC = () => {
             />
 
             <NativeSelect
-                value={value.status}
+                value={status}
                 onChange={e => {
-                    setValue({ ...value, status: e.target.value })
+                    setStatus(e.target.value)
                 }}
                 data={MONTHLYSTATUS}
                 placeholder="Elige una opción"

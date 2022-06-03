@@ -1,41 +1,39 @@
 // @vendors
 import { useEffect, useState } from 'react'
+import { useQuery } from 'react-query'
 
 // @generated
-import { usePlayersGridQuery, Field_Position, PlayersGridQuery } from '~/generated/graphql'
+import { usePlayersGridQuery, Field_Position, PlayersGridDocument, usePlayersQuery } from '~/generated/graphql'
 
 // @interfaces
 interface usePlayerFilter {
     isLoading: boolean
     playersGrid: Record<string, string>[] | undefined
-    handleFilters: (e: Field_Position) => void
+    handleFilters: (e: any) => void | undefined
 }
 
-export const usePlayerFilters = (): usePlayerFilter => {
-    const { data: players, isFetching, isLoading } = usePlayersGridQuery()
+export const usePlayerFilters = (): void => {
+    // const { data: players, isFetching, isLoading } = usePlayersGridQuery()
 
-    const [plar, setPlar] = useState(players?.players)
-    console.log('🚀 ~ file: usePlayers.ts ~ line 18 ~ usePlayerFilters ~ plar', plar?.players)
+    const { data } = useQuery('playersGrid', async () => await usePlayersQuery())
+    console.log('🚀 ~ file: usePlayers.ts ~ line 19 ~ usePlayerFilters ~ data', data)
 
-    const handleFilters = (fieldPosition: Field_Position): void => {
-        const { data: playersFil } = usePlayersGridQuery({
-            where: {
-                playerSportData: {
-                    is: {
-                        fieldPosition: {
-                            equals: fieldPosition,
-                        },
-                    },
-                },
-            },
-        })
+    // const handleFilters = (fieldPosition: Field_Position): any => {
+    //     const { data: playersFil } = usePlayersGridQuery({
+    //         where: {
+    //             playerSportData: {
+    //                 is: {
+    //                     fieldPosition: {
+    //                         in: fieldPosition,
+    //                     },
+    //                 },
+    //             },
+    //         },
+    //     })
+    //     return playersFil
+    // }
 
-        useEffect(() => {
-            setPlar(playersFil)
-        }, [playersFil])
-    }
+    // const playersGrid = players?.players
 
-    const playersGrid = plar?.players
-
-    return { playersGrid, handleFilters, isLoading: isLoading || isFetching }
+    // return { data, handleFilters, isLoading: isLoading || isFetching }
 }

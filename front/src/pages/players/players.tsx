@@ -27,7 +27,7 @@ const Players: React.FC = observer(() => {
                 <PlayerForm />
             </SMModal>
 
-            <SelectFilters />
+            {/* <SelectFilters /> */}
 
             {isPlayersLoading ? (
                 <Loader
