@@ -1,12 +1,21 @@
 import { Container } from '@mantine/core'
 
 interface SMRowProps {
-    align?: 'center' | 'end' | 'start'
+    align?: 'flex-start' | 'flex-end' | 'center' | 'stretch' | 'baseline' | 'initial' | 'inherit'
     children: React.ReactNode
-    justify?: 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around'
+    justify?:
+        | 'flex-start'
+        | 'flex-end'
+        | 'center'
+        | 'space-between'
+        | 'space-around'
+        | 'space-evenly'
+        | 'stretch'
+        | 'initial'
+        | 'inherit'
 }
 
-export const SMRow: React.FC<SMRowProps> = ({ align, children, justify }) => (
+export const SMRow: React.FC<SMRowProps> = ({ align = 'center', children, justify = 'flex-start' }) => (
     <Container
         mb="xs"
         mt="lg"
@@ -14,6 +23,7 @@ export const SMRow: React.FC<SMRowProps> = ({ align, children, justify }) => (
             alignItems: align,
             display: 'flex',
             flex: 1,
+            gap: 20,
             justifyContent: justify,
         }}
     >

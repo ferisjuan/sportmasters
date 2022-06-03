@@ -10,13 +10,19 @@ import { SMTable } from '~/components/ui/common/SMTable'
 
 // @hooks
 import { useAttendance } from './useAttendance'
-import { Missed_Reason, Player, PlayerAttendance, PlayerSportData } from '~/generated/graphql'
-import { useState } from 'react'
+import { Missed_Reason, Player, PlayerAttendance, PlayerSportData, Player_Category } from '~/generated/graphql'
+import { SyntheticEvent, useState } from 'react'
+import { SMRow } from '../../../components/ui/common/SMRow'
 
 const missedReasons = Object.keys(Missed_Reason).map(key => ({ value: key, label: key }))
 
+const playerCategories = Object.keys(Player_Category).map(key => ({ value: key, label: key }))
+
+playerCategories.unshift({ value: '', label: 'Todos' })
+
 export const Attendance: React.FC = observer(() => {
-    const { handleAddPlayerMissattendance, headers, isLoading, playerData } = useAttendance()
+    const { categoryFilter, handleAddPlayerMissattendance, headers, isLoading, players, setCategoryFilter } =
+        useAttendance()
 
     const modals = useModals()
 
@@ -63,8 +69,24 @@ export const Attendance: React.FC = observer(() => {
     const actions = [{ cb: handleOnAddPlayerMissattendance, Icon: MdPersonAddDisabled }]
 
     return (
-        <SMContainer isLoading={isLoading}>
-            <SMTable data={playerData} headers={headers} actions={actions} />
-        </SMContainer>
+        <>
+            <SMRow align="flex-end">
+                <NativeSelect
+                    data={playerCategories}
+                    label="Categoria"
+                    onChange={(event: SyntheticEvent<HTMLSelectElement>) =>
+                        setCategoryFilter(event.currentTarget.value as keyof typeof Player_Category)
+                    }
+                    value={categoryFilter}
+                />
+                <Button onClick={() => setCategoryFilter('')} variant="subtle">
+                    Limpiar
+                </Button>
+            </SMRow>
+
+            <SMContainer isLoading={isLoading}>
+                <SMTable data={players} headers={headers} actions={actions} />
+            </SMContainer>
+        </>
     )
 })
