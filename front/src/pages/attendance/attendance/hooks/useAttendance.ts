@@ -1,36 +1,17 @@
 // @generated
 import { useMemo, useState } from 'react'
-import {
-    Missed_Reason,
-    Player_Category,
-    Sports,
-    useCreatePlayerAttendanceMutation,
-    useGetPlayersQuery,
-} from '~/generated/graphql'
+import { Player_Category, useGetPlayersQuery } from '~/generated/graphql'
 
 // @hooks
 import { useStores } from '~/hooks'
-
-interface AddPlayerMissattendance {
-    email: string
-    sport: string
-    reason: string
-}
-
-interface PlayerData {
-    names: string
-    playerEmail: string
-    sport?: Sports[]
-    shirtNumber?: string | null
-    missedAttendances?: number
-}
+import { PlayerData } from './types'
 
 interface UseAttendance {
     categoryFilter: string | undefined
-    isLoading: boolean
+    handleClearFilter: () => void
     headers: string[]
+    isLoading: boolean
     players: PlayerData[] | undefined
-    handleAddPlayerMissattendance: (e: AddPlayerMissattendance) => void
     setCategoryFilter: (e: string) => void
 }
 
@@ -41,6 +22,8 @@ export const useAttendance = (): UseAttendance => {
 
     const [players, setPlayers] = useState<PlayerData[]>()
     const [categoryFilter, setCategoryFilter] = useState('')
+
+    const handleClearFilter = (): void => setCategoryFilter('')
 
     const playerSportData = (): Record<string, unknown> => {
         if (!categoryFilter.length) return {}
@@ -66,49 +49,23 @@ export const useAttendance = (): UseAttendance => {
             playerSportData: playerSportData(),
         },
     })
-    console.log('🚀🚀🚀 ~ file: useAttendance.ts ~ line 69 ~ useAttendance ~ playersData', playersData)
 
     useMemo(() => {
-        const _players = playersData?.players.map(player => ({
+        const _players: PlayerData[] | undefined = playersData?.players.map(player => ({
             names: `${player.name} ${player.lastName}`,
             playerEmail: player.playerEmail,
-            sport: player.playerSportData?.sport,
+            sports: player.playerSportData?.sport,
             shirtNumber: player.playerSportData?.shirtNumber,
             category: player.playerSportData?.category,
             missedAttendances: player._count?.playerAttendances,
         }))
 
         setPlayers(_players)
-    }, [categoryFilter])
-
-    const { mutate: addPlayerMissattendance } = useCreatePlayerAttendanceMutation()
-
-    const handleAddPlayerMissattendance = ({ email, reason, sport }: AddPlayerMissattendance): void => {
-        console.log('🚀🚀🚀 ~ file: useAttendance.ts ~ line 64 ~ handleAddPlayerMissattendance ~ e', {
-            email,
-            reason,
-            sport,
-        })
-        return
-
-        const now = new Date()
-        addPlayerMissattendance({
-            data: {
-                player: {
-                    connect: {
-                        playerEmail: email,
-                    },
-                },
-                missAttendanceDate: now,
-                sport: sport as Sports,
-                reason: reason as Missed_Reason,
-            },
-        })
-    }
+    }, [categoryFilter, playersData])
 
     return {
         categoryFilter,
-        handleAddPlayerMissattendance,
+        handleClearFilter,
         headers,
         isLoading: isLoading || isFetching,
         players,
