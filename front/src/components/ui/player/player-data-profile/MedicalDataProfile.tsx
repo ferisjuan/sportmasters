@@ -31,7 +31,7 @@ export const MedicalDataProfile: React.FC = () => {
                 <PlayerGridCol span={3} title={t('bmi')} text={player?.playerMedical?.IMC} />
             </Grid>
 
-            <PlayerGridCol span={6} title={t('injuries')} text={player?.PlayerInjuries?.name} />
+            <PlayerGridCol span={6} title={t('injuries')} text={player?.playerInjuries?.name} />
 
             <PlayerGridCol span={6} title={t('surgeries')} text={player?.playerSurgeries?.name} />
 

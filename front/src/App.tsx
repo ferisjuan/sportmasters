@@ -26,7 +26,7 @@ const ChangePasswordPage = lazy(() => import('./pages/auth/ChangePassword'))
 const MainPage = lazy(() => import('./pages/main'))
 const NotFoundPage = lazy(() => import('./pages/not-found/notFound'))
 const PlayerPage = lazy(() => import('./pages/player/player'))
-const PlayersPage = lazy(() => import('./pages/players/players'))
+const PlayersPage = lazy(() => import('./pages/players/Players'))
 
 const App: React.FC = () => (
     <AuthContextProvider>

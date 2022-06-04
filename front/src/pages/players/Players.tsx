@@ -4,13 +4,14 @@ import { Box, Loader, Pagination, ThemeIcon } from '@mantine/core'
 import { observer } from 'mobx-react-lite'
 
 // @components
-import { PlayerForm, PlayersGrid, SelectFilters, SMModal } from '~/components'
+import { PlayerForm, PlayersGrid, SMModal } from '~/components'
 
 // @hooks
 import { usePlayers } from './hooks'
 
 const Players: React.FC = observer(() => {
     const { handleOnAddPlayer, handleOnPaginationChange, isPlayersLoading, pages, skip } = usePlayers()
+    console.log(isPlayersLoading)
 
     return (
         <Box
@@ -26,8 +27,6 @@ const Players: React.FC = observer(() => {
             <SMModal>
                 <PlayerForm />
             </SMModal>
-
-            {/* <SelectFilters /> */}
 
             {isPlayersLoading ? (
                 <Loader

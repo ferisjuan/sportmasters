@@ -1,0 +1,33 @@
+query GetPlayersFilters($where: PlayerWhereInput) {
+    players(where: $where) {
+        id
+        name
+        lastName
+        playerEmail
+        playerSportData {
+            category
+            fieldPosition
+            admissionDate
+            handedness
+            id
+        }
+
+    }
+}
+
+query Players($take: Int, $skip: Int, $where: PlayerWhereInput) {
+    players(take: $take, skip: $skip, where: $where) {
+        id
+        lastName
+        name
+        playerEmail
+    }
+}
+
+query PlayersCount {
+    aggregatePlayer {
+        _count {
+            id
+        }
+    }
+}

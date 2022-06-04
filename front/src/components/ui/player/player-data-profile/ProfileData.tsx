@@ -35,7 +35,7 @@ export const ProfileData: React.FC = () => {
                     {playerStore.player.name}
                 </Text>
 
-                <Text>{t(`${player?.PlayerSportData?.fieldPosition}`)}</Text>
+                <Text>{t(`${player?.playerSportData?.fieldPosition}`)}</Text>
             </Group>
 
             <Group direction="column" spacing={1} align="center" style={{ marginTop: '20px' }}>
