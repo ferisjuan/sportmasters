@@ -1,30 +1,25 @@
 // @vendors
-import "reflect-metadata"
+import 'reflect-metadata'
 import { Arg, Ctx, Mutation, Resolver } from 'type-graphql'
 import { compare } from 'bcryptjs'
-import { expressjwt as jwt } from 'express-jwt'
 
 // @context
-import { Context } from '../../context';
-import { createConfirmationUrl, sendMail } from '../../utils';
+import { Context } from '../../context'
+import { createConfirmationUrl, sendMail } from '../../utils'
 
 // @generated
-import { User } from '../../generated/typegraphql-prisma.ts';
+import { User } from '../../generated/typegraphql-prisma.ts'
 
 @Resolver(User)
 export class SigninResolver {
     @Mutation(() => User, { nullable: true })
-    async signin(
-        @Arg("email") email: string,
-        @Arg("password") password: string,
-        @Ctx() ctx: Context
-    ) {
+    async signin(@Arg('email') email: string, @Arg('password') password: string, @Ctx() ctx: Context): Promise<void> {
         try {
-            const user = await ctx.prisma.user.findUnique({ where: { email } });
+            const user = await ctx.prisma.user.findUnique({ where: { email } })
 
-            const valid = await compare(password, user.password);
+            const valid = await compare(password, user.password)
 
-            if (!valid) throw new Error("Wrong credentials")
+            if (!valid) throw new Error('Wrong credentials')
 
             if (!user.confirmed) {
                 await sendMail(user.email, await createConfirmationUrl(user.id))
@@ -34,7 +29,7 @@ export class SigninResolver {
 
             ctx.req.session.userId = user.id
         } catch (error) {
-            throw new Error("Wrong credentials")
+            throw new Error('Wrong credentials')
         }
     }
 }

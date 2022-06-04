@@ -8,7 +8,7 @@ export const logger = createLogger({
         }),
         format.errors({ stack: true }),
         format.splat(),
-        format.json()
+        format.json(),
     ),
     defaultMeta: { service: 'invoice' },
     transports: [
@@ -25,6 +25,6 @@ if (process.env.NODE_ENV !== 'production') {
                 format.ms(),
                 format.printf(info => `${info.timestamp} ${info.level}: ${info.message}`),
             ),
-        })
+        }),
     )
 }

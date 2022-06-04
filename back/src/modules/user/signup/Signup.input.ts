@@ -1,12 +1,12 @@
 // @vendors
-import { IsEmail, Length } from 'class-validator';
-import { Field, InputType } from 'type-graphql';
+import { IsEmail, Length } from 'class-validator'
+import { Field, InputType } from 'type-graphql'
 
 // @decorators
-import { IsEmailAlreadyExists } from './IsEmailAlreadyExists';
+import { IsEmailAlreadyExists } from './IsEmailAlreadyExists'
 
 // @shared
-import { PasswordInput } from '../../shared';
+import { PasswordInput } from '../../shared'
 
 @InputType()
 export class SignupInput extends PasswordInput {

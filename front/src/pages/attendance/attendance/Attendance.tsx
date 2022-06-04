@@ -23,7 +23,8 @@ missedReasons.unshift({ value: '', label: 'Seleccione una...' })
 playerCategories.unshift({ value: '', label: 'Todos' })
 
 export const Attendance: React.FC = observer(() => {
-    const { categoryFilter, handleClearFilter, headers, isLoading, players, setCategoryFilter } = useAttendance()
+    const { categoryFilter, handleClearFilter, headers, isLoading, players, refetchPlayers, setCategoryFilter } =
+        useAttendance()
 
     const {
         closeModal,
@@ -33,7 +34,7 @@ export const Attendance: React.FC = observer(() => {
         missedReason,
         playerName,
         setMissedReason,
-    } = useSaveAttendance()
+    } = useSaveAttendance(refetchPlayers)
 
     const actions = [{ cb: handleOpenModal, Icon: MdPersonAddDisabled }]
 

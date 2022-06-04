@@ -12,6 +12,7 @@ interface UseAttendance {
     headers: string[]
     isLoading: boolean
     players: PlayerData[] | undefined
+    refetchPlayers: () => void
     setCategoryFilter: (e: string) => void
 }
 
@@ -41,6 +42,8 @@ export const useAttendance = (): UseAttendance => {
         data: playersData,
         isFetching,
         isLoading,
+        refetch: refetchPlayers,
+        isRefetching,
     } = useGetPlayersQuery({
         where: {
             schoolId: {
@@ -67,8 +70,9 @@ export const useAttendance = (): UseAttendance => {
         categoryFilter,
         handleClearFilter,
         headers,
-        isLoading: isLoading || isFetching,
+        isLoading: isLoading || isFetching || isRefetching,
         players,
+        refetchPlayers,
         setCategoryFilter,
     }
 }

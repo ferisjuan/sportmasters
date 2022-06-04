@@ -14,7 +14,7 @@ interface UseSaveAttendance {
     setMissedReason: (e: string) => void
 }
 
-export const useSaveAttendance = (): UseSaveAttendance => {
+export const useSaveAttendance = (refetchPlayers: () => void): UseSaveAttendance => {
     const [missedReason, setMissedReason] = useState('')
     const [playerData, setPlayerData] = useState<PlayerData>()
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -27,6 +27,7 @@ export const useSaveAttendance = (): UseSaveAttendance => {
 
     const { mutate: addPlayerMissattendance } = useCreatePlayerAttendanceMutation({
         onSuccess: (): void => {
+            refetchPlayers()
             showSMNotification('Se ha guardado la falta', 'INFO', false)
         },
     })

@@ -1,1 +1,1 @@
-export const HASH_SALT = 12;
+export const HASH_SALT = 12

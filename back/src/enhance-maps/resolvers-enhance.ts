@@ -7,7 +7,7 @@ import { ModelConfig, ModelsEnhanceMap, ResolversEnhanceMap } from '../generated
 // @middlewares
 import { isAuth } from '../middleware'
 
-const schoolConfig: ModelConfig<"School"> = {
+const schoolConfig: ModelConfig<'School'> = {
     fields: {
         address: [UseMiddleware(isAuth)],
         id: [UseMiddleware(isAuth)],
@@ -15,7 +15,7 @@ const schoolConfig: ModelConfig<"School"> = {
         players: [UseMiddleware(isAuth)],
         tier: [UseMiddleware(isAuth)],
         users: [UseMiddleware(isAuth)],
-    }
+    },
 }
 
 export const modelsEnhanceMap: ModelsEnhanceMap = {
@@ -24,9 +24,9 @@ export const modelsEnhanceMap: ModelsEnhanceMap = {
 
 export const resolversEnhanceMap: ResolversEnhanceMap = {
     Player: {
-        _all: [UseMiddleware(isAuth)]
+        _all: [UseMiddleware(isAuth)],
     },
     User: {
-        _all: [UseMiddleware(isAuth)]
-    }
+        _all: [UseMiddleware(isAuth)],
+    },
 }

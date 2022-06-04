@@ -33,7 +33,7 @@ import {
 // @redis
 import { redis } from './redis'
 
-const main = async () => {
+const main = async (): Promise<void> => {
     applyModelsEnhanceMap(modelsEnhanceMap)
     applyResolversEnhanceMap(resolversEnhanceMap)
 
