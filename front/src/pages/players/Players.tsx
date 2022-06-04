@@ -18,7 +18,7 @@ const Players: React.FC = observer(() => {
             style={{
                 display: 'flex',
                 flexDirection: 'column',
-                height: '87vh',
+                height: '80vh',
                 paddingBlockEnd: '2rem',
                 position: 'relative',
                 width: '100%',
