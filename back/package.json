@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "dotenv -e ./development.env -- ts-node-dev --respawn --transpile-only src/server.ts",
     "prebuild": "rm -rf dist",
-    "build": "NODE_ENV=production npm run generate && tsc --project ./tsconfig.json",
+    "build": "NODE_ENV=production yarn generate && tsc --project ./tsconfig.json",
     "lint": "eslint --fix --ext '*/**/*.{ts,tsx}' -c .eslintrc",
     "prelint": "tsc",
     "start": "node ./dist/server.js",
