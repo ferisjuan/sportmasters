@@ -14,6 +14,7 @@ export class UserStore {
     private _lastName = ''
     private _roles: Roles[] = [Roles.None]
     private _schoolEmail = ''
+    private _schoolId = ''
 
     readonly rootStore
 
@@ -63,6 +64,14 @@ export class UserStore {
 
     public get schoolEmail(): string {
         return this._schoolEmail
+    }
+
+    public set schoolId(schoolId: string) {
+        this._schoolId = schoolId
+    }
+
+    public get schoolId(): string {
+        return this._schoolId
     }
 
     public getInitials(): string {

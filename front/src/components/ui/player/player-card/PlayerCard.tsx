@@ -2,16 +2,18 @@
 import { observer } from 'mobx-react-lite'
 import { Card, Container, Image, Text } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
-
-// @generated
-import { Player } from '~/generated/graphql'
+import { Field_Position } from '~/generated/graphql'
 
 interface PlayerCardProps {
-    player: Partial<Player>
+    image: string
+    lastName: string
+    fieldPosition: Field_Position | undefined | null
 }
 
-export const PlayerCard: React.FC<PlayerCardProps> = observer(({ player }) => {
+export const PlayerCard: React.FC<PlayerCardProps> = observer(({ image, fieldPosition, lastName }) => {
     const { t } = useTranslation('fieldPosition')
+
+    console.log(image, fieldPosition, lastName)
 
     return (
         <Card
@@ -22,18 +24,18 @@ export const PlayerCard: React.FC<PlayerCardProps> = observer(({ player }) => {
         >
             <Card.Section>
                 <Container fluid sx={{ display: 'flex', justifyContent: 'center' }}>
-                    <Image alt="Player image" fit="contain" src={player?.image || ''} width={120} />
+                    <Image alt="Player image" fit="contain" src={image || ''} width={120} />
                 </Container>
             </Card.Section>
 
             <Container>
                 <Text align="center" mt={8} size="xl" transform="uppercase" weight={600}>
-                    {player?.lastName}
+                    {lastName}
                 </Text>
             </Container>
 
             <Text align="center" size="md" weight={300}>
-                {t(`${player?.playerSportData?.fieldPosition}`) || 'Position not found'}
+                {t(`${fieldPosition}`) || 'Position not found'}
             </Text>
         </Card>
     )

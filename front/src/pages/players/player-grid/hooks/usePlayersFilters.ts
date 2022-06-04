@@ -24,7 +24,7 @@ export const usePlayersFilters = (): UsePlayersFilter => {
 
     const [status, setStatus] = useState('')
 
-    const handleClearFilter = () => {
+    const handleClearFilter = (): void => {
         setFieldPosition('')
         setCategory('')
         setStatus('')

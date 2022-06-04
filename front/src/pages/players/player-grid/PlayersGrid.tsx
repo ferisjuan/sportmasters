@@ -38,6 +38,8 @@ export const PlayersGrid: React.FC = observer(() => {
         setStatus,
     } = usePlayersFilters()
 
+    console.log(playersDataFilters)
+
     const navigate = useNavigate()
 
     const handleClick = (email: string | undefined): void => {
@@ -48,25 +50,15 @@ export const PlayersGrid: React.FC = observer(() => {
         navigate(`../${ROUTES.player}`, { replace: true })
     }
 
-    if (isLoading)
-        return (
-            <Loader
-                color="indigo"
-                variant="bars"
-                sx={{ left: '50%', position: 'absolute', transform: 'translate(-50%, -50%)', top: '50%' }}
-            />
-        )
-
     return (
         <>
             <Group grow>
                 <NativeSelect
                     value={category}
                     onChange={event => {
-                        setCategory(event.target.value as keyof typeof Player_Category)
+                        setCategory(event.target.value)
                     }}
                     data={playerCategories}
-                    placeholder="Elige una opción"
                     label="Categoria"
                     variant="filled"
                     style={{ marginTop: '1rem', marginBottom: '1rem' }}
@@ -75,10 +67,9 @@ export const PlayersGrid: React.FC = observer(() => {
                 <NativeSelect
                     value={fieldPosition}
                     onChange={event => {
-                        setFieldPosition(event.target.value as keyof typeof Field_Position)
+                        setFieldPosition(event.target.value)
                     }}
                     data={fieldPositions}
-                    placeholder="Elige una opción"
                     label="Posicion"
                     variant="filled"
                     style={{ marginTop: '1rem', marginBottom: '1rem' }}
@@ -90,7 +81,6 @@ export const PlayersGrid: React.FC = observer(() => {
                         setStatus(event.target.value)
                     }}
                     data={MONTHLYSTATUS}
-                    placeholder="Elige una opción"
                     label="Estado mensual"
                     variant="filled"
                     style={{ marginTop: '1rem', marginBottom: '1rem' }}
@@ -101,11 +91,23 @@ export const PlayersGrid: React.FC = observer(() => {
             </Group>
 
             <ScrollArea>
-                {playersDataFilters?.players.map(player => (
-                    <Box key={player.id} onClick={() => handleClick(player.playerEmail)}>
-                        <PlayerCard player={player} />
-                    </Box>
-                ))}
+                {isLoading ? (
+                    <Loader
+                        color="indigo"
+                        variant="bars"
+                        sx={{ left: '50%', position: 'fixed', transform: 'translate(-50%, -50%)', top: '50%' }}
+                    />
+                ) : (
+                    playersDataFilters?.players.map(player => (
+                        <Box key={player.id} onClick={() => handleClick(player.playerEmail)}>
+                            <PlayerCard
+                                image={player.name}
+                                lastName={player.lastName}
+                                fieldPosition={player.playerSportData?.fieldPosition}
+                            />
+                        </Box>
+                    ))
+                )}
             </ScrollArea>
         </>
     )
