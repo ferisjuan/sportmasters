@@ -18,6 +18,9 @@ jobs:
       with:
         node-version: 16.x
         cache: 'npm'
+    - name: Install yarn
+      run: |
+        curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
     - name: CI install
       run: yarn install --frozen-lockfile
     - name: build the app
