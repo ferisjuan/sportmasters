@@ -1,4 +1,3 @@
-export * from '../../../pages/players/player-grid'
 export * from './player-profile'
 export * from './player-card'
 export * from './player-stats'

@@ -4,7 +4,8 @@ import { Box, Pagination, ThemeIcon } from '@mantine/core'
 import { observer } from 'mobx-react-lite'
 
 // @components
-import { PlayerForm, PlayersGrid, SMModal } from '~/components'
+import { PlayerForm, SMModal } from '~/components'
+import { PlayersGrid } from '~/pages/players/player-grid'
 
 // @hooks
 import { usePlayers } from './hooks'

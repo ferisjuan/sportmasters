@@ -4,6 +4,7 @@ import { usePlayersCountQuery } from '~/generated/graphql'
 // @hooks
 import { useStores } from '~/hooks'
 
+// @interfaces
 interface UsePlayers {
     handleOnAddPlayer: () => void
     handleOnPaginationChange: (page: number) => void

@@ -11,9 +11,9 @@ import { MONTHLYSTATUS, ROUTES } from '~/constants'
 
 // @hooks
 import { useStores } from '~/hooks'
+import { usePlayersFilters } from './hooks'
 
 // @generated
-import { usePlayersFilters } from '~/pages/players/player-grid/hooks'
 import { Field_Position, Player_Category } from '~/generated/graphql'
 
 const fieldPositions = Object.keys(Field_Position).map(key => ({ value: key, label: key }))
@@ -37,8 +37,6 @@ export const PlayersGrid: React.FC = observer(() => {
         status,
         setStatus,
     } = usePlayersFilters()
-
-    console.log(playersDataFilters)
 
     const navigate = useNavigate()
 

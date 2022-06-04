@@ -13,8 +13,6 @@ interface PlayerCardProps {
 export const PlayerCard: React.FC<PlayerCardProps> = observer(({ image, fieldPosition, lastName }) => {
     const { t } = useTranslation('fieldPosition')
 
-    console.log(image, fieldPosition, lastName)
-
     return (
         <Card
             radius="xs"
