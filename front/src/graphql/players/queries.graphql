@@ -15,6 +15,22 @@ query GetPlayersFilters($where: PlayerWhereInput) {
     }
 }
 
+query GetPlayers($where: PlayerWhereInput) {
+    players(where: $where) {
+        name
+        lastName
+        playerEmail
+        _count {
+            playerAttendances
+        }
+        playerSportData {
+            category
+            shirtNumber
+            sport
+        }
+    }
+}
+
 query Players($take: Int, $skip: Int, $where: PlayerWhereInput) {
     players(take: $take, skip: $skip, where: $where) {
         id

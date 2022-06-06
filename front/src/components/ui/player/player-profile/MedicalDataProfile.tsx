@@ -3,8 +3,9 @@ import { PlayerGridCol } from './PlayerGridCol'
 import { usePlayerMedicalDataQuery } from '~/generated/graphql'
 import { useStores } from '~/hooks'
 import { useTranslation } from 'react-i18next'
+import { observer } from 'mobx-react-lite'
 
-export const MedicalDataProfile: React.FC = () => {
+export const MedicalDataProfile: React.FC = observer(() => {
     const { playerStore } = useStores()
 
     const { t } = useTranslation('medicalData')
@@ -42,4 +43,4 @@ export const MedicalDataProfile: React.FC = () => {
             <PlayerGridCol title={t('comments')} text={`${player?.playerMedical?.observations}`} />
         </Grid>
     )
-}
+})

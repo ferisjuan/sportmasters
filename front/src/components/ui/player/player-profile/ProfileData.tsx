@@ -1,6 +1,10 @@
 import { Avatar, Card, Group, Text } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
+
+// @generated
 import { usePlayerCardSectionQuery } from '~/generated/graphql'
+
+// @hooks
 import { useStores } from '~/hooks'
 
 export const ProfileData: React.FC = () => {
