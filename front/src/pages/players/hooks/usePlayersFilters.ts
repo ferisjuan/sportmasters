@@ -1,6 +1,5 @@
 // @vendors
 import { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 
 // @generated
 import { Field_Position, GetPlayersFiltersQuery, Player_Category, useGetPlayersFiltersQuery } from '~/generated/graphql'
@@ -18,13 +17,11 @@ interface UsePlayersFilter {
     setFieldPosition: (e: string) => void
 }
 
-const { t } = useTranslation(['fieldPosition', 'categories'])
-
-const fieldPositions = Object.keys(Field_Position).map(key => ({ value: key, label: `${t(key)}` }))
+const fieldPositions = Object.keys(Field_Position).map(key => ({ value: key, label: key }))
 
 const playerCategories = Object.keys(Player_Category).map(key => ({
     value: key,
-    label: `${t(key, { ns: 'categories' })}`,
+    label: key,
 }))
 
 fieldPositions.unshift({ value: '', label: 'Todos' })
