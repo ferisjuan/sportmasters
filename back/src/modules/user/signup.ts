@@ -18,14 +18,14 @@ import { HASH_SALT } from '../../constants/encryptation';
 export class SignupResolver {
     @Mutation(() => User)
     async signup(@Arg("data") {
-            acceptsPrivacyPolicy,
-            acceptsTermsOfService,
-            email,
-            firstName,
-            lastName,
-            password,
-            schoolEmail,
-        }: SignupInput,
+        acceptsPrivacyPolicy,
+        acceptsTermsOfService,
+        email,
+        firstName,
+        lastName,
+        password,
+        schoolEmail,
+    }: SignupInput,
         @Ctx() ctx: Context): Promise<Partial<User> | null> {
         try {
             const hashedPassword = await bcrypt.hash(password, HASH_SALT);
