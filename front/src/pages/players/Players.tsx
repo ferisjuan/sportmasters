@@ -1,24 +1,24 @@
 // @vendors
 import { BsPlus } from 'react-icons/bs'
-import { Box, Loader, Pagination, ThemeIcon } from '@mantine/core'
+import { Box, Pagination, ThemeIcon } from '@mantine/core'
+import { observer } from 'mobx-react-lite'
 
 // @components
-import { PlayerForm, PlayersGrid, SMModal } from '~/components'
+import { PlayerForm, SMModal } from '~/components'
+import { PlayersGrid } from '~/pages/players/player-grid'
 
 // @hooks
 import { usePlayers } from './hooks'
-import { observer } from 'mobx-react-lite'
 
 const Players: React.FC = observer(() => {
-    const { handleOnAddPlayer, handleOnPaginationChange, isPlayersLoading, pages, skip } = usePlayers()
+    const { handleOnAddPlayer, handleOnPaginationChange, pages, skip } = usePlayers()
 
     return (
         <Box
             style={{
                 display: 'flex',
                 flexDirection: 'column',
-                height: '87vh',
-                justifyContent: 'space-between',
+                height: '80vh',
                 paddingBlockEnd: '2rem',
                 position: 'relative',
                 width: '100%',
@@ -28,15 +28,7 @@ const Players: React.FC = observer(() => {
                 <PlayerForm />
             </SMModal>
 
-            {isPlayersLoading ? (
-                <Loader
-                    color="indigo"
-                    variant="bars"
-                    sx={{ left: '50%', position: 'absolute', transform: 'translate(-50%, -50%)', top: '50%' }}
-                />
-            ) : (
-                <PlayersGrid />
-            )}
+            <PlayersGrid />
 
             <Pagination
                 onChange={handleOnPaginationChange}

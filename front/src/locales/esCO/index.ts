@@ -7,6 +7,7 @@ import notifications from './notifications.json'
 import playerData from './playerData.json'
 import medicalData from './medicalData.json'
 import sportData from './sportData.json'
+import categories from './categories.json'
 
 export {
     addPlayerForm,
@@ -18,4 +19,5 @@ export {
     playerData,
     medicalData,
     sportData,
+    categories,
 }

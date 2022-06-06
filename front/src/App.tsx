@@ -28,7 +28,7 @@ const MainPage = lazy(() => import('./pages/main'))
 const NotFoundPage = lazy(() => import('./pages/not-found/notFound'))
 const PlayersAttendance = lazy(() => import('./pages/attendance/PlayersAttendance'))
 const PlayerPage = lazy(() => import('./pages/player/player'))
-const PlayersPage = lazy(() => import('./pages/players/players'))
+const PlayersPage = lazy(() => import('./pages/players/Players'))
 
 const App: React.FC = () => (
     <AuthContextProvider>

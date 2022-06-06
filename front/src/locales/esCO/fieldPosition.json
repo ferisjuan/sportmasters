@@ -1,14 +1,14 @@
 {
-    "AttackingMidfielder": "ATTACKING_MIDFIELDER",
-    "CenterBack": "CENTER_BACK",
-    "CenterForward": "CENTER_FORWARD",
-    "CenterMiddlefielder": "CENTER_MIDDLEFIELDER",
-    "DefensiveMidfielder": "DEFENSIVE_MIDFIELDER",
-    "GoalKeeper": "GOAL_KEEPER",
-    "LeftFullback": "LEFT_FULLBACK",
-    "LeftMiddlefielder": "LEFT_MIDDLEFIELDER",
-    "None": "NONE",
-    "RightFullback": "RIGHT_FULLBACK",
-    "RightMiddlefielder": "RIGHT_MIDDLEFIELDER",
-    "Sweeper": "SWEEPER"
+    "AttackingMidfielder": "Centrocampista de ataque",
+    "CenterBack": "Defensa central",
+    "CenterForward": "Delantero centro",
+    "CenterMiddlefielder": "Mediocampista central",
+    "DefensiveMidfielder": "Centrocampista defensivo",
+    "GoalKeeper": "Portero",
+    "LeftFullback": "Defensa izquierda",
+    "LeftMiddlefielder": "Mediocampista izquierdo",
+    "None": "Ninguno",
+    "RightFullback": "Defensa derecha",
+    "RightMiddlefielder": "Mediocampista derecho",
+    "Sweeper": "Paseador"
 }
