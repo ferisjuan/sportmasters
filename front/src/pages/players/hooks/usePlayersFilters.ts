@@ -18,19 +18,19 @@ interface UsePlayersFilter {
     setFieldPosition: (e: string) => void
 }
 
+const { t } = useTranslation(['fieldPosition', 'categories'])
+
+const fieldPositions = Object.keys(Field_Position).map(key => ({ value: key, label: `${t(key)}` }))
+
+const playerCategories = Object.keys(Player_Category).map(key => ({
+    value: key,
+    label: `${t(key, { ns: 'categories' })}`,
+}))
+
+fieldPositions.unshift({ value: '', label: 'Todos' })
+playerCategories.unshift({ value: '', label: 'Todos' })
+
 export const usePlayersFilters = (): UsePlayersFilter => {
-    const { t } = useTranslation(['fieldPosition', 'categories'])
-
-    const fieldPositions = Object.keys(Field_Position).map(key => ({ value: key, label: `${t(key)}` }))
-
-    const playerCategories = Object.keys(Player_Category).map(key => ({
-        value: key,
-        label: `${t(key, { ns: 'categories' })}`,
-    }))
-
-    fieldPositions.unshift({ value: '', label: 'Todos' })
-    playerCategories.unshift({ value: '', label: 'Todos' })
-
     const [fieldPosition, setFieldPosition] = useState('')
 
     const [category, setCategory] = useState('')
