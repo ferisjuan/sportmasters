@@ -34,7 +34,8 @@ export const useAuthState = (): IUseAuthState => {
     userStore.lastName = data?.user?.lastName || ''
     userStore.id = data?.user?.id || ''
     userStore.roles = data?.user?.roles || []
-    userStore.schoolEmail = data?.user?.schoolEmail || ''
+    userStore.schoolEmail = data?.user?.school.email || ''
+    userStore.schoolId = data?.user?.school.id || ''
 
     return { ...auth, isAuthenticated: true }
 }

@@ -10,6 +10,10 @@ export const NAV_ITEMS = [
         text: 'players',
     },
     {
+        to: ROUTES.attendance,
+        text: 'Asistencia',
+    },
+    {
         to: ROUTES.statistics,
         text: 'statistics',
     },

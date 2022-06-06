@@ -1,0 +1,5 @@
+mutation CreatePlayerAttendance($data: PlayerAttendanceCreateInput!) {
+    createPlayerAttendance(data: $data) {
+        id
+    }
+}

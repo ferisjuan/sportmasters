@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite'
 import { useNavigate } from 'react-router-dom'
 
 // @components
-import { PlayerCard } from '../player-profile'
+import { PlayerCard } from '../player-card'
 
 // @constants
 import { ROUTES } from '~/constants'
@@ -24,6 +24,9 @@ export const PlayersGrid: React.FC = observer(() => {
     const { data: playersData } = usePlayersQuery({
         skip: paginationSkip,
         take: paginationTake,
+        where: {
+            schoolId: { equals: playerStore.rootStore.userStore.schoolId },
+        },
     })
 
     const navigate = useNavigate()

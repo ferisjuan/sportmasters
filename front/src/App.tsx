@@ -2,12 +2,13 @@
 import { lazy, Suspense, useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { ColorScheme, ColorSchemeProvider, MantineProvider, Title } from '@mantine/core'
+import { ModalsProvider } from '@mantine/modals'
 import { NotificationsProvider } from '@mantine/notifications'
 import { QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 
 // @components
-import { AuthenticatedRoute } from '~/components'
+import { AuthenticatedRoute, SMContainer } from '~/components'
 import Login from './pages/auth/Login'
 
 // @constants
@@ -25,6 +26,7 @@ import { rootStore } from '~/store'
 const ChangePasswordPage = lazy(() => import('./pages/auth/ChangePassword'))
 const MainPage = lazy(() => import('./pages/main'))
 const NotFoundPage = lazy(() => import('./pages/not-found/notFound'))
+const PlayersAttendance = lazy(() => import('./pages/attendance/PlayersAttendance'))
 const PlayerPage = lazy(() => import('./pages/player/player'))
 const PlayersPage = lazy(() => import('./pages/players/players'))
 
@@ -38,7 +40,7 @@ const App: React.FC = () => (
                     <Route
                         path={ROUTES.changePassword}
                         element={
-                            <Suspense fallback={<div>Loading...</div>}>
+                            <Suspense fallback={<SMContainer isLoading />}>
                                 <ChangePasswordPage />
                             </Suspense>
                         }
@@ -47,11 +49,11 @@ const App: React.FC = () => (
                     <Route
                         path={ROUTES.dashboard}
                         element={
-                            <AuthenticatedRoute>
-                                <Suspense fallback={<div>Loading...</div>}>
+                            <Suspense fallback={<SMContainer isLoading />}>
+                                <AuthenticatedRoute>
                                     <MainPage />
-                                </Suspense>
-                            </AuthenticatedRoute>
+                                </AuthenticatedRoute>
+                            </Suspense>
                         }
                     >
                         <Route index element={<Title>Welcome to the dashboard</Title>} />
@@ -59,9 +61,18 @@ const App: React.FC = () => (
                         <Route path={ROUTES.dashboard_main} element={<Title>Main</Title>} />
 
                         <Route
+                            path={ROUTES.attendance}
+                            element={
+                                <Suspense fallback={<SMContainer isLoading />}>
+                                    <PlayersAttendance />
+                                </Suspense>
+                            }
+                        />
+
+                        <Route
                             path={ROUTES.players}
                             element={
-                                <Suspense fallback={<div>Loading...</div>}>
+                                <Suspense fallback={<SMContainer isLoading />}>
                                     <PlayersPage />
                                 </Suspense>
                             }
@@ -70,7 +81,7 @@ const App: React.FC = () => (
                         <Route
                             path={ROUTES.player}
                             element={
-                                <Suspense fallback={<div>Loading...</div>}>
+                                <Suspense fallback={<SMContainer isLoading />}>
                                     <PlayerPage />
                                 </Suspense>
                             }
@@ -81,7 +92,7 @@ const App: React.FC = () => (
                     <Route
                         path={ROUTES.notFound}
                         element={
-                            <Suspense fallback={<div>Loading...</div>}>
+                            <Suspense fallback={<SMContainer isLoading />}>
                                 <NotFoundPage />
                             </Suspense>
                         }
@@ -102,13 +113,15 @@ function WithProvider(): JSX.Element {
     return (
         <ColorSchemeProvider colorScheme={colorScheme as ColorScheme} toggleColorScheme={toggleColorScheme}>
             <MantineProvider theme={{ colorScheme: colorScheme as ColorScheme }}>
-                <NotificationsProvider>
-                    <QueryClientProvider client={queryClient}>
-                        <ReactQueryDevtools initialIsOpen={false} />
+                <ModalsProvider>
+                    <NotificationsProvider>
+                        <QueryClientProvider client={queryClient}>
+                            <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
 
-                        <App />
-                    </QueryClientProvider>
-                </NotificationsProvider>
+                            <App />
+                        </QueryClientProvider>
+                    </NotificationsProvider>
+                </ModalsProvider>
             </MantineProvider>
         </ColorSchemeProvider>
     )
