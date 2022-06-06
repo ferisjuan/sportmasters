@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 
 // @generated
 import { Field_Position, GetPlayersFiltersQuery, Player_Category, useGetPlayersFiltersQuery } from '~/generated/graphql'
+import { useTranslation } from 'react-i18next'
 
 // @interfaces
 interface UsePlayersFilter {
@@ -10,24 +11,33 @@ interface UsePlayersFilter {
     playersDataFilters: GetPlayersFiltersQuery | undefined
     setFieldPosition: (e: string) => void
     setCategory: (e: string) => void
-    setStatus: (e: string) => void
-    status: string | undefined
     category: string | undefined
     fieldPosition: string | undefined
     handleClearFilter: () => void
+    fieldPositions: { label: string; value: string }[]
+    playerCategories: { label: string; value: string }[]
 }
 
 export const usePlayersFilters = (): UsePlayersFilter => {
+    const { t } = useTranslation(['fieldPosition', 'categories'])
+
+    const fieldPositions = Object.keys(Field_Position).map(key => ({ value: key, label: `${t(key)}` }))
+
+    const playerCategories = Object.keys(Player_Category).map(key => ({
+        value: key,
+        label: `${t(key, { ns: 'categories' })}`,
+    }))
+
+    fieldPositions.unshift({ value: '', label: 'Todos' })
+    playerCategories.unshift({ value: '', label: 'Todos' })
+
     const [fieldPosition, setFieldPosition] = useState('')
 
     const [category, setCategory] = useState('')
 
-    const [status, setStatus] = useState('')
-
     const handleClearFilter = (): void => {
         setFieldPosition('')
         setCategory('')
-        setStatus('')
     }
 
     const [playersDataFilters, setPlayersDataFilters] = useState<GetPlayersFiltersQuery | undefined>()
@@ -61,11 +71,11 @@ export const usePlayersFilters = (): UsePlayersFilter => {
 
     return {
         playersDataFilters,
+        fieldPositions,
+        playerCategories,
         isLoading: isLoading || isFetching,
         setCategory,
         setFieldPosition,
-        setStatus,
-        status,
         category,
         fieldPosition,
         handleClearFilter,

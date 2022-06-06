@@ -7,21 +7,11 @@ import { useNavigate } from 'react-router-dom'
 import { PlayerCard } from '~/components/ui/player/player-profile'
 
 // @constants
-import { MONTHLYSTATUS, ROUTES } from '~/constants'
+import { ROUTES } from '~/constants'
 
 // @hooks
 import { useStores } from '~/hooks'
-import { usePlayersFilters } from './hooks'
-
-// @generated
-import { Field_Position, Player_Category } from '~/generated/graphql'
-
-const fieldPositions = Object.keys(Field_Position).map(key => ({ value: key, label: key }))
-
-const playerCategories = Object.keys(Player_Category).map(key => ({ value: key, label: key }))
-
-fieldPositions.unshift({ value: '', label: 'Todos' })
-playerCategories.unshift({ value: '', label: 'Todos' })
+import { usePlayersFilters } from './../hooks'
 
 export const PlayersGrid: React.FC = observer(() => {
     const { playerStore } = useStores()
@@ -34,8 +24,8 @@ export const PlayersGrid: React.FC = observer(() => {
         setCategory,
         fieldPosition,
         setFieldPosition,
-        status,
-        setStatus,
+        playerCategories,
+        fieldPositions,
     } = usePlayersFilters()
 
     const navigate = useNavigate()
@@ -73,16 +63,6 @@ export const PlayersGrid: React.FC = observer(() => {
                     style={{ marginTop: '1rem', marginBottom: '1rem' }}
                 />
 
-                <NativeSelect
-                    value={status}
-                    onChange={event => {
-                        setStatus(event.target.value)
-                    }}
-                    data={MONTHLYSTATUS}
-                    label="Estado mensual"
-                    variant="filled"
-                    style={{ marginTop: '1rem', marginBottom: '1rem' }}
-                />
                 <Button color="indigo" onClick={handleClearFilter} variant="subtle" style={{ marginTop: '1.5rem' }}>
                     Limpiar
                 </Button>

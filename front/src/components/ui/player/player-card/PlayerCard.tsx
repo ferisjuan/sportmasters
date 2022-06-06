@@ -2,8 +2,11 @@
 import { observer } from 'mobx-react-lite'
 import { Card, Container, Image, Text } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
+
+// @generated
 import { Field_Position } from '~/generated/graphql'
 
+// @interfaces
 interface PlayerCardProps {
     image: string
     lastName: string

@@ -1,13 +1,14 @@
 {
-    "GOAL_KEEPER": "Arquero",
-    "CENTER_BACK": "Centro-Defensa",
-    "LEFT_BACK": "Defensa-Izquierda",
-    "RIGHT_BACK": "Defensa-Derecha",
-    "CENTER_MIDDLEFIELDER": "Centro-Medio",
-    "DEFENSIVE_MIDFIELDER": "Medio-Defensa",
-    "RIGHT_MIDDLEFIELDER": "Medio-Derecha",
-    "LEFT_MIDDLEFIELDER": "Medio-Izquierda",
-    "CENTER_FORWARD": "Centro-Delantero",
-    "SECOND_STRIKER": "Segundo-Pase",
-    "EXTREME": "Extremo"
+    "AttackingMidfielder": "Centrocampista de ataque",
+    "CenterBack": "Defensa central",
+    "CenterForward": "Delantero centro",
+    "CenterMiddlefielder": "Mediocampista central",
+    "DefensiveMidfielder": "Centrocampista defensivo",
+    "GoalKeeper": "Portero",
+    "LeftFullback": "Defensa izquierda",
+    "LeftMiddlefielder": "Mediocampista izquierdo",
+    "None": "Ninguno",
+    "RightFullback": "Defensa derecha",
+    "RightMiddlefielder": "Mediocampista derecho",
+    "Sweeper": "Paseador"
 }
