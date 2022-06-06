@@ -12,6 +12,7 @@
     "dev": "run-p dev:*",
     "dev:front": "yarn --cwd front dev",
     "dev:back": "npm --prefix ./back/ run dev",
+    "start:server": "npm --prefix ./back run start",
     "generate": "yarn --cwd front graphql-codegen",
     "lint": "yarn workspaces run lint",
     "prepare": "husky install"
