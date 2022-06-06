@@ -40,7 +40,7 @@ export const PlayersGrid: React.FC = observer(() => {
 
     return (
         <>
-            <Group grow>
+            <Group>
                 <NativeSelect
                     value={category}
                     onChange={event => {
