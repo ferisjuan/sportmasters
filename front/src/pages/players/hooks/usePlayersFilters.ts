@@ -1,21 +1,21 @@
 // @vendors
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 // @generated
 import { Field_Position, GetPlayersFiltersQuery, Player_Category, useGetPlayersFiltersQuery } from '~/generated/graphql'
-import { useTranslation } from 'react-i18next'
 
 // @interfaces
 interface UsePlayersFilter {
-    isLoading: boolean
-    playersDataFilters: GetPlayersFiltersQuery | undefined
-    setFieldPosition: (e: string) => void
-    setCategory: (e: string) => void
     category: string | undefined
     fieldPosition: string | undefined
-    handleClearFilter: () => void
     fieldPositions: { label: string; value: string }[]
+    handleClearFilter: () => void
+    isLoading: boolean
     playerCategories: { label: string; value: string }[]
+    playersDataFilters: GetPlayersFiltersQuery | undefined
+    setCategory: (e: string) => void
+    setFieldPosition: (e: string) => void
 }
 
 export const usePlayersFilters = (): UsePlayersFilter => {
@@ -67,17 +67,17 @@ export const usePlayersFilters = (): UsePlayersFilter => {
 
     useEffect(() => {
         setPlayersDataFilters(playersFilters)
-    }, [playersFilters, fieldPosition, category, playersDataFilters])
+    }, [category, fieldPosition, playersDataFilters, playersFilters])
 
     return {
-        playersDataFilters,
-        fieldPositions,
-        playerCategories,
-        isLoading: isLoading || isFetching,
-        setCategory,
-        setFieldPosition,
         category,
         fieldPosition,
+        fieldPositions,
         handleClearFilter,
+        isLoading: isLoading || isFetching,
+        playerCategories,
+        playersDataFilters,
+        setCategory,
+        setFieldPosition,
     }
 }

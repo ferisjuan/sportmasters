@@ -1,7 +1,7 @@
 // @vendors
+import { useNavigate } from 'react-router-dom'
 import { Box, Button, Group, Loader, NativeSelect, ScrollArea } from '@mantine/core'
 import { observer } from 'mobx-react-lite'
-import { useNavigate } from 'react-router-dom'
 
 // @components
 import { PlayerCard } from '~/components/ui/player/player-profile'
@@ -17,15 +17,15 @@ export const PlayersGrid: React.FC = observer(() => {
     const { playerStore } = useStores()
 
     const {
-        playersDataFilters,
-        isLoading,
         category,
-        handleClearFilter,
-        setCategory,
         fieldPosition,
-        setFieldPosition,
-        playerCategories,
         fieldPositions,
+        handleClearFilter,
+        isLoading,
+        playerCategories,
+        playersDataFilters,
+        setCategory,
+        setFieldPosition,
     } = usePlayersFilters()
 
     const navigate = useNavigate()
