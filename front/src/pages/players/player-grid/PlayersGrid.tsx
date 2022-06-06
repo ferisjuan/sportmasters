@@ -4,7 +4,7 @@ import { Box, Button, Group, Loader, NativeSelect, ScrollArea } from '@mantine/c
 import { observer } from 'mobx-react-lite'
 
 // @components
-import { PlayerCard } from '~/components/ui/player/player-profile'
+import { PlayerCard } from '~/components/ui/player'
 
 // @constants
 import { ROUTES } from '~/constants'
