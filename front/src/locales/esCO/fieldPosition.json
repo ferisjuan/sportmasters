@@ -10,5 +10,18 @@
     "None": "Ninguno",
     "RightFullback": "Defensa derecha",
     "RightMiddlefielder": "Mediocampista derecho",
-    "Sweeper": "Paseador"
+    "Sweeper": "Paseador",
+    "ATTACKING_MIDFIELDER": "Centrocampista de ataque",
+    "CENTER_BACK": "Defensa central",
+    "CENTER_FORWARD":  "Delantero centro",
+    "CENTER_MIDDLEFIELDER": "Mediocampista central",
+    "DEFENSIVE_MIDFIELDER": "Centrocampista defensivo",
+    "GOAL_KEEPER": "Portero",
+    "LEFT_FULLBACK": "Defensa izquierda",
+    "LEFT_MIDDLEFIELDER": "Mediocampista izquierdo",
+    "NONE":  "Ninguno",
+    "RIGHT_FULLBACK":  "Defensa derecha",
+    "RIGHT_MIDDLEFIELDER":  "Mediocampista derecho",
+    "SWEEPER": "Paseador"
+
 }

@@ -1,4 +1,5 @@
 export const Age = (date: string): number => {
+    if (!date) return 0
     const today = new Date()
     const birthday = new Date(date)
     let age = today.getFullYear() - birthday.getFullYear()

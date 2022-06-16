@@ -16,12 +16,10 @@ const Players: React.FC = observer(() => {
     return (
         <Box
             style={{
-                display: 'flex',
                 flexDirection: 'column',
                 height: '80vh',
                 paddingBlockEnd: '2rem',
                 position: 'relative',
-                width: '100%',
             }}
         >
             <SMModal>
