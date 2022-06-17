@@ -13,12 +13,12 @@ export const PlayersGrid: React.FC = observer(() => {
         category,
         handleClearFilter,
         isLoading,
+        name,
+        names,
         playerCategories,
         playersDataFilters,
         setCategory,
-        names,
         setName,
-        name,
     } = usePlayersFilters()
 
     return (

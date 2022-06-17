@@ -1,10 +1,9 @@
 // @vendors
+import { ActionIcon, Card, Switch, Text } from '@mantine/core'
+import { BiEditAlt } from 'react-icons/bi'
 import { observer } from 'mobx-react-lite'
-import { ActionIcon, Avatar, Card, Image, Switch, Text } from '@mantine/core'
-import { useTranslation } from 'react-i18next'
-import { BiEditAlt, BiCheck } from 'react-icons/bi'
-import { IoWarningOutline } from 'react-icons/io5'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 // @generated
 import { Field_Position, Player_Category } from '~/generated/graphql'
@@ -16,6 +15,7 @@ import { useStores } from '~/hooks'
 
 // @Constants
 import { ROUTES } from '~/constants'
+import { AvatarPlayerCard } from '~/components/ui/player/player-card/AvatarPlayerCard'
 
 // @interfaces
 interface PlayerMedicalData {
@@ -33,16 +33,16 @@ interface PlayerSportData {
 }
 
 interface PlayerCards {
+    id?: string
     image?: string | null
     lastName?: string
     name?: string
-    playerEmail?: string
     playerData?: PlayerData | null
-    playerSportData?: PlayerSportData | null
+    playerEmail?: string
     playerMedical?: PlayerMedicalData | null
-    playerStatus?: string
     playerPaymentStatus?: string
-    id?: string
+    playerSportData?: PlayerSportData | null
+    playerStatus?: string
 }
 
 interface PlayerCardProps {
@@ -92,46 +92,8 @@ export const PlayerCard: React.FC<PlayerCardProps> = observer(({ players }) => {
                             padding: '1em',
                         }}
                     >
-                        {d.image ? (
-                            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                                <Image alt="Player image" fit="contain" src={d.image || ''} width={120} />
+                        <AvatarPlayerCard playerStatus={d.playerStatus} image={d.image} />
 
-                                {d.playerStatus === 'INACTIVE' ? (
-                                    <ActionIcon color="yellow" variant="filled">
-                                        <IoWarningOutline />
-                                    </ActionIcon>
-                                ) : (
-                                    <ActionIcon color="green" size="sm" radius="sm" variant="filled">
-                                        <BiCheck />
-                                    </ActionIcon>
-                                )}
-                            </div>
-                        ) : (
-                            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                                <Avatar src="/player.png" alt="Player Avatar" />
-                                {d.playerStatus === 'INACTIVE' ? (
-                                    <ActionIcon
-                                        color="yellow"
-                                        size="sm"
-                                        radius="sm"
-                                        variant="filled"
-                                        style={{ alignSelf: 'end' }}
-                                    >
-                                        <IoWarningOutline />
-                                    </ActionIcon>
-                                ) : (
-                                    <ActionIcon
-                                        color="green"
-                                        size="sm"
-                                        radius="sm"
-                                        variant="filled"
-                                        style={{ alignSelf: 'end' }}
-                                    >
-                                        <BiCheck />
-                                    </ActionIcon>
-                                )}
-                            </div>
-                        )}
                         <div style={{ minWidth: '200px' }}>
                             <Text align="center" size="lg" transform="uppercase">
                                 {d.name} {d.lastName}

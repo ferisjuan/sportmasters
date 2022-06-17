@@ -1,10 +1,13 @@
+// @generated
 import { Player_Status, useUpdatePlayerMutation } from '~/generated/graphql'
 
+// @types
 type PlayerData = {
     playerStatus?: Player_Status | null
     playerEmail: string
 }
 
+// @interface
 interface UseChangeStatus {
     handleChangeStatus: (playerCards: PlayerData) => void
 }
