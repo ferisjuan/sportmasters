@@ -1,43 +1,20 @@
-import { ActionIcon, Avatar, Image } from '@mantine/core'
-import { BiCheck } from 'react-icons/bi'
-import { IoWarningOutline } from 'react-icons/io5'
+import { Avatar, Indicator } from '@mantine/core'
 
 interface AvatarPlayerCardProps {
     image?: string | null
-    playerStatus?: string | null
 }
 
-export const AvatarPlayerCard: React.FC<AvatarPlayerCardProps> = ({ image, playerStatus }) => {
+export const AvatarPlayerCard: React.FC<AvatarPlayerCardProps> = ({ image }) => {
     return (
-        <div>
+        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
             {image ? (
-                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                    <Image alt="Player image" fit="contain" src={image || ''} width={120} />
-
-                    {playerStatus === 'INACTIVE' ? (
-                        <ActionIcon color="yellow" variant="filled">
-                            <IoWarningOutline />
-                        </ActionIcon>
-                    ) : (
-                        <ActionIcon color="green" size="sm" radius="sm" variant="filled">
-                            <BiCheck />
-                        </ActionIcon>
-                    )}
-                </div>
+                <Indicator size={20} color="red">
+                    <Avatar alt="Player image" src={image || ''} />
+                </Indicator>
             ) : (
-                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                    <Avatar src="/player.png" alt="Player Avatar" />
-
-                    {playerStatus === 'INACTIVE' ? (
-                        <ActionIcon color="yellow" size="sm" radius="sm" variant="filled" style={{ alignSelf: 'end' }}>
-                            <IoWarningOutline />
-                        </ActionIcon>
-                    ) : (
-                        <ActionIcon color="green" size="sm" radius="sm" variant="filled" style={{ alignSelf: 'end' }}>
-                            <BiCheck />
-                        </ActionIcon>
-                    )}
-                </div>
+                <Indicator size={20} color="red" withBorder>
+                    <Avatar src="/player.png" alt="Player Avatar" size={50} />
+                </Indicator>
             )}
         </div>
     )

@@ -39,6 +39,10 @@ export const usePlayersFilters = (): UsePlayersFilter => {
 
     const [names, setNames] = useState<string[]>([])
 
+    const indexName = name.indexOf(' ')
+
+    const filterName = name.slice(0, indexName)
+
     const handleClearFilter = (): void => {
         setCategory('')
         setName('')
@@ -62,7 +66,7 @@ export const usePlayersFilters = (): UsePlayersFilter => {
         if (!name.length) return {}
 
         return {
-            equals: name,
+            equals: filterName,
         }
     }
 

@@ -17,6 +17,7 @@ query GetPlayersFilters($where: PlayerWhereInput) {
         playerSportData {
             category
             fieldPosition
+            shirtNumber
         }
     }
 }
