@@ -83,19 +83,17 @@ export const PlayerCard: React.FC<PlayerCardProps> = observer(({ players }) => {
                         <Card
                             key={player.id}
                             shadow="sm"
-                            sx={(theme: { colors: { gray: string[] }; colorScheme: string }) => {
-                                return {
-                                    backgroundColor: lightColor && index % 2 === 0 ? 'white' : theme.colors.gray[2],
-                                    height: '5em',
-                                    width: '880px',
-                                    color: theme.colorScheme === 'light' ? 'black' : 'white',
-                                    display: 'flex',
-                                    borderRadius: '0',
-                                    alignItems: 'center',
-                                    justifyContent: 'space-between',
-                                    padding: '1em',
-                                }
-                            }}
+                            sx={theme => ({
+                                backgroundColor: lightColor && index % 2 === 0 ? 'white' : theme.colors.gray[2],
+                                height: '5em',
+                                width: '880px',
+                                color: theme.colorScheme === 'light' ? 'black' : 'white',
+                                display: 'flex',
+                                borderRadius: '0',
+                                alignItems: 'center',
+                                justifyContent: 'space-between',
+                                padding: '1em',
+                            })}
                         >
                             <Group position="center">
                                 <AvatarPlayerCard image={player.image} />
