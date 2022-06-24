@@ -1,19 +1,27 @@
 query GetPlayersFilters($where: PlayerWhereInput) {
     players(where: $where) {
         id
-        name
+        image
         lastName
+        name
         playerEmail
+        playerStatus
+        playerPaymentStatus
+        playerData {
+            birthday
+        }
+        playerMedical {
+            weight
+            height
+        }
         playerSportData {
             category
             fieldPosition
-            admissionDate
-            handedness
-            id
+            shirtNumber
         }
-
     }
 }
+
 
 query GetPlayers($where: PlayerWhereInput) {
     players(where: $where) {

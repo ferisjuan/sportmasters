@@ -10,5 +10,17 @@
     "None": "Ninguno",
     "RightFullback": "Defensa derecha",
     "RightMiddlefielder": "Mediocampista derecho",
-    "Sweeper": "Paseador"
+    "Sweeper": "Paseador",
+    "NONE":  "Ninguno",
+    "SWEEPER": "Paseador",
+    "GOAL_KEEPER": "POR ",
+    "LEFT_FULLBACK": "LI",
+    "RIGHT_FULLBACK": "LD",
+    "CENTER_BACK": "DFC ",
+    "DEFENSIVE_MIDFIELDER": "MCD ",
+    "CENTER_MIDDLEFIELDER": "MC",
+    "LEFT_MIDDLEFIELDER": "MI",
+    "RIGHT_MIDDLEFIELDER": "MD",
+    "ATTACKING_MIDFIELDER": "MCO ",
+    "CENTER_FORWARD":  "DC"
 }
