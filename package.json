@@ -9,8 +9,9 @@
   ],
   "main": "index.js",
   "scripts": {
-    "dev": "run-p dev:*",
-    "dev:front": "yarn --cwd front dev",
+    "start": "node server/server.js",
+    "dev": "yarn --cwd front dev",
+    "build": "yarn --cwd front build",
     "generate": "yarn --cwd front graphql-codegen",
     "lint": "yarn workspaces run lint",
     "prepare": "husky install"
@@ -40,5 +41,8 @@
     "*.{ts,tsx}": "eslint '*/**/*.{ts,tsx}' --cache --fix",
     "*.js": "eslint --cache --fix",
     "*.{js,css,md}": "prettier --write"
+  },
+  "dependencies": {
+    "express": "^4.18.1"
   }
 }
