@@ -8,6 +8,7 @@ export default defineConfig((({command, mode}) => ({
     emptyOutDir: true,
     sourcemap: mode === 'development' ? 'inline' : false,
   },
+  publicDir: 'public',
   envPrefix: 'REACT_APP_',
   resolve: {
     alias: {
