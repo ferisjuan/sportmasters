@@ -43,6 +43,7 @@
     "*.{js,css,md}": "prettier --write"
   },
   "dependencies": {
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "helmet": "^5.1.0"
   }
 }
