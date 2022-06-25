@@ -14,6 +14,10 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(publicPath, 'index.html'))
 })
 
+app.all('*', (req, res, next) => {
+    next(new AppError(`The requested URL ${req.originalUrl} could not be found`, 404))
+})
+
 app.listen(port, () => {
     console.log(`Server is up on port ${port}`)
 })
