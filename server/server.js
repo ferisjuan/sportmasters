@@ -22,15 +22,9 @@ app.all('*', (req, res, next) => {
 app.use(
     helmet.contentSecurityPolicy({
         directives: {
-            //  "default-src" used as fallback for any undeclared directives
-            'default-src': ["'self'"],
-            // i am using stripe api. if you have any script add it here
-            'script-src': ["'self'", "'unsafe-inline'", 'js.stripe.com'],
-            // external css link here
-            'style-src': ["'self'", "'unsafe-inline'", 'fonts.googleapis.com'],
-            'frame-src': ["'self'", 'js.stripe.com'],
-            'font-src': ["'self'", 'fonts.googleapis.com', 'fonts.gstatic.com', 'res.cloudinary.com/'],
-            'img-src': ["'self'", 'data:', 'https://res.cloudinary.com'],
+            defaultSrc: ["'self'", '/favicon.ico'],
+            fontSrc: ["'self'", 'fonts.googleapis.com', 'fonts.gstatic.com', 'res.cloudinary.com/'],
+            baseUri: ["'self'"],
         },
         reportOnly: true,
     }),
