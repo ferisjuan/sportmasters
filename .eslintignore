@@ -18,9 +18,8 @@ generated/
 *.config.js
 
 # generated files
-back/src/generated/
 front/src/generated/
 */node_modules/
 
-# prisma
-back/prisma/
+# server
+server/*
