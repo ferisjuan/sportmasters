@@ -25,6 +25,7 @@ export const LoginForm = (): JSX.Element => {
                 />
 
                 <PasswordInput
+                    // autoComplete={'on'}
                     required
                     label={t('passwordLabel')}
                     placeholder={t('passwordPlaceholder')}

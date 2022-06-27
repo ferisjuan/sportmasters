@@ -16,7 +16,7 @@ export const PlayerProfile: React.FC = () => {
                 <ProfileData />
 
                 <Card shadow="sm" sx={{ width: '618px', height: '85vh', display: 'flex', paddingTop: '80px' }}>
-                    <Tabs grow style={{ width: '100%' }}>
+                    <Tabs grow style={{ width: '100%' }} variant="outline" tabPadding="xl">
                         <Tabs.Tab label="Datos Personales">
                             <PersonalDataProfile />
                         </Tabs.Tab>

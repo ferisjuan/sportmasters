@@ -1,5 +1,5 @@
 import { Grid } from '@mantine/core'
-import { PlayerGridCol } from './PlayerGridCol'
+import { PlayerGridCol } from '~/components'
 import { usePlayerMedicalDataQuery } from '~/generated/graphql'
 import { useStores } from '~/hooks'
 import { useTranslation } from 'react-i18next'
@@ -17,7 +17,7 @@ export const MedicalDataProfile: React.FC = observer(() => {
     const player = playerData?.player
 
     return (
-        <Grid style={{ padding: '10px', paddingTop: '30px' }}>
+        <Grid style={{ padding: '10px' }}>
             <Grid grow style={{ width: '100%', padding: '8px' }}>
                 <PlayerGridCol span={6} title={t('healthProvider')} text={player?.playerMedical?.healthProvider} />
 

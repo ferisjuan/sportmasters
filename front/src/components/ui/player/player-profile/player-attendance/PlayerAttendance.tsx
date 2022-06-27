@@ -3,7 +3,7 @@ import { Button } from '@mantine/core'
 import { observer } from 'mobx-react-lite'
 
 // @components
-import { SMContainer } from '../../../common'
+import { SMContainer } from '~/components'
 import { SMRow } from '../../../common/SMRow'
 import { SMTable } from '../../../common/SMTable'
 import { useAttendance } from './useAttendance'
