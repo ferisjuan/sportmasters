@@ -179,8 +179,4 @@ out
 
 # End of https://www.toptal.com/developers/gitignore/api/jetbrains,macos,node
 
-# generated files
-*/src/generated/*
-front/graphql.schema.json
-
 dump.rdb
