@@ -1,12 +1,19 @@
-import { Button, Grid, Group, Select, Text, TextInput } from '@mantine/core'
+// @vendors
+
+import { Button, Grid, Group, Select, TextInput } from '@mantine/core'
 import { observer } from 'mobx-react-lite'
 import { useTranslation } from 'react-i18next'
-
-import { useStores } from '~/hooks'
-import { Age } from '~/utils'
-import { PlayerGridCol } from '~/components'
-import { useUpdatePersonalData } from '~/components/ui/player/player-profile/player-personal-data/usePersonalData'
 import { DatePicker } from '@mantine/dates'
+
+// @components
+import { PlayerGridCol } from '~/components'
+
+// hooks
+import { useStores } from '~/hooks'
+import { useUpdatePersonalData } from '~/components/ui/player/player-profile/player-personal-data/usePersonalData'
+
+// @utils
+import { Age } from '~/utils'
 
 export const PersonalDataProfile: React.FC = observer(() => {
     const {
@@ -32,6 +39,7 @@ export const PersonalDataProfile: React.FC = observer(() => {
         setPlayerIdType,
         payment,
         setPayment,
+        dateValue,
     } = useUpdatePersonalData()
 
     const { playerStore } = useStores()
@@ -45,7 +53,7 @@ export const PersonalDataProfile: React.FC = observer(() => {
     if (!player) return null
 
     return (
-        <Grid p="md">
+        <Grid p="md" gutter={10}>
             <Grid.Col span={6}>
                 <TextInput
                     label={t('firstName')}
@@ -88,7 +96,7 @@ export const PersonalDataProfile: React.FC = observer(() => {
                 <DatePicker label={t('birthDay')} required onChange={setDateValue} />
             </Grid.Col>
             <Grid.Col span={3}>
-                <TextInput label={t('age')} value={`${Age(player?.playerData.birthday)}`} />
+                <TextInput label={t('age')} value={`${Age(dateValue)}`} />
             </Grid.Col>
 
             <Grid.Col span={3}>
@@ -101,7 +109,7 @@ export const PersonalDataProfile: React.FC = observer(() => {
                 />
             </Grid.Col>
 
-            <PlayerGridCol span={5} title={t('address')} text="Carrera 26 # 18-31" />
+            <PlayerGridCol span={6} title={t('address')} text="Carrera 26 # 18-31" />
 
             <Grid.Col span={6}>
                 <Select

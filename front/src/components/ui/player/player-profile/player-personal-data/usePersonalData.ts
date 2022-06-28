@@ -1,4 +1,10 @@
+// @vendors
+import { useEffect, useState } from 'react'
+
+// @hooks
 import { useStores } from '~/hooks'
+
+// @generated
 import {
     Gender,
     Guardian_Type,
@@ -8,8 +14,8 @@ import {
     usePlayerDataQuery,
     useUpdatePlayerMutation,
 } from '~/generated/graphql'
-import { useEffect, useState } from 'react'
 
+// @interface
 interface UsePersonalData {
     dateValue?: Date
     gender?: string
