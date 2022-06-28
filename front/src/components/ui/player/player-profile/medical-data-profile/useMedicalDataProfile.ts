@@ -6,6 +6,7 @@ import { useStores } from '~/hooks'
 
 // @generated
 import { usePlayerMedicalDataQuery, useUpdatePlayerMutation } from '~/generated/graphql'
+import { showSMNotification } from '~/utils'
 
 // @interface
 interface UsePersonalData {
@@ -35,7 +36,7 @@ interface UsePersonalData {
 export const useUpdatePersonalData = (): UsePersonalData => {
     const { playerStore } = useStores()
 
-    const { data: playerMedicalData } = usePlayerMedicalDataQuery({
+    const { data: playerMedicalData, refetch: refecthMedicalData } = usePlayerMedicalDataQuery({
         where: { playerEmail: playerStore.playerEmail },
     })
 
@@ -45,14 +46,16 @@ export const useUpdatePersonalData = (): UsePersonalData => {
     const [weight, setWeight] = useState<string>()
     const [imc, setImc] = useState<string>()
     const [diseases, setDiseases] = useState<string[] | string>()
-    const [allergies, setAllergies] = useState<string | string[]>()
+    const [allergies, setAllergies] = useState<string[] | string>()
     const [surgeries, setSurgeries] = useState<string>()
     const [injuries, setInjuries] = useState<string>()
     const [observations, setObservations] = useState<string | null>()
 
     const { mutate: updatePlayerData } = useUpdatePlayerMutation({
         onSuccess: (): void => {
-            console.log('Succes')
+            refecthMedicalData().then((): void => {
+                showSMNotification('Datos medicos actualizados correctamente', 'INFO', false)
+            })
         },
     })
 
@@ -99,7 +102,7 @@ export const useUpdatePersonalData = (): UsePersonalData => {
                                 set: imc,
                             },
                             alergies: {
-                                push: allergies as string[],
+                                set: allergies as string[],
                             },
                         },
                         create: {

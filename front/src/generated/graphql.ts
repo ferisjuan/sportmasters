@@ -2738,6 +2738,7 @@ export type PlayerGuardian = {
   __typename?: 'PlayerGuardian';
   _count?: Maybe<PlayerGuardianCount>;
   familySupport?: Maybe<Family_Support>;
+  guardianAdrress?: Maybe<Scalars['String']>;
   guardianEmail: Scalars['String'];
   guardianId: Scalars['String'];
   guardianIdExpeditionPlace: Scalars['String'];
@@ -2770,6 +2771,7 @@ export type PlayerGuardianCountAggregate = {
   _all: Scalars['Int'];
   createdAt: Scalars['Int'];
   familySupport: Scalars['Int'];
+  guardianAdrress: Scalars['Int'];
   guardianEmail: Scalars['Int'];
   guardianId: Scalars['Int'];
   guardianIdExpeditionPlace: Scalars['Int'];
@@ -2784,6 +2786,7 @@ export type PlayerGuardianCountAggregate = {
 
 export type PlayerGuardianCountOrderByAggregateInput = {
   familySupport?: InputMaybe<SortOrder>;
+  guardianAdrress?: InputMaybe<SortOrder>;
   guardianEmail?: InputMaybe<SortOrder>;
   guardianId?: InputMaybe<SortOrder>;
   guardianIdExpeditionPlace?: InputMaybe<SortOrder>;
@@ -2797,6 +2800,7 @@ export type PlayerGuardianCountOrderByAggregateInput = {
 
 export type PlayerGuardianCreateInput = {
   familySupport?: InputMaybe<Family_Support>;
+  guardianAdrress?: InputMaybe<Scalars['String']>;
   guardianEmail: Scalars['String'];
   guardianId: Scalars['String'];
   guardianIdExpeditionPlace: Scalars['String'];
@@ -2811,6 +2815,7 @@ export type PlayerGuardianCreateInput = {
 
 export type PlayerGuardianCreateManyInput = {
   familySupport?: InputMaybe<Family_Support>;
+  guardianAdrress?: InputMaybe<Scalars['String']>;
   guardianEmail: Scalars['String'];
   guardianId: Scalars['String'];
   guardianIdExpeditionPlace: Scalars['String'];
@@ -2835,6 +2840,7 @@ export type PlayerGuardianCreateOrConnectWithoutPlayerInput = {
 
 export type PlayerGuardianCreateWithoutPlayerInput = {
   familySupport?: InputMaybe<Family_Support>;
+  guardianAdrress?: InputMaybe<Scalars['String']>;
   guardianEmail: Scalars['String'];
   guardianId: Scalars['String'];
   guardianIdExpeditionPlace: Scalars['String'];
@@ -2853,6 +2859,7 @@ export type PlayerGuardianGroupBy = {
   _min?: Maybe<PlayerGuardianMinAggregate>;
   createdAt: Scalars['DateTime'];
   familySupport?: Maybe<Family_Support>;
+  guardianAdrress?: Maybe<Scalars['String']>;
   guardianEmail: Scalars['String'];
   guardianId: Scalars['String'];
   guardianIdExpeditionPlace: Scalars['String'];
@@ -2869,6 +2876,7 @@ export type PlayerGuardianMaxAggregate = {
   __typename?: 'PlayerGuardianMaxAggregate';
   createdAt?: Maybe<Scalars['DateTime']>;
   familySupport?: Maybe<Family_Support>;
+  guardianAdrress?: Maybe<Scalars['String']>;
   guardianEmail?: Maybe<Scalars['String']>;
   guardianId?: Maybe<Scalars['String']>;
   guardianIdExpeditionPlace?: Maybe<Scalars['String']>;
@@ -2883,6 +2891,7 @@ export type PlayerGuardianMaxAggregate = {
 
 export type PlayerGuardianMaxOrderByAggregateInput = {
   familySupport?: InputMaybe<SortOrder>;
+  guardianAdrress?: InputMaybe<SortOrder>;
   guardianEmail?: InputMaybe<SortOrder>;
   guardianId?: InputMaybe<SortOrder>;
   guardianIdExpeditionPlace?: InputMaybe<SortOrder>;
@@ -2898,6 +2907,7 @@ export type PlayerGuardianMinAggregate = {
   __typename?: 'PlayerGuardianMinAggregate';
   createdAt?: Maybe<Scalars['DateTime']>;
   familySupport?: Maybe<Family_Support>;
+  guardianAdrress?: Maybe<Scalars['String']>;
   guardianEmail?: Maybe<Scalars['String']>;
   guardianId?: Maybe<Scalars['String']>;
   guardianIdExpeditionPlace?: Maybe<Scalars['String']>;
@@ -2912,6 +2922,7 @@ export type PlayerGuardianMinAggregate = {
 
 export type PlayerGuardianMinOrderByAggregateInput = {
   familySupport?: InputMaybe<SortOrder>;
+  guardianAdrress?: InputMaybe<SortOrder>;
   guardianEmail?: InputMaybe<SortOrder>;
   guardianId?: InputMaybe<SortOrder>;
   guardianIdExpeditionPlace?: InputMaybe<SortOrder>;
@@ -2928,6 +2939,7 @@ export type PlayerGuardianOrderByWithAggregationInput = {
   _max?: InputMaybe<PlayerGuardianMaxOrderByAggregateInput>;
   _min?: InputMaybe<PlayerGuardianMinOrderByAggregateInput>;
   familySupport?: InputMaybe<SortOrder>;
+  guardianAdrress?: InputMaybe<SortOrder>;
   guardianEmail?: InputMaybe<SortOrder>;
   guardianId?: InputMaybe<SortOrder>;
   guardianIdExpeditionPlace?: InputMaybe<SortOrder>;
@@ -2941,6 +2953,7 @@ export type PlayerGuardianOrderByWithAggregationInput = {
 
 export type PlayerGuardianOrderByWithRelationInput = {
   familySupport?: InputMaybe<SortOrder>;
+  guardianAdrress?: InputMaybe<SortOrder>;
   guardianEmail?: InputMaybe<SortOrder>;
   guardianId?: InputMaybe<SortOrder>;
   guardianIdExpeditionPlace?: InputMaybe<SortOrder>;
@@ -2961,6 +2974,7 @@ export type PlayerGuardianRelationFilter = {
 export enum PlayerGuardianScalarFieldEnum {
   CreatedAt = 'createdAt',
   FamilySupport = 'familySupport',
+  GuardianAdrress = 'guardianAdrress',
   GuardianEmail = 'guardianEmail',
   GuardianId = 'guardianId',
   GuardianIdExpeditionPlace = 'guardianIdExpeditionPlace',
@@ -2978,6 +2992,7 @@ export type PlayerGuardianScalarWhereWithAggregatesInput = {
   NOT?: InputMaybe<Array<PlayerGuardianScalarWhereWithAggregatesInput>>;
   OR?: InputMaybe<Array<PlayerGuardianScalarWhereWithAggregatesInput>>;
   familySupport?: InputMaybe<EnumFamily_SupportNullableWithAggregatesFilter>;
+  guardianAdrress?: InputMaybe<StringNullableWithAggregatesFilter>;
   guardianEmail?: InputMaybe<StringWithAggregatesFilter>;
   guardianId?: InputMaybe<StringWithAggregatesFilter>;
   guardianIdExpeditionPlace?: InputMaybe<StringWithAggregatesFilter>;
@@ -2991,6 +3006,7 @@ export type PlayerGuardianScalarWhereWithAggregatesInput = {
 
 export type PlayerGuardianUpdateInput = {
   familySupport?: InputMaybe<NullableEnumFamily_SupportFieldUpdateOperationsInput>;
+  guardianAdrress?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   guardianEmail?: InputMaybe<StringFieldUpdateOperationsInput>;
   guardianId?: InputMaybe<StringFieldUpdateOperationsInput>;
   guardianIdExpeditionPlace?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -3005,6 +3021,7 @@ export type PlayerGuardianUpdateInput = {
 
 export type PlayerGuardianUpdateManyMutationInput = {
   familySupport?: InputMaybe<NullableEnumFamily_SupportFieldUpdateOperationsInput>;
+  guardianAdrress?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   guardianEmail?: InputMaybe<StringFieldUpdateOperationsInput>;
   guardianId?: InputMaybe<StringFieldUpdateOperationsInput>;
   guardianIdExpeditionPlace?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -3028,6 +3045,7 @@ export type PlayerGuardianUpdateOneWithoutPlayerInput = {
 
 export type PlayerGuardianUpdateWithoutPlayerInput = {
   familySupport?: InputMaybe<NullableEnumFamily_SupportFieldUpdateOperationsInput>;
+  guardianAdrress?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   guardianEmail?: InputMaybe<StringFieldUpdateOperationsInput>;
   guardianId?: InputMaybe<StringFieldUpdateOperationsInput>;
   guardianIdExpeditionPlace?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -3049,6 +3067,7 @@ export type PlayerGuardianWhereInput = {
   NOT?: InputMaybe<Array<PlayerGuardianWhereInput>>;
   OR?: InputMaybe<Array<PlayerGuardianWhereInput>>;
   familySupport?: InputMaybe<EnumFamily_SupportNullableFilter>;
+  guardianAdrress?: InputMaybe<StringNullableFilter>;
   guardianEmail?: InputMaybe<StringFilter>;
   guardianId?: InputMaybe<StringFilter>;
   guardianIdExpeditionPlace?: InputMaybe<StringFilter>;

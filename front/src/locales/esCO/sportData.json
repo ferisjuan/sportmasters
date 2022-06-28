@@ -5,5 +5,48 @@
     "dominantProfile": "Perfil Dominante",
     "jerseyNumber": "Numero de camiseta",
     "playingPosition": "Posicion de juego",
-    "previousTeams": "Clubes anteriores"
+    "previousTeams": "Clubes anteriores",
+    "sports": "Deportes",
+    "handedness": "Mano dominante",
+    "clothingSize": "Talla de ropa",
+    "shoeSize": "Talla de calzado",
+    "sportsList": [
+        { "label": "Fútbol", "value": "SOCCER" },
+        { "label": "Taekwondo", "value": "TAEKWONDO" },
+        { "label": "Baseball", "value": "BASEBALL" },
+        { "label": "Baloncesto", "value": "BASKETBALL" },
+        { "label": "Boxeo", "value": "BOXING" },
+        { "label": "Karate", "value": "KARATE" },
+        { "label": "Natación", "value": "SWIMMING" },
+        { "label": "Volleyball", "value": "VOLLEYBALL" }
+    ],
+    "handednessList": [
+        { "label": "Derecho", "value": "RIGHT" },
+        { "label": "Izquierdo", "value": "LEFT" },
+        { "label": "Ambidiestro", "value": "AMBIDEXTROUS" }
+    ],
+
+    "categories": [
+        { "label": "Primera", "value": "FIRST" },
+        { "label": "Segunda", "value": "SECOND" },
+        { "label": "Tercera", "value": "THIRD" },
+        { "label": "Cuarta", "value": "FOURTH" },
+        { "label": "Quinta", "value": "FIFTH" },
+        { "label": "Sexta", "value": "SIXTH" },
+        { "label": "Septima", "value": "SEVENTH" }
+    ],
+
+    "fieldPosition": [
+        { "label": "Portero", "value": "GOAL_KEEPER" },
+        { "label": "Defensa izquierdo", "value": "LEFT_FULLBACK" },
+        { "label": "Defensa derecho", "value": "RIGHT_FULLBACK" },
+        { "label": "Defensa central", "value": "CENTER_BACK" },
+        { "label": "Pivote", "value": "DEFENSIVE_MIDFIELDER" },
+        { "label": "Centrocampista", "value": "CENTER_MIDDLEFIELDER" },
+        { "label": "Centrocampista izquierdo", "value": "LEFT_MIDDLEFIELDER" },
+        { "label": "Centrocampista derecho", "value": "RIGHT_MIDDLEFIELDER" },
+        { "label": "Centrocampista De Ataque", "value": "ATTACKING_MIDFIELDER" },
+        { "label": "Delantero Central", "value": "CENTER_FORWARD" }
+    ]
+
 }

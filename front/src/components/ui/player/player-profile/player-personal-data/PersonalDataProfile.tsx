@@ -39,6 +39,7 @@ export const PersonalDataProfile: React.FC = observer(() => {
         setPlayerIdType,
         payment,
         setPayment,
+        playerIdType,
         dateValue,
     } = useUpdatePersonalData()
 
@@ -75,10 +76,11 @@ export const PersonalDataProfile: React.FC = observer(() => {
             <Grid.Col span={6}>
                 <Select
                     label={t('idSelectLabel')}
-                    required
                     data={t('idSelect', { returnObjects: true })}
                     placeholder={t('idSelectPlaceholder')}
                     sx={{ flex: 1 }}
+                    value={playerIdType}
+                    readOnly
                     onChange={setPlayerIdType}
                 />
             </Grid.Col>
@@ -93,10 +95,10 @@ export const PersonalDataProfile: React.FC = observer(() => {
             </Grid.Col>
 
             <Grid.Col span={6}>
-                <DatePicker label={t('birthDay')} required onChange={setDateValue} />
+                <DatePicker defaultValue={dateValue} label={t('birthDay')} required onChange={setDateValue} />
             </Grid.Col>
             <Grid.Col span={3}>
-                <TextInput label={t('age')} value={`${Age(dateValue)}`} />
+                <TextInput label={t('age')} value={`${Age(dateValue)}`} readOnly />
             </Grid.Col>
 
             <Grid.Col span={3}>

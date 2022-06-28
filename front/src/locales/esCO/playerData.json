@@ -30,7 +30,9 @@
     "idSelect": [
         { "label": "Carnet de extranjeria", "value": "FOREIGN_CARD" },
         { "label": "Cédula de ciudadania", "value": "NATIONAL_ID" },
-        { "label": "Pasaporte", "value": "PASSPORT" }
+        { "label": "Pasaporte", "value": "PASSPORT" },
+        { "label": "Tarjeta de identidad", "value": "IDENTITY_CARD" },
+        { "label": "Registro civil", "value": "CIVIL_REGISTRATION" }
     ],
 
     "guardianOptions": [

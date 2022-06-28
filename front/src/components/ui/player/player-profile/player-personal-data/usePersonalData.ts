@@ -14,6 +14,7 @@ import {
     usePlayerDataQuery,
     useUpdatePlayerMutation,
 } from '~/generated/graphql'
+import { showSMNotification } from '~/utils'
 
 // @interface
 interface UsePersonalData {
@@ -30,6 +31,7 @@ interface UsePersonalData {
     guardianPhone?: string
     guardianEmail?: string
     playerEmail?: string
+    playerIdType?: Ndi_Type
     setDateValue: (e: Date) => void
     setGender: (e: Gender) => void
     setName: (e: string) => void
@@ -46,7 +48,7 @@ interface UsePersonalData {
 export const useUpdatePersonalData = (): UsePersonalData => {
     const { playerStore } = useStores()
 
-    const { data: playerData } = usePlayerDataQuery({
+    const { data: playerData, refetch: refetchPlayers } = usePlayerDataQuery({
         where: { playerEmail: playerStore.playerEmail },
     })
 
@@ -65,7 +67,9 @@ export const useUpdatePersonalData = (): UsePersonalData => {
 
     const { mutate: updatePlayerData } = useUpdatePlayerMutation({
         onSuccess: (): void => {
-            console.log('Succes')
+            refetchPlayers().then(() => {
+                showSMNotification('Se han actualizado con éxito los datos de los jugadores', 'INFO', false)
+            })
         },
     })
 
@@ -176,5 +180,6 @@ export const useUpdatePersonalData = (): UsePersonalData => {
         payment,
         playerEmail,
         setPlayerIdType,
+        playerIdType,
     }
 }
