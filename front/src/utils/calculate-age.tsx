@@ -1,4 +1,4 @@
-export const Age = (date: string): number => {
+export const Age = (date: string | null | undefined): number => {
     if (!date) return 0
     const today = new Date()
     const birthday = new Date(date)

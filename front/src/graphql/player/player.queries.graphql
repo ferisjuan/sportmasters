@@ -14,6 +14,7 @@ query PlayerData($where: PlayerWhereUniqueInput!) {
         playerEmail
         name
         schoolId
+        playerPaymentStatus
         playerData {
             playerIdNumber
             playerIdType
@@ -22,11 +23,17 @@ query PlayerData($where: PlayerWhereUniqueInput!) {
             birthday
             placeOfBirth
             id
+            gender
         }
         playerGuardian {
+            guardianEmail
+            guardianId
+            guardianIdType
+            guardianIdExpeditionPlace
+            guardianLastName
             guardianName
             guardianPhone
-            guardianEmail
+            guardianType
         }
     }
 }

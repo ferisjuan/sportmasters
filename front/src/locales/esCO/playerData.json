@@ -3,18 +3,41 @@
     "age": "Edad",
     "birthDay": "Fecha de nacimiento",
     "clothingSize": "Talla de ropa",
-    "emailFirstParent": "Email Acudiente 1",
-    "emailSecondParent": "Email Acudiente 2",
+    "emailFirstParent": "Email Acudiente",
     "firstName": "Nombres",
-    "firstParent": "Acudiente 1",
+    "guardianName": "Nombre del Acudiente",
+    "guardianLastName": "Apellido del Acudiente",
     "hobbies": "Hobbies",
     "idPlayer": "Identificacion",
     "lastName": "Apellidos",
     "layer": "Estrato",
     "payment": "Al dia con los pagos",
-    "phoneFirstParent": "Telefono Acudiente 1",
-    "phoneSecondParent": "Telefono Acudiente 2",
-    "secondParent": "Acudiente 2",
+    "phoneFirstParent": "Telefono Acudiente",
     "sex": "Sexo",
-    "shoeSize": "Talla de zapatos"
+    "shoeSize": "Talla de zapatos",
+    "paymenStatus": [
+        { "label": "Si", "value": "PAID" },
+        { "label": "No", "value": "UNPAID" }
+    ],
+
+    "gender": [
+        { "label": "Hombre", "value": "MALE" },
+        { "label": "Mujer", "value": "FEMALE" }
+    ],
+
+    "idSelectLabel": "Tipo de documento",
+    "idSelectPlaceholder": "Selecciona uno",
+    "idSelect": [
+        { "label": "Carnet de extranjeria", "value": "FOREIGN_CARD" },
+        { "label": "Cédula de ciudadania", "value": "NATIONAL_ID" },
+        { "label": "Pasaporte", "value": "PASSPORT" }
+    ],
+
+    "guardianOptions": [
+        { "label": "Padre", "value": "FATHER" },
+        { "label": "Madre", "value": "MOTHER" },
+        { "label": "Abuelo", "value": "GRANDFATHER" },
+        { "label": "Madre", "value": "GRANDMOTHER" },
+        { "label": "Ninguno", "value": "NONE" }
+    ]
 }

@@ -3,7 +3,7 @@ import { Card, Group, Tabs } from '@mantine/core'
 
 // @components
 import { MedicalDataProfile } from './MedicalDataProfile'
-import { PersonalDataProfile } from './PersonalDataProfile'
+import { PersonalDataProfile } from './player-personal-data'
 import { PlayerAttendance } from './player-attendance/PlayerAttendance'
 import { ProfileData } from './ProfileData'
 import { SMContainer } from '../../common'

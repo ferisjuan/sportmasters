@@ -24,6 +24,9 @@ import { ROUTES } from '~/constants'
 // @interfaces
 import { PlayerCardProps } from '~/components/ui/player/player-card/types'
 
+// @utils
+import { Age } from '~/utils'
+
 const playerStatus = Object.keys(Player_Status).map(key => ({ value: key, label: key }))
 
 playerStatus.unshift({ value: '', label: 'Selecione un estado ...' })
@@ -112,7 +115,7 @@ export const PlayerCard: React.FC<PlayerCardProps> = observer(({ players }) => {
                             </div>
 
                             <Text align="center" size="lg" style={{ width: '68px' }}>
-                                {player.playerData?.birthday ? player.playerData?.birthday : '0'} Años
+                                {Age(player?.playerData?.birthday) ? Age(player.playerData?.birthday) : '0'} Años
                             </Text>
 
                             <Text align="center" size="lg">
@@ -131,7 +134,6 @@ export const PlayerCard: React.FC<PlayerCardProps> = observer(({ players }) => {
                                         color="indigo"
                                         size="xl"
                                         variant="filled"
-                                        sx={{ zIndex: 910 }}
                                         onClick={() => {
                                             if (!cb) return
                                             cb(player as never)

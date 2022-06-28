@@ -17,7 +17,7 @@ export const SportData: React.FC = observer(() => {
     const player = playerData?.player
 
     return (
-        <Grid grow gutter="xl" style={{ padding: '10px' }}>
+        <Grid grow gutter="xl" p="md">
             <PlayerGridCol span={6} title={t('category')} text={player?.playerSportData?.category} />
 
             <PlayerGridCol span={6} title={t('dominantProfile')} text={player?.playerSportData?.handedness} />

@@ -17,7 +17,7 @@ export const MedicalDataProfile: React.FC = observer(() => {
     const player = playerData?.player
 
     return (
-        <Grid style={{ padding: '10px' }}>
+        <Grid p="md">
             <Grid grow style={{ width: '100%', padding: '8px' }}>
                 <PlayerGridCol span={6} title={t('healthProvider')} text={player?.playerMedical?.healthProvider} />
 

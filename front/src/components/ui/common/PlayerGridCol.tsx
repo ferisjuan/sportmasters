@@ -7,27 +7,19 @@ interface GridProps {
     text?: string | null
     title?: string
     date?: Date
-    isEditable?: boolean
 }
 
-export const PlayerGridCol: React.FC<GridProps> = ({ span, text, title, date, isEditable }) => {
+export const PlayerGridCol: React.FC<GridProps> = ({ span, text, title, date }) => {
     const [value, setValue] = useState(text || '')
     const [dateValue, setDateValue] = useState(date || null)
-
-    console.log(dateValue)
 
     return (
         <Grid.Col span={span}>
             <Text weight="bold">{title}</Text>
             {title === 'Fecha de nacimiento' ? (
-                <DatePicker value={dateValue} disabled={isEditable} onChange={setDateValue} />
+                <DatePicker value={dateValue} onChange={setDateValue} />
             ) : (
-                <TextInput
-                    disabled={isEditable}
-                    value={value}
-                    required
-                    onChange={event => setValue(event.target.value)}
-                />
+                <TextInput value={value} required onChange={event => setValue(event.target.value)} />
             )}
         </Grid.Col>
     )

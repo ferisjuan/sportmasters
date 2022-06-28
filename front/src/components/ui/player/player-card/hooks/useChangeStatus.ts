@@ -34,7 +34,6 @@ export const useChangeStatus = (refetchPlayers: () => void): UseChangeStatus => 
 
     const handleOpenModal = (_playerData: PlayerData): void => {
         if (!_playerData) return
-        console.log('_playerData', _playerData)
         setIsModalOpen(true)
         setPlayerData(_playerData)
     }
